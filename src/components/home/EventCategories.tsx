@@ -331,7 +331,10 @@ export default function EventCategories() {
   const backgroundY = useTransform(scrollYProgress, [0, 1], ['0%', '20%'])
 
   return (
-    <section ref={sectionRef} className="py-16 lg:py-20 relative overflow-hidden atmosphere-chamber">
+    <section ref={sectionRef} className="py-16 lg:py-20 relative overflow-hidden">
+      {/* Semi-transparent overlay to show parallax */}
+      <div className="absolute inset-0 bg-forest-950/75 backdrop-blur-[1px]" />
+      
       {/* Carved stone chamber - subtle tech glow */}
       <motion.div 
         style={{ y: backgroundY }}

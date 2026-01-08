@@ -69,7 +69,10 @@ export default function LeaderboardTeaser() {
   const decorY = useTransform(scrollYProgress, [0, 1], ['0%', '20%'])
 
   return (
-    <section ref={sectionRef} className="py-28 lg:py-36 relative overflow-hidden atmosphere-chamber">
+    <section ref={sectionRef} className="py-28 lg:py-36 relative overflow-hidden">
+      {/* Semi-transparent overlay to show parallax */}
+      <div className="absolute inset-0 bg-forest-950/75 backdrop-blur-[1px]" />
+      
       {/* Trophy hall ambient glow - gold emanation */}
       <motion.div style={{ y: decorY }} className="absolute inset-0 pointer-events-none">
         <div className="absolute top-1/4 right-0 w-96 h-96 bg-gold-950/8 rounded-full blur-3xl" />

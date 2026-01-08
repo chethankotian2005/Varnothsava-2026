@@ -87,7 +87,10 @@ export default function FestIdentity() {
   const decorOpacity = useTransform(scrollYProgress, [0, 0.5, 1], [0.2, 0.8, 0.2])
 
   return (
-    <section ref={sectionRef} className="py-28 lg:py-40 relative overflow-hidden atmosphere-sanctum">
+    <section ref={sectionRef} className="py-28 lg:py-40 relative overflow-hidden">
+      {/* Semi-transparent overlay to show parallax */}
+      <div className="absolute inset-0 bg-forest-950/70 backdrop-blur-[2px]" />
+      
       {/* Inner sanctum atmosphere - calm, mossy stone */}
       <motion.div 
         style={{ y: decorY, opacity: decorOpacity }}

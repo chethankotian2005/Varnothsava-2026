@@ -3,6 +3,7 @@ import { Inter, Cinzel_Decorative, JetBrains_Mono } from 'next/font/google'
 import './globals.css'
 import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
+import ParallaxBackground from '@/components/effects/ParallaxBackground'
 
 const inter = Inter({ 
   subsets: ['latin'],
@@ -57,8 +58,11 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${cinzel.variable} ${jetbrains.variable}`}>
       <body className="font-body min-h-screen flex flex-col bg-forest-950 text-forest-100 antialiased">
+        {/* 4-Layer Parallax Background */}
+        <ParallaxBackground />
+        
         <Navbar />
-        <main className="flex-1">
+        <main className="flex-1 relative z-10">
           {children}
         </main>
         <Footer />

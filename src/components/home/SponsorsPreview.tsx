@@ -80,7 +80,10 @@ export default function SponsorsPreview() {
   const marqueeX = useTransform(scrollYProgress, [0, 1], ['0%', '-20%'])
 
   return (
-    <section ref={sectionRef} className="py-16 lg:py-20 relative overflow-hidden atmosphere-chamber">
+    <section ref={sectionRef} className="py-16 lg:py-20 relative overflow-hidden">
+      {/* Semi-transparent overlay to show parallax */}
+      <div className="absolute inset-0 bg-forest-950/70 backdrop-blur-[1px]" />
+      
       {/* Stone hall for honored patrons */}
       <div className="absolute inset-0 pointer-events-none" style={{
         boxShadow: 'inset 0 25px 50px -15px rgba(5, 13, 10, 0.5), inset 0 -25px 50px -15px rgba(5, 13, 10, 0.5)'

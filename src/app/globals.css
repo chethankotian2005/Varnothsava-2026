@@ -725,6 +725,33 @@
   }
 
   /* ========================================
+     TECH OVERLAY FLICKER ANIMATION
+     Subtle pulsing for living circuit effect
+     ======================================== */
+  .tech-flicker {
+    animation: tech-flicker 5s ease-in-out infinite;
+  }
+
+  @keyframes tech-flicker {
+    0%, 100% { 
+      opacity: 1;
+      filter: brightness(1);
+    }
+    25% {
+      opacity: 0.95;
+      filter: brightness(1.1);
+    }
+    50% { 
+      opacity: 1;
+      filter: brightness(1.2);
+    }
+    75% {
+      opacity: 0.97;
+      filter: brightness(1.05);
+    }
+  }
+
+  /* ========================================
      BREATHING LOGO ANIMATION
      ======================================== */
   .breathe-glow {

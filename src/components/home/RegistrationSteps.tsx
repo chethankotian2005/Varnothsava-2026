@@ -50,7 +50,10 @@ export default function RegistrationSteps() {
   const lineProgress = useTransform(scrollYProgress, [0.2, 0.8], ['0%', '100%'])
 
   return (
-    <section ref={sectionRef} className="py-16 lg:py-20 relative overflow-hidden atmosphere-chamber">
+    <section ref={sectionRef} className="py-16 lg:py-20 relative overflow-hidden">
+      {/* Semi-transparent overlay to show parallax */}
+      <div className="absolute inset-0 bg-forest-950/70 backdrop-blur-[1px]" />
+      
       {/* Stone passageway ambient glow */}
       <div className="absolute top-1/2 left-0 -translate-y-1/2 w-[500px] h-[500px] bg-forest-900/15 rounded-full blur-3xl" />
       <div className="absolute top-1/2 right-0 -translate-y-1/2 w-[400px] h-[400px] bg-gold-950/8 rounded-full blur-3xl" />
