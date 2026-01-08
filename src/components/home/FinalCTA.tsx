@@ -94,7 +94,7 @@ export default function FinalCTA() {
           </motion.div>
 
           {/* Main headline - clean and decisive */}
-          <h2 className="font-display text-5xl md:text-7xl lg:text-8xl font-bold mb-8 leading-[0.95]">
+          <h2 className="font-display text-5xl md:text-7xl lg:text-8xl font-bold mb-8 leading-[0.95] text-monumental">
             <span className="text-forest-50">Ready to Make</span>
             <br />
             <span className="bg-gradient-to-r from-gold-700 via-gold-600 to-gold-800 bg-clip-text text-transparent">

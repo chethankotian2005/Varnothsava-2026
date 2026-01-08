@@ -364,13 +364,13 @@ export default function EventCategories() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-sm font-mono tracking-wider uppercase mb-4"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-sm font-mono tracking-wider uppercase mb-4 text-engraved"
           >
             <Sparkles className="w-4 h-4" />
             <span>50+ Events Await</span>
           </motion.span>
           
-          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-forest-100 mb-3">
+          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-forest-100 mb-3 text-monumental">
             Choose Your{' '}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-gold-800 via-gold-700 to-gold-950">
               Arena

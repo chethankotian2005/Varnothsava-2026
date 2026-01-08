@@ -265,7 +265,7 @@ export default function CyberAranyaHero() {
           transition={{ duration: 0.8, delay: 1.2 }}
         >
           <div className="h-px w-16 bg-gradient-to-r from-transparent to-gold-800" />
-          <span className="font-mono text-3xl md:text-4xl text-gold-700 tracking-[0.5em] font-bold">2026</span>
+          <span className="font-mono text-3xl md:text-4xl text-gold-700 tracking-[0.5em] font-bold text-engraved">2026</span>
           <div className="h-px w-16 bg-gradient-to-l from-transparent to-gold-800" />
         </motion.div>
 
@@ -276,7 +276,7 @@ export default function CyberAranyaHero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1.4 }}
         >
-          <p className="text-gold-700/80 text-xs tracking-[0.4em] uppercase mb-5 font-medium">
+          <p className="text-gold-700/80 text-xs tracking-[0.4em] uppercase mb-5 font-medium text-engraved">
             The Awakening Begins In
           </p>
           <FlipCountdown />

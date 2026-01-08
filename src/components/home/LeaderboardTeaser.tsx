@@ -105,10 +105,10 @@ export default function LeaderboardTeaser() {
               className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-forest-900/50 border border-cyan-500/30 mb-6"
             >
               <TrendingUp className="w-4 h-4 text-cyan-500" />
-              <span className="text-cyan-400 text-sm font-mono tracking-wider uppercase">Live Rankings</span>
+              <span className="text-cyan-400 text-sm font-mono tracking-wider uppercase text-engraved">Live Rankings</span>
             </motion.div>
             
-            <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-forest-100 mb-4">
+            <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-forest-100 mb-4 text-monumental">
               Race to the{' '}
               <span className="relative inline-block">
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-gold-800 via-gold-700 to-gold-950">

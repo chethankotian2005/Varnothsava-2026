@@ -142,13 +142,13 @@ export default function FestIdentity() {
             className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full bg-forest-900/50 border border-gold-800/30 mb-8"
           >
             <Crown className="w-4 h-4 text-gold-950" />
-            <span className="text-gold-700 text-sm font-mono tracking-wider uppercase">
+            <span className="text-gold-700 text-sm font-mono tracking-wider uppercase text-engraved">
               The Cyber-Aranya Awakens
             </span>
             <Crown className="w-4 h-4 text-gold-950" />
           </motion.div>
           
-          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-forest-100 mb-6">
+          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-forest-100 mb-6 text-monumental">
             Where{' '}
             <span className="relative inline-block">
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-gold-800 via-gold-700 to-gold-950">

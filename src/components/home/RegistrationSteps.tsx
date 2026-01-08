@@ -98,10 +98,10 @@ export default function RegistrationSteps() {
             className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-forest-900/50 border border-gold-800/30 mb-6"
           >
             <Zap className="w-4 h-4 text-gold-950" />
-            <span className="text-gold-700 text-sm font-mono tracking-wider uppercase">Quick & Easy</span>
+            <span className="text-gold-700 text-sm font-mono tracking-wider uppercase text-engraved">Quick & Easy</span>
           </motion.div>
           
-          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-forest-100 mb-4">
+          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-forest-100 mb-4 text-monumental">
             Register in{' '}
             <span className="relative inline-block">
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-gold-800 via-gold-700 to-gold-950">
