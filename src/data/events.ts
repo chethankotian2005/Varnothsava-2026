@@ -1,0 +1,375 @@
+// Event data for Varnothsava 2026
+export interface Event {
+  id: string
+  name: string
+  category: string
+  categoryId: string
+  description: string
+  rules: string[]
+  date: string
+  time: string
+  venue: string
+  teamSize: string
+  registrationFee: number
+  prizePool: string
+  coordinator: {
+    name: string
+    phone: string
+  }
+  image?: string
+}
+
+export const events: Event[] = [
+  // Cultural Events
+  {
+    id: 'classical-dance',
+    name: 'Nritya Sangam',
+    category: 'Cultural',
+    categoryId: 'cultural',
+    description: 'A celebration of classical dance forms from across India. Showcase your mastery in Bharatanatyam, Kathak, Odissi, Kuchipudi, or any classical form.',
+    rules: [
+      'Solo performance only',
+      'Time limit: 8-10 minutes',
+      'Pre-recorded music allowed',
+      'Props can be used',
+      'Traditional costume mandatory',
+    ],
+    date: 'March 15, 2026',
+    time: '10:00 AM',
+    venue: 'Main Auditorium',
+    teamSize: 'Solo',
+    registrationFee: 200,
+    prizePool: '₹25,000',
+    coordinator: {
+      name: 'Priya Sharma',
+      phone: '+91 98765 43210',
+    },
+  },
+  {
+    id: 'band-competition',
+    name: 'Battle of Bands',
+    category: 'Cultural',
+    categoryId: 'cultural',
+    description: 'The ultimate showdown for college bands. Rock, Metal, Fusion, or Indie - bring your A-game and electrify the crowd.',
+    rules: [
+      'Team of 4-8 members',
+      'Time limit: 15-20 minutes',
+      'Original compositions get bonus points',
+      'Basic sound equipment provided',
+      'No explicit content',
+    ],
+    date: 'March 16, 2026',
+    time: '6:00 PM',
+    venue: 'Open Air Theatre',
+    teamSize: '4-8 Members',
+    registrationFee: 1000,
+    prizePool: '₹50,000',
+    coordinator: {
+      name: 'Rahul Menon',
+      phone: '+91 98765 43211',
+    },
+  },
+  {
+    id: 'fashion-show',
+    name: 'Runway Regal',
+    category: 'Cultural',
+    categoryId: 'cultural',
+    description: 'Walk the ramp with style and attitude. Themed fashion show showcasing creativity, coordination, and charisma.',
+    rules: [
+      'Team of 8-12 members',
+      'Time limit: 12-15 minutes',
+      'Theme must be pre-approved',
+      'Music to be submitted in advance',
+      'Professional choreography appreciated',
+    ],
+    date: 'March 17, 2026',
+    time: '7:00 PM',
+    venue: 'Main Auditorium',
+    teamSize: '8-12 Members',
+    registrationFee: 1500,
+    prizePool: '₹40,000',
+    coordinator: {
+      name: 'Sneha Pai',
+      phone: '+91 98765 43212',
+    },
+  },
+  // Technical Events
+  {
+    id: 'hackathon',
+    name: 'Code Crusade',
+    category: 'Technical',
+    categoryId: 'technical',
+    description: '24-hour non-stop hackathon. Build innovative solutions for real-world problems. Theme revealed at the start.',
+    rules: [
+      'Team of 2-4 members',
+      'Bring your own laptops',
+      'Internet access provided',
+      'Use of AI tools allowed',
+      'Working prototype required',
+    ],
+    date: 'March 15-16, 2026',
+    time: '9:00 AM - 9:00 AM',
+    venue: 'Computer Lab Complex',
+    teamSize: '2-4 Members',
+    registrationFee: 400,
+    prizePool: '₹75,000',
+    coordinator: {
+      name: 'Aditya Kumar',
+      phone: '+91 98765 43213',
+    },
+  },
+  {
+    id: 'coding-contest',
+    name: 'Binary Blitz',
+    category: 'Technical',
+    categoryId: 'technical',
+    description: 'Competitive programming at its finest. Solve algorithmic challenges under time pressure. Top coders emerge victorious.',
+    rules: [
+      'Individual participation',
+      'Duration: 3 hours',
+      'Languages: C, C++, Java, Python',
+      'Online judge platform used',
+      'No external resources allowed',
+    ],
+    date: 'March 15, 2026',
+    time: '2:00 PM',
+    venue: 'CS Lab 1 & 2',
+    teamSize: 'Solo',
+    registrationFee: 150,
+    prizePool: '₹30,000',
+    coordinator: {
+      name: 'Vikram Singh',
+      phone: '+91 98765 43214',
+    },
+  },
+  {
+    id: 'robotics',
+    name: 'Robo Wars',
+    category: 'Technical',
+    categoryId: 'technical',
+    description: 'Build combat robots and battle it out in the arena. Engineering meets destruction in this thrilling competition.',
+    rules: [
+      'Team of 2-5 members',
+      'Robot weight limit: 15kg',
+      'Remote/autonomous control',
+      'Safety inspection mandatory',
+      'Weapons must be pre-approved',
+    ],
+    date: 'March 16, 2026',
+    time: '10:00 AM',
+    venue: 'Mechanical Workshop',
+    teamSize: '2-5 Members',
+    registrationFee: 800,
+    prizePool: '₹60,000',
+    coordinator: {
+      name: 'Arjun Nair',
+      phone: '+91 98765 43215',
+    },
+  },
+  // Fine Arts
+  {
+    id: 'painting',
+    name: 'Canvas Chronicles',
+    category: 'Fine Arts',
+    categoryId: 'arts',
+    description: 'Express your creativity on canvas. Theme-based painting competition judged on creativity, technique, and presentation.',
+    rules: [
+      'Individual participation',
+      'Duration: 2 hours',
+      'Canvas and paints provided',
+      'Theme revealed on spot',
+      'No digital art',
+    ],
+    date: 'March 15, 2026',
+    time: '10:00 AM',
+    venue: 'Arts Block',
+    teamSize: 'Solo',
+    registrationFee: 100,
+    prizePool: '₹15,000',
+    coordinator: {
+      name: 'Kavya Rao',
+      phone: '+91 98765 43216',
+    },
+  },
+  {
+    id: 'rangoli',
+    name: 'Rangoli Rangam',
+    category: 'Fine Arts',
+    categoryId: 'arts',
+    description: 'Traditional floor art competition. Create stunning rangoli designs using colors, flowers, and natural materials.',
+    rules: [
+      'Team of 2 members',
+      'Duration: 3 hours',
+      'Area: 6x6 feet',
+      'Colors provided',
+      'Theme: Indian Heritage',
+    ],
+    date: 'March 16, 2026',
+    time: '9:00 AM',
+    venue: 'College Ground',
+    teamSize: '2 Members',
+    registrationFee: 150,
+    prizePool: '₹12,000',
+    coordinator: {
+      name: 'Lakshmi Iyer',
+      phone: '+91 98765 43217',
+    },
+  },
+  // Literary Events
+  {
+    id: 'debate',
+    name: 'Verbal Valor',
+    category: 'Literary',
+    categoryId: 'literary',
+    description: 'Parliamentary-style debate competition. Argue, counter, and convince with logic, facts, and eloquence.',
+    rules: [
+      'Team of 2 members',
+      'Topics given 30 mins before',
+      'Each speaker: 5 minutes',
+      'Rebuttal: 2 minutes each',
+      'English medium',
+    ],
+    date: 'March 15, 2026',
+    time: '11:00 AM',
+    venue: 'Seminar Hall 1',
+    teamSize: '2 Members',
+    registrationFee: 200,
+    prizePool: '₹20,000',
+    coordinator: {
+      name: 'Rohan Desai',
+      phone: '+91 98765 43218',
+    },
+  },
+  {
+    id: 'quiz',
+    name: 'Quizzical Quest',
+    category: 'Literary',
+    categoryId: 'literary',
+    description: 'General quiz covering science, technology, arts, sports, current affairs, and pop culture. Test your knowledge.',
+    rules: [
+      'Team of 3 members',
+      'Prelims + Finals format',
+      'No electronic devices',
+      'Multiple rounds with varying formats',
+      'Quiz master decision is final',
+    ],
+    date: 'March 16, 2026',
+    time: '2:00 PM',
+    venue: 'Seminar Hall 2',
+    teamSize: '3 Members',
+    registrationFee: 150,
+    prizePool: '₹18,000',
+    coordinator: {
+      name: 'Meera Krishnan',
+      phone: '+91 98765 43219',
+    },
+  },
+  // Media & Film
+  {
+    id: 'short-film',
+    name: 'Cine Shorts',
+    category: 'Media & Film',
+    categoryId: 'media',
+    description: 'Create a compelling short film on the given theme. Storytelling, cinematography, and editing skills put to test.',
+    rules: [
+      'Team of up to 10 members',
+      'Duration: 5-10 minutes',
+      'Submit 48 hours before event',
+      'Original content only',
+      'Subtitles mandatory if not in English/Hindi',
+    ],
+    date: 'March 17, 2026',
+    time: '3:00 PM',
+    venue: 'Screening Hall',
+    teamSize: 'Up to 10 Members',
+    registrationFee: 500,
+    prizePool: '₹35,000',
+    coordinator: {
+      name: 'Sameer Khan',
+      phone: '+91 98765 43220',
+    },
+  },
+  {
+    id: 'photography',
+    name: 'Shutter Stories',
+    category: 'Media & Film',
+    categoryId: 'media',
+    description: 'Photography contest with on-spot and pre-submitted categories. Capture moments that speak a thousand words.',
+    rules: [
+      'Individual participation',
+      'DSLR/Mirrorless cameras only',
+      'Minimal editing allowed',
+      'Themes given on spot',
+      'RAW files to be kept for verification',
+    ],
+    date: 'March 15, 2026',
+    time: '9:00 AM',
+    venue: 'College Campus',
+    teamSize: 'Solo',
+    registrationFee: 200,
+    prizePool: '₹15,000',
+    coordinator: {
+      name: 'Ananya Shetty',
+      phone: '+91 98765 43221',
+    },
+  },
+  // E-Sports
+  {
+    id: 'valorant',
+    name: 'Valorant Showdown',
+    category: 'E-Sports',
+    categoryId: 'gaming',
+    description: 'Competitive Valorant tournament. 5v5 tactical shooter action with the best teams from across colleges.',
+    rules: [
+      'Team of 5+2 (substitutes)',
+      'Bring your own peripherals',
+      'PCs provided',
+      'Standard competitive ruleset',
+      'Cheating = immediate disqualification',
+    ],
+    date: 'March 15-16, 2026',
+    time: '10:00 AM onwards',
+    venue: 'Gaming Arena',
+    teamSize: '5+2 Members',
+    registrationFee: 500,
+    prizePool: '₹40,000',
+    coordinator: {
+      name: 'Pranav Gowda',
+      phone: '+91 98765 43222',
+    },
+  },
+  {
+    id: 'bgmi',
+    name: 'BGMI Battleground',
+    category: 'E-Sports',
+    categoryId: 'gaming',
+    description: 'Battle Grounds Mobile India tournament. Squad-based battle royale competition for mobile gaming enthusiasts.',
+    rules: [
+      'Team of 4 members',
+      'Bring your own mobile devices',
+      'WiFi provided',
+      'Multiple matches format',
+      'Points-based ranking',
+    ],
+    date: 'March 16, 2026',
+    time: '11:00 AM',
+    venue: 'Gaming Arena',
+    teamSize: '4 Members',
+    registrationFee: 400,
+    prizePool: '₹30,000',
+    coordinator: {
+      name: 'Kiran Reddy',
+      phone: '+91 98765 43223',
+    },
+  },
+]
+
+export const categories = [
+  { id: 'all', name: 'All Events', count: events.length },
+  { id: 'cultural', name: 'Cultural', count: events.filter(e => e.categoryId === 'cultural').length },
+  { id: 'technical', name: 'Technical', count: events.filter(e => e.categoryId === 'technical').length },
+  { id: 'arts', name: 'Fine Arts', count: events.filter(e => e.categoryId === 'arts').length },
+  { id: 'literary', name: 'Literary', count: events.filter(e => e.categoryId === 'literary').length },
+  { id: 'media', name: 'Media & Film', count: events.filter(e => e.categoryId === 'media').length },
+  { id: 'gaming', name: 'E-Sports', count: events.filter(e => e.categoryId === 'gaming').length },
+]

@@ -1,0 +1,594 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-display: 'Cinzel Decorative', serif;
+  --font-body: 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  
+  /* Techno-Cultural Color Palette */
+  --bg-deep: #051015;
+  --bg-mid: #0a1a25;
+  --teal-deep: #051a1a;
+  --teal-mid: #0a2a2a;
+  --blue-deep: #0d1f35;
+  --gold-primary: #D4AF37;
+  --gold-light: #f0d890;
+  --gold-dark: #8e762c;
+  --cyan-glow: #00C8DC;
+  --cyan-dark: #006670;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply text-gray-100 antialiased;
+    background: 
+      linear-gradient(180deg, 
+        #051015 0%, 
+        #0a1a25 20%,
+        #081520 50%, 
+        #051015 100%
+      );
+    background-attachment: fixed;
+  }
+
+  /* Subtle pattern for content sections below hero */
+  .content-section {
+    position: relative;
+    background: linear-gradient(180deg, transparent 0%, #051015 5%, #0a1520 50%, #051015 100%);
+  }
+
+  .content-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 0.03;
+    background-image: 
+      radial-gradient(circle at 25% 25%, rgba(0, 200, 220, 0.15) 1px, transparent 1px),
+      radial-gradient(circle at 75% 75%, rgba(212, 175, 55, 0.1) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+  }
+
+  ::selection {
+    background: rgba(212, 175, 55, 0.4);
+    color: #f0d890;
+  }
+}
+
+@layer components {
+  /* ========================================
+     GLASSMORPHISM STYLES
+     ======================================== */
+  .glass {
+    background: rgba(5, 22, 18, 0.8);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(212, 175, 55, 0.1);
+  }
+
+  .glass-gold {
+    background: rgba(212, 175, 55, 0.08);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(212, 175, 55, 0.25);
+  }
+
+  .glass-cyan {
+    background: rgba(0, 242, 255, 0.05);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(0, 242, 255, 0.15);
+  }
+
+  /* ========================================
+     LIQUID GOLD BUTTON - Molten Metal Effect
+     ======================================== */
+  .btn-liquid-gold {
+    @apply relative inline-flex items-center justify-center px-10 py-5
+           font-display font-bold text-lg tracking-wider
+           rounded-xl overflow-hidden cursor-pointer
+           transition-all duration-500 ease-out;
+    background: linear-gradient(135deg, 
+      #8B6914 0%, 
+      #D4AF37 15%, 
+      #FFE5A0 30%, 
+      #D4AF37 50%,
+      #B8962B 70%,
+      #D4AF37 85%,
+      #8B6914 100%
+    );
+    background-size: 400% 400%;
+    color: #051612;
+    box-shadow: 
+      0 0 30px rgba(212, 175, 55, 0.4),
+      0 10px 40px rgba(0, 0, 0, 0.3),
+      inset 0 2px 0 rgba(255, 255, 255, 0.4),
+      inset 0 -2px 0 rgba(0, 0, 0, 0.2);
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.3);
+    animation: liquid-gold-idle 4s ease-in-out infinite;
+  }
+
+  @keyframes liquid-gold-idle {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+
+  /* Molten swirl overlay */
+  .btn-liquid-gold::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(255, 229, 160, 0.4) 25%,
+      rgba(255, 255, 255, 0.6) 50%,
+      rgba(255, 229, 160, 0.4) 75%,
+      transparent 100%
+    );
+    transition: left 0.6s ease;
+  }
+
+  .btn-liquid-gold:hover::before {
+    left: 100%;
+  }
+
+  /* Inner molten gold pool effect */
+  .btn-liquid-gold::after {
+    content: '';
+    position: absolute;
+    inset: 4px;
+    border-radius: 8px;
+    background: 
+      radial-gradient(ellipse at 30% 30%, rgba(255, 229, 160, 0.5) 0%, transparent 50%),
+      radial-gradient(ellipse at 70% 60%, rgba(255, 220, 100, 0.4) 0%, transparent 40%),
+      radial-gradient(ellipse at 50% 80%, rgba(212, 175, 55, 0.3) 0%, transparent 40%);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    animation: molten-swirl 3s ease-in-out infinite;
+  }
+
+  @keyframes molten-swirl {
+    0%, 100% { 
+      background-position: 0% 0%, 100% 100%, 50% 0%;
+      transform: scale(1);
+    }
+    33% { 
+      background-position: 50% 100%, 0% 0%, 100% 50%;
+      transform: scale(1.02);
+    }
+    66% { 
+      background-position: 100% 50%, 50% 50%, 0% 100%;
+      transform: scale(0.98);
+    }
+  }
+
+  .btn-liquid-gold:hover {
+    transform: scale(1.05) translateY(-3px);
+    box-shadow: 
+      0 0 60px rgba(212, 175, 55, 0.6),
+      0 20px 60px rgba(0, 0, 0, 0.4),
+      inset 0 2px 0 rgba(255, 255, 255, 0.5),
+      inset 0 -2px 0 rgba(0, 0, 0, 0.3),
+      0 0 100px rgba(212, 175, 55, 0.3);
+  }
+
+  .btn-liquid-gold:hover::after {
+    opacity: 1;
+  }
+
+  /* Gold-to-Emerald gradient button variant */
+  .btn-gold-emerald {
+    @apply relative inline-flex items-center justify-center px-8 py-4
+           font-display font-bold text-base tracking-wider
+           rounded-lg overflow-hidden cursor-pointer
+           transition-all duration-500 ease-out;
+    background: linear-gradient(135deg, 
+      #D4AF37 0%, 
+      #B8962B 25%,
+      #2D8B5F 50%,
+      #1E6B47 75%,
+      #10493A 100%
+    );
+    background-size: 200% 200%;
+    color: #fff;
+    box-shadow: 
+      0 0 20px rgba(212, 175, 55, 0.3),
+      0 5px 20px rgba(0, 0, 0, 0.3);
+    animation: gold-emerald-shift 4s ease-in-out infinite;
+  }
+
+  @keyframes gold-emerald-shift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+
+  .btn-gold-emerald:hover {
+    transform: scale(1.05) translateY(-2px);
+    box-shadow: 
+      0 0 40px rgba(45, 139, 95, 0.5),
+      0 10px 30px rgba(0, 0, 0, 0.4);
+  }
+
+  /* ========================================
+     CIRCUIT BORDER BUTTON (Ghost)
+     ======================================== */
+  .btn-circuit {
+    @apply relative inline-flex items-center justify-center px-10 py-5
+           font-display font-bold text-lg tracking-wider
+           rounded-xl overflow-hidden cursor-pointer
+           transition-all duration-500 ease-out;
+    background: transparent;
+    color: #00F2FF;
+    border: 2px solid transparent;
+  }
+
+  .btn-circuit::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 12px;
+    padding: 2px;
+    background: linear-gradient(90deg, #00F2FF, #D4AF37, #00F2FF);
+    background-size: 200% 100%;
+    mask: 
+      linear-gradient(#fff 0 0) content-box, 
+      linear-gradient(#fff 0 0);
+    -webkit-mask: 
+      linear-gradient(#fff 0 0) content-box, 
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    animation: circuit-border 3s linear infinite;
+  }
+
+  @keyframes circuit-border {
+    0% { background-position: 0% 0%; }
+    100% { background-position: 200% 0%; }
+  }
+
+  .btn-circuit:hover {
+    background: rgba(0, 242, 255, 0.1);
+    color: #fff;
+    transform: scale(1.05);
+    box-shadow: 
+      0 0 30px rgba(0, 242, 255, 0.3),
+      inset 0 0 20px rgba(0, 242, 255, 0.1);
+  }
+
+  /* ========================================
+     DIGITAL ETCHING TEXT EFFECT
+     ======================================== */
+  .text-etched {
+    background: linear-gradient(
+      135deg,
+      #D4AF37 0%,
+      #f0d890 25%,
+      #D4AF37 50%,
+      #f0d890 75%,
+      #D4AF37 100%
+    );
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gold-shimmer 4s ease-in-out infinite;
+    filter: drop-shadow(0 0 30px rgba(212, 175, 55, 0.5));
+  }
+
+  @keyframes gold-shimmer {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+
+  /* Glint effect that travels across text */
+  .text-glint {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .text-glint::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.4),
+      transparent
+    );
+    animation: glint-sweep 5s ease-in-out infinite;
+  }
+
+  @keyframes glint-sweep {
+    0% { left: -100%; }
+    50%, 100% { left: 200%; }
+  }
+
+  /* ========================================
+     GOLDEN PILLAR STYLES
+     ======================================== */
+  .pillar-gold {
+    background: linear-gradient(180deg,
+      rgba(212, 175, 55, 0.1) 0%,
+      rgba(212, 175, 55, 0.05) 50%,
+      rgba(212, 175, 55, 0.1) 100%
+    );
+    border-left: 1px solid rgba(212, 175, 55, 0.3);
+    border-right: 1px solid rgba(212, 175, 55, 0.3);
+  }
+
+  .pillar-glow {
+    box-shadow: 
+      inset 0 0 30px rgba(212, 175, 55, 0.1),
+      0 0 50px rgba(212, 175, 55, 0.1);
+  }
+
+  /* Circuit lines on pillars */
+  .circuit-line {
+    stroke: #00F2FF;
+    stroke-width: 1;
+    fill: none;
+    stroke-dasharray: 20 10;
+    animation: circuit-dash 2s linear infinite;
+    filter: drop-shadow(0 0 3px #00F2FF);
+  }
+
+  @keyframes circuit-dash {
+    from { stroke-dashoffset: 30; }
+    to { stroke-dashoffset: 0; }
+  }
+
+  /* Pillar carving pulse */
+  .carving-pulse {
+    animation: carving-glow 3s ease-in-out infinite;
+  }
+
+  @keyframes carving-glow {
+    0%, 100% { 
+      opacity: 0.3;
+      filter: drop-shadow(0 0 5px rgba(0, 242, 255, 0.3));
+    }
+    50% { 
+      opacity: 1;
+      filter: drop-shadow(0 0 15px rgba(0, 242, 255, 0.8));
+    }
+  }
+
+  /* ========================================
+     BREATHING LOGO ANIMATION
+     ======================================== */
+  .breathe-glow {
+    animation: breathe-aura 4s ease-in-out infinite;
+  }
+
+  @keyframes breathe-aura {
+    0%, 100% {
+      transform: scale(1);
+      filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.4));
+    }
+    50% {
+      transform: scale(1.03);
+      filter: drop-shadow(0 0 40px rgba(212, 175, 55, 0.7));
+    }
+  }
+
+  /* Energy flow to center */
+  .energy-flow {
+    position: absolute;
+    width: 2px;
+    height: 100px;
+    background: linear-gradient(to bottom, transparent, #00F2FF, transparent);
+    animation: energy-pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes energy-pulse {
+    0% { opacity: 0; transform: translateY(-100%); }
+    50% { opacity: 1; }
+    100% { opacity: 0; transform: translateY(100%); }
+  }
+
+  /* ========================================
+     MIST/FOG EFFECT
+     ======================================== */
+  .mist-layer {
+    background: linear-gradient(
+      to top,
+      rgba(5, 22, 18, 0.9) 0%,
+      rgba(5, 22, 18, 0.5) 50%,
+      transparent 100%
+    );
+    pointer-events: none;
+  }
+
+  /* ========================================
+     EMBER/PARTICLE STYLES
+     ======================================== */
+  .ember {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  .ember-fire {
+    background: radial-gradient(circle, #FFD700, #FF8C00);
+    box-shadow: 0 0 10px #FFD700, 0 0 20px #FF8C00;
+  }
+
+  .ember-data {
+    background: #00F2FF;
+    box-shadow: 0 0 10px #00F2FF;
+    border-radius: 2px;
+  }
+
+  /* ========================================
+     CARD STYLES
+     ======================================== */
+  .card {
+    @apply rounded-2xl overflow-hidden transition-all duration-500 ease-out;
+    background: rgba(5, 22, 18, 0.8);
+    border: 1px solid rgba(212, 175, 55, 0.1);
+    backdrop-filter: blur(10px);
+  }
+
+  .card:hover {
+    border-color: rgba(212, 175, 55, 0.3);
+    box-shadow: 0 0 30px rgba(212, 175, 55, 0.1);
+  }
+
+  .card-hover:hover {
+    @apply -translate-y-2;
+    box-shadow: 
+      0 20px 40px rgba(0, 0, 0, 0.3),
+      0 0 30px rgba(212, 175, 55, 0.15);
+  }
+
+  /* ========================================
+     TYPOGRAPHY UTILITIES
+     ======================================== */
+  .section-heading {
+    @apply text-4xl md:text-5xl lg:text-6xl font-display font-bold tracking-wide;
+    color: #D4AF37;
+    text-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
+  }
+
+  .section-subheading {
+    @apply text-lg md:text-xl max-w-2xl mx-auto text-gray-400;
+  }
+
+  .text-gold-glow {
+    color: #D4AF37;
+    text-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+  }
+
+  .text-cyan-glow {
+    color: #00F2FF;
+    text-shadow: 0 0 20px rgba(0, 242, 255, 0.5);
+  }
+
+  /* ========================================
+     NAV LINK WITH EXPANDING UNDERLINE
+     ======================================== */
+  .nav-link {
+    @apply relative px-4 py-2 text-gray-300 transition-colors duration-300;
+  }
+
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #D4AF37, #00F2FF);
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+    box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+  }
+
+  .nav-link:hover {
+    color: #D4AF37;
+  }
+
+  .nav-link:hover::after {
+    width: 100%;
+  }
+
+  /* ========================================
+     SCROLL ANIMATIONS
+     ======================================== */
+  .reveal-on-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .reveal-on-scroll.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ========================================
+     TREE SILHOUETTE OVERLAY
+     ======================================== */
+  .tree-silhouette {
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%23041310' d='M0,192L80,186.7C160,181,320,171,480,186.7C640,203,800,245,960,234.7C1120,224,1280,160,1360,128L1440,96L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
+    background-size: cover;
+    background-position: bottom;
+  }
+
+  /* ========================================
+     GLOW EFFECTS
+     ======================================== */
+  .glow-gold {
+    box-shadow: 
+      0 0 20px rgba(212, 175, 55, 0.3),
+      0 0 40px rgba(212, 175, 55, 0.2),
+      0 0 60px rgba(212, 175, 55, 0.1);
+  }
+
+  .glow-cyan {
+    box-shadow: 
+      0 0 20px rgba(0, 242, 255, 0.3),
+      0 0 40px rgba(0, 242, 255, 0.2),
+      0 0 60px rgba(0, 242, 255, 0.1);
+  }
+
+  .pulse-glow {
+    animation: pulse-gold 3s ease-in-out infinite;
+  }
+
+  @keyframes pulse-gold {
+    0%, 100% {
+      box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+    }
+    50% {
+      box-shadow: 0 0 40px rgba(212, 175, 55, 0.7);
+    }
+  }
+  
+  /* Gold glow pulse for countdown boxes */
+  @keyframes glow-pulse {
+    0%, 100% {
+      box-shadow: 0 0 10px rgba(212, 175, 55, 0.4), inset 0 0 8px rgba(212, 175, 55, 0.15);
+    }
+    50% {
+      box-shadow: 0 0 20px rgba(212, 175, 55, 0.7), inset 0 0 15px rgba(212, 175, 55, 0.25);
+    }
+  }
+
+  /* ========================================
+     SCROLLBAR STYLING
+     ======================================== */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #051612;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #D4AF37, #8e762c);
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #f0d890, #D4AF37);
+  }
+}
