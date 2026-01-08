@@ -29,11 +29,11 @@
     @apply text-gray-100 antialiased;
     background: 
       linear-gradient(180deg, 
-        #030a10 0%, 
-        #051218 15%,
-        #081520 40%, 
-        #051218 70%,
-        #030a10 100%
+        #020810 0%, 
+        #040e18 15%,
+        #061420 40%, 
+        #040e18 70%,
+        #020810 100%
       );
     background-attachment: fixed;
   }
@@ -41,7 +41,7 @@
   /* Subtle pattern for content sections below hero */
   .content-section {
     position: relative;
-    background: linear-gradient(180deg, transparent 0%, #030a10 5%, #051520 50%, #030a10 100%);
+    background: linear-gradient(180deg, transparent 0%, #020810 5%, #051420 50%, #020810 100%);
   }
 
   .content-section::before {
