@@ -1,6 +1,6 @@
 'use client'
 
-import { motion, useScroll, useTransform } from 'framer-motion'
+import { motion, useScroll, useTransform, useReducedMotion } from 'framer-motion'
 import Link from 'next/link'
 import { useRef } from 'react'
 import { ArrowRight, Music, Code, Palette, Mic, Camera, Gamepad2, Sparkles } from 'lucide-react'
@@ -199,10 +199,11 @@ const categories = [
 function BentoCard({ category, index }: { category: typeof categories[0], index: number }) {
   const isLarge = category.size === 'large'
   const isMedium = category.size === 'medium'
+  const prefersReducedMotion = useReducedMotion()
   
   return (
     <motion.div
-      initial={{ opacity: 0, y: 50, scale: 0.95 }}
+      initial={prefersReducedMotion ? {} : { opacity: 0, y: 50, scale: 0.95 }}
       whileInView={{ opacity: 1, y: 0, scale: 1 }}
       viewport={{ once: true, margin: "-50px" }}
       transition={{ 
@@ -219,11 +220,14 @@ function BentoCard({ category, index }: { category: typeof categories[0], index:
         href={`/events?category=${category.id}`}
         className={`
           group relative block h-full min-h-[280px] overflow-hidden rounded-2xl
-          bg-forest-900/50 backdrop-blur-sm
+          bg-forest-900/60 backdrop-blur-sm
           border border-gold-800/20 hover:border-gold-800/50
-          transition-all duration-500 ease-out
+          transition-all duration-300 ease-out
+          focus-ring
+          hover:scale-[1.02] hover:-translate-y-1
           ${category.borderGlow}
         `}
+        aria-label={`Explore ${category.name} events - ${category.count} events available`}
       >
         {/* Background Pattern */}
         {category.pattern && <category.pattern />}
@@ -370,7 +374,7 @@ export default function EventCategories() {
         </motion.div>
 
         {/* Bento Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-6 auto-rows-[140px]">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 lg:gap-6 auto-rows-[140px]">
           {categories.map((category, index) => (
             <BentoCard key={category.id} category={category} index={index} />
           ))}
@@ -382,11 +386,11 @@ export default function EventCategories() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.5 }}
-          className="text-center mt-12"
+          className="text-center mt-14"
         >
           <Link 
             href="/events" 
-            className="btn-liquid-gold inline-flex items-center gap-2 group"
+            className="btn-liquid-gold inline-flex items-center gap-2 group focus-ring"
           >
             <span>Explore All Events</span>
             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />

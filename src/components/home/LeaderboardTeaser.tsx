@@ -1,6 +1,6 @@
 'use client'
 
-import { motion, useScroll, useTransform } from 'framer-motion'
+import { motion, useScroll, useTransform, useReducedMotion } from 'framer-motion'
 import { useRef } from 'react'
 import Link from 'next/link'
 import { Trophy, Medal, Award, ArrowRight, Crown, TrendingUp, Sparkles } from 'lucide-react'
@@ -151,10 +151,10 @@ export default function LeaderboardTeaser() {
 
             <Link 
               href="/leaderboard" 
-              className="btn-circuit"
+              className="btn-circuit focus-ring"
             >
               <span>View Full Leaderboard</span>
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
             </Link>
           </motion.div>
 
@@ -182,7 +182,7 @@ export default function LeaderboardTeaser() {
               <PodiumVisualization />
 
               {/* Rankings List */}
-              <div className="space-y-3">
+              <div className="space-y-2">
                 {topColleges.map((college, index) => (
                   <motion.div
                     key={college.rank}
@@ -190,11 +190,19 @@ export default function LeaderboardTeaser() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: 0.1 * index + 0.5 }}
-                    className={`flex items-center justify-between p-4 rounded-xl transition-all duration-300 hover:scale-[1.02] cursor-pointer ${
-                      college.rank <= 3
-                        ? 'bg-forest-900/70 border border-gold-800/30 hover:border-gold-800/50'
-                        : 'bg-forest-800/50 border border-forest-700/30 hover:border-forest-700/50'
+                    className={`flex items-center justify-between p-4 rounded-xl transition-all duration-300 hover:scale-[1.02] cursor-pointer focus-within:ring-2 focus-within:ring-gold-800 ${
+                      college.rank === 1
+                        ? 'bg-gradient-to-r from-gold-950/20 to-gold-800/10 border border-gold-800/40 hover:border-gold-700/60'
+                        : college.rank === 2
+                        ? 'bg-gradient-to-r from-gray-400/10 to-gray-500/5 border border-gray-500/30 hover:border-gray-400/50'
+                        : college.rank === 3
+                        ? 'bg-gradient-to-r from-amber-700/15 to-amber-600/5 border border-amber-700/30 hover:border-amber-600/50'
+                        : index % 2 === 0
+                        ? 'bg-forest-800/40 border border-forest-700/20 hover:border-forest-600/40'
+                        : 'bg-forest-900/40 border border-forest-700/20 hover:border-forest-600/40'
                     }`}
+                    tabIndex={0}
+                    role="listitem"
                   >
                     <div className="flex items-center gap-4">
                       <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${

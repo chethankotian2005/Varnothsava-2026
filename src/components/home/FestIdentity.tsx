@@ -1,6 +1,6 @@
 'use client'
 
-import { motion, useScroll, useTransform } from 'framer-motion'
+import { motion, useScroll, useTransform, useReducedMotion } from 'framer-motion'
 import { useRef } from 'react'
 import { Sparkles, Cpu, Palette, Users, Zap, Crown, Trophy, Calendar } from 'lucide-react'
 
@@ -44,9 +44,11 @@ const stats = [
 
 // Animated counter component
 function AnimatedStat({ stat, index }: { stat: typeof stats[0], index: number }) {
+  const prefersReducedMotion = useReducedMotion()
+  
   return (
     <motion.div
-      initial={{ opacity: 0, y: 30 }}
+      initial={prefersReducedMotion ? {} : { opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6, delay: 0.1 * index }}
@@ -55,18 +57,18 @@ function AnimatedStat({ stat, index }: { stat: typeof stats[0], index: number })
       {/* Glow effect */}
       <div className="absolute inset-0 bg-gradient-to-r from-gold-950/20 to-forest-700/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
       
-      <div className="relative bg-forest-900/50 backdrop-blur-sm rounded-2xl p-6 lg:p-8 text-center border border-gold-800/20 group-hover:border-gold-800/50 transition-colors duration-300">
-        <stat.icon className="w-6 h-6 text-gold-800 mx-auto mb-3 opacity-60" />
+      <div className="relative bg-forest-900/60 backdrop-blur-sm rounded-2xl p-6 lg:p-8 text-center border border-gold-800/20 group-hover:border-gold-800/50 transition-all duration-300 group-hover:shadow-lg group-hover:shadow-gold-950/10">
+        <stat.icon className="w-6 h-6 text-gold-800 mx-auto mb-3" aria-hidden="true" />
         <motion.div 
           className="text-4xl md:text-5xl lg:text-6xl font-display font-bold bg-gradient-to-r from-gold-800 via-gold-700 to-gold-950 bg-clip-text text-transparent mb-2"
-          initial={{ scale: 0.5 }}
+          initial={prefersReducedMotion ? {} : { scale: 0.5 }}
           whileInView={{ scale: 1 }}
           viewport={{ once: true }}
           transition={{ type: "spring", stiffness: 200, delay: 0.2 + index * 0.1 }}
         >
           {stat.value}
         </motion.div>
-        <div className="text-forest-400 text-sm uppercase tracking-widest font-mono">
+        <div className="text-forest-300 text-sm uppercase tracking-widest font-mono">
           {stat.label}
         </div>
       </div>
@@ -178,25 +180,26 @@ export default function FestIdentity() {
         </motion.div>
 
         {/* Features Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 mb-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 mb-24">
           {features.map((feature, index) => (
-            <motion.div
+            <motion.article
               key={feature.title}
-              initial={{ opacity: 0, y: 40, rotateX: -10 }}
-              whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: feature.delay }}
               whileHover={{ y: -8, transition: { duration: 0.3 } }}
-              className="group relative"
+              className="group relative focus-within:ring-2 focus-within:ring-gold-800 rounded-2xl"
+              tabIndex={0}
             >
               {/* Card glow on hover */}
               <div className={`absolute -inset-0.5 bg-gradient-to-r ${feature.gradient} rounded-2xl opacity-0 group-hover:opacity-30 blur transition-opacity duration-500`} />
               
-              <div className="relative bg-forest-900/50 backdrop-blur-sm rounded-2xl p-6 lg:p-8 text-center border border-gold-800/20 group-hover:border-gold-800/50 transition-all duration-500 h-full">
+              <div className="relative bg-forest-900/60 backdrop-blur-sm rounded-2xl p-6 lg:p-8 text-center border border-gold-800/20 group-hover:border-gold-800/50 transition-all duration-500 h-full group-hover:shadow-lg group-hover:shadow-black/20">
                 {/* Icon with gradient background */}
                 <div className={`inline-flex items-center justify-center w-16 h-16 rounded-xl bg-gradient-to-br ${feature.gradient} p-[1px] mb-6`}>
                   <div className="w-full h-full rounded-xl bg-forest-950 flex items-center justify-center group-hover:bg-forest-900 transition-colors">
-                    <feature.icon className="w-8 h-8 text-forest-100" />
+                    <feature.icon className="w-8 h-8 text-forest-100" aria-hidden="true" />
                   </div>
                 </div>
                 
@@ -204,7 +207,7 @@ export default function FestIdentity() {
                   {feature.title}
                 </h3>
                 
-                <p className="text-forest-400 text-sm leading-relaxed">
+                <p className="text-forest-300 text-sm leading-relaxed">
                   {feature.description}
                 </p>
 
@@ -217,7 +220,7 @@ export default function FestIdentity() {
                   transition={{ delay: 0.5 + feature.delay, duration: 0.8 }}
                 />
               </div>
-            </motion.div>
+            </motion.article>
           ))}
         </div>
 

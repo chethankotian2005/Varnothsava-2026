@@ -1,7 +1,7 @@
 'use client'
 
 import { useRef, useEffect } from 'react'
-import { motion } from 'framer-motion'
+import { motion, useReducedMotion } from 'framer-motion'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Link from 'next/link'
@@ -42,26 +42,26 @@ export default function FinalCTA() {
       {/* Animated background gradient */}
       <div className="absolute inset-0 bg-gradient-to-b from-forest-950 via-forest-900/50 to-forest-950" />
       
-      {/* Mandala-inspired decorative circles */}
+      {/* Mandala-inspired decorative circles - slower rotation */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] pointer-events-none">
         <motion.div 
           animate={{ rotate: 360 }}
-          transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
+          transition={{ duration: 120, repeat: Infinity, ease: "linear" }}
           className="absolute inset-0 rounded-full border border-gold-800/20"
         />
         <motion.div 
           animate={{ rotate: -360 }}
-          transition={{ duration: 45, repeat: Infinity, ease: "linear" }}
+          transition={{ duration: 90, repeat: Infinity, ease: "linear" }}
           className="absolute inset-12 rounded-full border border-cyan-500/10"
         />
         <motion.div 
           animate={{ rotate: 360 }}
-          transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+          transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
           className="absolute inset-24 rounded-full border border-gold-800/30"
         />
         <motion.div 
           animate={{ rotate: -360 }}
-          transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+          transition={{ duration: 45, repeat: Infinity, ease: "linear" }}
           className="absolute inset-36 rounded-full border border-cyan-500/10"
         />
         
@@ -151,24 +151,26 @@ export default function FinalCTA() {
           </div>
 
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 mb-8">
             <Link 
               href="/register" 
-              className="btn-liquid-gold text-lg group relative overflow-hidden"
+              className="btn-liquid-gold text-base sm:text-lg group relative overflow-hidden focus-ring min-w-[280px] text-center"
+              aria-label="Register for Varnothsava 2026 - Free to start"
             >
-              <span className="relative z-10 flex items-center gap-2">
-                <Zap className="w-5 h-5" />
+              <span className="relative z-10 flex items-center justify-center gap-2">
+                <Zap className="w-5 h-5" aria-hidden="true" />
                 <span>Register Now — It&apos;s Free to Start</span>
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
               </span>
             </Link>
             
             <Link 
               href="/events" 
-              className="btn-circuit text-lg"
+              className="btn-circuit text-base sm:text-lg focus-ring min-w-[180px] text-center"
+              aria-label="Browse all events"
             >
               <span>Browse Events</span>
-              <ArrowRight className="w-5 h-5" />
+              <ArrowRight className="w-5 h-5" aria-hidden="true" />
             </Link>
           </div>
 
@@ -180,8 +182,8 @@ export default function FinalCTA() {
             transition={{ delay: 0.5 }}
             className="space-y-2"
           >
-            <p className="text-forest-400 text-sm flex items-center justify-center gap-2">
-              <span className="inline-block w-2 h-2 rounded-full bg-gold-800 animate-pulse" />
+            <p className="text-forest-300 text-sm flex items-center justify-center gap-2">
+              <span className="inline-block w-2 h-2 rounded-full bg-gold-800 animate-pulse" aria-hidden="true" />
               Registration closes March 10, 2026
             </p>
             <p className="text-cyan-glow text-sm font-mono">

@@ -1,6 +1,6 @@
 'use client'
 
-import { motion, useScroll, useTransform } from 'framer-motion'
+import { motion, useScroll, useTransform, useReducedMotion } from 'framer-motion'
 import { useRef } from 'react'
 import Link from 'next/link'
 import { UserPlus, CalendarCheck, CreditCard, CheckCircle, ArrowRight, Sparkles, Zap } from 'lucide-react'
@@ -133,18 +133,22 @@ export default function RegistrationSteps() {
                     style={{ background: step.glowColor }}
                   />
                   
-                  <div className="relative bg-forest-900/50 backdrop-blur-sm rounded-2xl p-6 lg:p-8 border border-gold-800/20 group-hover:border-gold-800/50 transition-all duration-500">
+                  <div className="relative bg-forest-900/60 backdrop-blur-sm rounded-2xl p-6 lg:p-8 border border-gold-800/20 group-hover:border-gold-800/50 transition-all duration-300 group-hover:shadow-lg group-hover:shadow-black/20 group-hover:-translate-y-1">
                     {/* Step Number Badge */}
                     <div className="flex items-center gap-4 mb-4">
-                      <div className={`relative flex-shrink-0 w-14 h-14 rounded-xl bg-gradient-to-br ${step.gradient} p-[2px]`}>
+                      <motion.div 
+                        className={`relative flex-shrink-0 w-14 h-14 rounded-xl bg-gradient-to-br ${step.gradient} p-[2px]`}
+                        whileHover={{ scale: 1.1, rotate: 5 }}
+                        transition={{ type: "spring", stiffness: 400 }}
+                      >
                         <div className="w-full h-full rounded-xl bg-forest-950 flex items-center justify-center group-hover:bg-forest-900 transition-colors">
-                          <step.icon className="w-6 h-6 text-forest-100" />
+                          <step.icon className="w-6 h-6 text-forest-100" aria-hidden="true" />
                         </div>
                         {/* Step number */}
                         <div className="absolute -top-2 -right-2 w-6 h-6 rounded-full bg-gold-950 flex items-center justify-center text-xs font-bold text-forest-950">
                           {step.step}
                         </div>
-                      </div>
+                      </motion.div>
                       
                       <div>
                         <span className="text-xs font-mono text-forest-500 uppercase tracking-wider">Step {step.step}</span>
@@ -154,7 +158,7 @@ export default function RegistrationSteps() {
                       </div>
                     </div>
                     
-                    <p className="text-forest-400 leading-relaxed pl-[72px]">
+                    <p className="text-forest-300 leading-relaxed pl-[72px]">
                       {step.description}
                     </p>
 
@@ -177,8 +181,8 @@ export default function RegistrationSteps() {
           transition={{ duration: 0.6, delay: 0.5 }}
           className="text-center mt-16"
         >
-          <Link href="/register" className="btn-liquid-gold inline-flex items-center gap-2 group">
-            <Sparkles className="w-5 h-5" />
+          <Link href="/register" className="btn-liquid-gold inline-flex items-center gap-2 group focus-ring">
+            <Sparkles className="w-5 h-5" aria-hidden="true" />
             <span>Start Registration</span>
             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
           </Link>

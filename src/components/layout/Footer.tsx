@@ -46,7 +46,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12">
           {/* Brand */}
           <div className="lg:col-span-1">
-            <Link href="/" className="flex items-center space-x-3 mb-6 group">
+            <Link href="/" className="flex items-center space-x-3 mb-6 group focus-ring rounded-lg p-1 -m-1 w-fit" aria-label="Varnothsava 2026 - Home">
               <div className="relative w-14 h-14 rounded-full overflow-hidden ring-2 ring-gold-800/50 group-hover:ring-gold-950 transition-all">
                 <Image
                   src="/images/logo.png"
@@ -75,10 +75,10 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   whileHover={{ scale: 1.1, y: -2 }}
-                  className={`w-11 h-11 rounded-xl bg-forest-900/50 border border-gold-800/20 flex items-center justify-center text-forest-300 ${social.color} hover:text-white hover:border-transparent transition-all duration-300`}
-                  aria-label={social.name}
+                  className={`w-12 h-12 rounded-xl bg-forest-900/50 border border-gold-800/20 flex items-center justify-center text-forest-300 ${social.color} hover:text-white hover:border-transparent transition-all duration-300 focus-ring`}
+                  aria-label={`Follow us on ${social.name}`}
                 >
-                  <social.icon size={18} />
+                  <social.icon size={20} aria-hidden="true" />
                 </motion.a>
               ))}
             </div>
@@ -87,18 +87,18 @@ export default function Footer() {
           {/* Explore Links */}
           <div>
             <h3 className="text-gold-950 font-display font-semibold text-lg mb-5 flex items-center gap-2">
-              <Sparkles className="w-4 h-4" />
+              <Sparkles className="w-4 h-4" aria-hidden="true" />
               Explore
             </h3>
-            <ul className="space-y-3">
+            <ul className="space-y-3" role="list">
               {footerLinks.explore.map((link) => (
                 <li key={link.name}>
                   <Link
                     href={link.href}
-                    className="text-forest-300 hover:text-gold-950 transition-colors text-sm flex items-center gap-1 group"
+                    className="text-forest-300 hover:text-gold-950 transition-colors text-sm flex items-center gap-1 group py-1 focus-ring rounded"
                   >
                     {link.name}
-                    <ArrowUpRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <ArrowUpRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" aria-hidden="true" />
                   </Link>
                 </li>
               ))}
@@ -108,15 +108,15 @@ export default function Footer() {
           {/* About Links */}
           <div>
             <h3 className="text-gold-950 font-display font-semibold text-lg mb-5">About</h3>
-            <ul className="space-y-3">
+            <ul className="space-y-3" role="list">
               {footerLinks.about.map((link) => (
                 <li key={link.name}>
                   <Link
                     href={link.href}
-                    className="text-forest-300 hover:text-gold-950 transition-colors text-sm flex items-center gap-1 group"
+                    className="text-forest-300 hover:text-gold-950 transition-colors text-sm flex items-center gap-1 group py-1 focus-ring rounded"
                   >
                     {link.name}
-                    <ArrowUpRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <ArrowUpRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" aria-hidden="true" />
                   </Link>
                 </li>
               ))}
@@ -166,23 +166,23 @@ export default function Footer() {
       {/* Bottom Bar */}
       <div className="relative border-t border-gold-800/20 bg-forest-900/50">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-forest-400">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-forest-300">
             <p className="flex items-center gap-1">
               © 2026 Varnothsava, SMVITM. Made with{' '}
-              <Heart className="w-4 h-4 text-red-500 fill-red-500 animate-pulse" />{' '}
+              <Heart className="w-4 h-4 text-red-500 fill-red-500 animate-pulse" aria-label="love" />{' '}
               in Udupi
             </p>
-            <div className="flex items-center space-x-6">
+            <nav className="flex flex-wrap items-center justify-center gap-4 sm:gap-6" aria-label="Legal links">
               {footerLinks.legal.map((link) => (
                 <Link
                   key={link.name}
                   href={link.href}
-                  className="hover:text-gold-950 transition-colors"
+                  className="hover:text-gold-950 transition-colors py-1 px-2 focus-ring rounded text-forest-300"
                 >
                   {link.name}
                 </Link>
               ))}
-            </div>
+            </nav>
           </div>
         </div>
       </div>

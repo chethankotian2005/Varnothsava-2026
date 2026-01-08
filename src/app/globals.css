@@ -7,17 +7,61 @@
   --font-body: 'Inter', sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
   
-  /* Techno-Cultural Color Palette */
-  --bg-deep: #030a10;
-  --bg-mid: #051218;
-  --teal-deep: #051a22;
-  --teal-mid: #062028;
-  --blue-deep: #081c30;
+  /* ========================================
+     DESIGN TOKENS - Varnothsava 2026
+     ======================================== */
+  
+  /* Primary Colors (3 core) */
+  --color-gold: #D4AF37;
+  --color-cyan: #00F2FF;
+  --color-forest: #051612;
+  
+  /* Gold Scale */
   --gold-primary: #D4AF37;
   --gold-light: #f0d890;
   --gold-dark: #8e762c;
-  --cyan-glow: #00C8DC;
+  --gold-muted: rgba(212, 175, 55, 0.6);
+  
+  /* Cyan Scale */
+  --cyan-glow: #00F2FF;
   --cyan-dark: #006670;
+  --cyan-muted: rgba(0, 242, 255, 0.6);
+  
+  /* Background Scale */
+  --bg-deep: #020810;
+  --bg-mid: #051218;
+  --bg-card: rgba(5, 22, 18, 0.8);
+  --bg-elevated: rgba(5, 26, 34, 0.9);
+  
+  /* Neutral Scale (for text) */
+  --text-primary: #f0f0f0;
+  --text-secondary: #a0a0a0;
+  --text-muted: #6b7280;
+  
+  /* Spacing Tokens */
+  --section-padding-y: clamp(4rem, 8vw, 8rem);
+  --container-padding-x: clamp(1rem, 4vw, 2rem);
+  --card-radius: 1rem;
+  --card-radius-lg: 1.5rem;
+  
+  /* Animation Tokens */
+  --transition-fast: 150ms ease;
+  --transition-base: 300ms ease;
+  --transition-slow: 500ms ease-out;
+  
+  /* Shadow Tokens */
+  --shadow-glow-gold: 0 0 20px rgba(212, 175, 55, 0.3);
+  --shadow-glow-gold-lg: 0 0 40px rgba(212, 175, 55, 0.5);
+  --shadow-glow-cyan: 0 0 20px rgba(0, 242, 255, 0.3);
+  --shadow-card: 0 4px 20px rgba(0, 0, 0, 0.3);
+  --shadow-card-hover: 0 8px 40px rgba(0, 0, 0, 0.4);
+  
+  /* Focus Ring */
+  --focus-ring: 0 0 0 2px var(--bg-deep), 0 0 0 4px var(--color-gold);
+  --focus-ring-cyan: 0 0 0 2px var(--bg-deep), 0 0 0 4px var(--color-cyan);
+  
+  /* Touch Target Minimum */
+  --touch-target-min: 44px;
 }
 
 @layer base {
@@ -25,17 +69,66 @@
     scroll-behavior: smooth;
   }
   
+  /* Respect reduced motion preference */
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+  
   body {
     @apply text-gray-100 antialiased;
     background: 
       linear-gradient(180deg, 
-        #020810 0%, 
+        var(--bg-deep) 0%, 
         #040e18 15%,
         #061420 40%, 
         #040e18 70%,
-        #020810 100%
+        var(--bg-deep) 100%
       );
     background-attachment: fixed;
+    /* Minimum text size for readability */
+    font-size: clamp(16px, 1rem, 18px);
+  }
+  
+  /* Ensure focus is visible for keyboard users */
+  :focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+  }
+  
+  /* Remove default focus for mouse users */
+  :focus:not(:focus-visible) {
+    outline: none;
+  }
+  
+  /* Ensure minimum touch targets */
+  button,
+  a,
+  input,
+  select,
+  textarea,
+  [role="button"] {
+    min-height: var(--touch-target-min);
+  }
+  
+  /* Links base styling */
+  a {
+    @apply transition-colors duration-300;
+  }
+  
+  a:focus-visible {
+    box-shadow: var(--focus-ring);
+    border-radius: 4px;
   }
 
   /* Subtle pattern for content sections below hero */
@@ -63,6 +156,52 @@
 }
 
 @layer components {
+  /* ========================================
+     STANDARDIZED SECTION SPACING
+     ======================================== */
+  .section-standard {
+    @apply py-20 md:py-24 lg:py-32 relative overflow-hidden;
+  }
+  
+  .section-compact {
+    @apply py-16 md:py-20 lg:py-24 relative overflow-hidden;
+  }
+  
+  /* ========================================
+     FOCUS STATES FOR INTERACTIVE ELEMENTS
+     ======================================== */
+  .focus-ring {
+    @apply outline-none;
+  }
+  
+  .focus-ring:focus-visible {
+    box-shadow: var(--focus-ring);
+  }
+  
+  .focus-ring-cyan:focus-visible {
+    box-shadow: var(--focus-ring-cyan);
+  }
+  
+  /* ========================================
+     INTERACTIVE CARD BASE
+     ======================================== */
+  .interactive-card {
+    @apply relative rounded-2xl overflow-hidden cursor-pointer;
+    @apply transition-all duration-300 ease-out;
+    @apply border border-gold-800/20;
+    background: var(--bg-card);
+    backdrop-filter: blur(10px);
+  }
+  
+  .interactive-card:hover {
+    @apply border-gold-800/40 -translate-y-1;
+    box-shadow: var(--shadow-card-hover), var(--shadow-glow-gold);
+  }
+  
+  .interactive-card:focus-visible {
+    box-shadow: var(--focus-ring), var(--shadow-card);
+  }
+  
   /* ========================================
      GLASSMORPHISM STYLES
      ======================================== */
@@ -186,6 +325,10 @@
   .btn-liquid-gold:hover::after {
     opacity: 1;
   }
+  
+  .btn-liquid-gold:focus-visible {
+    box-shadow: var(--focus-ring), var(--shadow-glow-gold-lg);
+  }
 
   /* Gold-to-Emerald gradient button variant */
   .btn-gold-emerald {
@@ -264,6 +407,53 @@
     box-shadow: 
       0 0 30px rgba(0, 242, 255, 0.3),
       inset 0 0 20px rgba(0, 242, 255, 0.1);
+  }
+  
+  .btn-circuit:focus-visible {
+    box-shadow: var(--focus-ring-cyan), 0 0 30px rgba(0, 242, 255, 0.3);
+  }
+
+  /* ========================================
+     SCROLL INDICATOR
+     ======================================== */
+  .scroll-indicator {
+    @apply absolute bottom-8 left-1/2 -translate-x-1/2;
+    @apply flex flex-col items-center gap-2;
+    @apply text-forest-400 text-xs uppercase tracking-widest;
+    animation: bounce-gentle 2s ease-in-out infinite;
+  }
+  
+  .scroll-indicator::after {
+    content: '';
+    @apply w-6 h-10 rounded-full border-2 border-forest-500;
+    @apply relative;
+  }
+  
+  .scroll-indicator::before {
+    content: '';
+    @apply w-1 h-2 bg-gold-800 rounded-full;
+    @apply absolute bottom-6 left-1/2 -translate-x-1/2;
+    animation: scroll-dot 2s ease-in-out infinite;
+  }
+  
+  @keyframes bounce-gentle {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(8px); }
+  }
+  
+  @keyframes scroll-dot {
+    0%, 100% { opacity: 1; transform: translate(-50%, 0); }
+    50% { opacity: 0.5; transform: translate(-50%, 8px); }
+  }
+  
+  /* Reduced motion - no bouncing */
+  @media (prefers-reduced-motion: reduce) {
+    .scroll-indicator {
+      animation: none;
+    }
+    .scroll-indicator::before {
+      animation: none;
+    }
   }
 
   /* ========================================
@@ -485,13 +675,17 @@
      NAV LINK WITH EXPANDING UNDERLINE
      ======================================== */
   .nav-link {
-    @apply relative px-4 py-2 text-gray-300 transition-colors duration-300;
+    @apply relative px-4 py-3 text-gray-300 transition-colors duration-300;
+    @apply rounded-lg;
+    min-height: var(--touch-target-min);
+    display: inline-flex;
+    align-items: center;
   }
 
   .nav-link::after {
     content: '';
     position: absolute;
-    bottom: 0;
+    bottom: 4px;
     left: 50%;
     width: 0;
     height: 2px;
@@ -499,6 +693,7 @@
     transition: all 0.3s ease;
     transform: translateX(-50%);
     box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+    border-radius: 1px;
   }
 
   .nav-link:hover {
@@ -506,7 +701,36 @@
   }
 
   .nav-link:hover::after {
-    width: 100%;
+    width: calc(100% - 2rem);
+  }
+  
+  .nav-link:focus-visible {
+    box-shadow: var(--focus-ring);
+  }
+  
+  /* Active nav link state */
+  .nav-link.active {
+    color: #D4AF37;
+  }
+  
+  .nav-link.active::after {
+    width: calc(100% - 2rem);
+    background: linear-gradient(90deg, #D4AF37, #f0d890);
+  }
+  
+  /* Mobile nav link - larger touch target */
+  .nav-link-mobile {
+    @apply block w-full px-6 py-4 text-lg;
+    @apply rounded-xl transition-all duration-300;
+    @apply text-forest-200;
+    min-height: 56px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .nav-link-mobile:hover,
+  .nav-link-mobile.active {
+    @apply bg-forest-800/50 text-gold-950;
   }
 
   /* ========================================

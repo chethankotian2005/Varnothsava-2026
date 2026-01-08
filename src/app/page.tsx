@@ -18,14 +18,34 @@ export default function Home() {
       {/* Ambient environment effects */}
       <MistEffect />
       
-      {/* Main content sections */}
-      <CyberAranyaHero />
-      <FestIdentity />
-      <EventCategories />
-      <RegistrationSteps />
-      <LeaderboardTeaser />
-      <SponsorsPreview />
-      <FinalCTA />
+      {/* Main content sections with IDs for scroll-based navigation */}
+      <section id="hero">
+        <CyberAranyaHero />
+      </section>
+      
+      <section id="about">
+        <FestIdentity />
+      </section>
+      
+      <section id="events">
+        <EventCategories />
+      </section>
+      
+      <section id="registration">
+        <RegistrationSteps />
+      </section>
+      
+      <section id="leaderboard">
+        <LeaderboardTeaser />
+      </section>
+      
+      <section id="sponsors">
+        <SponsorsPreview />
+      </section>
+      
+      <section id="cta">
+        <FinalCTA />
+      </section>
     </>
   )
 }

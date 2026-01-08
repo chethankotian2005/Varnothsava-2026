@@ -1,44 +1,135 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback, useRef } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
+import { usePathname } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
 
 const navLinks = [
-  { name: 'Home', href: '/' },
-  { name: 'Events', href: '/events' },
-  { name: 'Schedule', href: '/schedule' },
-  { name: 'Gallery', href: '/gallery' },
-  { name: 'Team', href: '/team' },
-  { name: 'Contact', href: '/contact' },
+  { name: 'Home', href: '/', sectionId: 'hero' },
+  { name: 'Events', href: '/events', sectionId: 'events' },
+  { name: 'Schedule', href: '/schedule', sectionId: null },
+  { name: 'Gallery', href: '/gallery', sectionId: null },
+  { name: 'Team', href: '/team', sectionId: null },
+  { name: 'Contact', href: '/contact', sectionId: null },
 ]
+
+// Section IDs on the homepage for scroll-based active state
+const homeSections = ['hero', 'about', 'events', 'registration', 'leaderboard', 'sponsors', 'cta']
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const [activeSection, setActiveSection] = useState<string>('hero')
+  const pathname = usePathname()
+  const observerRef = useRef<IntersectionObserver | null>(null)
 
+  // Scroll detection for navbar background
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50)
     }
-    window.addEventListener('scroll', handleScroll)
+    window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
+  // IntersectionObserver for active section detection
+  useEffect(() => {
+    // Only run on homepage
+    if (pathname !== '/') {
+      setActiveSection('')
+      return
+    }
+
+    // Disconnect previous observer
+    if (observerRef.current) {
+      observerRef.current.disconnect()
+    }
+
+    const observerCallback: IntersectionObserverCallback = (entries) => {
+      // Find the section that is most visible
+      const visibleEntries = entries.filter(entry => entry.isIntersecting)
+      
+      if (visibleEntries.length > 0) {
+        // Sort by intersection ratio and pick the most visible
+        const mostVisible = visibleEntries.reduce((prev, current) => 
+          current.intersectionRatio > prev.intersectionRatio ? current : prev
+        )
+        setActiveSection(mostVisible.target.id)
+      }
+    }
+
+    observerRef.current = new IntersectionObserver(observerCallback, {
+      root: null,
+      rootMargin: '-20% 0px -60% 0px', // Trigger when section is in upper-middle of viewport
+      threshold: [0, 0.25, 0.5, 0.75, 1]
+    })
+
+    // Observe all sections
+    homeSections.forEach(sectionId => {
+      const element = document.getElementById(sectionId)
+      if (element && observerRef.current) {
+        observerRef.current.observe(element)
+      }
+    })
+
+    return () => {
+      if (observerRef.current) {
+        observerRef.current.disconnect()
+      }
+    }
+  }, [pathname])
+
+  // Close mobile menu on route change
+  useEffect(() => {
+    setIsOpen(false)
+  }, [pathname])
+
+  // Prevent body scroll when mobile menu is open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = ''
+    }
+    return () => {
+      document.body.style.overflow = ''
+    }
+  }, [isOpen])
+
+  // Check if a nav link should be active
+  const isLinkActive = useCallback((link: typeof navLinks[0]) => {
+    // For non-home pages, match pathname
+    if (pathname !== '/') {
+      return pathname === link.href || pathname.startsWith(link.href + '/')
+    }
+    
+    // On homepage, use section-based active state
+    if (link.href === '/' && activeSection === 'hero') return true
+    if (link.sectionId && activeSection === link.sectionId) return true
+    if (link.href === '/events' && activeSection === 'events') return true
+    
+    return false
+  }, [pathname, activeSection])
+
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled
-          ? 'bg-forest-950/90 backdrop-blur-md border-b border-gold-800/20 shadow-lg shadow-forest-950/50'
-          : 'bg-transparent'
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        scrolled || isOpen
+          ? 'bg-forest-950/95 backdrop-blur-lg border-b border-gold-800/20 shadow-lg shadow-forest-950/50'
+          : 'bg-forest-950/30 backdrop-blur-sm'
       }`}
     >
       <nav className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
-          <Link href="/" className="flex items-center space-x-3 group">
+          <Link 
+            href="/" 
+            className="flex items-center space-x-3 group focus-ring rounded-lg"
+            aria-label="Varnothsava 2026 - Home"
+          >
             <div className="relative w-10 h-10 lg:w-12 lg:h-12 rounded-full overflow-hidden ring-2 ring-gold-800/50 transition-all duration-300 group-hover:scale-105 group-hover:ring-gold-950">
               <Image
                 src="/images/logo.png"
@@ -57,27 +148,43 @@ export default function Navbar() {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center space-x-2">
-            {navLinks.map((link) => (
-              <Link
-                key={link.name}
-                href={link.href}
-                className="px-5 py-2 text-forest-300 hover:text-gold-950 font-medium text-xs tracking-[0.15em] uppercase transition-colors duration-300 relative group"
-              >
-                {/* Circuit node that appears on hover */}
-                <span className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1 opacity-0 group-hover:opacity-100 transition-all duration-300">
-                  <span className="block w-1.5 h-1.5 rounded-full bg-cyan-glow shadow-[0_0_8px_rgba(0,242,255,0.8)]" />
-                  <span className="absolute top-1.5 left-1/2 -translate-x-1/2 w-px h-2 bg-gradient-to-b from-cyan-glow to-transparent" />
-                </span>
-                {link.name}
-                <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-px bg-gradient-to-r from-gold-950 via-cyan-glow to-gold-950 group-hover:w-full transition-all duration-300" />
-              </Link>
-            ))}
+          <div className="hidden lg:flex items-center space-x-1">
+            {navLinks.map((link) => {
+              const active = isLinkActive(link)
+              return (
+                <Link
+                  key={link.name}
+                  href={link.href}
+                  className={`nav-link font-medium text-xs tracking-[0.15em] uppercase relative group ${
+                    active ? 'active text-gold-950' : 'text-forest-300'
+                  }`}
+                  aria-current={active ? 'page' : undefined}
+                >
+                  {/* Circuit node indicator */}
+                  <span 
+                    className={`absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1 transition-all duration-300 ${
+                      active ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'
+                    }`}
+                  >
+                    <span className={`block w-1.5 h-1.5 rounded-full shadow-[0_0_8px_rgba(0,242,255,0.8)] ${
+                      active ? 'bg-gold-950' : 'bg-cyan-glow'
+                    }`} />
+                    <span className={`absolute top-1.5 left-1/2 -translate-x-1/2 w-px h-2 bg-gradient-to-b to-transparent ${
+                      active ? 'from-gold-950' : 'from-cyan-glow'
+                    }`} />
+                  </span>
+                  {link.name}
+                </Link>
+              )
+            })}
           </div>
 
           {/* Desktop CTA */}
           <div className="hidden lg:flex items-center space-x-4">
-            <Link href="/register" className="btn-liquid-gold text-xs tracking-wider">
+            <Link 
+              href="/register" 
+              className="btn-liquid-gold text-xs tracking-wider focus-ring"
+            >
               Register Now
             </Link>
           </div>
@@ -85,8 +192,10 @@ export default function Navbar() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="lg:hidden p-2 text-forest-200 hover:text-gold-950 transition-colors"
-            aria-label="Toggle menu"
+            className="lg:hidden p-3 text-forest-200 hover:text-gold-950 transition-colors rounded-lg focus-ring"
+            aria-label={isOpen ? 'Close menu' : 'Open menu'}
+            aria-expanded={isOpen}
+            aria-controls="mobile-menu"
           >
             {isOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -97,39 +206,44 @@ export default function Navbar() {
       <AnimatePresence>
         {isOpen && (
           <motion.div
+            id="mobile-menu"
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3 }}
-            className="lg:hidden bg-forest-950/95 backdrop-blur-md border-b border-gold-800/20"
+            transition={{ duration: 0.3, ease: 'easeInOut' }}
+            className="lg:hidden bg-forest-950/98 backdrop-blur-lg border-b border-gold-800/20 overflow-hidden"
           >
-            <div className="container mx-auto px-4 py-4 space-y-2">
-              {navLinks.map((link, index) => (
-                <motion.div
-                  key={link.name}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: index * 0.05 }}
-                >
-                  <Link
-                    href={link.href}
-                    onClick={() => setIsOpen(false)}
-                    className="block px-4 py-3 text-forest-200 hover:text-gold-950 hover:bg-forest-900/50 rounded-lg transition-all"
+            <div className="container mx-auto px-4 py-6 space-y-1">
+              {navLinks.map((link, index) => {
+                const active = isLinkActive(link)
+                return (
+                  <motion.div
+                    key={link.name}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: index * 0.05, duration: 0.2 }}
                   >
-                    {link.name}
-                  </Link>
-                </motion.div>
-              ))}
+                    <Link
+                      href={link.href}
+                      onClick={() => setIsOpen(false)}
+                      className={`nav-link-mobile ${active ? 'active' : ''}`}
+                      aria-current={active ? 'page' : undefined}
+                    >
+                      {link.name}
+                    </Link>
+                  </motion.div>
+                )
+              })}
               <motion.div
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: navLinks.length * 0.05 }}
-                className="pt-2"
+                transition={{ delay: navLinks.length * 0.05, duration: 0.2 }}
+                className="pt-4"
               >
                 <Link
                   href="/register"
                   onClick={() => setIsOpen(false)}
-                  className="btn-liquid-gold w-full text-center"
+                  className="btn-liquid-gold w-full text-center block focus-ring"
                 >
                   Register Now
                 </Link>

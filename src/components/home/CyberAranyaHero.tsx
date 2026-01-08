@@ -1,8 +1,10 @@
 'use client'
 
-import { motion, useScroll, useTransform, useMotionValue } from 'framer-motion'
+import { motion, useScroll, useTransform, useMotionValue, useReducedMotion } from 'framer-motion'
 import { useRef, useState, useEffect } from 'react'
 import dynamic from 'next/dynamic'
+import Link from 'next/link'
+import { ChevronDown } from 'lucide-react'
 import DigitalEtching from '@/components/effects/DigitalEtching'
 import BreathingLogo from '@/components/effects/BreathingLogo'
 
@@ -196,10 +198,14 @@ export default function CyberAranyaHero() {
     return () => window.removeEventListener('mousemove', handleMouseMove)
   }, [mouseX, mouseY])
 
+  // Respect reduced motion preferences
+  const prefersReducedMotion = useReducedMotion()
+
   return (
     <section
       ref={containerRef}
-      className="relative min-h-screen flex items-center justify-center overflow-hidden"
+      className="relative min-h-[100svh] lg:min-h-screen flex items-center justify-center overflow-hidden pt-20 pb-24 lg:pt-24 lg:pb-32"
+      aria-label="Hero section"
     >
       {/* Modern techno-cultural background */}
       <div className="absolute inset-0 -z-30">
@@ -264,41 +270,55 @@ export default function CyberAranyaHero() {
         {/* CTA Buttons */}
         <motion.div
           className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6"
-          initial={{ opacity: 0, y: 30 }}
+          initial={prefersReducedMotion ? {} : { opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1.6 }}
         >
-          <button className="btn-liquid-gold">
+          <Link 
+            href="/register" 
+            className="btn-liquid-gold focus-ring min-w-[200px] text-center"
+            aria-label="Register for Varnothsava 2026"
+          >
             Enter the Aranya
-          </button>
-          <button className="btn-circuit">
+          </Link>
+          <Link 
+            href="/events" 
+            className="btn-circuit focus-ring min-w-[200px] text-center"
+            aria-label="View all events"
+          >
             Explore Events
-          </button>
+          </Link>
         </motion.div>
 
-        {/* Scroll indicator */}
+        {/* Scroll indicator - hidden on very short screens */}
         <motion.div
-          className="absolute bottom-8 left-1/2 -translate-x-1/2"
+          className="absolute bottom-6 left-1/2 -translate-x-1/2 hidden sm:block"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 2 }}
+          transition={{ delay: prefersReducedMotion ? 0 : 2 }}
+          aria-hidden="true"
         >
-          <motion.div
-            className="flex flex-col items-center gap-2 text-gold-700/50"
-            animate={{ y: [0, 8, 0] }}
-            transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+          <motion.button
+            onClick={() => {
+              const aboutSection = document.getElementById('about')
+              if (aboutSection) {
+                aboutSection.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth' })
+              }
+            }}
+            className="flex flex-col items-center gap-2 text-gold-700/60 hover:text-gold-700 transition-colors cursor-pointer p-3 rounded-lg focus-ring group"
+            animate={prefersReducedMotion ? {} : { y: [0, 6, 0] }}
+            transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut' }}
+            aria-label="Scroll to learn more"
           >
-            <span className="text-xs tracking-[0.2em] uppercase">Scroll</span>
-            <svg width="20" height="24" viewBox="0 0 20 24" fill="none">
-              <path
-                d="M10 0 L10 20 M2 12 L10 20 L18 12"
-                stroke="currentColor"
-                strokeWidth="1"
-                strokeLinecap="round"
-                strokeLinejoin="round"
+            <span className="text-[10px] tracking-[0.25em] uppercase font-mono">Discover</span>
+            <div className="w-6 h-10 rounded-full border-2 border-current flex items-start justify-center pt-2">
+              <motion.div 
+                className="w-1 h-2.5 bg-current rounded-full"
+                animate={prefersReducedMotion ? {} : { y: [0, 8, 0], opacity: [1, 0.4, 1] }}
+                transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
               />
-            </svg>
-          </motion.div>
+            </div>
+          </motion.button>
         </motion.div>
       </motion.div>
     </section>

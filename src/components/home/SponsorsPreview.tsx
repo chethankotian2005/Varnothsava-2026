@@ -1,6 +1,6 @@
 'use client'
 
-import { motion, useScroll, useTransform } from 'framer-motion'
+import { motion, useScroll, useTransform, useReducedMotion } from 'framer-motion'
 import { useRef } from 'react'
 import { Users, Star, Sparkles, Mail, ArrowRight } from 'lucide-react'
 
@@ -50,7 +50,11 @@ function SponsorCard({ name, size, variant }: { name: string, size: 'lg' | 'md' 
         flex items-center justify-center
         relative overflow-hidden group cursor-pointer
         transition-all duration-300
+        focus-within:ring-2 focus-within:ring-gold-800
       `}
+      tabIndex={0}
+      role="article"
+      aria-label={`${name} - ${variant} sponsor`}
     >
       {/* Shimmer effect */}
       <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
@@ -205,16 +209,16 @@ export default function SponsorsPreview() {
           className="text-center"
         >
           <div className="inline-block bg-forest-900/50 backdrop-blur-sm rounded-2xl p-8 border border-gold-800/20">
-            <Sparkles className="w-8 h-8 text-gold-950 mx-auto mb-4" />
+            <Sparkles className="w-8 h-8 text-gold-950 mx-auto mb-4" aria-hidden="true" />
             <p className="text-forest-100 font-display text-xl mb-2">Interested in partnering with us?</p>
-            <p className="text-forest-400 text-sm mb-6">Join our roster of esteemed sponsors</p>
+            <p className="text-forest-300 text-sm mb-6">Join our roster of esteemed sponsors</p>
             <a
               href="mailto:sponsors@varnothsava.in"
-              className="btn-liquid-gold inline-flex items-center gap-2 group"
+              className="btn-liquid-gold inline-flex items-center gap-2 group focus-ring"
             >
-              <Mail className="w-5 h-5" />
+              <Mail className="w-5 h-5" aria-hidden="true" />
               <span>sponsors@varnothsava.in</span>
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
             </a>
           </div>
         </motion.div>
