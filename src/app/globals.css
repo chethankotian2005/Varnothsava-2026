@@ -169,6 +169,7 @@
   
   /* ========================================
      FOCUS STATES FOR INTERACTIVE ELEMENTS
+     Designed for visual parity with hover states
      ======================================== */
   .focus-ring {
     @apply outline-none;
@@ -176,14 +177,18 @@
   
   .focus-ring:focus-visible {
     box-shadow: var(--focus-ring);
+    /* Add subtle scale to match hover feel */
+    transform: scale(1.01);
   }
   
   .focus-ring-cyan:focus-visible {
     box-shadow: var(--focus-ring-cyan);
+    transform: scale(1.01);
   }
   
   /* ========================================
      INTERACTIVE CARD BASE
+     Focus states now match hover intensity
      ======================================== */
   .interactive-card {
     @apply relative rounded-2xl overflow-hidden cursor-pointer;
@@ -194,12 +199,15 @@
   }
   
   .interactive-card:hover {
-    @apply border-gold-800/40 -translate-y-1;
+    @apply border-gold-800/50 -translate-y-1;
     box-shadow: var(--shadow-card-hover), var(--shadow-glow-gold);
   }
   
-  .interactive-card:focus-visible {
-    box-shadow: var(--focus-ring), var(--shadow-card);
+  /* Focus-within for keyboard navigation on cards */
+  .interactive-card:focus-visible,
+  .interactive-card:focus-within {
+    @apply border-gold-800/60 -translate-y-1;
+    box-shadow: var(--focus-ring), var(--shadow-card-hover), var(--shadow-glow-gold);
   }
   
   /* ========================================

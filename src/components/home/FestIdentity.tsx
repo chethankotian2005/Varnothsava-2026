@@ -87,19 +87,18 @@ export default function FestIdentity() {
   const decorOpacity = useTransform(scrollYProgress, [0, 0.5, 1], [0.3, 1, 0.3])
 
   return (
-    <section ref={sectionRef} className="py-24 lg:py-32 relative overflow-hidden bg-forest-950">
-      {/* Animated background decorations with parallax */}
+    <section ref={sectionRef} className="py-28 lg:py-40 relative overflow-hidden bg-forest-950">
+      {/* Calm, grounded background - forest tones only */}
       <motion.div 
         style={{ y: decorY, opacity: decorOpacity }}
         className="absolute inset-0 pointer-events-none"
       >
-        <div className="absolute top-20 left-10 w-72 h-72 bg-forest-700/20 rounded-full blur-3xl" />
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-gold-950/10 rounded-full blur-3xl" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-cyan-600/5 rounded-full blur-3xl" />
+        <div className="absolute top-20 left-10 w-96 h-96 bg-forest-800/30 rounded-full blur-3xl" />
+        <div className="absolute bottom-20 right-10 w-96 h-96 bg-forest-700/20 rounded-full blur-3xl" />
       </motion.div>
 
-      {/* Top border gradient */}
-      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gold-800/50 to-transparent" />
+      {/* Subtle top border - grounded gold */}
+      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gold-800/30 to-transparent" />
       
       {/* Decorative mandala pattern */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] opacity-5 pointer-events-none">

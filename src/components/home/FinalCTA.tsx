@@ -38,9 +38,13 @@ export default function FinalCTA() {
   }, [])
 
   return (
-    <section ref={sectionRef} className="py-24 lg:py-32 relative overflow-hidden bg-forest-950">
-      {/* Animated background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-b from-forest-950 via-forest-900/50 to-forest-950" />
+    <section ref={sectionRef} className="py-28 lg:py-36 relative overflow-hidden bg-forest-950">
+      {/* LOUD: Dramatic radial gradient with gold energy */}
+      <div className="absolute inset-0 bg-gradient-to-b from-forest-950 via-forest-900/70 to-forest-950" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_50%,rgba(212,175,55,0.08)_0%,transparent_70%)]" />
+      
+      {/* Top accent - loud gold line */}
+      <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-gold-800/60 to-transparent" />
       
       {/* Mandala-inspired decorative circles - slower rotation */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] pointer-events-none">
@@ -99,22 +103,22 @@ export default function FinalCTA() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-forest-900/50 border border-gold-800/30 mb-8"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gold-950/20 border border-gold-800/50 mb-10 shadow-lg shadow-gold-950/20"
           >
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-500"></span>
+            <span className="relative flex h-3 w-3">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-gold-600 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-3 w-3 bg-gold-700"></span>
             </span>
-            <span className="text-gold-700 text-sm font-mono tracking-wider uppercase">Limited Seats Available</span>
+            <span className="text-gold-600 text-sm font-bold tracking-wider uppercase">Limited Seats Available</span>
             <Sparkles className="w-4 h-4 text-gold-950" />
           </motion.div>
 
-          {/* Main headline */}
-          <h2 className="font-display text-5xl md:text-6xl lg:text-7xl font-bold mb-8 leading-tight">
-            <span className="text-forest-100">Ready to Make</span>
+          {/* Main headline - LOUD and decisive */}
+          <h2 className="font-display text-5xl md:text-7xl lg:text-8xl font-bold mb-10 leading-[0.95]">
+            <span className="text-forest-50">Ready to Make</span>
             <br />
             <span className="relative inline-block">
-              <span className="bg-gradient-to-r from-gold-800 via-gold-700 to-gold-950 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-gold-700 via-gold-600 to-gold-800 bg-clip-text text-transparent drop-shadow-lg">
                 Your Mark?
               </span>
               <motion.span
@@ -154,7 +158,7 @@ export default function FinalCTA() {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 mb-8">
             <Link 
               href="/register" 
-              className="btn-liquid-gold text-base sm:text-lg group relative overflow-hidden focus-ring min-w-[280px] text-center"
+              className="btn-liquid-gold text-lg sm:text-xl group relative overflow-hidden focus-ring min-w-[300px] text-center shadow-[0_0_50px_rgba(212,175,55,0.5)] hover:shadow-[0_0_70px_rgba(212,175,55,0.6)]"
               aria-label="Register for Varnothsava 2026 - Free to start"
             >
               <span className="relative z-10 flex items-center justify-center gap-2">

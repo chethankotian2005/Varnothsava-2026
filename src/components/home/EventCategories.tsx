@@ -331,15 +331,19 @@ export default function EventCategories() {
   const backgroundY = useTransform(scrollYProgress, [0, 1], ['0%', '30%'])
 
   return (
-    <section ref={sectionRef} className="py-24 lg:py-32 relative overflow-hidden bg-forest-950">
-      {/* Parallax Background Elements */}
+    <section ref={sectionRef} className="py-16 lg:py-20 relative overflow-hidden bg-gradient-to-b from-forest-950 via-forest-900/80 to-forest-950">
+      {/* Dense energy: pulsing cyan glow + parallax */}
       <motion.div 
         style={{ y: backgroundY }}
         className="absolute inset-0 pointer-events-none"
       >
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-forest-700/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-gold-950/10 rounded-full blur-3xl" />
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-cyan-600/15 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-gold-800/15 rounded-full blur-3xl" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-cyan-500/5 rounded-full blur-3xl" />
       </motion.div>
+      
+      {/* Top accent line - cyan energy */}
+      <div className="absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-cyan-500/50 to-transparent" />
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
@@ -348,14 +352,14 @@ export default function EventCategories() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
-          className="text-center mb-16"
+          className="text-center mb-10"
         >
           <motion.span 
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gold-950/10 border border-gold-800/30 text-gold-700 text-sm font-mono tracking-wider uppercase mb-6"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-sm font-mono tracking-wider uppercase mb-4"
           >
             <Sparkles className="w-4 h-4" />
             <span>50+ Events Await</span>
@@ -373,8 +377,8 @@ export default function EventCategories() {
           </p>
         </motion.div>
 
-        {/* Bento Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 lg:gap-6 auto-rows-[140px]">
+        {/* Bento Grid - tight, energetic */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3 lg:gap-4 auto-rows-[140px]">
           {categories.map((category, index) => (
             <BentoCard key={category.id} category={category} index={index} />
           ))}
@@ -386,7 +390,7 @@ export default function EventCategories() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.5 }}
-          className="text-center mt-14"
+          className="text-center mt-10"
         >
           <Link 
             href="/events" 

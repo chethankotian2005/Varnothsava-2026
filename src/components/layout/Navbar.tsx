@@ -116,10 +116,10 @@ export default function Navbar() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled || isOpen
-          ? 'bg-forest-950/95 backdrop-blur-lg border-b border-gold-800/20 shadow-lg shadow-forest-950/50'
-          : 'bg-forest-950/30 backdrop-blur-sm'
+          ? 'bg-forest-950/95 backdrop-blur-xl border-b border-gold-800/30 shadow-2xl shadow-black/40'
+          : 'bg-transparent backdrop-blur-none border-b border-transparent'
       }`}
     >
       <nav className="container mx-auto px-4 sm:px-6 lg:px-8">

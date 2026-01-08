@@ -204,26 +204,34 @@ export default function CyberAranyaHero() {
   return (
     <section
       ref={containerRef}
-      className="relative min-h-[100svh] lg:min-h-screen flex items-center justify-center overflow-hidden pt-20 pb-24 lg:pt-24 lg:pb-32"
+      className="relative min-h-[100svh] lg:min-h-screen flex items-center justify-center overflow-hidden"
       aria-label="Hero section"
     >
       {/* Modern techno-cultural background */}
       <div className="absolute inset-0 -z-30">
         <TechnoBackground />
       </div>
+      
+      {/* Dramatic vignette overlay for focus */}
+      <div 
+        className="absolute inset-0 -z-20 pointer-events-none"
+        style={{
+          background: 'radial-gradient(ellipse 80% 60% at 50% 40%, transparent 0%, rgba(2, 8, 16, 0.4) 60%, rgba(2, 8, 16, 0.8) 100%)'
+        }}
+      />
 
       {/* Main content with parallax */}
       <motion.div
-        className="relative z-10 text-center px-8 md:px-16 lg:px-32 py-20"
+        className="relative z-10 text-center px-6 md:px-12 lg:px-24 max-w-6xl mx-auto"
         style={{
           opacity: contentOpacity,
           y: contentY,
           x: contentMouseX,
         }}
       >
-        {/* Breathing logo */}
+        {/* Breathing logo - slightly smaller for hierarchy */}
         <motion.div
-          className="flex justify-center mb-8"
+          className="flex justify-center mb-6"
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1, ease: 'easeOut' }}
@@ -231,7 +239,7 @@ export default function CyberAranyaHero() {
           <BreathingLogo
             src="/images/logo.png"
             alt="SMVITM Logo"
-            size={140}
+            size={120}
           />
         </motion.div>
 
@@ -239,51 +247,54 @@ export default function CyberAranyaHero() {
         <DigitalEtching
           text="VARNOTHSAVA"
           subtitle="Where Heritage Meets the Future"
-          className="mb-12"
+          className="mb-8"
         />
 
         {/* Year badge */}
         <motion.div
-          className="inline-flex items-center gap-4 mb-10"
+          className="inline-flex items-center gap-4 mb-8"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1.2 }}
         >
-          <div className="h-px w-12 bg-gradient-to-r from-transparent to-gold-800" />
-          <span className="font-mono text-2xl md:text-3xl text-gold-700 tracking-[0.5em]">2026</span>
-          <div className="h-px w-12 bg-gradient-to-l from-transparent to-gold-800" />
+          <div className="h-px w-16 bg-gradient-to-r from-transparent to-gold-800" />
+          <span className="font-mono text-3xl md:text-4xl text-gold-700 tracking-[0.5em] font-bold">2026</span>
+          <div className="h-px w-16 bg-gradient-to-l from-transparent to-gold-800" />
         </motion.div>
 
         {/* Countdown timer */}
         <motion.div
-          className="mb-12"
+          className="mb-10"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1.4 }}
         >
-          <p className="text-gold-700/70 text-sm tracking-[0.3em] uppercase mb-6">
+          <p className="text-gold-700/80 text-xs tracking-[0.4em] uppercase mb-5 font-medium">
             The Awakening Begins In
           </p>
           <FlipCountdown />
         </motion.div>
 
-        {/* CTA Buttons */}
+        {/* CTA Buttons - Primary CTA is LOUD */}
         <motion.div
-          className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6"
+          className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-5"
           initial={prefersReducedMotion ? {} : { opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1.6 }}
         >
           <Link 
             href="/register" 
-            className="btn-liquid-gold focus-ring min-w-[200px] text-center"
+            className="btn-liquid-gold focus-ring min-w-[220px] text-center text-lg px-8 py-5 shadow-[0_0_40px_rgba(212,175,55,0.4)]"
             aria-label="Register for Varnothsava 2026"
           >
-            Enter the Aranya
+            <span className="flex items-center justify-center gap-2">
+              <span>Register Now</span>
+              <span className="text-xs bg-forest-950/40 px-2 py-0.5 rounded-full">FREE</span>
+            </span>
           </Link>
           <Link 
             href="/events" 
-            className="btn-circuit focus-ring min-w-[200px] text-center"
+            className="btn-circuit focus-ring min-w-[180px] text-center px-6 py-4"
             aria-label="View all events"
           >
             Explore Events
