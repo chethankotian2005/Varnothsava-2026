@@ -116,11 +116,14 @@ export default function Navbar() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 ${
         scrolled || isOpen
-          ? 'bg-forest-950/95 backdrop-blur-xl border-b border-gold-800/30 shadow-2xl shadow-black/40'
+          ? 'bg-forest-950/95 backdrop-blur-xl border-b border-gold-900/25 shadow-2xl shadow-black/50'
           : 'bg-transparent backdrop-blur-none border-b border-transparent'
       }`}
+      style={scrolled || isOpen ? {
+        boxShadow: 'inset 0 -1px 0 rgba(201, 162, 39, 0.08), 0 25px 50px -12px rgba(0, 0, 0, 0.5)'
+      } : undefined}
     >
       <nav className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 lg:h-20">

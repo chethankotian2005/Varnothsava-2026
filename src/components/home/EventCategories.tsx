@@ -328,22 +328,27 @@ export default function EventCategories() {
     offset: ["start end", "end start"]
   })
   
-  const backgroundY = useTransform(scrollYProgress, [0, 1], ['0%', '30%'])
+  const backgroundY = useTransform(scrollYProgress, [0, 1], ['0%', '20%'])
 
   return (
-    <section ref={sectionRef} className="py-16 lg:py-20 relative overflow-hidden bg-gradient-to-b from-forest-950 via-forest-900/80 to-forest-950">
-      {/* Dense energy: pulsing cyan glow + parallax */}
+    <section ref={sectionRef} className="py-16 lg:py-20 relative overflow-hidden atmosphere-chamber">
+      {/* Carved stone chamber - subtle tech glow */}
       <motion.div 
         style={{ y: backgroundY }}
         className="absolute inset-0 pointer-events-none"
       >
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-cyan-600/15 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-gold-800/15 rounded-full blur-3xl" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-cyan-500/5 rounded-full blur-3xl" />
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-cyan-900/10 rounded-full blur-3xl" />
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-gold-900/8 rounded-full blur-3xl" />
       </motion.div>
       
-      {/* Top accent line - cyan energy */}
-      <div className="absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-cyan-500/50 to-transparent" />
+      {/* Stone chamber inner shadow */}
+      <div className="absolute inset-0 pointer-events-none" style={{
+        boxShadow: 'inset 0 30px 50px -15px rgba(5, 13, 10, 0.6), inset 0 -30px 50px -15px rgba(5, 13, 10, 0.6)'
+      }} />
+      
+      {/* Carved stone accent lines */}
+      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-cyan-900/40 to-transparent" />
+      <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gold-900/30 to-transparent" />
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
@@ -351,7 +356,7 @@ export default function EventCategories() {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
+          transition={{ duration: 1, ease: [0.25, 0.1, 0.25, 1] }}
           className="text-center mb-10"
         >
           <motion.span 

@@ -204,21 +204,28 @@ export default function CyberAranyaHero() {
   return (
     <section
       ref={containerRef}
-      className="relative min-h-[100svh] lg:min-h-screen flex items-center justify-center overflow-hidden"
+      className="relative min-h-[100svh] lg:min-h-screen flex items-center justify-center overflow-hidden atmosphere-gateway"
       aria-label="Hero section"
     >
-      {/* Modern techno-cultural background */}
+      {/* Ancient ruins techno-cultural background */}
       <div className="absolute inset-0 -z-30">
         <TechnoBackground />
       </div>
       
-      {/* Dramatic vignette overlay for focus */}
+      {/* Stone archway vignette - ancient ceremonial gateway */}
       <div 
         className="absolute inset-0 -z-20 pointer-events-none"
         style={{
-          background: 'radial-gradient(ellipse 80% 60% at 50% 40%, transparent 0%, rgba(2, 8, 16, 0.4) 60%, rgba(2, 8, 16, 0.8) 100%)'
+          background: `
+            radial-gradient(ellipse 70% 50% at 50% 35%, transparent 0%, rgba(5, 13, 10, 0.3) 50%, rgba(5, 13, 10, 0.85) 100%),
+            linear-gradient(180deg, transparent 0%, transparent 60%, rgba(5, 13, 10, 0.6) 100%)
+          `
         }}
       />
+      
+      {/* Subtle gold accent lines - carved stone borders */}
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold-900/30 to-transparent" />
+      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold-900/20 to-transparent" />
 
       {/* Main content with parallax */}
       <motion.div

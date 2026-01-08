@@ -38,39 +38,43 @@ export default function FinalCTA() {
   }, [])
 
   return (
-    <section ref={sectionRef} className="py-28 lg:py-36 relative overflow-hidden bg-forest-950">
-      {/* LOUD: Dramatic radial gradient with gold energy */}
-      <div className="absolute inset-0 bg-gradient-to-b from-forest-950 via-forest-900/70 to-forest-950" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_50%,rgba(212,175,55,0.08)_0%,transparent_70%)]" />
+    <section ref={sectionRef} className="py-28 lg:py-36 relative overflow-hidden atmosphere-altar">
+      {/* Ritual altar - sacred gold radiance from center */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_50%,rgba(201,162,39,0.06)_0%,transparent_60%)]" />
       
-      {/* Top accent - loud gold line */}
-      <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-gold-800/60 to-transparent" />
+      {/* Stone altar inner shadow - deepest, most sacred */}
+      <div className="absolute inset-0 pointer-events-none" style={{
+        boxShadow: 'inset 0 40px 80px -20px rgba(5, 10, 8, 0.7), inset 0 -40px 80px -20px rgba(5, 10, 8, 0.7)'
+      }} />
       
-      {/* Mandala-inspired decorative circles - slower rotation */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] pointer-events-none">
+      {/* Gold ritual line at top */}
+      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gold-800/50 to-transparent" />
+      
+      {/* Mandala-inspired decorative circles - slower, ceremonial rotation */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] pointer-events-none opacity-40">
+        <motion.div 
+          animate={{ rotate: 360 }}
+          transition={{ duration: 180, repeat: Infinity, ease: "linear" }}
+          className="absolute inset-0 rounded-full border border-gold-900/30"
+        />
+        <motion.div 
+          animate={{ rotate: -360 }}
+          transition={{ duration: 150, repeat: Infinity, ease: "linear" }}
+          className="absolute inset-12 rounded-full border border-cyan-900/15"
+        />
         <motion.div 
           animate={{ rotate: 360 }}
           transition={{ duration: 120, repeat: Infinity, ease: "linear" }}
-          className="absolute inset-0 rounded-full border border-gold-800/20"
+          className="absolute inset-24 rounded-full border border-gold-900/25"
         />
         <motion.div 
           animate={{ rotate: -360 }}
           transition={{ duration: 90, repeat: Infinity, ease: "linear" }}
-          className="absolute inset-12 rounded-full border border-cyan-500/10"
-        />
-        <motion.div 
-          animate={{ rotate: 360 }}
-          transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
-          className="absolute inset-24 rounded-full border border-gold-800/30"
-        />
-        <motion.div 
-          animate={{ rotate: -360 }}
-          transition={{ duration: 45, repeat: Infinity, ease: "linear" }}
-          className="absolute inset-36 rounded-full border border-cyan-500/10"
+          className="absolute inset-36 rounded-full border border-cyan-900/10"
         />
         
-        {/* Pulsing core */}
-        <div className="absolute inset-48 rounded-full bg-gradient-radial from-gold-950/20 via-transparent to-transparent animate-pulse" />
+        {/* Subtle sacred glow core - no pulse, steady presence */}
+        <div className="absolute inset-48 rounded-full bg-gradient-radial from-gold-950/15 via-transparent to-transparent" />
       </div>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">

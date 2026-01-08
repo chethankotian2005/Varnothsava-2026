@@ -50,18 +50,27 @@ export default function RegistrationSteps() {
   const lineProgress = useTransform(scrollYProgress, [0.2, 0.8], ['0%', '100%'])
 
   return (
-    <section ref={sectionRef} className="py-16 lg:py-20 relative overflow-hidden bg-forest-950">
-      {/* Background decorations */}
-      <div className="absolute top-1/2 left-0 -translate-y-1/2 w-[500px] h-[500px] bg-forest-800/20 rounded-full blur-3xl" />
-      <div className="absolute top-1/2 right-0 -translate-y-1/2 w-[400px] h-[400px] bg-gold-950/10 rounded-full blur-3xl" />
+    <section ref={sectionRef} className="py-16 lg:py-20 relative overflow-hidden atmosphere-chamber">
+      {/* Stone passageway ambient glow */}
+      <div className="absolute top-1/2 left-0 -translate-y-1/2 w-[500px] h-[500px] bg-forest-900/15 rounded-full blur-3xl" />
+      <div className="absolute top-1/2 right-0 -translate-y-1/2 w-[400px] h-[400px] bg-gold-950/8 rounded-full blur-3xl" />
       
-      {/* Animated circuit lines */}
-      <div className="absolute inset-0 opacity-10">
+      {/* Stone chamber inner shadow */}
+      <div className="absolute inset-0 pointer-events-none" style={{
+        boxShadow: 'inset 0 25px 40px -12px rgba(5, 13, 10, 0.5), inset 0 -25px 40px -12px rgba(5, 13, 10, 0.5)'
+      }} />
+      
+      {/* Carved stone accent lines */}
+      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-forest-700/30 to-transparent" />
+      <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gold-900/25 to-transparent" />
+      
+      {/* Ancient circuit path - subtle carved lines */}
+      <div className="absolute inset-0 opacity-5">
         <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
           <defs>
             <linearGradient id="circuit-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="rgba(0, 242, 255, 0.3)" />
-              <stop offset="100%" stopColor="rgba(212, 175, 55, 0.3)" />
+              <stop offset="0%" stopColor="rgba(0, 212, 212, 0.2)" />
+              <stop offset="100%" stopColor="rgba(201, 162, 39, 0.2)" />
             </linearGradient>
           </defs>
           <path d="M0,200 Q400,100 800,200 T1600,200" fill="none" stroke="url(#circuit-grad)" strokeWidth="1" />

@@ -11,12 +11,12 @@ interface EventCardProps {
 }
 
 const categoryColors: Record<string, { bg: string; text: string; border: string; glow: string }> = {
-  cultural: { bg: 'from-rose-500/20 to-orange-500/10', text: 'text-rose-400', border: 'group-hover:border-rose-500/40', glow: 'group-hover:shadow-rose-500/10' },
-  technical: { bg: 'from-cyan-glow/20 to-cyan-500/10', text: 'text-cyan-glow', border: 'group-hover:border-cyan-glow/40', glow: 'group-hover:shadow-cyan-glow/10' },
-  arts: { bg: 'from-purple-500/20 to-pink-500/10', text: 'text-purple-400', border: 'group-hover:border-purple-500/40', glow: 'group-hover:shadow-purple-500/10' },
-  literary: { bg: 'from-gold-800/20 to-gold-950/10', text: 'text-gold-800', border: 'group-hover:border-gold-800/40', glow: 'group-hover:shadow-gold-800/10' },
-  media: { bg: 'from-teal-500/20 to-emerald-500/10', text: 'text-teal-400', border: 'group-hover:border-teal-500/40', glow: 'group-hover:shadow-teal-500/10' },
-  gaming: { bg: 'from-red-500/20 to-violet-500/10', text: 'text-red-400', border: 'group-hover:border-red-500/40', glow: 'group-hover:shadow-red-500/10' },
+  cultural: { bg: 'from-rose-900/15 to-orange-900/10', text: 'text-rose-400', border: 'group-hover:border-rose-800/40', glow: 'group-hover:shadow-rose-900/10' },
+  technical: { bg: 'from-cyan-900/15 to-cyan-950/10', text: 'text-cyan-400', border: 'group-hover:border-cyan-800/40', glow: 'group-hover:shadow-cyan-900/10' },
+  arts: { bg: 'from-purple-900/15 to-pink-950/10', text: 'text-purple-400', border: 'group-hover:border-purple-800/40', glow: 'group-hover:shadow-purple-900/10' },
+  literary: { bg: 'from-gold-900/15 to-gold-950/10', text: 'text-gold-700', border: 'group-hover:border-gold-800/40', glow: 'group-hover:shadow-gold-900/10' },
+  media: { bg: 'from-teal-900/15 to-emerald-950/10', text: 'text-teal-400', border: 'group-hover:border-teal-800/40', glow: 'group-hover:shadow-teal-900/10' },
+  gaming: { bg: 'from-red-900/15 to-violet-950/10', text: 'text-red-400', border: 'group-hover:border-red-800/40', glow: 'group-hover:shadow-red-900/10' },
 }
 
 export default function EventCard({ event, index, onClick }: EventCardProps) {
@@ -27,27 +27,30 @@ export default function EventCard({ event, index, onClick }: EventCardProps) {
     <motion.div
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.4, delay: index * 0.05 }}
+      transition={{ duration: 0.6, delay: index * 0.06, ease: [0.25, 0.1, 0.25, 1] }}
       onClick={onClick}
       className={`
-        bg-forest-900/50 backdrop-blur-sm rounded-xl group cursor-pointer overflow-hidden 
-        transition-all duration-300 hover:shadow-xl
+        bg-forest-900/40 backdrop-blur-sm rounded-xl group cursor-pointer overflow-hidden 
+        transition-all duration-500 hover:shadow-xl
         ${colors.border} ${colors.glow}
         ${isFlagship 
-          ? 'border-2 border-gold-800/40 ring-1 ring-gold-800/20' 
-          : 'border border-gold-800/20'
+          ? 'border-2 border-gold-900/40 ring-1 ring-gold-900/15' 
+          : 'border border-gold-900/20'
         }
       `}
+      style={{
+        boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.03), inset 0 -1px 0 rgba(0,0,0,0.2)'
+      }}
     >
-      {/* Gradient Header */}
+      {/* Gradient Header - stone tablet style */}
       <div className={`${isFlagship ? 'h-28' : 'h-24'} bg-gradient-to-br ${colors.bg} relative`}>
-        <div className="absolute inset-0 bg-forest-950/40" />
-        {/* Flagship accent line */}
+        <div className="absolute inset-0 bg-forest-950/50" />
+        {/* Carved line accent for flagship */}
         {isFlagship && (
-          <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-gold-700/60 to-transparent" />
+          <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold-800/50 to-transparent" />
         )}
         <div className="absolute bottom-3 left-4 flex items-center gap-2">
-          <span className={`inline-block px-2.5 py-1 rounded-full bg-forest-950/60 backdrop-blur-sm text-xs font-medium ${colors.text} border border-current/20`}>
+          <span className={`inline-block px-2.5 py-1 rounded-full bg-forest-950/70 backdrop-blur-sm text-xs font-medium ${colors.text} border border-current/15`}>
             {event.category}
           </span>
         </div>

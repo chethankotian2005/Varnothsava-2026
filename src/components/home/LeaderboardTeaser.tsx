@@ -66,15 +66,24 @@ export default function LeaderboardTeaser() {
     offset: ["start end", "end start"]
   })
   
-  const decorY = useTransform(scrollYProgress, [0, 1], ['0%', '30%'])
+  const decorY = useTransform(scrollYProgress, [0, 1], ['0%', '20%'])
 
   return (
-    <section ref={sectionRef} className="py-28 lg:py-36 relative overflow-hidden bg-forest-950">
-      {/* Background decorations */}
+    <section ref={sectionRef} className="py-28 lg:py-36 relative overflow-hidden atmosphere-chamber">
+      {/* Trophy hall ambient glow - gold emanation */}
       <motion.div style={{ y: decorY }} className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/4 right-0 w-96 h-96 bg-gold-950/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/4 left-0 w-96 h-96 bg-cyan-500/5 rounded-full blur-3xl" />
+        <div className="absolute top-1/4 right-0 w-96 h-96 bg-gold-950/8 rounded-full blur-3xl" />
+        <div className="absolute bottom-1/4 left-0 w-96 h-96 bg-cyan-900/5 rounded-full blur-3xl" />
       </motion.div>
+      
+      {/* Stone hall inner shadow */}
+      <div className="absolute inset-0 pointer-events-none" style={{
+        boxShadow: 'inset 0 30px 60px -15px rgba(5, 13, 10, 0.6), inset 0 -30px 60px -15px rgba(5, 13, 10, 0.6)'
+      }} />
+      
+      {/* Carved stone accent lines */}
+      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gold-900/30 to-transparent" />
+      <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-forest-700/25 to-transparent" />
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">

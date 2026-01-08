@@ -83,29 +83,35 @@ export default function FestIdentity() {
     offset: ["start end", "end start"]
   })
   
-  const decorY = useTransform(scrollYProgress, [0, 1], ['0%', '50%'])
-  const decorOpacity = useTransform(scrollYProgress, [0, 0.5, 1], [0.3, 1, 0.3])
+  const decorY = useTransform(scrollYProgress, [0, 1], ['0%', '30%'])
+  const decorOpacity = useTransform(scrollYProgress, [0, 0.5, 1], [0.2, 0.8, 0.2])
 
   return (
-    <section ref={sectionRef} className="py-28 lg:py-40 relative overflow-hidden bg-forest-950">
-      {/* Calm, grounded background - forest tones only */}
+    <section ref={sectionRef} className="py-28 lg:py-40 relative overflow-hidden atmosphere-sanctum">
+      {/* Inner sanctum atmosphere - calm, mossy stone */}
       <motion.div 
         style={{ y: decorY, opacity: decorOpacity }}
         className="absolute inset-0 pointer-events-none"
       >
-        <div className="absolute top-20 left-10 w-96 h-96 bg-forest-800/30 rounded-full blur-3xl" />
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-forest-700/20 rounded-full blur-3xl" />
+        <div className="absolute top-20 left-10 w-96 h-96 bg-forest-300/10 rounded-full blur-3xl" />
+        <div className="absolute bottom-20 right-10 w-96 h-96 bg-forest-400/8 rounded-full blur-3xl" />
       </motion.div>
-
-      {/* Subtle top border - grounded gold */}
-      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gold-800/30 to-transparent" />
       
-      {/* Decorative mandala pattern */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] opacity-5 pointer-events-none">
+      {/* Stone inner shadow effect */}
+      <div className="absolute inset-0 pointer-events-none" style={{
+        boxShadow: 'inset 0 40px 60px -20px rgba(5, 13, 10, 0.5), inset 0 -40px 60px -20px rgba(5, 13, 10, 0.5)'
+      }} />
+
+      {/* Carved stone border accents */}
+      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gold-900/25 to-transparent" />
+      <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gold-900/15 to-transparent" />
+      
+      {/* Decorative mandala pattern - slower, more ancient */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] opacity-3 pointer-events-none">
         <svg viewBox="0 0 100 100" className="w-full h-full animate-spin-slow">
-          <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" strokeWidth="0.2" className="text-gold-800"/>
-          <circle cx="50" cy="50" r="35" fill="none" stroke="currentColor" strokeWidth="0.2" className="text-gold-800"/>
-          <circle cx="50" cy="50" r="25" fill="none" stroke="currentColor" strokeWidth="0.2" className="text-gold-800"/>
+          <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" strokeWidth="0.15" className="text-gold-900"/>
+          <circle cx="50" cy="50" r="35" fill="none" stroke="currentColor" strokeWidth="0.15" className="text-gold-900"/>
+          <circle cx="50" cy="50" r="25" fill="none" stroke="currentColor" strokeWidth="0.15" className="text-gold-900"/>
           {[...Array(12)].map((_, i) => (
             <line 
               key={i}

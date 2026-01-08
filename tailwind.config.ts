@@ -9,54 +9,62 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // Cyber-Aranya Deep Forest base
+        // Ancient Ruins × Nature × Tech - Deep Forest Stone
         forest: {
-          DEFAULT: '#051612',
-          50: '#030d0a',
-          100: '#051612',
-          200: '#081f1a',
-          300: '#0a2822',
-          400: '#0d312a',
-          500: '#103a32',
-          600: '#13433a',
-          700: '#164c42',
-          800: '#19554a',
-          900: '#1c5e52',
+          DEFAULT: '#0A1612',
+          50: '#050D0A',
+          100: '#081410',
+          200: '#0A1612',
+          300: '#0D1F18',
+          400: '#102820',
+          500: '#133128',
+          600: '#163A30',
+          700: '#194338',
+          800: '#1C4C40',
+          900: '#1F5548',
+          950: '#0A1612',
         },
-        // Antique Gold - Primary accent
+        // Ceremonial Antique Gold
         gold: {
-          DEFAULT: '#D4AF37',
-          50: '#1a1608',
-          100: '#2d260e',
+          DEFAULT: '#C9A227',
+          50: '#1A1608',
+          100: '#2D260E',
           200: '#403614',
-          300: '#54461a',
+          300: '#54461A',
           400: '#675620',
-          500: '#7a6626',
-          600: '#8e762c',
-          700: '#a18632',
-          800: '#b49638',
-          900: '#c7a63e',
-          950: '#D4AF37',
+          500: '#7A5F16',
+          600: '#8B6914',
+          700: '#A17A18',
+          800: '#B88B1C',
+          900: '#C9A227',
+          950: '#E8D5A3',
         },
-        // Cyber Cyan - Tech accent
+        // Glowing Ancient Tech Cyan/Teal
         cyan: {
-          DEFAULT: '#00F2FF',
-          50: '#001a1c',
-          100: '#003338',
-          200: '#004d54',
-          300: '#006670',
-          400: '#00808c',
-          500: '#0099a8',
-          600: '#00b3c4',
-          700: '#00cce0',
-          800: '#00e6fc',
-          900: '#00F2FF',
-          glow: '#00F2FF',
+          DEFAULT: '#00D4D4',
+          50: '#001A1A',
+          100: '#002D2D',
+          200: '#004040',
+          300: '#004D4D',
+          400: '#006666',
+          500: '#008080',
+          600: '#009999',
+          700: '#00B3B3',
+          800: '#00CCCC',
+          900: '#00D4D4',
+          glow: '#00D4D4',
         },
-        // Legacy emerald for compatibility
-        emerald: {
-          glow: '#10b981',
-          deep: '#064e3b',
+        // Ancient Stone
+        stone: {
+          DEFAULT: '#0A1612',
+          light: '#0D1F18',
+          dark: '#050D0A',
+        },
+        // Heritage temple colors
+        heritage: {
+          maroon: '#5B2333',
+          copper: '#9A6324',
+          bronze: '#8B7355',
         },
         // Obsidian for deep blacks
         obsidian: {
@@ -75,12 +83,6 @@ const config: Config = {
           400: '#0d312a',
           500: '#103a32',
         },
-        // Heritage temple colors
-        heritage: {
-          maroon: '#6b2c3d',
-          copper: '#b87333',
-          bronze: '#cd7f32',
-        }
       },
       fontFamily: {
         display: ['var(--font-display)', 'Cinzel Decorative', 'serif'],
@@ -90,34 +92,40 @@ const config: Config = {
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
-        'forest-gradient': 'linear-gradient(135deg, #051612 0%, #081f1a 50%, #051612 100%)',
-        'gold-gradient': 'linear-gradient(135deg, #D4AF37 0%, #f0d890 50%, #D4AF37 100%)',
-        'cyber-gradient': 'linear-gradient(180deg, #051612 0%, #0a2822 50%, #051612 100%)',
+        'forest-gradient': 'linear-gradient(145deg, #0A1612 0%, #0D1F18 50%, #0A1612 100%)',
+        'gold-gradient': 'linear-gradient(145deg, #7A5F16 0%, #C9A227 50%, #E8D5A3 100%)',
+        'stone-gradient': 'linear-gradient(180deg, #050D0A 0%, #0A1612 50%, #050D0A 100%)',
       },
       animation: {
-        'float': 'float 6s ease-in-out infinite',
-        'pulse-gold': 'pulse-gold 3s ease-in-out infinite',
-        'shimmer': 'shimmer 3s linear infinite',
-        'glow': 'glow 2s ease-in-out infinite alternate',
-        'breathe': 'breathe 4s ease-in-out infinite',
-        'spin-slow': 'spin 30s linear infinite',
-        'circuit-flow': 'circuit-flow 3s linear infinite',
-        'etch': 'etch 2s ease-out forwards',
-        'glint': 'glint 4s ease-in-out infinite',
-        'float-ember': 'float-ember 8s ease-in-out infinite',
+        // Slow, purposeful, ancient animations
+        'float': 'float 8s ease-in-out infinite',
+        'pulse-gold': 'pulse-gold 5s ease-in-out infinite',
+        'shimmer': 'shimmer 4s linear infinite',
+        'glow': 'glow 4s ease-in-out infinite alternate',
+        'breathe': 'breathe 6s ease-in-out infinite',
+        'spin-slow': 'spin 60s linear infinite',
+        'circuit-flow': 'circuit-flow 4s linear infinite',
+        'etch': 'etch 2.5s ease-out forwards',
+        'glint': 'glint 6s ease-in-out infinite',
+        'float-ember': 'float-ember 12s ease-in-out infinite',
+        'ancient-pulse': 'ancient-pulse 8s ease-in-out infinite',
       },
       keyframes: {
         float: {
           '0%, 100%': { transform: 'translateY(0)' },
-          '50%': { transform: 'translateY(-10px)' },
+          '50%': { transform: 'translateY(-6px)' },
         },
         'pulse-gold': {
           '0%, 100%': { 
-            boxShadow: '0 0 20px rgba(212, 175, 55, 0.4), 0 0 40px rgba(212, 175, 55, 0.2), 0 0 60px rgba(212, 175, 55, 0.1)'
+            boxShadow: '0 0 15px rgba(201, 162, 39, 0.25), 0 0 30px rgba(201, 162, 39, 0.15)'
           },
           '50%': { 
-            boxShadow: '0 0 40px rgba(212, 175, 55, 0.6), 0 0 80px rgba(212, 175, 55, 0.4), 0 0 120px rgba(212, 175, 55, 0.2)'
+            boxShadow: '0 0 25px rgba(201, 162, 39, 0.35), 0 0 50px rgba(201, 162, 39, 0.2)'
           },
+        },
+        'ancient-pulse': {
+          '0%, 100%': { opacity: '0.6' },
+          '50%': { opacity: '1' },
         },
         shimmer: {
           '0%': { backgroundPosition: '-200% 0' },

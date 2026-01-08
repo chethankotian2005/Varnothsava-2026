@@ -34,12 +34,17 @@ const socialLinks = [
 export default function Footer() {
   return (
     <footer className="relative overflow-hidden bg-forest-950">
-      {/* Top decorative border */}
-      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gold-800/50 to-transparent" />
+      {/* Carved stone border at top */}
+      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gold-900/40 to-transparent" />
       
-      {/* Background decorations */}
-      <div className="absolute top-0 left-1/4 w-96 h-96 bg-forest-800/20 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-gold-950/10 rounded-full blur-3xl pointer-events-none" />
+      {/* Stone foundation inner shadow */}
+      <div className="absolute inset-0 pointer-events-none" style={{
+        boxShadow: 'inset 0 20px 40px -10px rgba(5, 10, 8, 0.6)'
+      }} />
+      
+      {/* Subtle ambient glow */}
+      <div className="absolute top-0 left-1/4 w-96 h-96 bg-forest-900/15 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-gold-950/6 rounded-full blur-3xl pointer-events-none" />
 
       {/* Main Footer */}
       <div className="relative container mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20">
