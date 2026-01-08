@@ -8,9 +8,6 @@ import SponsorsPreview from '@/components/home/SponsorsPreview'
 import FinalCTA from '@/components/home/FinalCTA'
 
 // Dynamically import effects that use browser APIs
-const GoldenPillars = dynamic(() => import('@/components/effects/GoldenPillars'), {
-  ssr: false,
-})
 const MistEffect = dynamic(() => import('@/components/effects/MistEffect'), {
   ssr: false,
 })
@@ -18,8 +15,7 @@ const MistEffect = dynamic(() => import('@/components/effects/MistEffect'), {
 export default function Home() {
   return (
     <>
-      {/* Cyber-Aranya environment effects */}
-      <GoldenPillars />
+      {/* Ambient environment effects */}
       <MistEffect />
       
       {/* Main content sections */}
