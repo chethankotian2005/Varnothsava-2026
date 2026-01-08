@@ -8,11 +8,11 @@
   --font-mono: 'JetBrains Mono', monospace;
   
   /* Techno-Cultural Color Palette */
-  --bg-deep: #051015;
-  --bg-mid: #0a1a25;
-  --teal-deep: #051a1a;
-  --teal-mid: #0a2a2a;
-  --blue-deep: #0d1f35;
+  --bg-deep: #030a10;
+  --bg-mid: #051218;
+  --teal-deep: #051a22;
+  --teal-mid: #062028;
+  --blue-deep: #081c30;
   --gold-primary: #D4AF37;
   --gold-light: #f0d890;
   --gold-dark: #8e762c;
@@ -29,10 +29,11 @@
     @apply text-gray-100 antialiased;
     background: 
       linear-gradient(180deg, 
-        #051015 0%, 
-        #0a1a25 20%,
-        #081520 50%, 
-        #051015 100%
+        #030a10 0%, 
+        #051218 15%,
+        #081520 40%, 
+        #051218 70%,
+        #030a10 100%
       );
     background-attachment: fixed;
   }
@@ -40,18 +41,18 @@
   /* Subtle pattern for content sections below hero */
   .content-section {
     position: relative;
-    background: linear-gradient(180deg, transparent 0%, #051015 5%, #0a1520 50%, #051015 100%);
+    background: linear-gradient(180deg, transparent 0%, #030a10 5%, #051520 50%, #030a10 100%);
   }
 
   .content-section::before {
     content: '';
     position: absolute;
     inset: 0;
-    opacity: 0.03;
+    opacity: 0.025;
     background-image: 
       radial-gradient(circle at 25% 25%, rgba(0, 200, 220, 0.15) 1px, transparent 1px),
       radial-gradient(circle at 75% 75%, rgba(212, 175, 55, 0.1) 1px, transparent 1px);
-    background-size: 60px 60px;
+    background-size: 80px 80px;
     pointer-events: none;
   }
 
