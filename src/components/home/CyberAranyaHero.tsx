@@ -300,6 +300,16 @@ export default function CyberAranyaHero() {
             Explore Events
           </Link>
         </motion.div>
+        
+        {/* Reassurance microcopy */}
+        <motion.p 
+          className="text-forest-500 text-xs mt-4 tracking-wide"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.8 }}
+        >
+          Takes less than 2 minutes to register
+        </motion.p>
 
         {/* Scroll indicator - hidden on very short screens */}
         <motion.div

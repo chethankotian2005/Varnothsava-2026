@@ -17,7 +17,11 @@ export interface Event {
     phone: string
   }
   image?: string
+  featured?: boolean // Flagship events get subtle hierarchy boost
 }
+
+// Flagship event IDs for visual hierarchy
+export const flagshipEventIds = ['hackathon', 'band-competition', 'fashion-show', 'robo-wars']
 
 export const events: Event[] = [
   // Cultural Events

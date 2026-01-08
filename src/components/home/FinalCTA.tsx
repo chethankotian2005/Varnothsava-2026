@@ -122,7 +122,7 @@ export default function FinalCTA() {
           </div>
 
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 mb-8">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 mb-4">
             <Link 
               href="/register" 
               className="btn-liquid-gold text-lg sm:text-xl group relative overflow-hidden focus-ring min-w-[300px] text-center shadow-[0_0_25px_rgba(212,175,55,0.35)] md:shadow-[0_0_50px_rgba(212,175,55,0.5)]"
@@ -144,6 +144,9 @@ export default function FinalCTA() {
               <ArrowRight className="w-5 h-5" aria-hidden="true" />
             </Link>
           </div>
+          
+          {/* Reassurance microcopy */}
+          <p className="text-forest-500 text-sm mb-8">Takes less than 2 minutes</p>
 
           {/* Urgency text */}
           <motion.div

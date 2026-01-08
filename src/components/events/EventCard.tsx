@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { Calendar, Users, Trophy, ArrowRight } from 'lucide-react'
-import { Event } from '@/data/events'
+import { Event, flagshipEventIds } from '@/data/events'
 
 interface EventCardProps {
   event: Event
@@ -21,6 +21,7 @@ const categoryColors: Record<string, { bg: string; text: string; border: string;
 
 export default function EventCard({ event, index, onClick }: EventCardProps) {
   const colors = categoryColors[event.categoryId] || categoryColors.cultural
+  const isFlagship = flagshipEventIds.includes(event.id)
 
   return (
     <motion.div
@@ -28,12 +29,24 @@ export default function EventCard({ event, index, onClick }: EventCardProps) {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4, delay: index * 0.05 }}
       onClick={onClick}
-      className={`bg-forest-900/50 backdrop-blur-sm border border-gold-800/20 rounded-xl ${colors.border} ${colors.glow} group cursor-pointer overflow-hidden hover:shadow-xl transition-all duration-300`}
+      className={`
+        bg-forest-900/50 backdrop-blur-sm rounded-xl group cursor-pointer overflow-hidden 
+        transition-all duration-300 hover:shadow-xl
+        ${colors.border} ${colors.glow}
+        ${isFlagship 
+          ? 'border-2 border-gold-800/40 ring-1 ring-gold-800/20' 
+          : 'border border-gold-800/20'
+        }
+      `}
     >
       {/* Gradient Header */}
-      <div className={`h-24 bg-gradient-to-br ${colors.bg} relative`}>
+      <div className={`${isFlagship ? 'h-28' : 'h-24'} bg-gradient-to-br ${colors.bg} relative`}>
         <div className="absolute inset-0 bg-forest-950/40" />
-        <div className="absolute bottom-3 left-4">
+        {/* Flagship accent line */}
+        {isFlagship && (
+          <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-gold-700/60 to-transparent" />
+        )}
+        <div className="absolute bottom-3 left-4 flex items-center gap-2">
           <span className={`inline-block px-2.5 py-1 rounded-full bg-forest-950/60 backdrop-blur-sm text-xs font-medium ${colors.text} border border-current/20`}>
             {event.category}
           </span>

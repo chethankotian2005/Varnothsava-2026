@@ -80,7 +80,7 @@ export default function SponsorsPreview() {
   const marqueeX = useTransform(scrollYProgress, [0, 1], ['0%', '-20%'])
 
   return (
-    <section ref={sectionRef} className="py-24 lg:py-32 relative overflow-hidden bg-forest-950">
+    <section ref={sectionRef} className="py-16 lg:py-20 relative overflow-hidden bg-forest-950">
       {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-b from-forest-950/50 via-forest-900/30 to-forest-950/50" />
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gold-800/40 to-transparent" />

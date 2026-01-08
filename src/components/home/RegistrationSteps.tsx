@@ -50,7 +50,7 @@ export default function RegistrationSteps() {
   const lineProgress = useTransform(scrollYProgress, [0.2, 0.8], ['0%', '100%'])
 
   return (
-    <section ref={sectionRef} className="py-24 lg:py-32 relative overflow-hidden bg-forest-950">
+    <section ref={sectionRef} className="py-16 lg:py-20 relative overflow-hidden bg-forest-950">
       {/* Background decorations */}
       <div className="absolute top-1/2 left-0 -translate-y-1/2 w-[500px] h-[500px] bg-forest-800/20 rounded-full blur-3xl" />
       <div className="absolute top-1/2 right-0 -translate-y-1/2 w-[400px] h-[400px] bg-gold-950/10 rounded-full blur-3xl" />
@@ -76,8 +76,11 @@ export default function RegistrationSteps() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-20"
+          className="text-center mb-14"
         >
+          {/* Section intro marker */}
+          <div className="w-8 h-px bg-gold-800/50 mx-auto mb-6" />
+          
           <motion.div
             initial={{ scale: 0.9, opacity: 0 }}
             whileInView={{ scale: 1, opacity: 1 }}
@@ -89,7 +92,7 @@ export default function RegistrationSteps() {
             <span className="text-gold-700 text-sm font-mono tracking-wider uppercase">Quick & Easy</span>
           </motion.div>
           
-          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-forest-100 mb-6">
+          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-forest-100 mb-4">
             Register in{' '}
             <span className="relative inline-block">
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-gold-800 via-gold-700 to-gold-950">
@@ -98,8 +101,8 @@ export default function RegistrationSteps() {
             </span>
           </h2>
           
-          <p className="text-lg text-forest-300 max-w-2xl mx-auto">
-            Get started in minutes. Join thousands of participants from across the country.
+          <p className="text-base text-forest-400 max-w-lg mx-auto">
+            Get started in minutes. Join thousands from across the country.
           </p>
         </motion.div>
 

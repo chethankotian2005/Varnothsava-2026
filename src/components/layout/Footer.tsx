@@ -165,6 +165,9 @@ export default function Footer() {
 
       {/* Bottom Bar */}
       <div className="relative border-t border-gold-800/20 bg-forest-900/50">
+        {/* Brand whisper: subtle gold accent */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-24 h-px bg-gradient-to-r from-transparent via-gold-700/50 to-transparent" />
+        
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-forest-300">
             <p className="flex items-center gap-1">

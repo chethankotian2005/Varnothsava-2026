@@ -69,7 +69,7 @@ export default function LeaderboardTeaser() {
   const decorY = useTransform(scrollYProgress, [0, 1], ['0%', '30%'])
 
   return (
-    <section ref={sectionRef} className="py-24 lg:py-32 relative overflow-hidden bg-forest-950">
+    <section ref={sectionRef} className="py-28 lg:py-36 relative overflow-hidden bg-forest-950">
       {/* Background decorations */}
       <motion.div style={{ y: decorY }} className="absolute inset-0 pointer-events-none">
         <div className="absolute top-1/4 right-0 w-96 h-96 bg-gold-950/10 rounded-full blur-3xl" />
@@ -85,6 +85,9 @@ export default function LeaderboardTeaser() {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
+            {/* Section intro marker */}
+            <div className="w-8 h-px bg-cyan-500/50 mb-6" />
+            
             <motion.div
               initial={{ scale: 0.9, opacity: 0 }}
               whileInView={{ scale: 1, opacity: 1 }}
@@ -96,7 +99,7 @@ export default function LeaderboardTeaser() {
               <span className="text-cyan-400 text-sm font-mono tracking-wider uppercase">Live Rankings</span>
             </motion.div>
             
-            <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-forest-100 mb-6">
+            <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-forest-100 mb-4">
               Race to the{' '}
               <span className="relative inline-block">
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-gold-800 via-gold-700 to-gold-950">
@@ -105,9 +108,9 @@ export default function LeaderboardTeaser() {
               </span>
             </h2>
             
-            <p className="text-lg text-forest-300 mb-8 leading-relaxed">
-              Track your college&apos;s position in real-time. Every event win adds points. 
-              The top 3 colleges will receive the prestigious Overall Championship Trophy.
+            <p className="text-base text-forest-400 mb-8 leading-relaxed max-w-md">
+              Track your college’s position live. Every win adds points. 
+              Top 3 colleges receive the Overall Championship Trophy.
             </p>
 
             {/* Prize highlights */}
