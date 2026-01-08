@@ -73,29 +73,6 @@ export default function FinalCTA() {
         <div className="absolute inset-48 rounded-full bg-gradient-radial from-gold-950/20 via-transparent to-transparent animate-pulse" />
       </div>
 
-      {/* Floating particles */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {[...Array(20)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute w-1 h-1 rounded-full bg-gold-950/50"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-            }}
-            animate={{
-              y: [0, -30, 0],
-              opacity: [0.3, 0.8, 0.3],
-            }}
-            transition={{
-              duration: 3 + Math.random() * 2,
-              repeat: Infinity,
-              delay: Math.random() * 2,
-            }}
-          />
-        ))}
-      </div>
-
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
         <div ref={contentRef} className="max-w-4xl mx-auto text-center">
           {/* Urgency badge */}
@@ -103,31 +80,21 @@ export default function FinalCTA() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gold-950/20 border border-gold-800/50 mb-10 shadow-lg shadow-gold-950/20"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gold-950/15 border border-gold-800/40 mb-8"
           >
-            <span className="relative flex h-3 w-3">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-gold-600 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-3 w-3 bg-gold-700"></span>
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-gold-600 opacity-60"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-gold-700"></span>
             </span>
-            <span className="text-gold-600 text-sm font-bold tracking-wider uppercase">Limited Seats Available</span>
-            <Sparkles className="w-4 h-4 text-gold-950" />
+            <span className="text-gold-600 text-sm font-medium tracking-wide">Limited Seats Available</span>
           </motion.div>
 
-          {/* Main headline - LOUD and decisive */}
-          <h2 className="font-display text-5xl md:text-7xl lg:text-8xl font-bold mb-10 leading-[0.95]">
+          {/* Main headline - clean and decisive */}
+          <h2 className="font-display text-5xl md:text-7xl lg:text-8xl font-bold mb-8 leading-[0.95]">
             <span className="text-forest-50">Ready to Make</span>
             <br />
-            <span className="relative inline-block">
-              <span className="bg-gradient-to-r from-gold-700 via-gold-600 to-gold-800 bg-clip-text text-transparent drop-shadow-lg">
-                Your Mark?
-              </span>
-              <motion.span
-                className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-gold-800 via-gold-700 to-gold-950 rounded-full"
-                initial={{ scaleX: 0 }}
-                whileInView={{ scaleX: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.5, duration: 0.8 }}
-              />
+            <span className="bg-gradient-to-r from-gold-700 via-gold-600 to-gold-800 bg-clip-text text-transparent">
+              Your Mark?
             </span>
           </h2>
 
@@ -158,7 +125,7 @@ export default function FinalCTA() {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 mb-8">
             <Link 
               href="/register" 
-              className="btn-liquid-gold text-lg sm:text-xl group relative overflow-hidden focus-ring min-w-[300px] text-center shadow-[0_0_50px_rgba(212,175,55,0.5)] hover:shadow-[0_0_70px_rgba(212,175,55,0.6)]"
+              className="btn-liquid-gold text-lg sm:text-xl group relative overflow-hidden focus-ring min-w-[300px] text-center shadow-[0_0_25px_rgba(212,175,55,0.35)] md:shadow-[0_0_50px_rgba(212,175,55,0.5)]"
               aria-label="Register for Varnothsava 2026 - Free to start"
             >
               <span className="relative z-10 flex items-center justify-center gap-2">

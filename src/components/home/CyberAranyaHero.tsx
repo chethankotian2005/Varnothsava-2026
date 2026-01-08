@@ -284,7 +284,7 @@ export default function CyberAranyaHero() {
         >
           <Link 
             href="/register" 
-            className="btn-liquid-gold focus-ring min-w-[220px] text-center text-lg px-8 py-5 shadow-[0_0_40px_rgba(212,175,55,0.4)]"
+            className="btn-liquid-gold focus-ring min-w-[220px] text-center text-lg px-8 py-5 shadow-[0_0_20px_rgba(212,175,55,0.3)] md:shadow-[0_0_40px_rgba(212,175,55,0.4)]"
             aria-label="Register for Varnothsava 2026"
           >
             <span className="flex items-center justify-center gap-2">

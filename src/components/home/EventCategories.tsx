@@ -365,15 +365,15 @@ export default function EventCategories() {
             <span>50+ Events Await</span>
           </motion.span>
           
-          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-forest-100 mb-4">
+          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-forest-100 mb-3">
             Choose Your{' '}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-gold-800 via-gold-700 to-gold-950">
               Arena
             </span>
           </h2>
           
-          <p className="text-lg text-forest-300 max-w-2xl mx-auto">
-            Six distinct categories, infinite possibilities. Find the stage where your talent shines brightest.
+          <p className="text-base text-forest-400 max-w-xl mx-auto">
+            Six categories, infinite possibilities. Find your stage.
           </p>
         </motion.div>
 
