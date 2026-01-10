@@ -230,7 +230,7 @@ export default function CyberAranyaHero() {
           x: contentMouseX,
         }}
       >
-        {/* Breathing logo as ceremonial seal - reduced size for hierarchy */}
+        {/* Breathing logo as ceremonial seal - sized as royal crest */}
         <motion.div
           className="flex justify-center mb-8"
           initial={{ opacity: 0, scale: 0.8 }}
@@ -240,7 +240,7 @@ export default function CyberAranyaHero() {
           <BreathingLogo
             src="/images/logo.png"
             alt="SMVITM Logo"
-            size={90}
+            size={115}
           />
         </motion.div>
 
@@ -288,10 +288,7 @@ export default function CyberAranyaHero() {
             className="btn-liquid-gold focus-ring min-w-[220px] text-center text-lg px-8 py-5 shadow-[0_0_20px_rgba(212,175,55,0.3)] md:shadow-[0_0_40px_rgba(212,175,55,0.4)]"
             aria-label="Register for Varnothsava 2026"
           >
-            <span className="flex items-center justify-center gap-2">
-              <span>Register Now</span>
-              <span className="text-xs bg-forest-950/40 px-2 py-0.5 rounded-full">FREE</span>
-            </span>
+            Register Now
           </Link>
           <Link 
             href="/events" 
@@ -304,12 +301,12 @@ export default function CyberAranyaHero() {
         
         {/* Reassurance microcopy */}
         <motion.p 
-          className="text-forest-500 text-xs mt-4 tracking-wide"
+          className="text-forest-500/70 text-xs mt-4 tracking-wide"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.8 }}
         >
-          Takes less than 2 minutes to register
+          Free to register · Takes less than 2 minutes
         </motion.p>
 
         {/* Scroll indicator - hidden on very short screens */}
