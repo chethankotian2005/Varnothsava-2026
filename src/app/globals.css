@@ -751,6 +751,130 @@
     }
   }
 
+  /* Tech glow pulse - gentler than flicker */
+  .tech-glow-pulse {
+    animation: tech-glow-pulse 8s ease-in-out infinite;
+  }
+
+  @keyframes tech-glow-pulse {
+    0%, 100% { 
+      opacity: 0.35;
+      filter: brightness(1) saturate(1);
+    }
+    50% { 
+      opacity: 0.5;
+      filter: brightness(1.15) saturate(1.2);
+    }
+  }
+
+  /* ========================================
+     SECTION OVERLAY SYSTEM
+     For readability over detailed backgrounds
+     ======================================== */
+  
+  /* Standard dark overlay - most text sections */
+  .section-overlay {
+    position: relative;
+  }
+  
+  .section-overlay::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(5, 13, 10, 0.65);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+    pointer-events: none;
+    z-index: 0;
+  }
+  
+  .section-overlay > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Heavy overlay - for maximum text readability */
+  .section-overlay-heavy {
+    position: relative;
+  }
+  
+  .section-overlay-heavy::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(5, 13, 10, 0.75);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+    pointer-events: none;
+    z-index: 0;
+  }
+  
+  .section-overlay-heavy > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Light overlay - for hero/visual sections */
+  .section-overlay-light {
+    position: relative;
+  }
+  
+  .section-overlay-light::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(5, 13, 10, 0.45);
+    pointer-events: none;
+    z-index: 0;
+  }
+  
+  .section-overlay-light > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Gradient overlay - top-heavy for navbar/hero */
+  .section-overlay-gradient {
+    position: relative;
+  }
+  
+  .section-overlay-gradient::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(5, 13, 10, 0.7) 0%,
+      rgba(5, 13, 10, 0.5) 30%,
+      rgba(5, 13, 10, 0.6) 70%,
+      rgba(5, 13, 10, 0.75) 100%
+    );
+    pointer-events: none;
+    z-index: 0;
+  }
+  
+  .section-overlay-gradient > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Card/content block overlay - for nested elements */
+  .content-overlay {
+    background: rgba(5, 13, 10, 0.8);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+
+  /* Text container with guaranteed readability */
+  .text-container-readable {
+    background: rgba(5, 13, 10, 0.7);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+    border: 1px solid rgba(201, 162, 39, 0.1);
+  }
+
   /* ========================================
      BREATHING LOGO ANIMATION
      ======================================== */
