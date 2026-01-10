@@ -118,13 +118,13 @@ export default function Navbar() {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled || isOpen
-          ? 'bg-forest-950/90 backdrop-blur-xl border-b border-gold-900/30'
-          : 'bg-forest-950/60 backdrop-blur-md border-b border-gold-900/15'
+          ? 'bg-forest-950/70 backdrop-blur-xl border-b border-gold-900/30'
+          : 'bg-forest-950/40 backdrop-blur-md border-b border-gold-900/10'
       }`}
       style={{
         boxShadow: scrolled || isOpen 
-          ? 'inset 0 1px 0 rgba(255, 255, 255, 0.03), inset 0 -1px 0 rgba(201, 162, 39, 0.1), 0 8px 32px rgba(0, 0, 0, 0.6), 0 2px 8px rgba(0, 0, 0, 0.4)'
-          : 'inset 0 1px 0 rgba(255, 255, 255, 0.02), 0 4px 24px rgba(0, 0, 0, 0.4), 0 1px 4px rgba(0, 0, 0, 0.3)'
+          ? 'inset 0 1px 0 rgba(255, 255, 255, 0.04), 0 8px 32px rgba(0, 0, 0, 0.5), 0 2px 8px rgba(0, 0, 0, 0.3)'
+          : 'inset 0 1px 0 rgba(255, 255, 255, 0.02), 0 4px 20px rgba(0, 0, 0, 0.3)'
       }}
     >
       <nav className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -160,24 +160,11 @@ export default function Navbar() {
                 <Link
                   key={link.name}
                   href={link.href}
-                  className={`nav-link font-medium text-xs tracking-[0.15em] uppercase relative group ${
-                    active ? 'active text-gold-950' : 'text-forest-300'
+                  className={`nav-link font-medium text-sm tracking-[0.12em] uppercase relative group ${
+                    active ? 'active text-gold-500' : 'text-gold-700/90 hover:text-gold-400'
                   }`}
                   aria-current={active ? 'page' : undefined}
                 >
-                  {/* Circuit node indicator */}
-                  <span 
-                    className={`absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1 transition-all duration-300 ${
-                      active ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'
-                    }`}
-                  >
-                    <span className={`block w-1.5 h-1.5 rounded-full shadow-[0_0_8px_rgba(0,242,255,0.8)] ${
-                      active ? 'bg-gold-950' : 'bg-cyan-glow'
-                    }`} />
-                    <span className={`absolute top-1.5 left-1/2 -translate-x-1/2 w-px h-2 bg-gradient-to-b to-transparent ${
-                      active ? 'from-gold-950' : 'from-cyan-glow'
-                    }`} />
-                  </span>
                   {link.name}
                 </Link>
               )

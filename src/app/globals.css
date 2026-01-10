@@ -1127,7 +1127,7 @@
      NAV LINK WITH EXPANDING UNDERLINE
      ======================================== */
   .nav-link {
-    @apply relative px-4 py-3 text-gray-300 transition-colors duration-300;
+    @apply relative px-4 py-3 transition-all duration-300;
     @apply rounded-lg;
     min-height: var(--touch-target-min);
     display: inline-flex;
@@ -1141,15 +1141,11 @@
     left: 50%;
     width: 0;
     height: 2px;
-    background: linear-gradient(90deg, #D4AF37, #00F2FF);
+    background: linear-gradient(90deg, #D4AF37, #E8D5A3);
     transition: all 0.3s ease;
     transform: translateX(-50%);
-    box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+    box-shadow: 0 0 8px rgba(212, 175, 55, 0.4);
     border-radius: 1px;
-  }
-
-  .nav-link:hover {
-    color: #D4AF37;
   }
 
   .nav-link:hover::after {
@@ -1161,13 +1157,9 @@
   }
   
   /* Active nav link state */
-  .nav-link.active {
-    color: #D4AF37;
-  }
-  
   .nav-link.active::after {
     width: calc(100% - 2rem);
-    background: linear-gradient(90deg, #D4AF37, #f0d890);
+    background: linear-gradient(90deg, #D4AF37, #E8D5A3);
   }
   
   /* Mobile nav link - larger touch target */
