@@ -4,6 +4,7 @@ import './globals.css'
 import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
 import ParallaxBackground from '@/components/effects/ParallaxBackground'
+import { Toaster } from 'sonner'
 
 const inter = Inter({ 
   subsets: ['latin'],
@@ -62,6 +63,20 @@ export default function RootLayout({
         <ParallaxBackground />
         
         <Navbar />
+        <Toaster 
+          position="top-right"
+          toastOptions={{
+            style: {
+              background: 'rgba(10, 22, 18, 0.95)',
+              border: '1px solid #D4AF37',
+              color: '#E8E4DC',
+              backdropFilter: 'blur(12px)',
+            },
+            className: 'font-body',
+          }}
+          theme="dark"
+          richColors
+        />
         <main className="flex-1 relative z-10">
           {children}
         </main>

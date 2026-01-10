@@ -14,12 +14,16 @@
     "@react-three/fiber": "^8.15.12",
     "@tsparticles/react": "^3.0.0",
     "@tsparticles/slim": "^3.9.1",
+    "clsx": "^2.1.1",
     "framer-motion": "^10.16.16",
     "gsap": "^3.12.4",
     "lucide-react": "^0.303.0",
     "next": "^14.0.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-tilt": "^1.0.2",
+    "sonner": "^2.0.7",
+    "tailwind-merge": "^3.4.0",
     "three": "^0.160.0"
   },
   "devDependencies": {

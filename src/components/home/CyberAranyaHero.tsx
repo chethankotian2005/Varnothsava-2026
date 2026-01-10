@@ -1,10 +1,10 @@
 'use client'
 
-import { motion, useScroll, useTransform, useMotionValue, useReducedMotion } from 'framer-motion'
+import { motion, useScroll, useTransform, useMotionValue, useReducedMotion, AnimatePresence } from 'framer-motion'
 import { useRef, useState, useEffect } from 'react'
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
-import { ChevronDown } from 'lucide-react'
+import { ChevronDown, Sparkles, ArrowRight } from 'lucide-react'
 import DigitalEtching from '@/components/effects/DigitalEtching'
 import BreathingLogo from '@/components/effects/BreathingLogo'
 
@@ -13,7 +13,7 @@ const TechnoBackground = dynamic(() => import('@/components/effects/TechnoBackgr
   ssr: false,
 })
 
-// Flip countdown component with glassmorphism
+// Flip countdown component with glassmorphism and enhanced animations
 const FlipCountdown = () => {
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
@@ -27,8 +27,11 @@ const FlipCountdown = () => {
     minutes: 0,
     seconds: 0,
   })
+  const [isUrgent, setIsUrgent] = useState(false)
+  const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
+    setMounted(true)
     // March 15, 2026 at midnight IST (Indian Standard Time UTC+5:30)
     const targetDate = new Date('2026-03-15T00:00:00+05:30')
 
@@ -37,14 +40,16 @@ const FlipCountdown = () => {
       const difference = targetDate.getTime() - now.getTime()
 
       if (difference > 0) {
+        const days = Math.floor(difference / (1000 * 60 * 60 * 24))
         const newTime = {
-          days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+          days,
           hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
           minutes: Math.floor((difference / 1000 / 60) % 60),
           seconds: Math.floor((difference / 1000) % 60),
         }
         setPrevTime(timeLeft)
         setTimeLeft(newTime)
+        setIsUrgent(days < 7)
       } else {
         // Event has started - show zeros
         setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 })
@@ -56,28 +61,35 @@ const FlipCountdown = () => {
     return () => clearInterval(timer)
   }, [])
 
-  const FlipUnit = ({ value, prevValue, label }: { value: number; prevValue: number; label: string }) => {
+  const FlipUnit = ({ value, prevValue, label, isUrgentMode }: { value: number; prevValue: number; label: string; isUrgentMode?: boolean }) => {
     const hasChanged = value !== prevValue
     
     return (
       <div className="flex flex-col items-center gap-3">
-        <div className="relative">
+        <motion.div 
+          className="relative"
+          animate={isUrgentMode ? {
+            x: [0, -2, 2, -2, 2, 0],
+          } : {}}
+          transition={{
+            duration: 0.5,
+            repeat: isUrgentMode ? Infinity : 0,
+            repeatDelay: 2,
+          }}
+        >
           {/* Enhanced Glassmorphism container */}
-          <div 
-            className="relative w-16 h-20 sm:w-20 sm:h-24 md:w-24 md:h-28 rounded-xl overflow-hidden"
+          <motion.div 
+            className={`relative w-16 h-20 sm:w-20 sm:h-24 md:w-24 md:h-28 rounded-xl overflow-hidden ${isUrgentMode ? 'ring-2 ring-red-500/50' : ''}`}
+            animate={hasChanged ? { scale: [1, 1.05, 1] } : {}}
+            transition={{ duration: 0.3 }}
             style={{
               background: 'linear-gradient(135deg, rgba(5, 22, 18, 0.6) 0%, rgba(10, 35, 28, 0.4) 50%, rgba(5, 22, 18, 0.6) 100%)',
               backdropFilter: 'blur(12px) saturate(1.3)',
               WebkitBackdropFilter: 'blur(12px) saturate(1.3)',
-              border: '1px solid #D4AF37',
-              boxShadow: `
-                0 0 0 1px rgba(212, 175, 55, 0.8),
-                0 0 20px rgba(212, 175, 55, 0.3),
-                0 0 40px rgba(212, 175, 55, 0.15),
-                inset 0 1px 0 rgba(255,255,255,0.1),
-                inset 0 -1px 0 rgba(0,0,0,0.4),
-                0 8px 32px rgba(0,0,0,0.6)
-              `,
+              border: isUrgentMode ? '1px solid rgba(239, 68, 68, 0.6)' : '1px solid #D4AF37',
+              boxShadow: isUrgentMode 
+                ? `0 0 0 1px rgba(239, 68, 68, 0.8), 0 0 20px rgba(239, 68, 68, 0.3), 0 0 40px rgba(239, 68, 68, 0.15), inset 0 1px 0 rgba(255,255,255,0.1), inset 0 -1px 0 rgba(0,0,0,0.4), 0 8px 32px rgba(0,0,0,0.6)`
+                : `0 0 0 1px rgba(212, 175, 55, 0.8), 0 0 20px rgba(212, 175, 55, 0.3), 0 0 40px rgba(212, 175, 55, 0.15), inset 0 1px 0 rgba(255,255,255,0.1), inset 0 -1px 0 rgba(0,0,0,0.4), 0 8px 32px rgba(0,0,0,0.6)`,
             }}
           >
             {/* Frosted texture overlay */}
@@ -100,44 +112,44 @@ const FlipCountdown = () => {
               }}
             />
             
-            {/* Number with glitch effect on change */}
+            {/* Number with flip animation on change */}
             <div className="absolute inset-0 flex items-center justify-center">
-              <motion.span 
-                key={value}
-                className="font-mono text-3xl sm:text-4xl md:text-5xl font-bold"
-                style={{
-                  background: 'linear-gradient(180deg, #FFE5A0 0%, #D4AF37 40%, #B8860B 70%, #8B6914 100%)',
-                  backgroundClip: 'text',
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
-                  filter: 'drop-shadow(0 -1px 0 rgba(255,229,160,0.2)) drop-shadow(0 2px 4px rgba(0,0,0,0.6))',
-                }}
-                initial={hasChanged ? { 
-                  opacity: 0, 
-                  y: -20,
-                  filter: 'blur(4px)',
-                } : false}
-                animate={{ 
-                  opacity: 1, 
-                  y: 0,
-                  filter: 'blur(0px)',
-                }}
-                transition={{ duration: 0.3, ease: 'easeOut' }}
-              >
-                {value.toString().padStart(2, '0')}
-              </motion.span>
-              
-              {/* Digital trail effect */}
-              {hasChanged && (
+              <AnimatePresence mode="wait">
                 <motion.span 
-                  className="absolute font-mono text-3xl sm:text-4xl md:text-5xl font-bold text-cyan-glow/30"
-                  initial={{ opacity: 0.5, y: 0 }}
-                  animate={{ opacity: 0, y: 20 }}
-                  transition={{ duration: 0.4 }}
+                  key={value}
+                  className="font-mono text-3xl sm:text-4xl md:text-5xl font-bold"
+                  style={{
+                    background: isUrgentMode 
+                      ? 'linear-gradient(180deg, #FF8A8A 0%, #EF4444 40%, #DC2626 70%, #B91C1C 100%)'
+                      : 'linear-gradient(180deg, #FFE5A0 0%, #D4AF37 40%, #B8860B 70%, #8B6914 100%)',
+                    backgroundClip: 'text',
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent',
+                    filter: 'drop-shadow(0 -1px 0 rgba(255,229,160,0.2)) drop-shadow(0 2px 4px rgba(0,0,0,0.6))',
+                  }}
+                  initial={{ 
+                    opacity: 0, 
+                    y: -30,
+                    rotateX: -90,
+                    filter: 'blur(4px)',
+                  }}
+                  animate={{ 
+                    opacity: 1, 
+                    y: 0,
+                    rotateX: 0,
+                    filter: 'blur(0px)',
+                  }}
+                  exit={{
+                    opacity: 0,
+                    y: 30,
+                    rotateX: 90,
+                    filter: 'blur(4px)',
+                  }}
+                  transition={{ duration: 0.4, ease: 'easeOut' }}
                 >
-                  {prevValue.toString().padStart(2, '0')}
+                  {value.toString().padStart(2, '0')}
                 </motion.span>
-              )}
+              </AnimatePresence>
             </div>
             
             {/* Center divider line - heritage style */}
@@ -148,29 +160,44 @@ const FlipCountdown = () => {
             <div className="absolute top-1.5 right-1.5 w-3 h-3 border-r-2 border-t-2 border-gold-800/50 rounded-tr-sm" />
             <div className="absolute bottom-1.5 left-1.5 w-3 h-3 border-l-2 border-b-2 border-gold-800/50 rounded-bl-sm" />
             <div className="absolute bottom-1.5 right-1.5 w-3 h-3 border-r-2 border-b-2 border-gold-800/50 rounded-br-sm" />
-          </div>
+          </motion.div>
           
           {/* Side decorative circuit dots */}
           <div className="absolute top-1/2 -left-2 w-1 h-1 -translate-y-1/2 rounded-full bg-cyan-glow/50 shadow-[0_0_4px_rgba(0,242,255,0.5)]" />
           <div className="absolute top-1/2 -right-2 w-1 h-1 -translate-y-1/2 rounded-full bg-cyan-glow/50 shadow-[0_0_4px_rgba(0,242,255,0.5)]" />
-        </div>
+        </motion.div>
         
-        <span className="text-xs font-mono tracking-[0.25em] text-gold-700/80 uppercase">
+        <span className={`text-xs font-mono tracking-[0.25em] uppercase ${isUrgentMode ? 'text-red-400/80' : 'text-gold-700/80'}`}>
           {label}
         </span>
       </div>
     )
   }
 
+  // Don't render until mounted to avoid hydration mismatch
+  if (!mounted) {
+    return (
+      <div className="flex items-center justify-center gap-2 sm:gap-3 md:gap-4 h-28">
+        <div className="w-16 h-20 sm:w-20 sm:h-24 md:w-24 md:h-28 rounded-xl bg-forest-900/50 animate-pulse" />
+        <span className="text-xl md:text-2xl text-gold-800/50">:</span>
+        <div className="w-16 h-20 sm:w-20 sm:h-24 md:w-24 md:h-28 rounded-xl bg-forest-900/50 animate-pulse" />
+        <span className="text-xl md:text-2xl text-gold-800/50">:</span>
+        <div className="w-16 h-20 sm:w-20 sm:h-24 md:w-24 md:h-28 rounded-xl bg-forest-900/50 animate-pulse" />
+        <span className="text-xl md:text-2xl text-gold-800/50">:</span>
+        <div className="w-16 h-20 sm:w-20 sm:h-24 md:w-24 md:h-28 rounded-xl bg-forest-900/50 animate-pulse" />
+      </div>
+    )
+  }
+
   return (
     <div className="flex items-center justify-center gap-2 sm:gap-3 md:gap-4">
-      <FlipUnit value={timeLeft.days} prevValue={prevTime.days} label="Days" />
+      <FlipUnit value={timeLeft.days} prevValue={prevTime.days} label="Days" isUrgentMode={isUrgent} />
       <span className="text-xl md:text-2xl text-gold-800/50 font-light self-start mt-6">:</span>
-      <FlipUnit value={timeLeft.hours} prevValue={prevTime.hours} label="Hours" />
+      <FlipUnit value={timeLeft.hours} prevValue={prevTime.hours} label="Hours" isUrgentMode={isUrgent} />
       <span className="text-xl md:text-2xl text-gold-800/50 font-light self-start mt-6">:</span>
-      <FlipUnit value={timeLeft.minutes} prevValue={prevTime.minutes} label="Mins" />
+      <FlipUnit value={timeLeft.minutes} prevValue={prevTime.minutes} label="Mins" isUrgentMode={isUrgent} />
       <span className="text-xl md:text-2xl text-gold-800/50 font-light self-start mt-6">:</span>
-      <FlipUnit value={timeLeft.seconds} prevValue={prevTime.seconds} label="Secs" />
+      <FlipUnit value={timeLeft.seconds} prevValue={prevTime.seconds} label="Secs" isUrgentMode={isUrgent} />
     </div>
   )
 }
@@ -278,27 +305,90 @@ export default function CyberAranyaHero() {
           <FlipCountdown />
         </motion.div>
 
-        {/* CTA Buttons - Primary CTA is LOUD - Higher z-index to stay above overlapping sections */}
+        {/* CTA Buttons - Primary CTA is LOUD - Enhanced with micro-interactions */}
         <motion.div
           className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 relative z-50 mb-16"
           initial={prefersReducedMotion ? {} : { opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1.6 }}
         >
-          <Link 
-            href="/register" 
-            className="btn-liquid-gold focus-ring min-w-[200px] text-center text-base px-8 py-4 shadow-[0_0_30px_rgba(212,175,55,0.4)] md:shadow-[0_0_50px_rgba(212,175,55,0.5)] relative z-50 pointer-events-auto cursor-pointer"
-            aria-label="Register for Varnothsava 2026"
+          {/* Register Now - Primary CTA with glow effect */}
+          <motion.div
+            whileHover={{ scale: 1.05, y: -4 }}
+            whileTap={{ scale: 0.95 }}
+            className="relative group"
           >
-            Register Now
-          </Link>
-          <Link 
-            href="/events" 
-            className="btn-circuit focus-ring min-w-[180px] text-center px-6 py-4 relative z-50 pointer-events-auto cursor-pointer"
-            aria-label="View all events"
+            {/* Animated glow background */}
+            <motion.div 
+              className="absolute -inset-1 bg-gradient-to-r from-gold-800 via-gold-700 to-gold-950 rounded-xl blur-xl opacity-50 group-hover:opacity-100 transition-opacity duration-500"
+              animate={{
+                scale: [1, 1.05, 1],
+                opacity: [0.5, 0.7, 0.5],
+              }}
+              transition={{
+                duration: 2,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+            />
+            <Link 
+              href="/register" 
+              className="relative flex items-center justify-center gap-2 min-w-[200px] text-center text-base font-bold px-8 py-4 
+                         bg-gradient-to-r from-gold-800 via-gold-700 to-gold-950 
+                         text-forest-950 rounded-xl
+                         shadow-[0_0_30px_rgba(212,175,55,0.4)] 
+                         hover:shadow-[0_0_50px_rgba(212,175,55,0.6)]
+                         transition-all duration-300
+                         border border-gold-700/50
+                         overflow-hidden
+                         pointer-events-auto cursor-pointer focus-ring"
+              aria-label="Register for Varnothsava 2026"
+            >
+              <Sparkles className="w-5 h-5" />
+              <span className="relative z-10">Register Now</span>
+              {/* Shine effect */}
+              <motion.div
+                className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -skew-x-12"
+                initial={{ x: '-200%' }}
+                animate={{ x: '200%' }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  repeatDelay: 3,
+                  ease: "easeInOut"
+                }}
+              />
+            </Link>
+          </motion.div>
+          
+          {/* Explore Events - Secondary CTA */}
+          <motion.div
+            whileHover={{ scale: 1.05, y: -2 }}
+            whileTap={{ scale: 0.95 }}
+            className="relative group"
           >
-            Explore Events
-          </Link>
+            <Link 
+              href="/events" 
+              className="relative flex items-center justify-center gap-2 min-w-[180px] text-center px-6 py-4
+                         bg-forest-900/60 backdrop-blur-sm
+                         text-gold-700 font-semibold rounded-xl
+                         border border-gold-800/40 hover:border-gold-700
+                         hover:bg-forest-900/80
+                         transition-all duration-300
+                         shadow-[0_0_20px_rgba(0,0,0,0.3)]
+                         hover:shadow-[0_0_30px_rgba(212,175,55,0.2)]
+                         pointer-events-auto cursor-pointer focus-ring"
+              aria-label="View all events"
+            >
+              <span>Explore Events</span>
+              <motion.span
+                animate={{ x: [0, 4, 0] }}
+                transition={{ duration: 1.5, repeat: Infinity }}
+              >
+                <ArrowRight className="w-5 h-5" />
+              </motion.span>
+            </Link>
+          </motion.div>
         </motion.div>
       </motion.div>
     </section>

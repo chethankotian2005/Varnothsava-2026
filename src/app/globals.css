@@ -1260,4 +1260,68 @@
   ::-webkit-scrollbar-thumb:hover {
     background: linear-gradient(180deg, #f0d890, #D4AF37);
   }
+  
+  /* ========================================
+     ENHANCED UI ANIMATIONS
+     ======================================== */
+  
+  /* 3D Perspective for cards */
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+  
+  /* Focus visible enhanced */
+  *:focus-visible {
+    outline: 2px solid #D4AF37;
+    outline-offset: 4px;
+    border-radius: 4px;
+  }
+  
+  button:focus-visible,
+  a:focus-visible {
+    box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.3);
+  }
+  
+  /* Gradient animation for borders */
+  @keyframes gradient-xy {
+    0%, 100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+  
+  .animate-gradient-xy {
+    background-size: 200% 200%;
+    animation: gradient-xy 3s ease infinite;
+  }
+  
+  /* Urgency shake for countdown */
+  @keyframes urgency-shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-2px); }
+    20%, 40%, 60%, 80% { transform: translateX(2px); }
+  }
+  
+  .animate-urgency-shake {
+    animation: urgency-shake 0.5s ease-in-out;
+  }
+  
+  /* Confetti burst animation */
+  @keyframes confetti-burst {
+    0% { transform: scale(0) rotate(0deg); opacity: 0; }
+    50% { transform: scale(1.2) rotate(180deg); opacity: 1; }
+    100% { transform: scale(0) rotate(360deg); opacity: 0; }
+  }
+  
+  /* Shine sweep effect */
+  @keyframes shine-sweep {
+    0% { transform: translateX(-200%) skewX(-15deg); }
+    100% { transform: translateX(200%) skewX(-15deg); }
+  }
+  
+  .animate-shine {
+    animation: shine-sweep 3s ease-in-out infinite;
+  }
 }

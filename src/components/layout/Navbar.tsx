@@ -196,54 +196,98 @@ export default function Navbar() {
         </div>
       </nav>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu - Enhanced with slide-in animation */}
       <AnimatePresence>
         {isOpen && (
-          <motion.div
-            id="mobile-menu"
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3, ease: 'easeInOut' }}
-            className="lg:hidden bg-forest-950/98 backdrop-blur-lg border-b border-gold-800/20 overflow-hidden"
-          >
-            <div className="container mx-auto px-4 py-6 space-y-1">
-              {navLinks.map((link, index) => {
-                const active = isLinkActive(link)
-                return (
-                  <motion.div
-                    key={link.name}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: index * 0.05, duration: 0.2 }}
-                  >
-                    <Link
-                      href={link.href}
-                      onClick={() => setIsOpen(false)}
-                      className={`nav-link-mobile ${active ? 'active' : ''}`}
-                      aria-current={active ? 'page' : undefined}
-                    >
-                      {link.name}
-                    </Link>
-                  </motion.div>
-                )
-              })}
-              <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: navLinks.length * 0.05, duration: 0.2 }}
-                className="pt-4"
-              >
-                <Link
-                  href="/register"
+          <>
+            {/* Backdrop overlay */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="lg:hidden fixed inset-0 bg-forest-950/60 backdrop-blur-sm z-40"
+              onClick={() => setIsOpen(false)}
+            />
+            
+            {/* Slide-in menu */}
+            <motion.div
+              id="mobile-menu"
+              initial={{ opacity: 0, x: '100%' }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: '100%' }}
+              transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+              className="lg:hidden fixed top-0 right-0 bottom-0 w-[80%] max-w-sm bg-forest-950/98 backdrop-blur-xl border-l border-gold-800/30 z-50 overflow-y-auto"
+            >
+              {/* Close button */}
+              <div className="flex justify-end p-4">
+                <motion.button
                   onClick={() => setIsOpen(false)}
-                  className="btn-liquid-gold w-full text-center block focus-ring"
+                  className="p-3 text-gold-700 hover:text-gold-500 transition-colors rounded-lg"
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.9 }}
+                  aria-label="Close menu"
                 >
-                  Register Now
-                </Link>
-              </motion.div>
-            </div>
-          </motion.div>
+                  <X size={28} />
+                </motion.button>
+              </div>
+              
+              <div className="px-6 py-4 space-y-2">
+                {navLinks.map((link, index) => {
+                  const active = isLinkActive(link)
+                  return (
+                    <motion.div
+                      key={link.name}
+                      initial={{ opacity: 0, x: 50 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: index * 0.08, duration: 0.3, ease: 'easeOut' }}
+                    >
+                      <Link
+                        href={link.href}
+                        onClick={() => setIsOpen(false)}
+                        className={`block py-4 text-2xl font-bold transition-all duration-300 ${
+                          active 
+                            ? 'text-gold-500 translate-x-2' 
+                            : 'text-forest-200 hover:text-gold-400 hover:translate-x-4'
+                        }`}
+                        aria-current={active ? 'page' : undefined}
+                      >
+                        {link.name}
+                      </Link>
+                    </motion.div>
+                  )
+                })}
+                
+                {/* CTA Button */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: navLinks.length * 0.08 + 0.1, duration: 0.3 }}
+                  className="pt-8"
+                >
+                  <Link
+                    href="/register"
+                    onClick={() => setIsOpen(false)}
+                    className="btn-liquid-gold w-full text-center block text-lg py-4 focus-ring"
+                  >
+                    Register Now
+                  </Link>
+                </motion.div>
+                
+                {/* Social/Contact info */}
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: navLinks.length * 0.08 + 0.3, duration: 0.3 }}
+                  className="pt-8 border-t border-gold-800/20"
+                >
+                  <p className="text-forest-400 text-sm text-center">
+                    March 15-17, 2026 • SMVITM
+                  </p>
+                </motion.div>
+              </div>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
     </header>

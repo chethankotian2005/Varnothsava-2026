@@ -1,7 +1,7 @@
 'use client'
 
-import { motion, useScroll, useTransform, useReducedMotion } from 'framer-motion'
-import { useRef } from 'react'
+import { motion, useScroll, useTransform, useReducedMotion, useInView } from 'framer-motion'
+import { useRef, useEffect, useState } from 'react'
 import { Sparkles, Cpu, Palette, Users, Zap, Crown, Trophy, Calendar } from 'lucide-react'
 
 const features = [
@@ -36,29 +36,71 @@ const features = [
 ]
 
 const stats = [
-  { value: '50+', label: 'Events', icon: Zap },
-  { value: '5000+', label: 'Participants', icon: Users },
-  { value: '₹10L+', label: 'Prize Pool', icon: Trophy },
-  { value: '3', label: 'Days', icon: Calendar },
+  { value: 50, displayValue: '50+', label: 'Events', icon: Zap, suffix: '+' },
+  { value: 5000, displayValue: '5000+', label: 'Participants', icon: Users, suffix: '+' },
+  { value: 10, displayValue: '₹10L+', label: 'Prize Pool', icon: Trophy, prefix: '₹', suffix: 'L+' },
+  { value: 3, displayValue: '3', label: 'Days', icon: Calendar, suffix: '' },
 ]
 
-// Animated counter component
+// Animated counter component with counting animation
 function AnimatedStat({ stat, index }: { stat: typeof stats[0], index: number }) {
   const prefersReducedMotion = useReducedMotion()
+  const ref = useRef<HTMLDivElement>(null)
+  const isInView = useInView(ref, { once: true, margin: "-100px" })
+  const [count, setCount] = useState(0)
+  const [hasAnimated, setHasAnimated] = useState(false)
+
+  useEffect(() => {
+    if (isInView && !hasAnimated && !prefersReducedMotion) {
+      setHasAnimated(true)
+      const duration = 2000 // 2 seconds
+      const steps = 60
+      const increment = stat.value / steps
+      let current = 0
+      
+      const timer = setInterval(() => {
+        current += increment
+        if (current >= stat.value) {
+          setCount(stat.value)
+          clearInterval(timer)
+        } else {
+          setCount(Math.floor(current))
+        }
+      }, duration / steps)
+      
+      return () => clearInterval(timer)
+    } else if (prefersReducedMotion) {
+      setCount(stat.value)
+    }
+  }, [isInView, stat.value, hasAnimated, prefersReducedMotion])
   
   return (
     <motion.div
-      initial={prefersReducedMotion ? {} : { opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      ref={ref}
+      initial={prefersReducedMotion ? {} : { opacity: 0, y: 30, scale: 0.9 }}
+      whileInView={{ opacity: 1, y: 0, scale: 1 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.6, delay: 0.1 * index }}
+      transition={{ duration: 0.6, delay: 0.1 * index, type: "spring", stiffness: 100 }}
       className="relative group"
     >
-      {/* Glow effect */}
-      <div className="absolute inset-0 bg-gradient-to-r from-gold-950/20 to-forest-700/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+      {/* Animated glow effect */}
+      <motion.div 
+        className="absolute inset-0 bg-gradient-to-r from-gold-950/30 to-forest-700/30 rounded-2xl blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+        animate={isInView ? {
+          scale: [1, 1.1, 1],
+          opacity: [0.3, 0.5, 0.3],
+        } : {}}
+        transition={{ duration: 3, repeat: Infinity }}
+      />
       
-      <div className="relative bg-forest-900/60 backdrop-blur-sm rounded-2xl p-6 lg:p-8 text-center border border-gold-800/20 group-hover:border-gold-800/50 transition-all duration-300 group-hover:shadow-lg group-hover:shadow-gold-950/10">
-        <stat.icon className="w-6 h-6 text-gold-800 mx-auto mb-3" aria-hidden="true" />
+      <div className="relative bg-forest-900/60 backdrop-blur-sm rounded-2xl p-6 lg:p-8 text-center border border-gold-800/20 group-hover:border-gold-700 transition-all duration-300 group-hover:shadow-xl group-hover:shadow-gold-950/20 group-hover:-translate-y-1">
+        <motion.div
+          animate={isInView ? { rotate: [0, 10, -10, 0] } : {}}
+          transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}
+        >
+          <stat.icon className="w-7 h-7 text-gold-800 mx-auto mb-4" aria-hidden="true" />
+        </motion.div>
+        
         <motion.div 
           className="text-4xl md:text-5xl lg:text-6xl font-display font-bold bg-gradient-to-r from-gold-800 via-gold-700 to-gold-950 bg-clip-text text-transparent mb-2"
           initial={prefersReducedMotion ? {} : { scale: 0.5 }}
@@ -66,11 +108,25 @@ function AnimatedStat({ stat, index }: { stat: typeof stats[0], index: number })
           viewport={{ once: true }}
           transition={{ type: "spring", stiffness: 200, delay: 0.2 + index * 0.1 }}
         >
-          {stat.value}
+          {stat.prefix || ''}{count.toLocaleString()}{stat.suffix}
         </motion.div>
+        
         <div className="text-forest-300 text-sm uppercase tracking-widest font-mono">
           {stat.label}
         </div>
+        
+        {/* Sparkle decoration */}
+        <motion.div
+          className="absolute top-2 right-2"
+          animate={isInView ? {
+            scale: [0, 1, 0],
+            rotate: [0, 180],
+            opacity: [0, 1, 0],
+          } : {}}
+          transition={{ duration: 2, repeat: Infinity, repeatDelay: 1 }}
+        >
+          <Sparkles className="w-4 h-4 text-gold-700/50" />
+        </motion.div>
       </div>
     </motion.div>
   )

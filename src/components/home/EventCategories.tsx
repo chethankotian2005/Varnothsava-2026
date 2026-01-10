@@ -1,8 +1,8 @@
 'use client'
 
-import { motion, useScroll, useTransform, useReducedMotion } from 'framer-motion'
+import { motion, useScroll, useTransform, useReducedMotion, useMotionValue, useSpring } from 'framer-motion'
 import Link from 'next/link'
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 import { ArrowRight, Music, Code, Palette, Mic, Camera, Gamepad2, Sparkles } from 'lucide-react'
 
 // Blueprint Pattern SVG for technical events
@@ -195,14 +195,47 @@ const categories = [
   },
 ]
 
-// Card Component with different sizes for Bento grid
+// Card Component with different sizes for Bento grid and 3D tilt effect
 function BentoCard({ category, index }: { category: typeof categories[0], index: number }) {
   const isLarge = category.size === 'large'
   const isMedium = category.size === 'medium'
   const prefersReducedMotion = useReducedMotion()
+  const cardRef = useRef<HTMLDivElement>(null)
+  
+  // 3D tilt effect
+  const x = useMotionValue(0)
+  const y = useMotionValue(0)
+  
+  const mouseXSpring = useSpring(x, { stiffness: 300, damping: 30 })
+  const mouseYSpring = useSpring(y, { stiffness: 300, damping: 30 })
+  
+  const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["10deg", "-10deg"])
+  const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-10deg", "10deg"])
+  
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (prefersReducedMotion || !cardRef.current) return
+    
+    const rect = cardRef.current.getBoundingClientRect()
+    const width = rect.width
+    const height = rect.height
+    const mouseX = e.clientX - rect.left
+    const mouseY = e.clientY - rect.top
+    
+    const xPct = mouseX / width - 0.5
+    const yPct = mouseY / height - 0.5
+    
+    x.set(xPct)
+    y.set(yPct)
+  }
+  
+  const handleMouseLeave = () => {
+    x.set(0)
+    y.set(0)
+  }
   
   return (
     <motion.div
+      ref={cardRef}
       initial={prefersReducedMotion ? {} : { opacity: 0, y: 50, scale: 0.95 }}
       whileInView={{ opacity: 1, y: 0, scale: 1 }}
       viewport={{ once: true, margin: "-50px" }}
@@ -211,9 +244,17 @@ function BentoCard({ category, index }: { category: typeof categories[0], index:
         delay: index * 0.1,
         ease: [0.25, 0.46, 0.45, 0.94]
       }}
+      style={{
+        rotateX: prefersReducedMotion ? 0 : rotateX,
+        rotateY: prefersReducedMotion ? 0 : rotateY,
+        transformStyle: "preserve-3d",
+      }}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
       className={`
         ${isLarge ? 'md:col-span-2 md:row-span-2' : ''}
         ${isMedium ? 'md:col-span-1 md:row-span-2' : ''}
+        perspective-1000
       `}
     >
       <Link
@@ -221,12 +262,13 @@ function BentoCard({ category, index }: { category: typeof categories[0], index:
         className={`
           group relative block h-full min-h-[280px] overflow-hidden rounded-2xl
           bg-forest-900/60 backdrop-blur-sm
-          border border-gold-800/20 hover:border-gold-800/50
+          border border-gold-800/20 hover:border-gold-700
           transition-all duration-300 ease-out
           focus-ring
           hover:scale-[1.02] hover:-translate-y-1
           ${category.borderGlow}
         `}
+        style={{ transformStyle: "preserve-3d" }}
         aria-label={`Explore ${category.name} events - ${category.count} events available`}
       >
         {/* Background Pattern */}
@@ -239,17 +281,37 @@ function BentoCard({ category, index }: { category: typeof categories[0], index:
         <div className="absolute inset-0 bg-gradient-to-t from-forest-950/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
         
         {/* Content */}
-        <div className={`relative z-10 h-full flex flex-col ${isLarge ? 'p-8' : 'p-6'}`}>
-          {/* Icon with glow */}
-          <div className={`
-            inline-flex items-center justify-center rounded-xl
-            ${isLarge ? 'w-16 h-16' : 'w-12 h-12'}
-            ${category.iconBg}
-            transition-all duration-300
-            group-hover:scale-110 group-hover:rotate-3
-          `}>
+        <div className={`relative z-10 h-full flex flex-col ${isLarge ? 'p-8' : 'p-6'}`} style={{ transform: "translateZ(50px)" }}>
+          {/* Icon with glow and rotation animation */}
+          <motion.div 
+            className={`
+              inline-flex items-center justify-center rounded-xl
+              ${isLarge ? 'w-16 h-16' : 'w-12 h-12'}
+              ${category.iconBg}
+              transition-all duration-300
+            `}
+            whileHover={{ rotate: 360, scale: 1.2 }}
+            transition={{ duration: 0.6 }}
+          >
             <category.icon className={`${isLarge ? 'w-8 h-8' : 'w-6 h-6'} ${category.iconColor}`} />
-          </div>
+          </motion.div>
+
+          {/* Event count badge with pulse animation */}
+          <motion.div
+            className="absolute top-4 right-4"
+            animate={{ scale: [1, 1.05, 1] }}
+            transition={{ duration: 2, repeat: Infinity }}
+          >
+            <div className={`
+              px-3 py-1.5 rounded-full text-xs font-bold
+              bg-gradient-to-r ${category.gradient.replace('/10', '/30').replace('/5', '/20')}
+              ${category.accentColor}
+              border border-current/30
+              shadow-lg
+            `}>
+              {category.count} Events
+            </div>
+          </motion.div>
 
           {/* Title & Tagline */}
           <div className="mt-auto">
