@@ -11,8 +11,10 @@ const navLinks = [
   { name: 'Home', href: '/', sectionId: 'hero' },
   { name: 'Events', href: '/events', sectionId: 'events' },
   { name: 'Schedule', href: '/schedule', sectionId: null },
+  { name: 'Register', href: '/register', sectionId: null },
+  { name: 'Leaderboard', href: '/leaderboard', sectionId: null },
   { name: 'Gallery', href: '/gallery', sectionId: null },
-  { name: 'Team', href: '/team', sectionId: null },
+  { name: 'About', href: '/about', sectionId: null },
   { name: 'Contact', href: '/contact', sectionId: null },
 ]
 
