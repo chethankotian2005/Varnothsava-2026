@@ -5,6 +5,7 @@ import EventCategories from '@/components/home/EventCategories'
 import RegistrationSteps from '@/components/home/RegistrationSteps'
 import LeaderboardTeaser from '@/components/home/LeaderboardTeaser'
 import SponsorsPreview from '@/components/home/SponsorsPreview'
+import Testimonials from '@/components/home/Testimonials'
 import FinalCTA from '@/components/home/FinalCTA'
 
 // Dynamically import effects that use browser APIs
@@ -37,6 +38,10 @@ export default function Home() {
       
       <section id="leaderboard">
         <LeaderboardTeaser />
+      </section>
+      
+      <section id="testimonials">
+        <Testimonials />
       </section>
       
       <section id="sponsors">

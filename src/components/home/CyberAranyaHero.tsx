@@ -29,9 +29,15 @@ const FlipCountdown = () => {
   })
   const [isUrgent, setIsUrgent] = useState(false)
   const [mounted, setMounted] = useState(false)
+  const [isEventLive, setIsEventLive] = useState(false)
 
   useEffect(() => {
     setMounted(true)
+  }, [])
+
+  useEffect(() => {
+    if (!mounted) return
+
     // March 15, 2026 at midnight IST (Indian Standard Time UTC+5:30)
     const targetDate = new Date('2026-03-15T00:00:00+05:30')
 
@@ -41,25 +47,30 @@ const FlipCountdown = () => {
 
       if (difference > 0) {
         const days = Math.floor(difference / (1000 * 60 * 60 * 24))
-        const newTime = {
-          days,
-          hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
-          minutes: Math.floor((difference / 1000 / 60) % 60),
-          seconds: Math.floor((difference / 1000) % 60),
-        }
-        setPrevTime(timeLeft)
-        setTimeLeft(newTime)
+        const hours = Math.floor((difference / (1000 * 60 * 60)) % 24)
+        const minutes = Math.floor((difference / 1000 / 60) % 60)
+        const seconds = Math.floor((difference / 1000) % 60)
+        
+        setTimeLeft(prev => {
+          setPrevTime(prev)
+          return { days, hours, minutes, seconds }
+        })
         setIsUrgent(days < 7)
+        setIsEventLive(false)
       } else {
-        // Event has started - show zeros
+        // Event has started
         setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 })
+        setIsEventLive(true)
       }
     }
 
+    // Initial calculation
     calculateTimeLeft()
+    
+    // Update every second
     const timer = setInterval(calculateTimeLeft, 1000)
     return () => clearInterval(timer)
-  }, [])
+  }, [mounted])
 
   const FlipUnit = ({ value, prevValue, label, isUrgentMode }: { value: number; prevValue: number; label: string; isUrgentMode?: boolean }) => {
     const hasChanged = value !== prevValue
@@ -178,14 +189,41 @@ const FlipCountdown = () => {
   if (!mounted) {
     return (
       <div className="flex items-center justify-center gap-2 sm:gap-3 md:gap-4 h-28">
-        <div className="w-16 h-20 sm:w-20 sm:h-24 md:w-24 md:h-28 rounded-xl bg-forest-900/50 animate-pulse" />
+        <div className="w-16 h-20 sm:w-20 sm:h-24 md:w-24 md:h-28 rounded-xl bg-forest-900/50 animate-pulse border border-gold-800/30" />
         <span className="text-xl md:text-2xl text-gold-800/50">:</span>
-        <div className="w-16 h-20 sm:w-20 sm:h-24 md:w-24 md:h-28 rounded-xl bg-forest-900/50 animate-pulse" />
+        <div className="w-16 h-20 sm:w-20 sm:h-24 md:w-24 md:h-28 rounded-xl bg-forest-900/50 animate-pulse border border-gold-800/30" />
         <span className="text-xl md:text-2xl text-gold-800/50">:</span>
-        <div className="w-16 h-20 sm:w-20 sm:h-24 md:w-24 md:h-28 rounded-xl bg-forest-900/50 animate-pulse" />
+        <div className="w-16 h-20 sm:w-20 sm:h-24 md:w-24 md:h-28 rounded-xl bg-forest-900/50 animate-pulse border border-gold-800/30" />
         <span className="text-xl md:text-2xl text-gold-800/50">:</span>
-        <div className="w-16 h-20 sm:w-20 sm:h-24 md:w-24 md:h-28 rounded-xl bg-forest-900/50 animate-pulse" />
+        <div className="w-16 h-20 sm:w-20 sm:h-24 md:w-24 md:h-28 rounded-xl bg-forest-900/50 animate-pulse border border-gold-800/30" />
       </div>
+    )
+  }
+
+  // Show "Event Live" banner when countdown reaches zero
+  if (isEventLive) {
+    return (
+      <motion.div
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
+        className="text-center"
+      >
+        <motion.div
+          animate={{ 
+            scale: [1, 1.05, 1],
+            textShadow: [
+              '0 0 20px rgba(212,175,55,0.5)',
+              '0 0 40px rgba(212,175,55,0.8)',
+              '0 0 20px rgba(212,175,55,0.5)'
+            ]
+          }}
+          transition={{ duration: 2, repeat: Infinity }}
+          className="text-4xl md:text-6xl font-display font-bold text-gold-700"
+        >
+          🎉 EVENT IS LIVE! 🎉
+        </motion.div>
+        <p className="text-gold-700/70 mt-4 text-lg">March 15-17, 2026 • SMVITM Campus</p>
+      </motion.div>
     )
   }
 

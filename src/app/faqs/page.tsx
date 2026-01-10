@@ -2,7 +2,7 @@
 
 import { useState, useMemo } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Search, ChevronDown, ChevronUp, HelpCircle } from 'lucide-react'
+import { Search, ChevronDown, HelpCircle } from 'lucide-react'
 import { faqs, faqCategories, searchFAQs, type FAQ } from '@/data/faqs'
 
 export default function FAQsPage() {
@@ -150,30 +150,55 @@ export default function FAQsPage() {
                 >
                   <button
                     onClick={() => toggleExpand(faq.id)}
-                    className="w-full px-6 py-4 flex items-center justify-between text-left hover:bg-forest-800/30 transition-colors"
+                    className={`w-full px-6 py-4 flex items-center justify-between text-left transition-all duration-300 ${
+                      expandedIds.includes(faq.id) 
+                        ? 'bg-forest-800/40 border-l-2 border-gold-500' 
+                        : 'hover:bg-forest-800/30 border-l-2 border-transparent'
+                    }`}
                   >
-                    <span className="text-forest-100 font-medium pr-4">{faq.question}</span>
-                    {expandedIds.includes(faq.id) ? (
-                      <ChevronUp className="w-5 h-5 text-gold-500 flex-shrink-0" />
-                    ) : (
-                      <ChevronDown className="w-5 h-5 text-forest-500 flex-shrink-0" />
-                    )}
+                    <span className={`font-medium pr-4 transition-colors duration-200 ${
+                      expandedIds.includes(faq.id) ? 'text-gold-400' : 'text-forest-100'
+                    }`}>
+                      {faq.question}
+                    </span>
+                    <motion.div
+                      animate={{ rotate: expandedIds.includes(faq.id) ? 180 : 0 }}
+                      transition={{ duration: 0.3, ease: 'easeInOut' }}
+                      className="flex-shrink-0"
+                    >
+                      <ChevronDown className={`w-5 h-5 transition-colors duration-200 ${
+                        expandedIds.includes(faq.id) ? 'text-gold-500' : 'text-forest-500'
+                      }`} />
+                    </motion.div>
                   </button>
                   
-                  <AnimatePresence>
+                  <AnimatePresence initial={false}>
                     {expandedIds.includes(faq.id) && (
                       <motion.div
                         initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: 'auto', opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.2 }}
+                        animate={{ 
+                          height: 'auto', 
+                          opacity: 1,
+                          transition: {
+                            height: { duration: 0.3, ease: [0.04, 0.62, 0.23, 0.98] },
+                            opacity: { duration: 0.25, delay: 0.1 }
+                          }
+                        }}
+                        exit={{ 
+                          height: 0, 
+                          opacity: 0,
+                          transition: {
+                            height: { duration: 0.25, ease: [0.04, 0.62, 0.23, 0.98] },
+                            opacity: { duration: 0.15 }
+                          }
+                        }}
                         className="overflow-hidden"
                       >
                         <div className="px-6 pb-4 pt-0">
                           <div className="border-t border-forest-700/30 pt-4">
                             <p className="text-forest-400 leading-relaxed">{faq.answer}</p>
                             <div className="mt-3 flex items-center gap-2">
-                              <span className="text-xs px-2 py-1 bg-forest-800/50 text-forest-500 rounded-full capitalize">
+                              <span className="text-xs px-2 py-1 bg-gold-900/30 text-gold-500 rounded-full capitalize border border-gold-700/30">
                                 {faq.category}
                               </span>
                             </div>
