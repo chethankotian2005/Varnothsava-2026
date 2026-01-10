@@ -29,7 +29,8 @@ const FlipCountdown = () => {
   })
 
   useEffect(() => {
-    const targetDate = new Date('2026-02-21T09:00:00')
+    // March 15, 2026 at midnight IST (Indian Standard Time UTC+5:30)
+    const targetDate = new Date('2026-03-15T00:00:00+05:30')
 
     const calculateTimeLeft = () => {
       const now = new Date()
@@ -44,6 +45,9 @@ const FlipCountdown = () => {
         }
         setPrevTime(timeLeft)
         setTimeLeft(newTime)
+      } else {
+        // Event has started - show zeros
+        setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 })
       }
     }
 
@@ -203,7 +207,7 @@ export default function CyberAranyaHero() {
   return (
     <section
       ref={containerRef}
-      className="relative min-h-[100svh] lg:min-h-screen flex items-center justify-center overflow-hidden z-20"
+      className="relative min-h-[100svh] lg:min-h-screen flex items-center justify-center overflow-hidden z-30"
       aria-label="Hero section"
     >
       {/* Hero-specific overlay - darken for readability while showing parallax */}
@@ -222,7 +226,7 @@ export default function CyberAranyaHero() {
 
       {/* Main content with parallax - balanced padding to fit all content */}
       <motion.div
-        className="relative z-10 text-center px-6 md:px-12 lg:px-24 max-w-6xl mx-auto pt-20 md:pt-24"
+        className="relative z-20 text-center px-6 md:px-12 lg:px-24 max-w-6xl mx-auto pt-20 md:pt-24"
         style={{
           y: contentY,
           x: contentMouseX,
@@ -274,23 +278,23 @@ export default function CyberAranyaHero() {
           <FlipCountdown />
         </motion.div>
 
-        {/* CTA Buttons - Primary CTA is LOUD */}
+        {/* CTA Buttons - Primary CTA is LOUD - Higher z-index to stay above overlapping sections */}
         <motion.div
-          className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4"
+          className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 relative z-30"
           initial={prefersReducedMotion ? {} : { opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1.6 }}
         >
           <Link 
             href="/register" 
-            className="btn-liquid-gold focus-ring min-w-[200px] text-center text-base px-6 py-4 shadow-[0_0_20px_rgba(212,175,55,0.3)] md:shadow-[0_0_40px_rgba(212,175,55,0.4)]"
+            className="btn-liquid-gold focus-ring min-w-[200px] text-center text-base px-6 py-4 shadow-[0_0_20px_rgba(212,175,55,0.3)] md:shadow-[0_0_40px_rgba(212,175,55,0.4)] relative z-30 pointer-events-auto"
             aria-label="Register for Varnothsava 2026"
           >
             Register Now
           </Link>
           <Link 
             href="/events" 
-            className="btn-circuit focus-ring min-w-[160px] text-center px-5 py-3"
+            className="btn-circuit focus-ring min-w-[160px] text-center px-5 py-3 relative z-30 pointer-events-auto"
             aria-label="View all events"
           >
             Explore Events
