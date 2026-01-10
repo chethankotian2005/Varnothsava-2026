@@ -9,17 +9,16 @@ interface ParallaxBackgroundProps {
 }
 
 /**
- * 3-Layer Parallax Background System
- * Theme: Ancient Forest Ruins × Futuristic Technology
+ * 2-Layer Parallax Background System
+ * Theme: Ancient Forest Ruins
  * 
  * Layering Order (Bottom → Top):
  * 1. far.jpg - Deep forest + light rays (atmospheric base)
  * 2. stone.jpg - Ancient stone ruins texture
- * 3. tech.png - Glowing circuitry overlay (reduced opacity on mobile)
  * 
  * Section Strategy:
- * - Hero/CTA: All layers visible with lighter overlay
- * - Mid-content: Section overlays darken, show only stone texture
+ * - Hero/CTA: Lighter overlay to show forest depth
+ * - Mid-content: Heavier overlay for text readability
  */
 export default function ParallaxBackground({ className = '' }: ParallaxBackgroundProps) {
   const containerRef = useRef<HTMLDivElement>(null)
@@ -104,37 +103,6 @@ export default function ParallaxBackground({ className = '' }: ParallaxBackgroun
             background: 'radial-gradient(ellipse 80% 70% at 50% 50%, transparent 20%, rgba(5, 13, 10, 0.5) 100%)',
           }}
         />
-      </motion.div>
-
-      {/* ═══════════════════════════════════════════════════════════════
-          LAYER 3: FUTURISTIC CIRCUITRY (tech.png)
-          Reduced opacity on mobile (0.15 vs 0.35)
-          ═══════════════════════════════════════════════════════════════ */}
-      <motion.div 
-        className="absolute inset-0 tech-glow-pulse"
-        style={{ y: shouldDisableParallax ? 0 : layer4Y }}
-      >
-        <Image
-          src="/images/tech.png"
-          alt=""
-          fill
-          quality={85}
-          className="object-cover"
-          sizes="100vw"
-          style={{
-            opacity: isMobile ? 0.15 : 0.35,
-            mixBlendMode: 'screen',
-          }}
-        />
-        {/* Subtle cyan glow - only on desktop */}
-        {!isMobile && (
-          <div 
-            className="absolute inset-0 pointer-events-none"
-            style={{
-              background: 'radial-gradient(ellipse 60% 40% at 50% 30%, rgba(0, 212, 212, 0.03) 0%, transparent 70%)',
-            }}
-          />
-        )}
       </motion.div>
 
       {/* ═══════════════════════════════════════════════════════════════
