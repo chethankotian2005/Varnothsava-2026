@@ -181,8 +181,7 @@ export default function CyberAranyaHero() {
     offset: ['start start', 'end start'],
   })
 
-  // Content layer parallax
-  const contentOpacity = useTransform(scrollYProgress, [0, 0.3], [1, 0])
+  // Content layer parallax - keep opacity at 1 so CTAs remain clickable
   const contentY = useTransform(scrollYProgress, [0, 0.3], ['0%', '10%'])
   const contentMouseX = useTransform(mouseX, [0, 1], [5, -5])
   
@@ -225,7 +224,6 @@ export default function CyberAranyaHero() {
       <motion.div
         className="relative z-10 text-center px-6 md:px-12 lg:px-24 max-w-6xl mx-auto pt-24 md:pt-32"
         style={{
-          opacity: contentOpacity,
           y: contentY,
           x: contentMouseX,
         }}
