@@ -203,7 +203,7 @@ export default function CyberAranyaHero() {
   return (
     <section
       ref={containerRef}
-      className="relative min-h-[100svh] lg:min-h-screen flex items-center justify-center overflow-hidden"
+      className="relative min-h-[100svh] lg:min-h-screen flex items-center justify-center overflow-hidden z-20"
       aria-label="Hero section"
     >
       {/* Hero-specific overlay - darken for readability while showing parallax */}
@@ -295,47 +295,6 @@ export default function CyberAranyaHero() {
           >
             Explore Events
           </Link>
-        </motion.div>
-        
-        {/* Reassurance microcopy */}
-        <motion.p 
-          className="text-forest-500/70 text-xs mt-4 tracking-wide"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.8 }}
-        >
-          Free to register · Takes less than 2 minutes
-        </motion.p>
-
-        {/* Scroll indicator - hidden on very short screens */}
-        <motion.div
-          className="absolute bottom-6 left-1/2 -translate-x-1/2 hidden sm:block"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: prefersReducedMotion ? 0 : 2 }}
-          aria-hidden="true"
-        >
-          <motion.button
-            onClick={() => {
-              const aboutSection = document.getElementById('about')
-              if (aboutSection) {
-                aboutSection.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth' })
-              }
-            }}
-            className="flex flex-col items-center gap-2 text-gold-700/60 hover:text-gold-700 transition-colors cursor-pointer p-3 rounded-lg focus-ring group"
-            animate={prefersReducedMotion ? {} : { y: [0, 6, 0] }}
-            transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut' }}
-            aria-label="Scroll to learn more"
-          >
-            <span className="text-[10px] tracking-[0.25em] uppercase font-mono">Discover</span>
-            <div className="w-6 h-10 rounded-full border-2 border-current flex items-start justify-center pt-2">
-              <motion.div 
-                className="w-1 h-2.5 bg-current rounded-full"
-                animate={prefersReducedMotion ? {} : { y: [0, 8, 0], opacity: [1, 0.4, 1] }}
-                transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
-              />
-            </div>
-          </motion.button>
         </motion.div>
       </motion.div>
     </section>
