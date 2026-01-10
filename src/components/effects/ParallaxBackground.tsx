@@ -9,18 +9,17 @@ interface ParallaxBackgroundProps {
 }
 
 /**
- * 4-Layer Parallax Background System
+ * 3-Layer Parallax Background System
  * Theme: Ancient Forest Ruins × Futuristic Technology
  * 
  * Layering Order (Bottom → Top):
  * 1. far.jpg - Deep forest + light rays (atmospheric base)
  * 2. stone.jpg - Ancient stone ruins texture
- * 3. vines.png - Organic nature overlay (HIDDEN on mobile)
- * 4. tech.png - Glowing circuitry overlay (reduced opacity on mobile)
+ * 3. tech.png - Glowing circuitry overlay (reduced opacity on mobile)
  * 
  * Section Strategy:
- * - Hero/CTA: All 4 layers visible
- * - Mid-content: Section overlays hide vines/tech, show only stone
+ * - Hero/CTA: All layers visible with lighter overlay
+ * - Mid-content: Section overlays darken, show only stone texture
  */
 export default function ParallaxBackground({ className = '' }: ParallaxBackgroundProps) {
   const containerRef = useRef<HTMLDivElement>(null)
@@ -108,30 +107,7 @@ export default function ParallaxBackground({ className = '' }: ParallaxBackgroun
       </motion.div>
 
       {/* ═══════════════════════════════════════════════════════════════
-          LAYER 3: HANGING VINES OVERLAY (vines.png)
-          HIDDEN on mobile for cleaner look and performance
-          ═══════════════════════════════════════════════════════════════ */}
-      {!isMobile && (
-        <motion.div 
-          className="absolute inset-0"
-          style={{ y: shouldDisableParallax ? 0 : layer3Y }}
-        >
-          <Image
-            src="/images/vines.png"
-            alt=""
-            fill
-            quality={90}
-            className="object-cover"
-            sizes="100vw"
-            style={{
-              opacity: 0.7,
-            }}
-          />
-        </motion.div>
-      )}
-
-      {/* ═══════════════════════════════════════════════════════════════
-          LAYER 4: FUTURISTIC CIRCUITRY (tech.png)
+          LAYER 3: FUTURISTIC CIRCUITRY (tech.png)
           Reduced opacity on mobile (0.15 vs 0.35)
           ═══════════════════════════════════════════════════════════════ */}
       <motion.div 
