@@ -220,9 +220,9 @@ export default function CyberAranyaHero() {
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold-900/30 to-transparent" />
       <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold-900/20 to-transparent" />
 
-      {/* Main content with parallax - Add top padding to clear navbar */}
+      {/* Main content with parallax - balanced padding to fit all content */}
       <motion.div
-        className="relative z-10 text-center px-6 md:px-12 lg:px-24 max-w-6xl mx-auto pt-24 md:pt-32"
+        className="relative z-10 text-center px-6 md:px-12 lg:px-24 max-w-6xl mx-auto pt-20 md:pt-24"
         style={{
           y: contentY,
           x: contentMouseX,
@@ -230,7 +230,7 @@ export default function CyberAranyaHero() {
       >
         {/* Breathing logo as ceremonial seal - sized as royal crest */}
         <motion.div
-          className="flex justify-center mb-8"
+          className="flex justify-center mb-5"
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1, ease: 'easeOut' }}
@@ -238,7 +238,7 @@ export default function CyberAranyaHero() {
           <BreathingLogo
             src="/images/logo.png"
             alt="SMVITM Logo"
-            size={115}
+            size={100}
           />
         </motion.div>
 
@@ -246,24 +246,24 @@ export default function CyberAranyaHero() {
         <DigitalEtching
           text="VARNOTHSAVA"
           subtitle="Where Heritage Meets the Future"
-          className="mb-8"
+          className="mb-5"
         />
 
         {/* Year badge */}
         <motion.div
-          className="inline-flex items-center gap-4 mb-8"
+          className="inline-flex items-center gap-4 mb-5"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1.2 }}
         >
-          <div className="h-px w-16 bg-gradient-to-r from-transparent to-gold-800" />
-          <span className="font-mono text-3xl md:text-4xl text-gold-700 tracking-[0.5em] font-bold text-engraved">2026</span>
-          <div className="h-px w-16 bg-gradient-to-l from-transparent to-gold-800" />
+          <div className="h-px w-12 bg-gradient-to-r from-transparent to-gold-800" />
+          <span className="font-mono text-2xl md:text-3xl text-gold-700 tracking-[0.5em] font-bold text-engraved">2026</span>
+          <div className="h-px w-12 bg-gradient-to-l from-transparent to-gold-800" />
         </motion.div>
 
         {/* Countdown timer */}
         <motion.div
-          className="mb-10"
+          className="mb-6"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1.4 }}
@@ -276,21 +276,21 @@ export default function CyberAranyaHero() {
 
         {/* CTA Buttons - Primary CTA is LOUD */}
         <motion.div
-          className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-5"
+          className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4"
           initial={prefersReducedMotion ? {} : { opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1.6 }}
         >
           <Link 
             href="/register" 
-            className="btn-liquid-gold focus-ring min-w-[220px] text-center text-lg px-8 py-5 shadow-[0_0_20px_rgba(212,175,55,0.3)] md:shadow-[0_0_40px_rgba(212,175,55,0.4)]"
+            className="btn-liquid-gold focus-ring min-w-[200px] text-center text-base px-6 py-4 shadow-[0_0_20px_rgba(212,175,55,0.3)] md:shadow-[0_0_40px_rgba(212,175,55,0.4)]"
             aria-label="Register for Varnothsava 2026"
           >
             Register Now
           </Link>
           <Link 
             href="/events" 
-            className="btn-circuit focus-ring min-w-[180px] text-center px-6 py-4"
+            className="btn-circuit focus-ring min-w-[160px] text-center px-5 py-3"
             aria-label="View all events"
           >
             Explore Events
