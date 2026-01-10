@@ -221,18 +221,18 @@ export default function CyberAranyaHero() {
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold-900/30 to-transparent" />
       <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold-900/20 to-transparent" />
 
-      {/* Main content with parallax */}
+      {/* Main content with parallax - Add top padding to clear navbar */}
       <motion.div
-        className="relative z-10 text-center px-6 md:px-12 lg:px-24 max-w-6xl mx-auto"
+        className="relative z-10 text-center px-6 md:px-12 lg:px-24 max-w-6xl mx-auto pt-24 md:pt-32"
         style={{
           opacity: contentOpacity,
           y: contentY,
           x: contentMouseX,
         }}
       >
-        {/* Breathing logo - slightly smaller for hierarchy */}
+        {/* Breathing logo as ceremonial seal - reduced size for hierarchy */}
         <motion.div
-          className="flex justify-center mb-6"
+          className="flex justify-center mb-8"
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1, ease: 'easeOut' }}
@@ -240,7 +240,7 @@ export default function CyberAranyaHero() {
           <BreathingLogo
             src="/images/logo.png"
             alt="SMVITM Logo"
-            size={120}
+            size={90}
           />
         </motion.div>
 
