@@ -39,8 +39,8 @@ export default function FinalCTA() {
 
   return (
     <section ref={sectionRef} className="py-28 lg:py-36 relative overflow-hidden">
-      {/* Semi-transparent overlay to show parallax */}
-      <div className="absolute inset-0 bg-forest-950/65 backdrop-blur-[2px]" />
+      {/* Light overlay - shows all 4 background layers for dramatic CTA */}
+      <div className="absolute inset-0 bg-forest-950/55 backdrop-blur-[1px]" />
       
       {/* Ritual altar - sacred gold radiance from center */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_50%,rgba(201,162,39,0.06)_0%,transparent_60%)]" />

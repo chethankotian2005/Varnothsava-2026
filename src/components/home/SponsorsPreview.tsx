@@ -81,8 +81,8 @@ export default function SponsorsPreview() {
 
   return (
     <section ref={sectionRef} className="py-16 lg:py-20 relative overflow-hidden">
-      {/* Semi-transparent overlay to show parallax */}
-      <div className="absolute inset-0 bg-forest-950/70 backdrop-blur-[1px]" />
+      {/* Heavy cinematic overlay - shows only stone texture */}
+      <div className="absolute inset-0 bg-forest-950/82 backdrop-blur-[1px]" />
       
       {/* Stone hall for honored patrons */}
       <div className="absolute inset-0 pointer-events-none" style={{

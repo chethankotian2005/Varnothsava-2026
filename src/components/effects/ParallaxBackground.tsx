@@ -15,8 +15,12 @@ interface ParallaxBackgroundProps {
  * Layering Order (Bottom → Top):
  * 1. far.jpg - Deep forest + light rays (atmospheric base)
  * 2. stone.jpg - Ancient stone ruins texture
- * 3. vines.png - Organic nature overlay (PNG transparency)
- * 4. tech.png - Glowing circuitry overlay (PNG transparency)
+ * 3. vines.png - Organic nature overlay (HIDDEN on mobile)
+ * 4. tech.png - Glowing circuitry overlay (reduced opacity on mobile)
+ * 
+ * Section Strategy:
+ * - Hero/CTA: All 4 layers visible
+ * - Mid-content: Section overlays hide vines/tech, show only stone
  */
 export default function ParallaxBackground({ className = '' }: ParallaxBackgroundProps) {
   const containerRef = useRef<HTMLDivElement>(null)
@@ -26,7 +30,7 @@ export default function ParallaxBackground({ className = '' }: ParallaxBackgroun
   
   const { scrollYProgress } = useScroll()
   
-  // Detect mobile for performance optimization (disable fixed attachment)
+  // Detect mobile for performance optimization
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 768)
     checkMobile()
@@ -35,13 +39,9 @@ export default function ParallaxBackground({ className = '' }: ParallaxBackgroun
   }, [])
   
   // Parallax transforms - different speeds for depth effect
-  // Layer 1: Far background - very slow (creates depth)
   const layer1Y = useTransform(scrollYProgress, [0, 1], ['0%', '8%'])
-  // Layer 2: Stone ruins - slow-medium
   const layer2Y = useTransform(scrollYProgress, [0, 1], ['0%', '20%'])
-  // Layer 3: Vines overlay - medium
   const layer3Y = useTransform(scrollYProgress, [0, 1], ['0%', '35%'])
-  // Layer 4: Tech circuits - faster (foreground feel)
   const layer4Y = useTransform(scrollYProgress, [0, 1], ['0%', '50%'])
 
   useEffect(() => {
@@ -60,7 +60,7 @@ export default function ParallaxBackground({ className = '' }: ParallaxBackgroun
     >
       {/* ═══════════════════════════════════════════════════════════════
           LAYER 1: FAR ATMOSPHERIC FOREST (far.jpg)
-          Base layer - deep forest with light rays, mystical atmosphere
+          Base layer - always visible on all devices
           ═══════════════════════════════════════════════════════════════ */}
       <motion.div 
         className="absolute inset-0"
@@ -76,13 +76,12 @@ export default function ParallaxBackground({ className = '' }: ParallaxBackgroun
           sizes="100vw"
           onLoad={() => setIsLoaded(true)}
         />
-        {/* Cinematic darkening for depth */}
         <div className="absolute inset-0 bg-gradient-to-b from-forest-950/20 via-transparent to-forest-950/40" />
       </motion.div>
 
       {/* ═══════════════════════════════════════════════════════════════
           LAYER 2: STONE RUINS TEXTURE (stone.jpg)
-          Mid-ground - ancient carved stone structures
+          Mid-ground - always visible, primary texture for mid-sections
           ═══════════════════════════════════════════════════════════════ */}
       <motion.div 
         className="absolute inset-0"
@@ -100,7 +99,6 @@ export default function ParallaxBackground({ className = '' }: ParallaxBackgroun
             mixBlendMode: 'multiply',
           }}
         />
-        {/* Soft vignette to blend edges */}
         <div 
           className="absolute inset-0"
           style={{
@@ -111,30 +109,30 @@ export default function ParallaxBackground({ className = '' }: ParallaxBackgroun
 
       {/* ═══════════════════════════════════════════════════════════════
           LAYER 3: HANGING VINES OVERLAY (vines.png)
-          Nature overlay - organic, living forest elements
-          PNG with transparency for proper compositing
+          HIDDEN on mobile for cleaner look and performance
           ═══════════════════════════════════════════════════════════════ */}
-      <motion.div 
-        className="absolute inset-0"
-        style={{ y: shouldDisableParallax ? 0 : layer3Y }}
-      >
-        <Image
-          src="/images/vines.png"
-          alt=""
-          fill
-          quality={90}
-          className="object-cover"
-          sizes="100vw"
-          style={{
-            opacity: 0.8,
-          }}
-        />
-      </motion.div>
+      {!isMobile && (
+        <motion.div 
+          className="absolute inset-0"
+          style={{ y: shouldDisableParallax ? 0 : layer3Y }}
+        >
+          <Image
+            src="/images/vines.png"
+            alt=""
+            fill
+            quality={90}
+            className="object-cover"
+            sizes="100vw"
+            style={{
+              opacity: 0.7,
+            }}
+          />
+        </motion.div>
+      )}
 
       {/* ═══════════════════════════════════════════════════════════════
           LAYER 4: FUTURISTIC CIRCUITRY (tech.png)
-          Top overlay - glowing tech circuits, futuristic energy
-          PNG with transparency, uses screen blend for glow effect
+          Reduced opacity on mobile (0.15 vs 0.35)
           ═══════════════════════════════════════════════════════════════ */}
       <motion.div 
         className="absolute inset-0 tech-glow-pulse"
@@ -148,22 +146,23 @@ export default function ParallaxBackground({ className = '' }: ParallaxBackgroun
           className="object-cover"
           sizes="100vw"
           style={{
-            opacity: 0.4,
+            opacity: isMobile ? 0.15 : 0.35,
             mixBlendMode: 'screen',
           }}
         />
-        {/* Subtle cyan glow effect for tech layer */}
-        <div 
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background: 'radial-gradient(ellipse 60% 40% at 50% 30%, rgba(0, 212, 212, 0.03) 0%, transparent 70%)',
-          }}
-        />
+        {/* Subtle cyan glow - only on desktop */}
+        {!isMobile && (
+          <div 
+            className="absolute inset-0 pointer-events-none"
+            style={{
+              background: 'radial-gradient(ellipse 60% 40% at 50% 30%, rgba(0, 212, 212, 0.03) 0%, transparent 70%)',
+            }}
+          />
+        )}
       </motion.div>
 
       {/* ═══════════════════════════════════════════════════════════════
           CINEMATIC OVERLAYS FOR READABILITY
-          These ensure text remains legible over detailed backgrounds
           ═══════════════════════════════════════════════════════════════ */}
       
       {/* Top vignette - navbar readability */}

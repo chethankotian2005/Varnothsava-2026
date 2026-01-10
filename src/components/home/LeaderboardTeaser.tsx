@@ -70,8 +70,8 @@ export default function LeaderboardTeaser() {
 
   return (
     <section ref={sectionRef} className="py-28 lg:py-36 relative overflow-hidden">
-      {/* Semi-transparent overlay to show parallax */}
-      <div className="absolute inset-0 bg-forest-950/75 backdrop-blur-[1px]" />
+      {/* Heavy cinematic overlay - shows only stone texture */}
+      <div className="absolute inset-0 bg-forest-950/82 backdrop-blur-[1px]" />
       
       {/* Trophy hall ambient glow - gold emanation */}
       <motion.div style={{ y: decorY }} className="absolute inset-0 pointer-events-none">

@@ -30,8 +30,8 @@ export default function EventCard({ event, index, onClick }: EventCardProps) {
       transition={{ duration: 0.6, delay: index * 0.06, ease: [0.25, 0.1, 0.25, 1] }}
       onClick={onClick}
       className={`
-        bg-forest-900/40 backdrop-blur-sm rounded-xl group cursor-pointer overflow-hidden 
-        transition-all duration-500 hover:shadow-xl
+        bg-forest-900/70 backdrop-blur-md rounded-xl group cursor-pointer overflow-hidden 
+        transition-all duration-500 hover:shadow-xl hover:-translate-y-1
         ${colors.border} ${colors.glow}
         ${isFlagship 
           ? 'border-2 border-gold-900/40 ring-1 ring-gold-900/15' 
@@ -39,7 +39,7 @@ export default function EventCard({ event, index, onClick }: EventCardProps) {
         }
       `}
       style={{
-        boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.03), inset 0 -1px 0 rgba(0,0,0,0.2)'
+        boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.04), inset 0 -1px 0 rgba(0,0,0,0.25), inset 0 4px 12px rgba(0,0,0,0.15), 0 4px 20px rgba(0,0,0,0.25)'
       }}
     >
       {/* Gradient Header - stone tablet style */}

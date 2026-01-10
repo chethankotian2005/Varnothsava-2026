@@ -51,8 +51,8 @@ export default function RegistrationSteps() {
 
   return (
     <section ref={sectionRef} className="py-16 lg:py-20 relative overflow-hidden">
-      {/* Semi-transparent overlay to show parallax */}
-      <div className="absolute inset-0 bg-forest-950/70 backdrop-blur-[1px]" />
+      {/* Heavy cinematic overlay - shows only stone texture */}
+      <div className="absolute inset-0 bg-forest-950/82 backdrop-blur-[1px]" />
       
       {/* Stone passageway ambient glow */}
       <div className="absolute top-1/2 left-0 -translate-y-1/2 w-[500px] h-[500px] bg-forest-900/15 rounded-full blur-3xl" />

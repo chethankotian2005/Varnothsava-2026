@@ -47,14 +47,15 @@ export default function EventsPage() {
   }
 
   return (
-    <div className="min-h-screen pt-20 lg:pt-24 bg-forest-950">
-      {/* Hero Section */}
+    <div className="min-h-screen pt-20 lg:pt-24">
+      {/* Hero Section - transparent to show parallax background */}
       <section className="py-12 lg:py-20 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-forest-950 via-forest-900 to-forest-950" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gold-800/10 rounded-full blur-3xl" />
-        <div className="absolute top-0 left-0 w-[400px] h-[400px] bg-cyan-glow/5 rounded-full blur-3xl" />
+        {/* Light overlay - shows all background layers */}
+        <div className="absolute inset-0 bg-forest-950/55" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gold-800/8 rounded-full blur-3xl" />
+        <div className="absolute top-0 left-0 w-[400px] h-[400px] bg-cyan-glow/4 rounded-full blur-3xl" />
         
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -74,9 +75,10 @@ export default function EventsPage() {
         </div>
       </section>
 
-      {/* Filters & Events */}
-      <section className="py-8 lg:py-12">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Events List - heavier overlay for text readability */}
+      <section className="py-8 lg:py-12 relative">
+        <div className="absolute inset-0 bg-forest-950/82 backdrop-blur-[1px]" />
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           {/* Search & Filter Bar */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}

@@ -332,8 +332,8 @@ export default function EventCategories() {
 
   return (
     <section ref={sectionRef} className="py-16 lg:py-20 relative overflow-hidden">
-      {/* Semi-transparent overlay to show parallax */}
-      <div className="absolute inset-0 bg-forest-950/75 backdrop-blur-[1px]" />
+      {/* Heavy cinematic overlay - shows only stone texture */}
+      <div className="absolute inset-0 bg-forest-950/82 backdrop-blur-[1px]" />
       
       {/* Carved stone chamber - subtle tech glow */}
       <motion.div 

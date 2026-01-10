@@ -876,6 +876,141 @@
   }
 
   /* ========================================
+     SECTION-SPECIFIC BACKGROUND STRATEGIES
+     Hero/CTA: All 4 layers visible (light overlay)
+     Mid-content: Heavy overlay hides vines/tech, shows stone only
+     ======================================== */
+  
+  /* Hero section - light overlay, all layers visible */
+  .section-hero-overlay {
+    position: relative;
+  }
+  
+  .section-hero-overlay::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      ellipse 80% 60% at 50% 40%,
+      rgba(5, 13, 10, 0.3) 0%,
+      rgba(5, 13, 10, 0.5) 60%,
+      rgba(5, 13, 10, 0.65) 100%
+    );
+    pointer-events: none;
+    z-index: 0;
+  }
+  
+  .section-hero-overlay > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Mid-content sections - heavy cinematic overlay 
+     This effectively hides vines/tech, leaving only stone visible */
+  .section-content-overlay {
+    position: relative;
+  }
+  
+  .section-content-overlay::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(5, 13, 10, 0.82);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+    pointer-events: none;
+    z-index: 0;
+  }
+  
+  .section-content-overlay > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* CTA section - dramatic but visible layers */
+  .section-cta-overlay {
+    position: relative;
+  }
+  
+  .section-cta-overlay::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      ellipse 100% 80% at 50% 50%,
+      rgba(5, 13, 10, 0.55) 0%,
+      rgba(5, 13, 10, 0.7) 70%,
+      rgba(5, 13, 10, 0.8) 100%
+    );
+    pointer-events: none;
+    z-index: 0;
+  }
+  
+  .section-cta-overlay > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ========================================
+     CONTENT CONTAINERS WITH INNER SHADOW
+     Semi-transparent backdrop for text areas
+     ======================================== */
+  
+  /* Primary content container - for text-heavy sections */
+  .content-container {
+    background: rgba(5, 13, 10, 0.75);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-radius: 1rem;
+    border: 1px solid rgba(201, 162, 39, 0.12);
+    box-shadow: 
+      inset 0 1px 0 rgba(255, 255, 255, 0.03),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.2),
+      inset 0 4px 12px rgba(0, 0, 0, 0.15),
+      0 4px 20px rgba(0, 0, 0, 0.3);
+  }
+
+  /* Light content container - for cards */
+  .content-container-light {
+    background: rgba(10, 22, 18, 0.7);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border-radius: 0.75rem;
+    border: 1px solid rgba(201, 162, 39, 0.1);
+    box-shadow: 
+      inset 0 1px 0 rgba(255, 255, 255, 0.02),
+      inset 0 2px 8px rgba(0, 0, 0, 0.12),
+      0 2px 12px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Glass content container - maximum blur */
+  .content-container-glass {
+    background: rgba(5, 13, 10, 0.6);
+    backdrop-filter: blur(16px) saturate(1.2);
+    -webkit-backdrop-filter: blur(16px) saturate(1.2);
+    border-radius: 1rem;
+    border: 1px solid rgba(201, 162, 39, 0.15);
+    box-shadow: 
+      inset 0 1px 0 rgba(255, 255, 255, 0.05),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.25),
+      inset 0 6px 16px rgba(0, 0, 0, 0.2),
+      0 8px 32px rgba(0, 0, 0, 0.35);
+  }
+
+  /* Inner shadow utility - can be added to any element */
+  .inner-shadow-soft {
+    box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.15);
+  }
+
+  .inner-shadow-medium {
+    box-shadow: inset 0 4px 12px rgba(0, 0, 0, 0.2);
+  }
+
+  .inner-shadow-strong {
+    box-shadow: inset 0 6px 20px rgba(0, 0, 0, 0.3);
+  }
+
+  /* ========================================
      BREATHING LOGO ANIMATION
      ======================================== */
   .breathe-glow {

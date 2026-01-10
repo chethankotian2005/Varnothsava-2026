@@ -88,8 +88,8 @@ export default function FestIdentity() {
 
   return (
     <section ref={sectionRef} className="py-28 lg:py-40 relative overflow-hidden">
-      {/* Semi-transparent overlay to show parallax */}
-      <div className="absolute inset-0 bg-forest-950/70 backdrop-blur-[2px]" />
+      {/* Heavy cinematic overlay - shows only stone texture, hides vines/tech */}
+      <div className="absolute inset-0 bg-forest-950/82 backdrop-blur-[2px]" />
       
       {/* Inner sanctum atmosphere - calm, mossy stone */}
       <motion.div 
