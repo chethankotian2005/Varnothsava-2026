@@ -207,7 +207,7 @@ export default function CyberAranyaHero() {
   return (
     <section
       ref={containerRef}
-      className="relative min-h-[100svh] lg:min-h-screen flex items-center justify-center overflow-hidden z-30"
+      className="relative min-h-[100svh] lg:min-h-screen flex items-center justify-center overflow-hidden z-40 pb-32"
       aria-label="Hero section"
     >
       {/* Hero-specific overlay - darken for readability while showing parallax */}
@@ -226,7 +226,7 @@ export default function CyberAranyaHero() {
 
       {/* Main content with parallax - balanced padding to fit all content */}
       <motion.div
-        className="relative z-20 text-center px-6 md:px-12 lg:px-24 max-w-6xl mx-auto pt-20 md:pt-24"
+        className="relative z-30 text-center px-6 md:px-12 lg:px-24 max-w-6xl mx-auto pt-20 md:pt-24 pb-8"
         style={{
           y: contentY,
           x: contentMouseX,
@@ -280,21 +280,21 @@ export default function CyberAranyaHero() {
 
         {/* CTA Buttons - Primary CTA is LOUD - Higher z-index to stay above overlapping sections */}
         <motion.div
-          className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 relative z-30"
+          className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 relative z-50 mb-16"
           initial={prefersReducedMotion ? {} : { opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1.6 }}
         >
           <Link 
             href="/register" 
-            className="btn-liquid-gold focus-ring min-w-[200px] text-center text-base px-6 py-4 shadow-[0_0_20px_rgba(212,175,55,0.3)] md:shadow-[0_0_40px_rgba(212,175,55,0.4)] relative z-30 pointer-events-auto"
+            className="btn-liquid-gold focus-ring min-w-[200px] text-center text-base px-8 py-4 shadow-[0_0_30px_rgba(212,175,55,0.4)] md:shadow-[0_0_50px_rgba(212,175,55,0.5)] relative z-50 pointer-events-auto cursor-pointer"
             aria-label="Register for Varnothsava 2026"
           >
             Register Now
           </Link>
           <Link 
             href="/events" 
-            className="btn-circuit focus-ring min-w-[160px] text-center px-5 py-3 relative z-30 pointer-events-auto"
+            className="btn-circuit focus-ring min-w-[180px] text-center px-6 py-4 relative z-50 pointer-events-auto cursor-pointer"
             aria-label="View all events"
           >
             Explore Events

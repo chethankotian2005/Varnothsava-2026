@@ -87,9 +87,9 @@ export default function FestIdentity() {
   const decorOpacity = useTransform(scrollYProgress, [0, 0.5, 1], [0.2, 0.8, 0.2])
 
   return (
-    <section ref={sectionRef} className="py-28 lg:py-40 relative overflow-hidden">
+    <section ref={sectionRef} className="py-28 lg:py-40 relative overflow-hidden z-10">
       {/* Heavy cinematic overlay - shows only stone texture, hides vines/tech */}
-      <div className="absolute inset-0 bg-forest-950/82 backdrop-blur-[2px]" />
+      <div className="absolute inset-0 bg-forest-950/82 backdrop-blur-[2px] pointer-events-none" />
       
       {/* Inner sanctum atmosphere - calm, mossy stone */}
       <motion.div 
