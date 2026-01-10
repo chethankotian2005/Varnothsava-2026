@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { X, Calendar, Clock, MapPin, Users, IndianRupee, Trophy, Phone, User } from 'lucide-react'
 import { Event } from '@/data/events'
 import Link from 'next/link'
+import ShareButtons from '@/components/ui/ShareButtons'
 
 interface EventModalProps {
   event: Event | null
@@ -150,7 +151,7 @@ export default function EventModal({ event, isOpen, onClose }: EventModalProps) 
 
             {/* Footer */}
             <div className="p-6 pt-4 border-t border-gold-800/20 bg-forest-950/50">
-              <div className="flex flex-col sm:flex-row gap-3">
+              <div className="flex flex-col sm:flex-row gap-3 items-center">
                 <Link
                   href={`/register?event=${event.id}`}
                   className="btn-liquid-gold flex-1 text-center"
@@ -163,6 +164,11 @@ export default function EventModal({ event, isOpen, onClose }: EventModalProps) 
                 >
                   Close
                 </button>
+                <ShareButtons 
+                  title={`${event.name} - Varnothsava 2026`}
+                  description={event.description}
+                  hashtags={['Varnothsava2026', 'SMVITM', event.category.replace(/\s+/g, '')]}
+                />
               </div>
             </div>
           </motion.div>

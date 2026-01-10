@@ -1,11 +1,15 @@
 import type { Metadata } from 'next'
+import Script from 'next/script'
 import { Inter, Cinzel_Decorative, JetBrains_Mono } from 'next/font/google'
 import './globals.css'
 import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
 import ChatWidget from '@/components/layout/ChatWidget'
+import SkipLink from '@/components/layout/SkipLink'
 import ParallaxBackground from '@/components/effects/ParallaxBackground'
 import { Toaster } from 'sonner'
+import { Analytics } from '@vercel/analytics/react'
+import { SpeedInsights } from '@vercel/speed-insights/next'
 
 const inter = Inter({ 
   subsets: ['latin'],
@@ -126,6 +130,9 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
       </head>
       <body className="font-body min-h-screen flex flex-col bg-forest-950 text-forest-100 antialiased">
+        {/* Skip to content link for accessibility */}
+        <SkipLink />
+        
         {/* 4-Layer Parallax Background */}
         <ParallaxBackground />
         
@@ -144,11 +151,29 @@ export default function RootLayout({
           theme="dark"
           richColors
         />
-        <main className="flex-1 relative z-10">
+        <main id="main-content" className="flex-1 relative z-10" role="main">
           {children}
         </main>
         <Footer />
         <ChatWidget />
+        
+        {/* Vercel Analytics & Speed Insights */}
+        <Analytics />
+        <SpeedInsights />
+        
+        {/* Google Analytics - Replace G-XXXXXXXXXX with your actual GA4 ID */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-XXXXXXXXXX');
+          `}
+        </Script>
       </body>
     </html>
   )

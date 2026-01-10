@@ -4,9 +4,10 @@ import { motion, useScroll, useTransform, useMotionValue, useReducedMotion, Anim
 import { useRef, useState, useEffect } from 'react'
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
-import { ChevronDown, Sparkles, ArrowRight } from 'lucide-react'
+import { ChevronDown, Sparkles, ArrowRight, Calendar } from 'lucide-react'
 import DigitalEtching from '@/components/effects/DigitalEtching'
 import BreathingLogo from '@/components/effects/BreathingLogo'
+import AddToCalendar from '@/components/ui/AddToCalendar'
 
 // Dynamically import background to avoid SSR issues
 const TechnoBackground = dynamic(() => import('@/components/effects/TechnoBackground'), {
@@ -427,6 +428,15 @@ export default function CyberAranyaHero() {
               </motion.span>
             </Link>
           </motion.div>
+
+          {/* Add to Calendar */}
+          <AddToCalendar
+            title="Varnothsava 2026 - SMVITM"
+            description="Karnataka's grandest inter-collegiate cultural and technical fest. 50+ events, ₹10L+ prizes, 5000+ participants. Don't miss it!"
+            startDate="2026-03-15T09:00:00"
+            endDate="2026-03-17T18:00:00"
+            location="SMVITM, Bantakal, Udupi, Karnataka 574115"
+          />
         </motion.div>
       </motion.div>
     </section>
