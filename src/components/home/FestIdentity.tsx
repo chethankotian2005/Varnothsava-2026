@@ -87,16 +87,18 @@ function AnimatedStat({ stat, index }: { stat: typeof stats[0], index: number })
       whileInView={{ opacity: 1, y: 0, scale: 1 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6, delay: 0.1 * index, type: "spring", stiffness: 100 }}
-      className="relative group"
+      className="relative group card-container"
+      style={{ willChange: 'transform, opacity' }}
     >
-      {/* Animated glow effect */}
+      {/* Animated glow effect - GPU optimized */}
       <motion.div 
-        className="absolute inset-0 bg-gradient-to-r from-gold-950/30 to-forest-700/30 rounded-2xl blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+        className="absolute inset-0 bg-gradient-to-r from-gold-950/30 to-forest-700/30 rounded-2xl blur-optimized opacity-0 group-hover:opacity-100 transition-opacity duration-500"
         animate={isInView ? {
           scale: [1, 1.1, 1],
           opacity: [0.3, 0.5, 0.3],
         } : {}}
-        transition={{ duration: 3, repeat: Infinity }}
+        transition={{ duration: 3, repeat: Infinity, type: 'tween' }}
+        style={{ willChange: 'transform, opacity', transform: 'translateZ(0)' }}
       />
       
       <div className="relative bg-forest-900/60 backdrop-blur-sm rounded-2xl p-6 lg:p-8 text-center border border-gold-800/20 group-hover:border-gold-700 transition-all duration-300 group-hover:shadow-xl group-hover:shadow-gold-950/20 group-hover:-translate-y-1">

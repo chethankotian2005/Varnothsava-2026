@@ -110,7 +110,7 @@ function FireflyParticle({
   
   return (
     <motion.div
-      className="absolute"
+      className="absolute motion-gpu"
       style={{
         left: `calc(${particle.x}% + ${repulsion.x}px)`,
         top: `calc(${particle.y}% + ${repulsion.y}px)`,
@@ -126,6 +126,9 @@ function FireflyParticle({
           0 0 ${particle.size * 12}px ${particle.color}40,
           0 0 ${particle.size * 18}px ${particle.color}20
         `,
+        willChange: 'transform, opacity',
+        transform: 'translateZ(0)',
+        backfaceVisibility: 'hidden',
       }}
       animate={{
         opacity: [0.3, particle.glowIntensity, 0.4, particle.glowIntensity * 0.9, 0.3],
@@ -136,6 +139,7 @@ function FireflyParticle({
         delay: particle.delay,
         repeat: Infinity,
         ease: 'easeInOut',
+        type: 'tween',
       }}
     />
   )

@@ -1324,4 +1324,184 @@
   .animate-shine {
     animation: shine-sweep 3s ease-in-out infinite;
   }
+
+  /* ========================================
+     GPU ACCELERATION & PERFORMANCE OPTIMIZATIONS
+     ======================================== */
+  
+  /* Force GPU acceleration for all animated elements */
+  .animate-pulse,
+  .animate-spin,
+  .animate-bounce,
+  [class*="animate-"],
+  .motion-element {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+    will-change: transform, opacity;
+  }
+
+  /* Optimize blur effects for GPU */
+  [class*="blur-"],
+  [class*="backdrop-blur-"] {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+  }
+
+  /* Optimize gradients */
+  [class*="bg-gradient"] {
+    transform: translateZ(0);
+  }
+
+  /* Optimized blur classes - use these for better performance */
+  .blur-optimized {
+    filter: blur(12px);
+    transform: translateZ(0);
+    will-change: filter;
+    backface-visibility: hidden;
+  }
+
+  .blur-optimized-sm {
+    filter: blur(4px);
+    transform: translateZ(0);
+    will-change: filter;
+  }
+
+  .blur-optimized-lg {
+    filter: blur(20px);
+    transform: translateZ(0);
+    will-change: filter;
+    backface-visibility: hidden;
+  }
+
+  .blur-glow {
+    filter: blur(16px);
+    transform: translateZ(0);
+    opacity: 0.5;
+    isolation: isolate;
+  }
+
+  /* For backdrop blur - MUCH faster */
+  .backdrop-blur-optimized {
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    transform: translateZ(0);
+    contain: layout style paint;
+  }
+
+  /* Optimized pulse animation */
+  @keyframes pulse-optimized {
+    0%, 100% {
+      opacity: 0.5;
+      transform: scale(1) translateZ(0);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1.05) translateZ(0);
+    }
+  }
+
+  .animate-pulse-optimized {
+    animation: pulse-optimized 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    will-change: transform, opacity;
+    transform: translateZ(0);
+  }
+
+  /* Optimized glow animation */
+  @keyframes glow-optimized {
+    0%, 100% {
+      opacity: 0.4;
+      filter: blur(12px);
+      transform: scale(1) translateZ(0);
+    }
+    50% {
+      opacity: 0.8;
+      filter: blur(16px);
+      transform: scale(1.02) translateZ(0);
+    }
+  }
+
+  .animate-glow-optimized {
+    animation: glow-optimized 3s ease-in-out infinite;
+    will-change: opacity, filter, transform;
+    transform: translateZ(0);
+    isolation: isolate;
+  }
+
+  /* Optimized gradient animation */
+  @keyframes gradient-shift-optimized {
+    0%, 100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+
+  .animate-gradient-optimized {
+    background-size: 200% 200%;
+    animation: gradient-shift-optimized 3s ease infinite;
+    will-change: background-position;
+    transform: translateZ(0);
+  }
+
+  /* CSS Containment for better performance */
+  .card-container {
+    contain: layout style paint;
+  }
+
+  .hero-section {
+    contain: layout;
+  }
+
+  .animated-card {
+    contain: layout style;
+    will-change: transform;
+    transform: translateZ(0);
+  }
+
+  /* Optimize motion components */
+  .motion-gpu {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    will-change: transform, opacity;
+  }
+
+  /* Float animation - GPU optimized */
+  @keyframes float-optimized {
+    0%, 100% {
+      transform: translateY(0) translateZ(0);
+    }
+    50% {
+      transform: translateY(-10px) translateZ(0);
+    }
+  }
+
+  .animate-float-optimized {
+    animation: float-optimized 3s ease-in-out infinite;
+    will-change: transform;
+  }
+
+  /* Shimmer effect - GPU optimized */
+  @keyframes shimmer-optimized {
+    0% {
+      background-position: -200% 0;
+    }
+    100% {
+      background-position: 200% 0;
+    }
+  }
+
+  .animate-shimmer-optimized {
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(212, 175, 55, 0.1) 50%,
+      transparent 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmer-optimized 2s linear infinite;
+    will-change: background-position;
+    transform: translateZ(0);
+  }
 }

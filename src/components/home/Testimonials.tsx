@@ -69,14 +69,15 @@ function TestimonialCard({ testimonial, index }: { testimonial: typeof testimoni
       initial={prefersReducedMotion ? {} : { opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
+      transition={{ duration: 0.5, delay: index * 0.1, type: 'tween' }}
       whileHover={{ y: -5, scale: 1.02 }}
-      className="relative group"
+      className="relative group card-container"
+      style={{ willChange: 'transform, opacity' }}
     >
-      {/* Glow effect */}
-      <div className="absolute -inset-0.5 bg-gradient-to-r from-gold-800/20 to-gold-950/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+      {/* Glow effect - GPU optimized */}
+      <div className="absolute -inset-0.5 bg-gradient-to-r from-gold-800/20 to-gold-950/20 rounded-2xl blur-optimized opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
       
-      <div className="relative bg-forest-900/60 backdrop-blur-sm rounded-2xl p-6 border border-gold-800/20 hover:border-gold-700 transition-all duration-300 h-full flex flex-col">
+      <div className="relative bg-forest-900/60 backdrop-blur-optimized rounded-2xl p-6 border border-gold-800/20 hover:border-gold-700 transition-all duration-300 h-full flex flex-col">
         {/* Quote icon */}
         <Quote className="w-8 h-8 text-gold-800/30 mb-4" />
         

@@ -82,7 +82,7 @@ const FlipCountdown = () => {
     return (
       <div className="flex flex-col items-center gap-3">
         <motion.div 
-          className="relative"
+          className="relative motion-gpu"
           animate={isUrgentMode ? {
             x: [0, -2, 2, -2, 2, 0],
           } : {}}
@@ -90,13 +90,15 @@ const FlipCountdown = () => {
             duration: 0.5,
             repeat: isUrgentMode ? Infinity : 0,
             repeatDelay: 2,
+            type: 'tween',
           }}
+          style={{ willChange: 'transform' }}
         >
           {/* Enhanced Glassmorphism container */}
           <motion.div 
-            className={`relative w-16 h-20 sm:w-20 sm:h-24 md:w-24 md:h-28 rounded-xl overflow-hidden ${isUrgentMode ? 'ring-2 ring-red-500/50' : ''}`}
+            className={`relative w-16 h-20 sm:w-20 sm:h-24 md:w-24 md:h-28 rounded-xl overflow-hidden motion-gpu ${isUrgentMode ? 'ring-2 ring-red-500/50' : ''}`}
             animate={hasChanged ? { scale: [1, 1.05, 1] } : {}}
-            transition={{ duration: 0.3 }}
+            transition={{ duration: 0.3, type: 'tween' }}
             style={{
               background: 'linear-gradient(135deg, rgba(5, 22, 18, 0.6) 0%, rgba(10, 35, 28, 0.4) 50%, rgba(5, 22, 18, 0.6) 100%)',
               backdropFilter: 'blur(12px) saturate(1.3)',
@@ -105,6 +107,8 @@ const FlipCountdown = () => {
               boxShadow: isUrgentMode 
                 ? `0 0 0 1px rgba(239, 68, 68, 0.8), 0 0 20px rgba(239, 68, 68, 0.3), 0 0 40px rgba(239, 68, 68, 0.15), inset 0 1px 0 rgba(255,255,255,0.1), inset 0 -1px 0 rgba(0,0,0,0.4), 0 8px 32px rgba(0,0,0,0.6)`
                 : `0 0 0 1px rgba(212, 175, 55, 0.8), 0 0 20px rgba(212, 175, 55, 0.3), 0 0 40px rgba(212, 175, 55, 0.15), inset 0 1px 0 rgba(255,255,255,0.1), inset 0 -1px 0 rgba(0,0,0,0.4), 0 8px 32px rgba(0,0,0,0.6)`,
+              willChange: 'transform',
+              transform: 'translateZ(0)',
             }}
           >
             {/* Frosted texture overlay */}
@@ -132,7 +136,7 @@ const FlipCountdown = () => {
               <AnimatePresence mode="wait">
                 <motion.span 
                   key={value}
-                  className="font-mono text-3xl sm:text-4xl md:text-5xl font-bold"
+                  className="font-mono text-3xl sm:text-4xl md:text-5xl font-bold motion-gpu"
                   style={{
                     background: isUrgentMode 
                       ? 'linear-gradient(180deg, #FF8A8A 0%, #EF4444 40%, #DC2626 70%, #B91C1C 100%)'
@@ -141,26 +145,25 @@ const FlipCountdown = () => {
                     WebkitBackgroundClip: 'text',
                     WebkitTextFillColor: 'transparent',
                     filter: 'drop-shadow(0 -1px 0 rgba(255,229,160,0.2)) drop-shadow(0 2px 4px rgba(0,0,0,0.6))',
+                    willChange: 'transform, opacity',
+                    transform: 'translateZ(0)',
                   }}
                   initial={hasChanged ? { 
                     opacity: 0, 
                     y: -30,
                     rotateX: -90,
-                    filter: 'blur(4px)',
                   } : false}
                   animate={{ 
                     opacity: 1, 
                     y: 0,
                     rotateX: 0,
-                    filter: 'blur(0px)',
                   }}
                   exit={hasChanged ? {
                     opacity: 0,
                     y: 30,
                     rotateX: 90,
-                    filter: 'blur(4px)',
                   } : undefined}
-                  transition={{ duration: 0.4, ease: 'easeOut' }}
+                  transition={{ duration: 0.3, ease: 'easeOut', type: 'tween' }}
                 >
                   {value.toString().padStart(2, '0')}
                 </motion.span>

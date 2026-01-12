@@ -37,7 +37,7 @@ function AmbientParticles() {
       {particles.map((p) => (
         <motion.div
           key={p.id}
-          className="absolute rounded-full"
+          className="absolute rounded-full motion-gpu"
           style={{
             left: `${p.x}%`,
             top: `${p.y}%`,
@@ -45,6 +45,8 @@ function AmbientParticles() {
             height: p.size,
             background: `radial-gradient(circle, ${p.color}${p.opacity}) 0%, transparent 70%)`,
             boxShadow: `0 0 ${p.size * 3}px ${p.color}${p.opacity * 0.3})`,
+            willChange: 'transform, opacity',
+            transform: 'translateZ(0)',
           }}
           animate={{
             y: [0, -15, 0],
@@ -56,6 +58,7 @@ function AmbientParticles() {
             delay: p.delay,
             repeat: Infinity,
             ease: 'easeInOut',
+            type: 'tween',
           }}
         />
       ))}
