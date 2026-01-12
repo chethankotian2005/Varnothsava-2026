@@ -47,7 +47,8 @@ function AnimatedStat({ stat, index }: { stat: typeof stats[0], index: number })
   const prefersReducedMotion = useReducedMotion()
   const ref = useRef<HTMLDivElement>(null)
   const isInView = useInView(ref, { once: true, amount: 0.3 })
-  const [count, setCount] = useState(0)
+  // Initialize with actual value to prevent showing 0
+  const [count, setCount] = useState(stat.value)
   const [hasAnimated, setHasAnimated] = useState(false)
 
   useEffect(() => {
@@ -61,6 +62,7 @@ function AnimatedStat({ stat, index }: { stat: typeof stats[0], index: number })
     // Only animate when in view and hasn't animated yet
     if (isInView && !hasAnimated) {
       setHasAnimated(true)
+      setCount(0) // Reset to 0 for animation
       const duration = 2000 // 2 seconds
       const steps = 60
       const increment = stat.value / steps

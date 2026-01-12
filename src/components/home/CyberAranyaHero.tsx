@@ -16,12 +16,24 @@ const TechnoBackground = dynamic(() => import('@/components/effects/TechnoBackgr
 
 // Flip countdown component with glassmorphism and enhanced animations
 const FlipCountdown = () => {
-  const [timeLeft, setTimeLeft] = useState({
-    days: 0,
-    hours: 0,
-    minutes: 0,
-    seconds: 0,
-  })
+  // Calculate initial time immediately to prevent showing 0
+  const getInitialTime = () => {
+    const targetDate = new Date('2026-03-15T00:00:00+05:30')
+    const now = new Date()
+    const difference = targetDate.getTime() - now.getTime()
+    
+    if (difference > 0) {
+      return {
+        days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+        hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
+        minutes: Math.floor((difference / 1000 / 60) % 60),
+        seconds: Math.floor((difference / 1000) % 60),
+      }
+    }
+    return { days: 0, hours: 0, minutes: 0, seconds: 0 }
+  }
+
+  const [timeLeft, setTimeLeft] = useState(getInitialTime)
   const [isUrgent, setIsUrgent] = useState(false)
   const [mounted, setMounted] = useState(false)
   const [isEventLive, setIsEventLive] = useState(false)

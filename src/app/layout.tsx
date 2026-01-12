@@ -6,6 +6,7 @@ import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
 import ChatWidget from '@/components/layout/ChatWidget'
 import SkipLink from '@/components/layout/SkipLink'
+import FloatingActionButton from '@/components/ui/FloatingActionButton'
 import ParallaxBackground from '@/components/effects/ParallaxBackground'
 import { Toaster } from 'sonner'
 import { Analytics } from '@vercel/analytics/react'
@@ -195,6 +196,7 @@ export default function RootLayout({
         </main>
         <Footer />
         <ChatWidget />
+        <FloatingActionButton />
         
         {/* Vercel Analytics & Speed Insights */}
         <Analytics />
