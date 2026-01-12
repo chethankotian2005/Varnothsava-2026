@@ -460,7 +460,7 @@ export default function ChooseYourArena() {
           
           <h2 
             id="arena-heading"
-            className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold tracking-wide mb-6"
+            className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold tracking-wide mb-6 my-10"
             style={{
               background: 'linear-gradient(180deg, #FFFFFF 0%, #F5EBD7 30%, #D4AF37 70%, #8B6914 100%)',
               backgroundClip: 'text',

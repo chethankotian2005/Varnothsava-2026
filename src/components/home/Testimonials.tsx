@@ -172,7 +172,7 @@ export default function Testimonials() {
             <span>Participant Stories</span>
           </motion.span>
           
-          <h2 className="font-display text-4xl md:text-5xl font-bold text-forest-100 mb-4">
+          <h2 className="font-display text-4xl md:text-5xl font-bold text-forest-100 mb-6 my-10">
             What{' '}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-gold-800 via-gold-700 to-gold-950">
               Participants

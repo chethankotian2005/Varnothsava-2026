@@ -193,13 +193,13 @@ export default function FestIdentity() {
       </div>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Section Header */}
+        {/* Section Header - Main Hero Title */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-20"
+          className="text-center mb-20 py-8"
         >
           <motion.div 
             initial={{ scale: 0.9, opacity: 0 }}
@@ -215,7 +215,7 @@ export default function FestIdentity() {
             <Crown className="w-4 h-4 text-gold-950" />
           </motion.div>
           
-          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-forest-100 mb-6 text-monumental">
+          <h2 className="font-display text-3xl md:text-5xl lg:text-6xl font-bold text-forest-100 mb-6 text-monumental">
             Where{' '}
             <span className="relative inline-block">
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-gold-800 via-gold-700 to-gold-950">

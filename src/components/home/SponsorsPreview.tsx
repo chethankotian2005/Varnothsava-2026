@@ -123,7 +123,7 @@ export default function SponsorsPreview() {
             <span className="text-gold-700 text-sm font-mono tracking-wider uppercase text-engraved">Our Partners</span>
           </motion.div>
           
-          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-forest-100 mb-6 text-monumental">
+          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-forest-100 mb-6 my-10 text-monumental">
             Powered By{' '}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-gold-800 via-gold-700 to-gold-950">
               Industry Leaders
