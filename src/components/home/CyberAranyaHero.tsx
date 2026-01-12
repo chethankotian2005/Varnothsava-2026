@@ -335,17 +335,26 @@ export default function CyberAranyaHero() {
 
           {/* Digital etching title - optical centering compensation
               Wide letter-spacing + gold gradient shifts visual weight right,
-              so we translate left by -1.5% for human-eye balance */}
-          <motion.div
+              Responsive optical correction:
+              - Mobile/default: -1.8%
+              - Tablets (md): -2.2%
+              - Large screens (lg+): -1.5% */}
+          <div 
             className="w-full"
-            style={{ transform: 'translateX(-1.5%)' }}
+            style={{ 
+              '--optical-shift-mobile': '-1.8%',
+              '--optical-shift-tablet': '-2.2%',
+              '--optical-shift-desktop': '-1.5%',
+            } as React.CSSProperties}
           >
-            <DigitalEtching
-              text="VARNOTHSAVA"
-              subtitle="Where Heritage Meets the Future"
-              className="mb-5"
-            />
-          </motion.div>
+            <div className="transform translate-x-[var(--optical-shift-mobile)] md:translate-x-[var(--optical-shift-tablet)] lg:translate-x-[var(--optical-shift-desktop)]">
+              <DigitalEtching
+                text="VARNOTHSAVA"
+                subtitle="Where Heritage Meets the Future"
+                className="mb-5"
+              />
+            </div>
+          </div>
         </div>
 
         {/* Year badge */}
