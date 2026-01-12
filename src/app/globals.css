@@ -132,6 +132,8 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
+    /* Prevent page shift when content changes - always show scrollbar */
+    overflow-y: scroll;
   }
   
   /* Respect reduced motion preference */
