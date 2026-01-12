@@ -347,20 +347,68 @@ export default function ChooseYourArena() {
       className="relative py-24 lg:py-32 overflow-hidden"
       aria-labelledby="arena-heading"
     >
-      {/* Dark cinematic backdrop */}
+      {/* ═══════════════════════════════════════════════════════════════
+          LAYERED CINEMATIC BACKGROUND - Ancient Ruins Theme
+          Same system as other sections for visual continuity
+          ═══════════════════════════════════════════════════════════════ */}
+      
+      {/* Layer 1: Far forest atmospheric base */}
+      <div 
+        className="absolute inset-0 -z-30"
+        style={{
+          backgroundImage: 'url(/images/far.jpg)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          opacity: 0.4,
+        }}
+      />
+      
+      {/* Layer 2: Stone ruins texture */}
+      <div 
+        className="absolute inset-0 -z-25"
+        style={{
+          backgroundImage: 'url(/images/stone.jpg)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          opacity: 0.35,
+          mixBlendMode: 'multiply',
+        }}
+      />
+      
+      {/* Layer 3: Section darkening overlay - 75% for readability */}
       <div 
         className="absolute inset-0 -z-20"
         style={{
           background: `
-            radial-gradient(ellipse 80% 50% at 50% 50%, rgba(10, 22, 18, 0.7) 0%, rgba(5, 13, 10, 0.95) 100%)
+            linear-gradient(180deg, 
+              rgba(5, 13, 10, 0.8) 0%, 
+              rgba(10, 22, 18, 0.75) 30%,
+              rgba(10, 22, 18, 0.7) 50%,
+              rgba(10, 22, 18, 0.75) 70%,
+              rgba(5, 13, 10, 0.85) 100%
+            )
           `,
         }}
       />
       
-      {/* Large background mandala - centered */}
+      {/* Layer 4: Ritual chamber glow - warm gold center */}
+      <div 
+        className="absolute inset-0 -z-15 pointer-events-none"
+        style={{
+          background: `
+            radial-gradient(ellipse 60% 50% at 50% 50%, 
+              rgba(212, 175, 55, 0.06) 0%, 
+              rgba(212, 175, 55, 0.02) 40%,
+              transparent 70%
+            )
+          `,
+        }}
+      />
+      
+      {/* Large background mandala - centered, floats between bg and cards */}
       <div className="absolute inset-0 flex items-center justify-center -z-10 pointer-events-none">
         <svg 
-          className="w-[150%] max-w-[1400px] h-auto opacity-[0.08] blur-[1px]"
+          className="w-[150%] max-w-[1400px] h-auto opacity-[0.12] blur-[1px]"
           viewBox="0 0 400 400" 
           xmlns="http://www.w3.org/2000/svg"
         >
@@ -399,21 +447,30 @@ export default function ChooseYourArena() {
         </svg>
       </div>
       
-      {/* Dark vignette edges */}
+      {/* Dark vignette edges - cinematic depth */}
       <div 
-        className="absolute inset-0 pointer-events-none -z-10"
+        className="absolute inset-0 pointer-events-none -z-5"
         style={{
           background: `
-            radial-gradient(ellipse 70% 60% at 50% 50%, transparent 30%, rgba(5, 13, 10, 0.8) 100%)
+            radial-gradient(ellipse 70% 60% at 50% 50%, transparent 20%, rgba(5, 13, 10, 0.6) 100%)
           `,
         }}
       />
       
-      {/* Top and bottom borders */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold-900/40 to-transparent" />
-      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold-900/30 to-transparent" />
+      {/* Top and bottom borders - subtle gold edges */}
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold-900/30 to-transparent" />
+      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold-900/20 to-transparent" />
 
+      {/* Content container with subtle frosted depth */}
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
+        {/* Soft content backdrop for card readability */}
+        <div 
+          className="absolute inset-0 -mx-4 sm:-mx-6 lg:-mx-8 rounded-3xl opacity-40 pointer-events-none"
+          style={{
+            background: 'radial-gradient(ellipse 80% 70% at 50% 40%, rgba(10, 22, 18, 0.5) 0%, transparent 70%)',
+            backdropFilter: 'blur(1px)',
+          }}
+        />
         {/* Section Header - Ceremonial invitation */}
         <motion.div
           className="text-center mb-16 lg:mb-20"
