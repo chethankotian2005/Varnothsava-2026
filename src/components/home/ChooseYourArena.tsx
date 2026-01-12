@@ -348,67 +348,35 @@ export default function ChooseYourArena() {
       aria-labelledby="arena-heading"
     >
       {/* ═══════════════════════════════════════════════════════════════
-          LAYERED CINEMATIC BACKGROUND - Ancient Ruins Theme
-          Same system as other sections for visual continuity
+          SECTION OVERLAY - Uses global ParallaxBackground
+          Matches other sections (FestIdentity, etc.) for consistency
           ═══════════════════════════════════════════════════════════════ */}
       
-      {/* Layer 1: Far forest atmospheric base */}
-      <div 
-        className="absolute inset-0 -z-30"
-        style={{
-          backgroundImage: 'url(/images/far.jpg)',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          opacity: 0.4,
-        }}
-      />
+      {/* Heavy cinematic overlay - shows stone texture through */}
+      <div className="absolute inset-0 bg-forest-950/80 backdrop-blur-[1px] pointer-events-none" />
       
-      {/* Layer 2: Stone ruins texture */}
+      {/* Warm atmosphere - ritual chamber glow */}
       <div 
-        className="absolute inset-0 -z-25"
-        style={{
-          backgroundImage: 'url(/images/stone.jpg)',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          opacity: 0.35,
-          mixBlendMode: 'multiply',
-        }}
-      />
-      
-      {/* Layer 3: Section darkening overlay - 75% for readability */}
-      <div 
-        className="absolute inset-0 -z-20"
-        style={{
-          background: `
-            linear-gradient(180deg, 
-              rgba(5, 13, 10, 0.8) 0%, 
-              rgba(10, 22, 18, 0.75) 30%,
-              rgba(10, 22, 18, 0.7) 50%,
-              rgba(10, 22, 18, 0.75) 70%,
-              rgba(5, 13, 10, 0.85) 100%
-            )
-          `,
-        }}
-      />
-      
-      {/* Layer 4: Ritual chamber glow - warm gold center */}
-      <div 
-        className="absolute inset-0 -z-15 pointer-events-none"
+        className="absolute inset-0 pointer-events-none"
         style={{
           background: `
             radial-gradient(ellipse 60% 50% at 50% 50%, 
-              rgba(212, 175, 55, 0.06) 0%, 
-              rgba(212, 175, 55, 0.02) 40%,
-              transparent 70%
+              rgba(212, 175, 55, 0.04) 0%, 
+              transparent 60%
             )
           `,
         }}
       />
       
+      {/* Stone inner shadow effect */}
+      <div className="absolute inset-0 pointer-events-none" style={{
+        boxShadow: 'inset 0 40px 60px -20px rgba(5, 13, 10, 0.5), inset 0 -40px 60px -20px rgba(5, 13, 10, 0.5)'
+      }} />
+      
       {/* Large background mandala - centered, floats between bg and cards */}
-      <div className="absolute inset-0 flex items-center justify-center -z-10 pointer-events-none">
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
         <svg 
-          className="w-[150%] max-w-[1400px] h-auto opacity-[0.12] blur-[1px]"
+          className="w-[150%] max-w-[1400px] h-auto opacity-[0.06] blur-[1px]"
           viewBox="0 0 400 400" 
           xmlns="http://www.w3.org/2000/svg"
         >
@@ -431,7 +399,7 @@ export default function ChooseYourArena() {
               opacity={0.3}
             />
           ))}
-          {[...Array(16)].map((_, i) => (
+          {[...Array(12)].map((_, i) => (
             <line
               key={i}
               x1="200"
@@ -439,38 +407,20 @@ export default function ChooseYourArena() {
               x2="200"
               y2="380"
               stroke="#D4AF37"
-              strokeWidth="0.3"
+              strokeWidth="0.15"
               opacity="0.2"
-              transform={`rotate(${i * 11.25} 200 200)`}
+              transform={`rotate(${i * 30} 200 200)`}
             />
           ))}
         </svg>
       </div>
       
-      {/* Dark vignette edges - cinematic depth */}
-      <div 
-        className="absolute inset-0 pointer-events-none -z-5"
-        style={{
-          background: `
-            radial-gradient(ellipse 70% 60% at 50% 50%, transparent 20%, rgba(5, 13, 10, 0.6) 100%)
-          `,
-        }}
-      />
-      
-      {/* Top and bottom borders - subtle gold edges */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold-900/30 to-transparent" />
-      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold-900/20 to-transparent" />
+      {/* Carved stone border accents */}
+      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gold-900/25 to-transparent" />
+      <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gold-900/15 to-transparent" />
 
-      {/* Content container with subtle frosted depth */}
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
-        {/* Soft content backdrop for card readability */}
-        <div 
-          className="absolute inset-0 -mx-4 sm:-mx-6 lg:-mx-8 rounded-3xl opacity-40 pointer-events-none"
-          style={{
-            background: 'radial-gradient(ellipse 80% 70% at 50% 40%, rgba(10, 22, 18, 0.5) 0%, transparent 70%)',
-            backdropFilter: 'blur(1px)',
-          }}
-        />
+      {/* Content container */}
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header - Ceremonial invitation */}
         <motion.div
           className="text-center mb-16 lg:mb-20"
