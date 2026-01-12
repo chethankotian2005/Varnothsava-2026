@@ -36,10 +36,10 @@ const features = [
 ]
 
 const stats = [
-  { value: 50, displayValue: '50+', label: 'Events', icon: Zap, suffix: '+' },
-  { value: 5000, displayValue: '5000+', label: 'Participants', icon: Users, suffix: '+' },
-  { value: 10, displayValue: '₹10L+', label: 'Prize Pool', icon: Trophy, prefix: '₹', suffix: 'L+' },
-  { value: 3, displayValue: '3', label: 'Days', icon: Calendar, suffix: '' },
+  { value: 30, displayValue: '30+', label: 'Events', icon: Zap, suffix: '+' },
+  { value: 2000, displayValue: '2000+', label: 'Participants', icon: Users, suffix: '+' },
+  { value: 2, displayValue: '₹2L+', label: 'Prize Pool', icon: Trophy, prefix: '₹', suffix: 'L+' },
+  { value: 4, displayValue: '4', label: 'Days', icon: Calendar, suffix: '' },
 ]
 
 // Animated counter component with counting animation
