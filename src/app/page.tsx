@@ -1,6 +1,7 @@
 import dynamic from 'next/dynamic'
 import CyberAranyaHero from '@/components/home/CyberAranyaHero'
 import FestIdentity from '@/components/home/FestIdentity'
+import ChooseYourArena from '@/components/home/ChooseYourArena'
 import EventCategories from '@/components/home/EventCategories'
 import RegistrationSteps from '@/components/home/RegistrationSteps'
 import LeaderboardTeaser from '@/components/home/LeaderboardTeaser'
@@ -26,6 +27,11 @@ export default function Home() {
       
       <section id="about">
         <FestIdentity />
+      </section>
+      
+      {/* Choose Your Arena - Ceremonial selection ritual */}
+      <section id="arenas">
+        <ChooseYourArena />
       </section>
       
       <section id="events">
