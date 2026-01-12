@@ -68,11 +68,11 @@ export default function EventCard({ event, index, onClick }: EventCardProps) {
 
         {/* Meta Info */}
         <div className="flex flex-wrap gap-3 mb-4">
-          <div className="flex items-center gap-1.5 text-xs text-forest-400">
+          <div className="flex items-center gap-1.5 text-xs text-white/80 font-medium">
             <Calendar size={14} className="text-gold-800" />
             <span>{event.date.split(',')[0]}</span>
           </div>
-          <div className="flex items-center gap-1.5 text-xs text-forest-400">
+          <div className="flex items-center gap-1.5 text-xs text-white/80 font-medium">
             <Users size={14} className="text-cyan-glow" />
             <span>{event.teamSize}</span>
           </div>

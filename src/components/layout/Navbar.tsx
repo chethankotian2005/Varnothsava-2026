@@ -281,7 +281,7 @@ export default function Navbar() {
                   transition={{ delay: navLinks.length * 0.08 + 0.3, duration: 0.3 }}
                   className="pt-8 border-t border-gold-800/20"
                 >
-                  <p className="text-forest-400 text-sm text-center">
+                  <p className="text-white/75 text-sm text-center">
                     March 15-17, 2026 • SMVITM
                   </p>
                 </motion.div>

@@ -188,7 +188,7 @@ export default function ChatWidget() {
                       <h4 className="font-medium text-forest-100 group-hover:text-gold-400 transition-colors">
                         {link.title}
                       </h4>
-                      <p className="text-xs text-forest-500">{link.description}</p>
+                      <p className="text-xs text-white/70">{link.description}</p>
                     </div>
                   </motion.a>
                 ))}
@@ -196,7 +196,7 @@ export default function ChatWidget() {
 
               {/* Quick message section */}
               <div className="mt-4 pt-4 border-t border-forest-700/50">
-                <p className="text-xs text-forest-500 mb-3">
+                <p className="text-xs text-white/70 mb-3">
                   Or send a quick message:
                 </p>
                 <form 

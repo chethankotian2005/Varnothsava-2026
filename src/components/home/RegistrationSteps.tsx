@@ -113,7 +113,7 @@ export default function RegistrationSteps() {
             </span>
           </h2>
           
-          <p className="text-base text-forest-400 max-w-lg mx-auto">
+          <p className="text-base text-white/80 max-w-lg mx-auto">
             Get started in minutes. Join thousands from across the country.
           </p>
         </motion.div>
@@ -166,7 +166,7 @@ export default function RegistrationSteps() {
                       </motion.div>
                       
                       <div>
-                        <span className="text-xs font-mono text-forest-500 uppercase tracking-wider">Step {step.step}</span>
+                        <span className="text-xs font-mono text-white/70 uppercase tracking-wider">Step {step.step}</span>
                         <h3 className="text-xl font-display font-semibold text-forest-100 group-hover:text-gold-950 transition-colors">
                           {step.title}
                         </h3>
@@ -207,7 +207,7 @@ export default function RegistrationSteps() {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ delay: 0.7 }}
-            className="text-forest-500 text-sm mt-4 flex items-center justify-center gap-2"
+            className="text-white/75 text-sm mt-4 flex items-center justify-center gap-2"
           >
             <span className="inline-block w-2 h-2 rounded-full bg-cyan-500 animate-pulse" />
             Early bird offer ends February 28, 2026

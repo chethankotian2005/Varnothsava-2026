@@ -67,7 +67,7 @@ export default function Footer() {
                 <span className="text-cyan-glow text-sm font-mono">2026</span>
               </div>
             </Link>
-            <p className="text-forest-300 text-sm mb-6 max-w-xs leading-relaxed">
+            <p className="text-white/80 text-sm mb-6 max-w-xs leading-relaxed">
               The grandest inter-collegiate fest of coastal Karnataka. Where heritage meets innovation, and dreams take flight.
             </p>
             
@@ -100,7 +100,7 @@ export default function Footer() {
                 <li key={link.name}>
                   <Link
                     href={link.href}
-                    className="text-forest-300 hover:text-gold-950 transition-colors text-sm flex items-center gap-1 group py-1 focus-ring rounded"
+                    className="text-white/80 hover:text-[#F4D03F] transition-colors text-sm flex items-center gap-1 group py-1 focus-ring rounded"
                   >
                     {link.name}
                     <ArrowUpRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" aria-hidden="true" />
@@ -118,7 +118,7 @@ export default function Footer() {
                 <li key={link.name}>
                   <Link
                     href={link.href}
-                    className="text-forest-300 hover:text-gold-950 transition-colors text-sm flex items-center gap-1 group py-1 focus-ring rounded"
+                    className="text-white/80 hover:text-[#F4D03F] transition-colors text-sm flex items-center gap-1 group py-1 focus-ring rounded"
                   >
                     {link.name}
                     <ArrowUpRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" aria-hidden="true" />
@@ -131,7 +131,7 @@ export default function Footer() {
           {/* Contact Info */}
           <div>
             <h3 className="text-gold-950 font-display font-semibold text-lg mb-5">Contact</h3>
-            <div className="space-y-4 text-sm text-forest-300">
+            <div className="space-y-4 text-sm text-white/80">
               <motion.a 
                 href="https://maps.google.com" 
                 target="_blank"
@@ -174,7 +174,7 @@ export default function Footer() {
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-24 h-px bg-gradient-to-r from-transparent via-gold-700/50 to-transparent" />
         
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-forest-300">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-white/75">
             <p className="flex items-center gap-1">
               © 2026 Varnothsava, SMVITM. Made with{' '}
               <Heart className="w-4 h-4 text-red-500 fill-red-500 animate-pulse" aria-label="love" />{' '}
@@ -185,7 +185,7 @@ export default function Footer() {
                 <Link
                   key={link.name}
                   href={link.href}
-                  className="hover:text-gold-950 transition-colors py-1 px-2 focus-ring rounded text-forest-300"
+                  className="hover:text-[#F4D03F] transition-colors py-1 px-2 focus-ring rounded text-white/75"
                 >
                   {link.name}
                 </Link>

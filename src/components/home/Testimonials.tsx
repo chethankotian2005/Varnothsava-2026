@@ -107,9 +107,9 @@ function TestimonialCard({ testimonial, index }: { testimonial: typeof testimoni
             />
           </div>
           <div>
-            <h4 className="text-gold-700 font-semibold">{testimonial.name}</h4>
-            <p className="text-forest-400 text-sm">{testimonial.college}</p>
-            <p className="text-gold-800/60 text-xs mt-0.5">{testimonial.event}</p>
+            <h4 className="text-[#F4D03F] font-semibold">{testimonial.name}</h4>
+            <p className="text-white/80 text-sm font-medium">{testimonial.college}</p>
+            <p className="text-[#D4AF37] text-xs font-medium mt-0.5">{testimonial.event}</p>
           </div>
         </div>
       </div>
@@ -163,7 +163,7 @@ export default function Testimonials() {
             Say
           </h2>
           
-          <p className="text-forest-400 max-w-2xl mx-auto">
+          <p className="text-white/80 max-w-2xl mx-auto">
             Hear from students who experienced the magic of Varnothsava
           </p>
         </motion.div>

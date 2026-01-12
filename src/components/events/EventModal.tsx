@@ -68,28 +68,28 @@ export default function EventModal({ event, isOpen, onClose }: EventModalProps) 
                 <div className="flex items-center gap-3 p-3 rounded-lg bg-forest-800/50 border border-gold-800/10">
                   <Calendar className="w-5 h-5 text-gold-800 flex-shrink-0" />
                   <div>
-                    <p className="text-xs text-forest-400 uppercase">Date</p>
+                    <p className="text-xs text-white/70 font-medium uppercase">Date</p>
                     <p className="text-forest-100 text-sm">{event.date}</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-3 p-3 rounded-lg bg-forest-800/50 border border-gold-800/10">
                   <Clock className="w-5 h-5 text-gold-800 flex-shrink-0" />
                   <div>
-                    <p className="text-xs text-forest-400 uppercase">Time</p>
+                    <p className="text-xs text-white/70 font-medium uppercase">Time</p>
                     <p className="text-forest-100 text-sm">{event.time}</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-3 p-3 rounded-lg bg-forest-800/50 border border-gold-800/10">
                   <MapPin className="w-5 h-5 text-cyan-glow flex-shrink-0" />
                   <div>
-                    <p className="text-xs text-forest-400 uppercase">Venue</p>
+                    <p className="text-xs text-white/70 font-medium uppercase">Venue</p>
                     <p className="text-forest-100 text-sm">{event.venue}</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-3 p-3 rounded-lg bg-forest-800/50 border border-gold-800/10">
                   <Users className="w-5 h-5 text-cyan-glow flex-shrink-0" />
                   <div>
-                    <p className="text-xs text-forest-400 uppercase">Team Size</p>
+                    <p className="text-xs text-white/70 font-medium uppercase">Team Size</p>
                     <p className="text-forest-100 text-sm">{event.teamSize}</p>
                   </div>
                 </div>
@@ -100,14 +100,14 @@ export default function EventModal({ event, isOpen, onClose }: EventModalProps) 
                 <div className="flex-1 p-4 rounded-lg bg-gradient-to-br from-gold-800/20 to-gold-950/10 border border-gold-800/30">
                   <div className="flex items-center gap-2 mb-1">
                     <Trophy className="w-4 h-4 text-gold-950" />
-                    <span className="text-xs text-forest-400 uppercase">Prize Pool</span>
+                    <span className="text-xs text-white/70 font-medium uppercase">Prize Pool</span>
                   </div>
                   <p className="text-xl font-display font-bold text-gold-950">{event.prizePool}</p>
                 </div>
                 <div className="flex-1 p-4 rounded-lg bg-forest-800/50 border border-gold-800/10">
                   <div className="flex items-center gap-2 mb-1">
                     <IndianRupee className="w-4 h-4 text-forest-400" />
-                    <span className="text-xs text-forest-400 uppercase">Registration</span>
+                    <span className="text-xs text-white/70 font-medium uppercase">Registration</span>
                   </div>
                   <p className="text-xl font-display font-bold text-forest-100">₹{event.registrationFee}</p>
                 </div>
@@ -130,7 +130,7 @@ export default function EventModal({ event, isOpen, onClose }: EventModalProps) 
 
               {/* Coordinator */}
               <div className="p-4 rounded-lg bg-forest-800/50 border border-gold-800/20">
-                <h3 className="text-sm font-semibold text-forest-400 mb-3 uppercase tracking-wider">Event Coordinator</h3>
+                <h3 className="text-sm font-semibold text-white/80 mb-3 uppercase tracking-wider">Event Coordinator</h3>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 rounded-full bg-cyan-glow/20 flex items-center justify-center border border-cyan-glow/30">

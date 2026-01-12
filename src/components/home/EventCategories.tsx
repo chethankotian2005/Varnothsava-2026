@@ -329,7 +329,7 @@ function BentoCard({ category, index }: { category: typeof categories[0], index:
             {/* Event Count */}
             <div className="flex items-center gap-2 mt-3">
               <Sparkles className={`w-4 h-4 ${category.accentColor}`} />
-              <span className="text-sm text-forest-400">
+              <span className="text-sm text-white/80 font-medium">
                 {category.count} events
               </span>
             </div>

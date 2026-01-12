@@ -185,7 +185,7 @@ const FlipCountdown = () => {
           <div className="absolute top-1/2 -right-2 w-1 h-1 -translate-y-1/2 rounded-full bg-cyan-glow/50 shadow-[0_0_4px_rgba(0,242,255,0.5)]" />
         </motion.div>
         
-        <span className={`text-xs font-mono tracking-[0.25em] uppercase ${isUrgentMode ? 'text-red-400/80' : 'text-gold-700/80'}`}>
+        <span className={`text-xs font-mono tracking-[0.25em] uppercase ${isUrgentMode ? 'text-red-400' : 'text-white/85'}`}>
           {label}
         </span>
       </div>
@@ -197,11 +197,11 @@ const FlipCountdown = () => {
     return (
       <div className="flex items-center justify-center gap-2 sm:gap-3 md:gap-4 h-28">
         <div className="w-16 h-20 sm:w-20 sm:h-24 md:w-24 md:h-28 rounded-xl bg-forest-900/50 animate-pulse border border-gold-800/30" />
-        <span className="text-xl md:text-2xl text-gold-800/50">:</span>
+        <span className="text-xl md:text-2xl text-[#D4AF37]">:</span>
         <div className="w-16 h-20 sm:w-20 sm:h-24 md:w-24 md:h-28 rounded-xl bg-forest-900/50 animate-pulse border border-gold-800/30" />
-        <span className="text-xl md:text-2xl text-gold-800/50">:</span>
+        <span className="text-xl md:text-2xl text-[#D4AF37]">:</span>
         <div className="w-16 h-20 sm:w-20 sm:h-24 md:w-24 md:h-28 rounded-xl bg-forest-900/50 animate-pulse border border-gold-800/30" />
-        <span className="text-xl md:text-2xl text-gold-800/50">:</span>
+        <span className="text-xl md:text-2xl text-[#D4AF37]">:</span>
         <div className="w-16 h-20 sm:w-20 sm:h-24 md:w-24 md:h-28 rounded-xl bg-forest-900/50 animate-pulse border border-gold-800/30" />
       </div>
     )
@@ -229,7 +229,7 @@ const FlipCountdown = () => {
         >
           🎉 EVENT IS LIVE! 🎉
         </motion.div>
-        <p className="text-gold-700/70 mt-4 text-lg">March 15-17, 2026 • SMVITM Campus</p>
+        <p className="text-white/85 mt-4 text-lg">March 15-17, 2026 • SMVITM Campus</p>
       </motion.div>
     )
   }
@@ -237,11 +237,11 @@ const FlipCountdown = () => {
   return (
     <div className="flex items-center justify-center gap-2 sm:gap-3 md:gap-4">
       <FlipUnit value={timeLeft.days} prevValue={prevTimeRef.current.days} label="Days" isUrgentMode={isUrgent} />
-      <span className="text-xl md:text-2xl text-gold-800/50 font-light self-start mt-6">:</span>
+      <span className="text-xl md:text-2xl text-[#D4AF37] font-light self-start mt-6">:</span>
       <FlipUnit value={timeLeft.hours} prevValue={prevTimeRef.current.hours} label="Hours" isUrgentMode={isUrgent} />
-      <span className="text-xl md:text-2xl text-gold-800/50 font-light self-start mt-6">:</span>
+      <span className="text-xl md:text-2xl text-[#D4AF37] font-light self-start mt-6">:</span>
       <FlipUnit value={timeLeft.minutes} prevValue={prevTimeRef.current.minutes} label="Mins" isUrgentMode={isUrgent} />
-      <span className="text-xl md:text-2xl text-gold-800/50 font-light self-start mt-6">:</span>
+      <span className="text-xl md:text-2xl text-[#D4AF37] font-light self-start mt-6">:</span>
       <FlipUnit value={timeLeft.seconds} prevValue={prevTimeRef.current.seconds} label="Secs" isUrgentMode={isUrgent} />
     </div>
   )
@@ -344,7 +344,7 @@ export default function CyberAranyaHero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1.4 }}
         >
-          <p className="text-gold-700/80 text-xs tracking-[0.4em] uppercase mb-5 font-medium text-engraved">
+          <p className="text-white/85 text-xs tracking-[0.4em] uppercase mb-5 font-semibold text-engraved [text-shadow:_0_2px_8px_rgb(0_0_0_/_60%)]">
             The Awakening Begins In
           </p>
           <FlipCountdown />
