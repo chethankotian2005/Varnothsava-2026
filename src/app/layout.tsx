@@ -7,6 +7,8 @@ import Footer from '@/components/layout/Footer'
 import ChatWidget from '@/components/layout/ChatWidget'
 import SkipLink from '@/components/layout/SkipLink'
 import FloatingActionButton from '@/components/ui/FloatingActionButton'
+import ScrollProgress from '@/components/ui/ScrollProgress'
+import BackToTop from '@/components/ui/BackToTop'
 import ParallaxBackground from '@/components/effects/ParallaxBackground'
 import { Toaster } from 'sonner'
 import { Analytics } from '@vercel/analytics/react'
@@ -197,6 +199,7 @@ export default function RootLayout({
         <Footer />
         <ChatWidget />
         <FloatingActionButton />
+        <BackToTop />
         
         {/* Vercel Analytics & Speed Insights */}
         <Analytics />
