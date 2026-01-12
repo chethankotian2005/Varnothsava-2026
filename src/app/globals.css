@@ -381,6 +381,46 @@
   }
   
   /* ========================================
+     STANDARDIZED HEADING STYLES & SPACING
+     ======================================== */
+  
+  /* Main Section Headings (h2) - Large, Bold, Commanding */
+  .heading-section {
+    @apply text-4xl md:text-5xl lg:text-6xl font-display font-bold text-forest-100 mb-6;
+    margin-top: 1.5rem;
+    line-height: 1.1;
+    letter-spacing: 0.02em;
+  }
+  
+  /* Subsection Headings (h3) - Distinct but Complementary */
+  .heading-subsection {
+    @apply text-2xl md:text-3xl font-display font-semibold text-forest-100 mb-4;
+    margin-top: 2rem;
+    line-height: 1.3;
+    letter-spacing: 0.01em;
+  }
+  
+  /* Card/Component Headings (h4) - Focused and Clear */
+  .heading-card {
+    @apply text-xl md:text-2xl font-display font-semibold text-forest-100 mb-3;
+    margin-top: 1rem;
+    line-height: 1.4;
+  }
+  
+  /* Spacing utilities for sections */
+  .heading-spacing-after {
+    @apply mb-8 md:mb-12 lg:mb-16;
+  }
+  
+  .heading-spacing-before {
+    @apply mt-8 md:mt-12 lg:mt-16;
+  }
+  
+  .paragraph-spacing {
+    @apply mb-4 md:mb-6;
+  }
+  
+  /* ========================================
      FOCUS STATES FOR INTERACTIVE ELEMENTS
      Designed for visual parity with hover states
      ======================================== */

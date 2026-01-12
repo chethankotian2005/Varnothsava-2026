@@ -77,12 +77,12 @@ function TestimonialCard({ testimonial, index }: { testimonial: typeof testimoni
       {/* Glow effect - GPU optimized */}
       <div className="absolute -inset-0.5 bg-gradient-to-r from-gold-800/20 to-gold-950/20 rounded-2xl blur-optimized opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
       
-      <div className="relative bg-forest-900/60 backdrop-blur-optimized rounded-2xl p-6 border border-gold-800/20 hover:border-gold-700 transition-all duration-300 h-full flex flex-col">
+      <div className="relative bg-forest-900/60 backdrop-blur-optimized rounded-2xl p-6 border border-gold-800/20 hover:border-gold-700 transition-all duration-300 h-full flex flex-col shadow-lg hover:shadow-xl">
         {/* Quote icon */}
         <Quote className="w-8 h-8 text-gold-800/30 mb-4" />
         
         {/* Testimonial text */}
-        <p className="text-forest-200 leading-relaxed mb-6 flex-grow italic">
+        <p className="text-forest-200 leading-relaxed mb-6 flex-grow italic text-base">
           "{testimonial.quote}"
         </p>
         
@@ -93,9 +93,9 @@ function TestimonialCard({ testimonial, index }: { testimonial: typeof testimoni
           ))}
         </div>
         
-        {/* Author */}
+        {/* Author - Enhanced separation */}
         <div className="flex items-center gap-4 pt-4 border-t border-gold-800/20">
-          <div className="relative w-12 h-12 rounded-full overflow-hidden ring-2 ring-gold-800/50 bg-forest-800">
+          <div className="relative w-12 h-12 rounded-full overflow-hidden ring-2 ring-gold-800/50 bg-forest-800 flex-shrink-0">
             {/* Avatar with external service fallback */}
             <Image
               src={testimonial.avatar}
@@ -106,10 +106,12 @@ function TestimonialCard({ testimonial, index }: { testimonial: typeof testimoni
               unoptimized
             />
           </div>
-          <div>
-            <h4 className="text-[#F4D03F] font-semibold">{testimonial.name}</h4>
-            <p className="text-white/80 text-sm font-medium">{testimonial.college}</p>
-            <p className="text-[#D4AF37] text-xs font-medium mt-0.5">{testimonial.event}</p>
+          <div className="flex-grow min-w-0">
+            <h4 className="text-gold-600 font-bold text-base truncate">{testimonial.name}</h4>
+            <p className="text-white/70 text-sm italic font-medium truncate">{testimonial.college}</p>
+            <span className="inline-block mt-1 px-2 py-0.5 rounded-full bg-gold-950/30 border border-gold-800/30 text-gold-700 text-xs font-semibold tracking-wide">
+              {testimonial.event}
+            </span>
           </div>
         </div>
       </div>

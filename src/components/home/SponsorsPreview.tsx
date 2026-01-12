@@ -28,15 +28,15 @@ function SponsorCard({ name, size, variant }: { name: string, size: 'lg' | 'md' 
   }
   
   const variantClasses = {
-    title: 'bg-gradient-to-br from-gold-800/20 via-gold-700/10 to-gold-600/20 border-gold-800/40 hover:border-gold-700/60',
-    platinum: 'bg-gradient-to-br from-slate-400/10 via-gray-500/10 to-slate-400/10 border-gray-400/30 hover:border-gray-300/50',
-    gold: 'bg-gradient-to-br from-gold-700/10 via-gold-600/10 to-gold-700/10 border-gold-700/20 hover:border-gold-600/40',
+    title: 'bg-gradient-to-br from-gold-800/30 via-gold-700/20 to-gold-600/30 border-gold-800/60 hover:border-gold-700/80',
+    platinum: 'bg-gradient-to-br from-slate-400/20 via-gray-500/15 to-slate-400/20 border-gray-400/50 hover:border-gray-300/70',
+    gold: 'bg-gradient-to-br from-gold-700/20 via-gold-600/15 to-gold-700/20 border-gold-700/40 hover:border-gold-600/60',
   }
   
   const textClasses = {
-    title: 'text-gold-950 text-2xl font-display font-bold',
-    platinum: 'text-gray-200 text-lg font-semibold',
-    gold: 'text-gold-700 text-base font-medium',
+    title: 'text-gold-600 text-2xl font-display font-bold',
+    platinum: 'text-gray-100 text-lg font-semibold',
+    gold: 'text-gold-600 text-base font-medium',
   }
 
   return (
@@ -45,26 +45,32 @@ function SponsorCard({ name, size, variant }: { name: string, size: 'lg' | 'md' 
       transition={{ type: "spring", stiffness: 300 }}
       className={`
         ${sizeClasses[size]} 
-        rounded-2xl border backdrop-blur-sm
+        rounded-2xl border-2 backdrop-blur-md
         ${variantClasses[variant]}
         flex items-center justify-center
         relative overflow-hidden group cursor-pointer
         transition-all duration-300
         focus-within:ring-2 focus-within:ring-gold-800
+        shadow-lg hover:shadow-2xl hover:shadow-gold-950/30
       `}
       tabIndex={0}
       role="article"
       aria-label={`${name} - ${variant} sponsor`}
     >
       {/* Shimmer effect */}
-      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
+      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
+      
+      {/* Brand circle indicator */}
+      <div className="absolute top-3 left-3 w-8 h-8 rounded-full bg-gradient-to-br from-gold-700/40 to-gold-900/40 border border-gold-800/50 flex items-center justify-center">
+        <div className="w-4 h-4 rounded-full bg-gold-700/60" />
+      </div>
       
       {/* Content */}
       <span className={textClasses[variant]}>{name}</span>
       
       {/* Title sponsor crown */}
       {variant === 'title' && (
-        <Star className="absolute top-3 right-3 w-5 h-5 text-gold-800/50" />
+        <Star className="absolute top-3 right-3 w-6 h-6 text-gold-700 fill-gold-700/40" />
       )}
     </motion.div>
   )

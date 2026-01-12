@@ -5,7 +5,7 @@ import { motion, useReducedMotion } from 'framer-motion'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Link from 'next/link'
-import { ArrowRight, Sparkles, Calendar, MapPin, Users, Zap } from 'lucide-react'
+import { ArrowRight, Sparkles, Calendar, MapPin, Users, Zap, Trophy } from 'lucide-react'
 
 const highlights = [
   { icon: Calendar, label: 'March 15-17, 2026' },
@@ -106,10 +106,26 @@ export default function FinalCTA() {
           </h2>
 
           {/* Description */}
-          <p className="text-xl md:text-2xl text-forest-300 mb-10 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-xl md:text-2xl text-forest-300 mb-6 max-w-3xl mx-auto leading-relaxed">
             Join <span className="text-forest-100 font-semibold">5000+ participants</span> from across India. 
             Compete, Connect, and Create memories that last a lifetime.
           </p>
+          
+          {/* Prize Highlight - Enhanced with Trophy Icon */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.3 }}
+            className="inline-flex items-center gap-3 px-6 py-4 rounded-2xl bg-gradient-to-r from-gold-950/30 via-gold-900/40 to-gold-950/30 border-2 border-gold-800/60 mb-8 backdrop-blur-sm shadow-lg"
+          >
+            <Trophy className="w-8 h-8 text-gold-600 fill-gold-900/40" />
+            <div className="text-left">
+              <div className="text-sm text-gold-700 font-mono uppercase tracking-wider">Total Prize Pool</div>
+              <div className="text-3xl font-display font-bold text-gold-600">₹10 Lakhs + Trophies</div>
+            </div>
+            <Trophy className="w-8 h-8 text-gold-600 fill-gold-900/40" />
+          </motion.div>
 
           {/* Event highlights */}
           <div className="flex flex-wrap justify-center gap-4 mb-10">
@@ -129,10 +145,10 @@ export default function FinalCTA() {
           </div>
 
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 mb-4">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 mb-6">
             <Link 
               href="/register" 
-              className="btn-liquid-gold text-lg sm:text-xl group relative overflow-hidden focus-ring min-w-[300px] text-center shadow-[0_0_25px_rgba(212,175,55,0.35)] md:shadow-[0_0_50px_rgba(212,175,55,0.5)]"
+              className="btn-liquid-gold text-lg sm:text-xl group relative overflow-hidden focus-ring min-w-[300px] text-center shadow-[0_0_25px_rgba(212,175,55,0.35)] md:shadow-[0_0_50px_rgba(212,175,55,0.5)] border-2 border-gold-800/60"
               aria-label="Register for Varnothsava 2026 - Free to start"
             >
               <span className="relative z-10 flex items-center justify-center gap-2">
@@ -144,7 +160,7 @@ export default function FinalCTA() {
             
             <Link 
               href="/events" 
-              className="btn-circuit text-base sm:text-lg focus-ring min-w-[180px] text-center"
+              className="btn-circuit text-base sm:text-lg focus-ring min-w-[180px] text-center border-2 border-gold-800/40 hover:border-gold-700"
               aria-label="Browse all events"
             >
               <span>Browse Events</span>
@@ -152,8 +168,17 @@ export default function FinalCTA() {
             </Link>
           </div>
           
-          {/* Reassurance microcopy */}
-          <p className="text-forest-500 text-sm mb-8">Takes less than 2 minutes</p>
+          {/* Reassurance microcopy - Enhanced */}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.4 }}
+            className="bg-forest-900/40 border border-gold-800/20 rounded-lg px-6 py-3 inline-flex items-center gap-2 mb-8 backdrop-blur-sm"
+          >
+            <Sparkles className="w-4 h-4 text-gold-700" />
+            <p className="text-forest-200 text-base font-medium">Takes less than 2 minutes</p>
+          </motion.div>
 
           {/* Urgency text */}
           <motion.div
