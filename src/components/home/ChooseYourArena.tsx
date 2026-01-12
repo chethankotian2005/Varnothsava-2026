@@ -3,6 +3,7 @@
 import { motion, useReducedMotion, useMotionValue, useSpring, useTransform } from 'framer-motion'
 import { useState, useRef } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { Music2, Code2, Sparkles, Mic2 } from 'lucide-react'
 
 // Golden Mandala SVG - The ceremonial sigil backdrop
@@ -180,40 +181,51 @@ function ArenaCard({
               : '0 15px 40px -10px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.05)',
           }}
         >
-          {/* Full-bleed background gradient (fallback for images) */}
-          <div className={`absolute inset-0 bg-gradient-to-br ${arena.fallbackGradient}`} />
-          
-          {/* Animated background pattern */}
-          <div className="absolute inset-0 opacity-30">
-            <div 
-              className="absolute inset-0"
-              style={{
-                backgroundImage: `
-                  radial-gradient(circle at 30% 20%, rgba(255,255,255,0.1) 0%, transparent 50%),
-                  radial-gradient(circle at 70% 80%, rgba(255,255,255,0.05) 0%, transparent 40%)
-                `,
-              }}
+          {/* Full-bleed background image */}
+          <div className="absolute inset-0">
+            <Image
+              src={arena.image}
+              alt={`${arena.title} - Varnothsava 2026`}
+              fill
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              className="object-cover object-center"
+              quality={85}
+              loading="lazy"
+              priority={false}
             />
           </div>
           
-          {/* Glass overlay gradient */}
+          {/* Fallback gradient (if image fails to load) */}
+          <div className={`absolute inset-0 bg-gradient-to-br ${arena.fallbackGradient} -z-10`} />
+          
+          {/* Dark cinematic gradient overlay for text readability */}
           <div 
-            className="absolute inset-0"
+            className="absolute inset-0 z-10"
             style={{
               background: `
                 linear-gradient(180deg, 
-                  rgba(0,0,0,0.1) 0%, 
-                  rgba(0,0,0,0.3) 40%,
-                  rgba(0,0,0,0.7) 75%,
+                  rgba(0,0,0,0.3) 0%, 
+                  rgba(0,0,0,0.5) 30%,
+                  rgba(0,0,0,0.75) 60%,
                   rgba(0,0,0,0.9) 100%
                 )
               `,
             }}
           />
           
-          {/* Gold border - ceremonial frame */}
+          {/* Subtle atmospheric glow - blends with cinematic theme */}
           <div 
-            className="absolute inset-0 rounded-2xl pointer-events-none transition-all duration-500"
+            className="absolute inset-0 z-10 opacity-20 pointer-events-none"
+            style={{
+              background: `
+                radial-gradient(circle at 50% 30%, ${arena.glowColor.replace('0.4', '0.15')} 0%, transparent 60%)
+              `,
+            }}
+          />
+          
+          {/* Gold border - ceremonial frame (above all overlays) */}
+          <div 
+            className="absolute inset-0 rounded-2xl pointer-events-none transition-all duration-500 z-20"
             style={{
               border: isHovered 
                 ? '2px solid rgba(212, 175, 55, 0.8)' 
@@ -224,27 +236,27 @@ function ArenaCard({
             }}
           />
           
-          {/* Corner accents - engraved style */}
-          <div className="absolute top-3 left-3 w-8 h-8">
+          {/* Corner accents - engraved style (above overlays) */}
+          <div className="absolute top-3 left-3 w-8 h-8 z-20">
             <div className="absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-gold-700 to-transparent" />
             <div className="absolute top-0 left-0 w-0.5 h-full bg-gradient-to-b from-gold-700 to-transparent" />
           </div>
-          <div className="absolute top-3 right-3 w-8 h-8">
+          <div className="absolute top-3 right-3 w-8 h-8 z-20">
             <div className="absolute top-0 right-0 w-full h-0.5 bg-gradient-to-l from-gold-700 to-transparent" />
             <div className="absolute top-0 right-0 w-0.5 h-full bg-gradient-to-b from-gold-700 to-transparent" />
           </div>
-          <div className="absolute bottom-3 left-3 w-8 h-8">
+          <div className="absolute bottom-3 left-3 w-8 h-8 z-20">
             <div className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-gold-700 to-transparent" />
             <div className="absolute bottom-0 left-0 w-0.5 h-full bg-gradient-to-t from-gold-700 to-transparent" />
           </div>
-          <div className="absolute bottom-3 right-3 w-8 h-8">
+          <div className="absolute bottom-3 right-3 w-8 h-8 z-20">
             <div className="absolute bottom-0 right-0 w-full h-0.5 bg-gradient-to-l from-gold-700 to-transparent" />
             <div className="absolute bottom-0 right-0 w-0.5 h-full bg-gradient-to-t from-gold-700 to-transparent" />
           </div>
           
           {/* Glowing icon - top corner with circular glow */}
           <motion.div 
-            className="absolute top-6 right-6"
+            className="absolute top-6 right-6 z-20"
             animate={isHovered && !prefersReducedMotion ? { 
               scale: [1, 1.1, 1],
               rotate: [0, 5, -5, 0],
@@ -271,7 +283,7 @@ function ArenaCard({
           </motion.div>
           
           {/* Content - Bottom section with glass effect */}
-          <div className="absolute inset-x-0 bottom-0 p-6 sm:p-8">
+          <div className="absolute inset-x-0 bottom-0 p-6 sm:p-8 z-20">
             {/* Subtitle - above title */}
             <motion.p
               className="text-white/60 text-xs sm:text-sm font-mono tracking-[0.2em] uppercase mb-2"

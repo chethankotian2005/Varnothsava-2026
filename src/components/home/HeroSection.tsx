@@ -70,12 +70,12 @@ function GlitchText({ text, className = '' }: { text: string; className?: string
   }, [])
 
   return (
-    <span className={`relative block w-full text-center ${className}`}>
+    <span className={`relative inline-block ${className}`}>
       <span className="relative z-10">{text}</span>
       {isGlitching && (
         <>
           <span 
-            className="absolute inset-0 text-emerald-glow opacity-70 animate-pulse text-center"
+            className="absolute top-0 left-0 text-emerald-glow opacity-70 animate-pulse"
             style={{ 
               clipPath: 'polygon(0 0, 100% 0, 100% 45%, 0 45%)',
               transform: 'translate(-2px, -2px)',
@@ -85,7 +85,7 @@ function GlitchText({ text, className = '' }: { text: string; className?: string
             {text}
           </span>
           <span 
-            className="absolute inset-0 text-heritage-maroon opacity-70 text-center"
+            className="absolute top-0 left-0 text-heritage-maroon opacity-70"
             style={{ 
               clipPath: 'polygon(0 55%, 100% 55%, 100% 100%, 0 100%)',
               transform: 'translate(2px, 2px)',
@@ -261,12 +261,15 @@ export default function HeroSection() {
           <span className="block text-sm md:text-base text-emerald-glow font-mono tracking-[0.3em] uppercase mb-4 text-center">
             SMVITM Presents
           </span>
-          <h1 className="font-display text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-tight w-full text-center">
-            <GlitchText 
-              text="VARNOTHSAVA" 
-              className="bg-gradient-to-r from-gold-800 via-gold-600 to-gold-800 bg-clip-text text-transparent"
-            />
-          </h1>
+          {/* Dedicated hero title wrapper for perfect centering */}
+          <div className="hero-title-wrapper" style={{ marginLeft: 'auto', marginRight: 'auto', width: 'fit-content' }}>
+            <h1 className="font-display text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-tight text-center">
+              <GlitchText 
+                text="VARNOTHSAVA" 
+                className="bg-gradient-to-r from-gold-800 via-gold-600 to-gold-800 bg-clip-text text-transparent"
+              />
+            </h1>
+          </div>
           <span className="block text-2xl md:text-3xl lg:text-4xl font-mono text-emerald-glow mt-4 tracking-widest text-center">
             2026
           </span>
