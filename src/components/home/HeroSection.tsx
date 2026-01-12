@@ -127,11 +127,11 @@ export default function HeroSection() {
     setMounted(true)
   }, [])
 
-  // Countdown timer - Set event date to March 15, 2026
+  // Countdown timer - Set event date to January 11, 2026
   useEffect(() => {
     if (!mounted) return
     
-    const eventDate = new Date('2026-03-15T09:00:00').getTime()
+    const eventDate = new Date('2026-01-11T09:00:00').getTime()
 
     const updateCountdown = () => {
       const now = new Date().getTime()
@@ -287,7 +287,7 @@ export default function HeroSection() {
         <div className="flex flex-wrap items-center justify-center gap-6 text-white/80 mb-10">
           <div className="flex items-center gap-2 glass-gold px-4 py-2 rounded-full">
             <Calendar size={18} className="text-gold-600" />
-            <span className="font-mono text-sm">March 15-17, 2026</span>
+            <span className="font-mono text-sm">January 11-14, 2026</span>
           </div>
           <div className="flex items-center gap-2 glass-gold px-4 py-2 rounded-full">
             <MapPin size={18} className="text-gold-600" />
