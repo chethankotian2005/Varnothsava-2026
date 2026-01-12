@@ -258,27 +258,30 @@ function ArenaCard({
           <motion.div 
             className="absolute top-6 right-6 z-20"
             animate={isHovered && !prefersReducedMotion ? { 
-              scale: [1, 1.1, 1],
+              scale: [1, 1.15, 1],
               rotate: [0, 5, -5, 0],
             } : {}}
             transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
           >
             <div 
-              className={`relative w-14 h-14 rounded-full bg-gradient-to-br ${arena.iconBg} flex items-center justify-center`}
+              className={`relative w-16 h-16 rounded-full bg-gradient-to-br ${arena.iconBg} flex items-center justify-center`}
               style={{
                 boxShadow: isHovered 
-                  ? `0 0 30px ${arena.glowColor}, 0 0 60px ${arena.glowColor}`
-                  : `0 0 15px ${arena.glowColor}`,
+                  ? `0 0 40px ${arena.glowColor}, 0 0 80px ${arena.glowColor}`
+                  : `0 0 20px ${arena.glowColor}`,
               }}
             >
               {/* Outer ring */}
               <div 
-                className="absolute inset-0 rounded-full border-2 border-white/30"
+                className="absolute inset-0 rounded-full border-2 border-white/40"
                 style={{
-                  boxShadow: 'inset 0 2px 4px rgba(255,255,255,0.3)',
+                  boxShadow: 'inset 0 2px 4px rgba(255,255,255,0.4)',
                 }}
               />
-              <Icon className="w-7 h-7 text-white drop-shadow-lg" />
+              <Icon 
+                className="w-9 h-9 text-white" 
+                style={{ filter: 'drop-shadow(0 0 12px rgba(255, 255, 255, 0.5))' }}
+              />
             </div>
           </motion.div>
           

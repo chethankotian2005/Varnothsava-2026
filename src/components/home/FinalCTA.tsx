@@ -136,10 +136,14 @@ export default function FinalCTA() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.1 * index }}
-                className="flex items-center gap-2 px-4 py-2 rounded-full bg-forest-900/50 border border-gold-800/20"
+                whileHover={{ scale: 1.05, y: -2 }}
+                className="flex items-center gap-3 px-5 py-3 rounded-full bg-forest-900/60 border border-gold-800/30 hover:border-gold-700 transition-all duration-300 hover:shadow-lg hover:shadow-gold-950/20"
               >
-                <item.icon className="w-4 h-4 text-gold-950" />
-                <span className="text-forest-200 text-sm">{item.label}</span>
+                <item.icon 
+                  className="w-5 h-5 text-gold-600" 
+                  style={{ filter: 'drop-shadow(0 0 8px rgba(212, 175, 55, 0.4))' }}
+                />
+                <span className="text-forest-200 text-sm font-medium">{item.label}</span>
               </motion.div>
             ))}
           </div>

@@ -152,15 +152,19 @@ export default function RegistrationSteps() {
                     {/* Step Number Badge */}
                     <div className="flex items-center gap-4 mb-4">
                       <motion.div 
-                        className={`relative flex-shrink-0 w-14 h-14 rounded-xl bg-gradient-to-br ${step.gradient} p-[2px]`}
-                        whileHover={{ scale: 1.1, rotate: 5 }}
+                        className={`relative flex-shrink-0 w-16 h-16 rounded-xl bg-gradient-to-br ${step.gradient} p-[2px]`}
+                        whileHover={{ scale: 1.15, rotate: 5 }}
                         transition={{ type: "spring", stiffness: 400 }}
                       >
                         <div className="w-full h-full rounded-xl bg-forest-950 flex items-center justify-center group-hover:bg-forest-900 transition-colors">
-                          <step.icon className="w-6 h-6 text-forest-100" aria-hidden="true" />
+                          <step.icon 
+                            className="w-8 h-8 text-forest-100" 
+                            aria-hidden="true"
+                            style={{ filter: 'drop-shadow(0 0 10px rgba(255, 255, 255, 0.4))' }}
+                          />
                         </div>
                         {/* Step number */}
-                        <div className="absolute -top-2 -right-2 w-6 h-6 rounded-full bg-gold-950 flex items-center justify-center text-xs font-bold text-forest-950">
+                        <div className="absolute -top-2 -right-2 w-7 h-7 rounded-full bg-gold-950 flex items-center justify-center text-sm font-bold text-forest-950 shadow-lg">
                           {step.step}
                         </div>
                       </motion.div>

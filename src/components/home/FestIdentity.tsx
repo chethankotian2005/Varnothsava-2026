@@ -105,8 +105,13 @@ function AnimatedStat({ stat, index }: { stat: typeof stats[0], index: number })
         <motion.div
           animate={isInView ? { rotate: [0, 10, -10, 0] } : {}}
           transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}
+          className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-gradient-to-br from-gold-900/20 to-gold-800/30 mb-4"
         >
-          <stat.icon className="w-7 h-7 text-gold-800 mx-auto mb-4" aria-hidden="true" />
+          <stat.icon 
+            className="w-8 h-8 text-gold-600 transition-all duration-300 group-hover:text-gold-500" 
+            aria-hidden="true"
+            style={{ filter: 'drop-shadow(0 0 10px rgba(212, 175, 55, 0.4))' }}
+          />
         </motion.div>
         
         <motion.div 
@@ -173,9 +178,17 @@ export default function FestIdentity() {
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gold-900/25 to-transparent" />
       <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gold-900/15 to-transparent" />
       
-      {/* Decorative mandala pattern - slower, more ancient */}
+      {/* Decorative mandala pattern - continuously rotating */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] opacity-3 pointer-events-none">
-        <svg viewBox="0 0 100 100" className="w-full h-full animate-spin-slow">
+        <svg 
+          viewBox="0 0 100 100" 
+          className="w-full h-full" 
+          style={{ 
+            animation: 'spin 60s linear infinite',
+            transformOrigin: 'center',
+            willChange: 'transform'
+          }}
+        >
           <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" strokeWidth="0.15" className="text-gold-900"/>
           <circle cx="50" cy="50" r="35" fill="none" stroke="currentColor" strokeWidth="0.15" className="text-gold-900"/>
           <circle cx="50" cy="50" r="25" fill="none" stroke="currentColor" strokeWidth="0.15" className="text-gold-900"/>
@@ -268,10 +281,14 @@ export default function FestIdentity() {
               <div className={`absolute -inset-0.5 bg-gradient-to-r ${feature.gradient} rounded-2xl opacity-0 group-hover:opacity-30 blur transition-opacity duration-500`} />
               
               <div className="relative bg-forest-900/60 backdrop-blur-sm rounded-2xl p-6 lg:p-8 text-center border border-gold-800/20 group-hover:border-gold-800/50 transition-all duration-500 h-full group-hover:shadow-lg group-hover:shadow-black/20">
-                {/* Icon with gradient background */}
-                <div className={`inline-flex items-center justify-center w-16 h-16 rounded-xl bg-gradient-to-br ${feature.gradient} p-[1px] mb-6`}>
-                  <div className="w-full h-full rounded-xl bg-forest-950 flex items-center justify-center group-hover:bg-forest-900 transition-colors">
-                    <feature.icon className="w-8 h-8 text-forest-100" aria-hidden="true" />
+{/* Icon with gradient background - Enhanced visibility */}
+              <div className={`inline-flex items-center justify-center w-20 h-20 rounded-xl bg-gradient-to-br ${feature.gradient} p-[1px] mb-6 transition-all duration-500 group-hover:scale-110`}>
+                <div className="w-full h-full rounded-xl bg-forest-950 flex items-center justify-center group-hover:bg-forest-900 transition-colors">
+                  <feature.icon 
+                    className="w-10 h-10 text-forest-100 transition-all duration-300 group-hover:text-white" 
+                    aria-hidden="true"
+                    style={{ filter: 'drop-shadow(0 0 8px rgba(255, 255, 255, 0.3))' }}
+                  />
                   </div>
                 </div>
                 
