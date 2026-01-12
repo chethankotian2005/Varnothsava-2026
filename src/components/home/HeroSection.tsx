@@ -53,7 +53,7 @@ function FlipCard({ value, label, prevValue }: { value: number; label: string; p
           />
         </div>
       </div>
-      <span className="text-xs md:text-sm text-gray-500 mt-3 uppercase tracking-widest font-mono">
+      <span className="text-xs md:text-sm text-white/70 mt-3 uppercase tracking-widest font-mono">
         {label}
       </span>
     </div>
@@ -281,7 +281,7 @@ export default function HeroSection() {
         </p>
 
         {/* Event Info */}
-        <div className="flex flex-wrap items-center justify-center gap-6 text-gray-400 mb-10">
+        <div className="flex flex-wrap items-center justify-center gap-6 text-white/80 mb-10">
           <div className="flex items-center gap-2 glass-gold px-4 py-2 rounded-full">
             <Calendar size={18} className="text-gold-600" />
             <span className="font-mono text-sm">March 15-17, 2026</span>
@@ -305,7 +305,7 @@ export default function HeroSection() {
 
         {/* Flip Countdown */}
         <div ref={countdownRef}>
-          <p className="text-gray-500 text-sm uppercase tracking-[0.2em] mb-6 font-mono">
+          <p className="text-white/70 text-sm uppercase tracking-[0.2em] mb-6 font-mono">
             Event Starts In
           </p>
           <div className="flex items-center justify-center gap-4 md:gap-8">
@@ -324,7 +324,7 @@ export default function HeroSection() {
                   <div className="w-16 h-20 md:w-24 md:h-28 rounded-xl bg-dark-300/90 border border-gold-600/20 flex items-center justify-center">
                     <span className="text-3xl md:text-5xl font-display font-bold text-gold-600">--</span>
                   </div>
-                  <span className="text-xs md:text-sm text-gray-500 mt-3 uppercase tracking-widest font-mono">
+                  <span className="text-xs md:text-sm text-white/70 mt-3 uppercase tracking-widest font-mono">
                     {item.label}
                   </span>
                 </div>

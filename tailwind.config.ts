@@ -85,9 +85,42 @@ const config: Config = {
         },
       },
       fontFamily: {
-        display: ['var(--font-display)', 'Cinzel Decorative', 'serif'],
-        body: ['var(--font-body)', 'Inter', 'sans-serif'],
-        mono: ['var(--font-mono)', 'JetBrains Mono', 'monospace'],
+        // Display: Cinzel with robust serif fallbacks for headings
+        display: [
+          'var(--font-display)', 
+          'Cinzel Decorative', 
+          'Georgia', 
+          'Cambria', 
+          'Times New Roman', 
+          'Times', 
+          'serif'
+        ],
+        // Body: Inter with comprehensive system UI stack
+        body: [
+          'var(--font-body)', 
+          'Inter', 
+          'system-ui', 
+          '-apple-system', 
+          'BlinkMacSystemFont', 
+          'Segoe UI', 
+          'Roboto', 
+          'Helvetica Neue', 
+          'Arial', 
+          'sans-serif'
+        ],
+        // Mono: JetBrains Mono with monospace fallbacks
+        mono: [
+          'var(--font-mono)', 
+          'JetBrains Mono', 
+          'SF Mono', 
+          'SFMono-Regular', 
+          'Menlo', 
+          'Monaco', 
+          'Consolas', 
+          'Liberation Mono', 
+          'Courier New', 
+          'monospace'
+        ],
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',

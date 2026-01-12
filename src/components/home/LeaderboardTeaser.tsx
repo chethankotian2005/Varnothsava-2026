@@ -7,7 +7,7 @@ import { Trophy, Medal, Award, ArrowRight, Crown, TrendingUp, Sparkles } from 'l
 
 const topColleges = [
   { rank: 1, name: 'MIT Manipal', points: 2850, icon: Crown, color: 'text-yellow-400', trend: '+120' },
-  { rank: 2, name: 'NITK Surathkal', points: 2720, icon: Medal, color: 'text-gray-300', trend: '+85' },
+  { rank: 2, name: 'NITK Surathkal', points: 2720, icon: Medal, color: 'text-slate-200', trend: '+85' },
   { rank: 3, name: 'SJCE Mysore', points: 2680, icon: Award, color: 'text-amber-600', trend: '+65' },
   { rank: 4, name: 'RVCE Bangalore', points: 2540, icon: null, color: '', trend: '+50' },
   { rank: 5, name: 'BMS College', points: 2480, icon: null, color: '', trend: '+45' },
@@ -25,8 +25,8 @@ function PodiumVisualization() {
         transition={{ delay: 0.3, duration: 0.6, ease: "easeOut" }}
         className="w-20 bg-gradient-to-t from-gray-600/30 to-gray-400/20 rounded-t-lg flex flex-col items-center justify-start pt-2 border border-gray-500/20"
       >
-        <Medal className="w-5 h-5 text-gray-300" />
-        <span className="text-xs text-gray-400 mt-1">2nd</span>
+        <Medal className="w-5 h-5 text-slate-200" />
+        <span className="text-xs text-white/70 mt-1">2nd</span>
       </motion.div>
       
       {/* First place */}

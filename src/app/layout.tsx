@@ -14,17 +14,23 @@ import { SpeedInsights } from '@vercel/speed-insights/next'
 const inter = Inter({ 
   subsets: ['latin'],
   variable: '--font-body',
+  display: 'swap',
+  fallback: ['system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'sans-serif'],
 })
 
 const cinzel = Cinzel_Decorative({ 
   subsets: ['latin'],
   weight: ['400', '700', '900'],
   variable: '--font-display',
+  display: 'swap',
+  fallback: ['Georgia', 'Cambria', 'Times New Roman', 'Times', 'serif'],
 })
 
 const jetbrains = JetBrains_Mono({
   subsets: ['latin'],
   variable: '--font-mono',
+  display: 'swap',
+  fallback: ['SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'Liberation Mono', 'Courier New', 'monospace'],
 })
 
 export const metadata: Metadata = {
@@ -125,9 +131,42 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
+        {/* Font preloading for critical fonts */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+        
+        {/* Font loading state detection - removes class when fonts are ready */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              // Add fonts-loading class initially
+              document.documentElement.classList.add('fonts-loading');
+              
+              // Use Font Loading API to detect when fonts are ready
+              if ('fonts' in document) {
+                Promise.all([
+                  document.fonts.load('1em Inter'),
+                  document.fonts.load('700 1em Cinzel Decorative')
+                ]).then(function() {
+                  document.documentElement.classList.remove('fonts-loading');
+                  document.documentElement.classList.add('fonts-loaded');
+                }).catch(function() {
+                  // Even if fonts fail, remove loading state after timeout
+                  document.documentElement.classList.remove('fonts-loading');
+                });
+                
+                // Fallback: remove loading class after 3 seconds max
+                setTimeout(function() {
+                  document.documentElement.classList.remove('fonts-loading');
+                }, 3000);
+              } else {
+                // Browser doesn't support Font Loading API
+                document.documentElement.classList.remove('fonts-loading');
+              }
+            `,
+          }}
+        />
       </head>
       <body className="font-body min-h-screen flex flex-col bg-forest-950 text-forest-100 antialiased">
         {/* Skip to content link for accessibility */}

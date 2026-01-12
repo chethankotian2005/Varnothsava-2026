@@ -199,7 +199,7 @@ export default function DigitalEtching({ text, subtitle, className = '' }: Digit
       {/* Subtitle with reveal animation */}
       {subtitle && (
         <motion.p
-          className="mt-8 text-lg sm:text-xl md:text-2xl font-display tracking-[0.2em] text-gold-700/80 uppercase"
+          className="mt-8 text-lg sm:text-xl md:text-2xl font-display tracking-[0.2em] text-gold-900 uppercase"
           initial={{ opacity: 0, y: 20 }}
           animate={isVisible ? { 
             opacity: 1, 

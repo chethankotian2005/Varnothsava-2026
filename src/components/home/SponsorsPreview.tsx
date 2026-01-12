@@ -160,9 +160,9 @@ export default function SponsorsPreview() {
           className="mb-12 text-center"
         >
           <div className="inline-flex items-center gap-2 mb-6">
-            <div className="h-px w-8 bg-gradient-to-r from-transparent to-gray-500/50" />
-            <span className="text-gray-400 text-sm font-mono tracking-widest uppercase">Platinum Partners</span>
-            <div className="h-px w-8 bg-gradient-to-l from-transparent to-gray-500/50" />
+            <div className="h-px w-8 bg-gradient-to-r from-transparent to-white/30" />
+            <span className="text-white/80 text-sm font-mono tracking-widest uppercase">Platinum Partners</span>
+            <div className="h-px w-8 bg-gradient-to-l from-transparent to-white/30" />
           </div>
           <div className="flex flex-wrap justify-center gap-6">
             {sponsors.platinum.map((sponsor, index) => (

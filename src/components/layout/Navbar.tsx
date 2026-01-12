@@ -163,7 +163,7 @@ export default function Navbar() {
                   key={link.name}
                   href={link.href}
                   className={`nav-link font-medium text-sm tracking-[0.12em] uppercase relative group ${
-                    active ? 'active text-gold-500' : 'text-gold-700/90 hover:text-gold-400'
+                    active ? 'active text-gold-500' : 'text-gold-900 hover:text-gold-400'
                   }`}
                   aria-current={active ? 'page' : undefined}
                 >

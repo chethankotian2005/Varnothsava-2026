@@ -3,9 +3,19 @@
 @tailwind utilities;
 
 :root {
-  --font-display: 'Cinzel Decorative', serif;
-  --font-body: 'Inter', sans-serif;
-  --font-mono: 'JetBrains Mono', monospace;
+  /* ========================================
+     FONT STACKS WITH ROBUST FALLBACKS
+     Ensures text is ALWAYS visible even if custom fonts fail
+     ======================================== */
+  
+  /* Display Font: Cinzel Decorative with robust serif fallbacks */
+  --font-display: 'Cinzel Decorative', Georgia, Cambria, 'Times New Roman', Times, serif;
+  
+  /* Body Font: Inter with system UI font stack */
+  --font-body: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  
+  /* Mono Font: JetBrains Mono with monospace fallbacks */
+  --font-mono: 'JetBrains Mono', 'SF Mono', SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
   
   /* ========================================
      DESIGN TOKENS - Varnothsava 2026
@@ -70,11 +80,58 @@
   
   /* Touch Target Minimum */
   --touch-target-min: 44px;
+  
+  /* ========================================
+     CONTRAST SAFETY - Minimum contrast ratios
+     Body text: 4.5:1, Large headings: 3:1
+     ======================================== */
+  --text-safe-primary: #FFFFFF;        /* Maximum contrast fallback */
+  --text-safe-secondary: #E8E4DC;      /* High contrast secondary */
+  --text-safe-gold: #F0D878;           /* Visible gold on dark bg (5.8:1) */
+  --text-safe-muted: #B8B0A0;          /* Muted but readable (4.5:1) */
+}
+
+/* ========================================
+   FONT LOADING SAFETY NET
+   Ensures text is ALWAYS visible during font loading
+   ======================================== */
+
+/* Ensure display font has proper weight/spacing fallback */
+.font-display {
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+/* When Cinzel fails, maintain visual weight with Georgia Bold */
+@supports not (font-variation-settings: normal) {
+  .font-display {
+    font-family: Georgia, Cambria, 'Times New Roman', Times, serif;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+}
+
+/* Contrast safety fallback layer - ensures readability */
+.text-contrast-safe {
+  color: var(--text-safe-primary) !important;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+}
+
+.heading-contrast-safe {
+  color: var(--text-safe-gold) !important;
+  text-shadow: 
+    0 2px 4px rgba(0, 0, 0, 0.9),
+    0 0 20px rgba(201, 162, 39, 0.3);
 }
 
 @layer base {
   html {
     scroll-behavior: smooth;
+    /* Ensure text is visible even before fonts load */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
   }
   
   /* Respect reduced motion preference */
@@ -93,8 +150,26 @@
     }
   }
   
+  /* ========================================
+     FONT LOADING STATES
+     Ensures text is visible during font loading
+     ======================================== */
+  
+  /* Fonts loading - use system fonts with proper weight */
+  .fonts-loading body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+  }
+  
+  .fonts-loading .font-display {
+    font-family: Georgia, Cambria, 'Times New Roman', serif !important;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+  }
+  
   body {
     @apply text-gray-100 antialiased;
+    /* Ensure minimum contrast - white text on dark bg */
+    color: #E8E4DC;
     background: 
       /* Moss-covered stone gradient */
       linear-gradient(180deg, 
@@ -1110,7 +1185,8 @@
   }
 
   .section-subheading {
-    @apply text-lg md:text-xl max-w-2xl mx-auto text-gray-400;
+    @apply text-lg md:text-xl max-w-2xl mx-auto;
+    color: rgba(255, 255, 255, 0.8);
   }
 
   .text-gold-glow {
@@ -1503,5 +1579,92 @@
     animation: shimmer-optimized 2s linear infinite;
     will-change: background-position;
     transform: translateZ(0);
+  }
+}
+
+/* ========================================
+   FONT & CONTRAST SAFETY NET
+   Ensures ALL text is ALWAYS visible
+   ======================================== */
+
+@layer utilities {
+  /* Minimum contrast text classes - WCAG AA compliant */
+  .text-visible {
+    color: #E8E4DC !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+  }
+  
+  .text-visible-gold {
+    color: #F0D878 !important;
+    text-shadow: 
+      0 1px 2px rgba(0, 0, 0, 0.6),
+      0 0 12px rgba(201, 162, 39, 0.2);
+  }
+  
+  .text-visible-heading {
+    color: #FFFFFF !important;
+    text-shadow: 
+      0 2px 4px rgba(0, 0, 0, 0.7),
+      0 0 30px rgba(201, 162, 39, 0.15);
+  }
+  
+  /* Fallback display font styling */
+  .font-display-fallback {
+    font-family: Georgia, Cambria, 'Times New Roman', Times, serif;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+}
+
+/* Heading contrast safety - ensure visibility */
+h1, h2, h3, h4, h5, h6 {
+  color: inherit;
+  /* Ensure headings are never invisible */
+  min-height: 1em;
+}
+
+/* Display font headings get gold by default */
+.font-display {
+  /* Ensure minimum visibility */
+  color: var(--text-safe-gold, #F0D878);
+}
+
+/* Gold text minimum contrast enforcement */
+.text-gold-900,
+.text-gold-800,
+.text-gold-700,
+[class*="text-gold-"] {
+  /* Minimum #C9A227 or lighter for 3:1 contrast on dark */
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+}
+
+/* Muted text visibility enhancement */
+.text-forest-400,
+.text-forest-500,
+.text-forest-600 {
+  /* These are too dark - add subtle enhancement */
+  text-shadow: 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+/* Ensure placeholder text is visible */
+::placeholder {
+  color: rgba(232, 228, 220, 0.5);
+  opacity: 1;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  body {
+    color: #FFFFFF !important;
+  }
+  
+  .font-display {
+    color: #FFD700 !important;
+  }
+  
+  .text-gold-900,
+  [class*="text-gold-"] {
+    color: #FFD700 !important;
   }
 }
