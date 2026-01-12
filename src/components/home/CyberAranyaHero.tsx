@@ -22,15 +22,17 @@ const FlipCountdown = () => {
     minutes: 0,
     seconds: 0,
   })
-  const [prevTime, setPrevTime] = useState({
-    days: 0,
-    hours: 0,
-    minutes: 0,
-    seconds: 0,
-  })
   const [isUrgent, setIsUrgent] = useState(false)
   const [mounted, setMounted] = useState(false)
   const [isEventLive, setIsEventLive] = useState(false)
+  
+  // Store previous values in refs to detect changes without causing re-renders
+  const prevTimeRef = useRef({
+    days: -1,
+    hours: -1,
+    minutes: -1,
+    seconds: -1,
+  })
 
   useEffect(() => {
     setMounted(true)
@@ -53,7 +55,8 @@ const FlipCountdown = () => {
         const seconds = Math.floor((difference / 1000) % 60)
         
         setTimeLeft(prev => {
-          setPrevTime(prev)
+          // Store the previous values before updating
+          prevTimeRef.current = { ...prev }
           return { days, hours, minutes, seconds }
         })
         setIsUrgent(days < 7)
@@ -139,24 +142,24 @@ const FlipCountdown = () => {
                     WebkitTextFillColor: 'transparent',
                     filter: 'drop-shadow(0 -1px 0 rgba(255,229,160,0.2)) drop-shadow(0 2px 4px rgba(0,0,0,0.6))',
                   }}
-                  initial={{ 
+                  initial={hasChanged ? { 
                     opacity: 0, 
                     y: -30,
                     rotateX: -90,
                     filter: 'blur(4px)',
-                  }}
+                  } : false}
                   animate={{ 
                     opacity: 1, 
                     y: 0,
                     rotateX: 0,
                     filter: 'blur(0px)',
                   }}
-                  exit={{
+                  exit={hasChanged ? {
                     opacity: 0,
                     y: 30,
                     rotateX: 90,
                     filter: 'blur(4px)',
-                  }}
+                  } : undefined}
                   transition={{ duration: 0.4, ease: 'easeOut' }}
                 >
                   {value.toString().padStart(2, '0')}
@@ -230,13 +233,13 @@ const FlipCountdown = () => {
 
   return (
     <div className="flex items-center justify-center gap-2 sm:gap-3 md:gap-4">
-      <FlipUnit value={timeLeft.days} prevValue={prevTime.days} label="Days" isUrgentMode={isUrgent} />
+      <FlipUnit value={timeLeft.days} prevValue={prevTimeRef.current.days} label="Days" isUrgentMode={isUrgent} />
       <span className="text-xl md:text-2xl text-gold-800/50 font-light self-start mt-6">:</span>
-      <FlipUnit value={timeLeft.hours} prevValue={prevTime.hours} label="Hours" isUrgentMode={isUrgent} />
+      <FlipUnit value={timeLeft.hours} prevValue={prevTimeRef.current.hours} label="Hours" isUrgentMode={isUrgent} />
       <span className="text-xl md:text-2xl text-gold-800/50 font-light self-start mt-6">:</span>
-      <FlipUnit value={timeLeft.minutes} prevValue={prevTime.minutes} label="Mins" isUrgentMode={isUrgent} />
+      <FlipUnit value={timeLeft.minutes} prevValue={prevTimeRef.current.minutes} label="Mins" isUrgentMode={isUrgent} />
       <span className="text-xl md:text-2xl text-gold-800/50 font-light self-start mt-6">:</span>
-      <FlipUnit value={timeLeft.seconds} prevValue={prevTime.seconds} label="Secs" isUrgentMode={isUrgent} />
+      <FlipUnit value={timeLeft.seconds} prevValue={prevTimeRef.current.seconds} label="Secs" isUrgentMode={isUrgent} />
     </div>
   )
 }

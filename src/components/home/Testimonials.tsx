@@ -9,7 +9,7 @@ const testimonials = [
     id: 1,
     name: 'Priya Sharma',
     college: 'NITK Surathkal',
-    avatar: '/images/avatars/avatar-1.jpg',
+    avatar: 'https://ui-avatars.com/api/?name=Priya+Sharma&background=D4AF37&color=0A0E0F&size=128&bold=true',
     quote: 'Varnothsava was an incredible experience! The hackathon challenged us to think creatively, and the cultural performances were mesmerizing. Can\'t wait for 2026!',
     rating: 5,
     event: 'HackAranya 2024',
@@ -18,7 +18,7 @@ const testimonials = [
     id: 2,
     name: 'Rahul Menon',
     college: 'MIT Manipal',
-    avatar: '/images/avatars/avatar-2.jpg',
+    avatar: 'https://ui-avatars.com/api/?name=Rahul+Menon&background=D4AF37&color=0A0E0F&size=128&bold=true',
     quote: 'The organization was flawless. From registration to prize distribution, everything was handled professionally. The best college fest I\'ve attended!',
     rating: 5,
     event: 'Robotics Challenge',
@@ -27,7 +27,7 @@ const testimonials = [
     id: 3,
     name: 'Sneha Patel',
     college: 'SJCE Mysore',
-    avatar: '/images/avatars/avatar-3.jpg',
+    avatar: 'https://ui-avatars.com/api/?name=Sneha+Patel&background=D4AF37&color=0A0E0F&size=128&bold=true',
     quote: 'Winning the classical dance competition was a dream come true. The judges were fair, the stage was world-class, and the audience was so supportive!',
     rating: 5,
     event: 'Nritya Sangam',
@@ -36,7 +36,7 @@ const testimonials = [
     id: 4,
     name: 'Arjun Reddy',
     college: 'RV College Bangalore',
-    avatar: '/images/avatars/avatar-4.jpg',
+    avatar: 'https://ui-avatars.com/api/?name=Arjun+Reddy&background=D4AF37&color=0A0E0F&size=128&bold=true',
     quote: 'The coding contest had genuinely challenging problems. Met amazing people from different colleges and learned so much in just two days.',
     rating: 5,
     event: 'Code Combat',
@@ -45,7 +45,7 @@ const testimonials = [
     id: 5,
     name: 'Kavya Nair',
     college: 'SDM Dharwad',
-    avatar: '/images/avatars/avatar-5.jpg',
+    avatar: 'https://ui-avatars.com/api/?name=Kavya+Nair&background=D4AF37&color=0A0E0F&size=128&bold=true',
     quote: 'SMVITM knows how to host a fest! The ambiance, the events, the food - everything was perfect. Already counting days to Varnothsava 2026!',
     rating: 5,
     event: 'Photography Contest',
@@ -54,7 +54,7 @@ const testimonials = [
     id: 6,
     name: 'Vikram Singh',
     college: 'PES University',
-    avatar: '/images/avatars/avatar-6.jpg',
+    avatar: 'https://ui-avatars.com/api/?name=Vikram+Singh&background=D4AF37&color=0A0E0F&size=128&bold=true',
     quote: 'The E-Sports tournament was super competitive. Great infrastructure, smooth gameplay, and amazing crowd energy. Looking forward to defending my title!',
     rating: 5,
     event: 'Valorant Championship',
@@ -95,10 +95,15 @@ function TestimonialCard({ testimonial, index }: { testimonial: typeof testimoni
         {/* Author */}
         <div className="flex items-center gap-4 pt-4 border-t border-gold-800/20">
           <div className="relative w-12 h-12 rounded-full overflow-hidden ring-2 ring-gold-800/50 bg-forest-800">
-            {/* Placeholder avatar with initials */}
-            <div className="w-full h-full flex items-center justify-center text-gold-700 font-bold text-lg">
-              {testimonial.name.split(' ').map(n => n[0]).join('')}
-            </div>
+            {/* Avatar with external service fallback */}
+            <Image
+              src={testimonial.avatar}
+              alt={`${testimonial.name}'s avatar`}
+              fill
+              className="object-cover"
+              sizes="48px"
+              unoptimized
+            />
           </div>
           <div>
             <h4 className="text-gold-700 font-semibold">{testimonial.name}</h4>
