@@ -1653,6 +1653,72 @@ h1, h2, h3, h4, h5, h6 {
   opacity: 1;
 }
 
+/* ========================================
+   DEVICE-AWARE CONTRAST
+   Mobile/Tablet: Higher contrast, less texture
+   Desktop: Cinematic depth with WCAG compliance
+   ======================================== */
+
+/* Mobile and Tablet - Reduced background drama, boosted text */
+@media (max-width: 1024px) {
+  /* Reduce background texture strength on mobile */
+  body::before {
+    opacity: 0.015 !important;
+  }
+  
+  /* Boost text brightness on mobile - using attribute selectors for Tailwind classes */
+  [class*="text-white"] {
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+  }
+  
+  .text-gold-900,
+  .text-gold-800,
+  .text-gold-700 {
+    filter: brightness(1.1);
+  }
+  
+  /* Increase overlay opacity behind text for mobile readability */
+  .glass,
+  .glass-gold {
+    background: rgba(10, 22, 18, 0.9) !important;
+  }
+  
+  /* Testimonial cards - cleaner on mobile */
+  [class*="bg-forest-900"] {
+    background: rgba(10, 22, 18, 0.85) !important;
+  }
+}
+
+/* Small mobile - Extra contrast boost */
+@media (max-width: 640px) {
+  /* Even brighter text on small screens */
+  body {
+    color: #F5F5F5;
+  }
+  
+  .font-display {
+    filter: brightness(1.15);
+  }
+  
+  /* Reduce blur effects on mobile for performance and clarity */
+  .backdrop-blur-optimized,
+  .blur-optimized {
+    backdrop-filter: blur(8px) !important;
+  }
+}
+
+/* Desktop - Maintain cinematic depth with WCAG 4.5:1 */
+@media (min-width: 1025px) {
+  /* Enhanced text shadow for readability on complex backgrounds */
+  h1, h2, h3 {
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  }
+  
+  p, li {
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  }
+}
+
 /* High contrast mode support */
 @media (prefers-contrast: high) {
   body {

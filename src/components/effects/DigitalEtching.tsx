@@ -196,10 +196,10 @@ export default function DigitalEtching({ text, subtitle, className = '' }: Digit
         </motion.div>
       </div>
 
-      {/* Subtitle with reveal animation */}
+      {/* Subtitle with reveal animation - Each word styled for visual harmony */}
       {subtitle && (
         <motion.p
-          className="mt-8 text-lg sm:text-xl md:text-2xl font-display tracking-[0.2em] text-gold-900 uppercase"
+          className="mt-8 text-lg sm:text-xl md:text-2xl font-display tracking-[0.15em] uppercase"
           initial={{ opacity: 0, y: 20 }}
           animate={isVisible ? { 
             opacity: 1, 
@@ -210,8 +210,36 @@ export default function DigitalEtching({ text, subtitle, className = '' }: Digit
             delay: text.length * 0.05 + 0.5,
             ease: 'easeOut',
           }}
+          style={{
+            textShadow: '0 2px 8px rgba(0,0,0,0.6), 0 0 20px rgba(212,175,55,0.15)',
+          }}
         >
-          {subtitle}
+          {/* "Where" - warm off-white for readability, not disabled */}
+          <span className="text-[#F5EBD7]">Where </span>
+          {/* "Heritage" - ceremonial gold accent */}
+          <span 
+            className="inline-block"
+            style={{
+              background: 'linear-gradient(135deg, #D4AF37 0%, #FFE5A0 50%, #D4AF37 100%)',
+              backgroundClip: 'text',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              filter: 'drop-shadow(0 0 8px rgba(212,175,55,0.4))',
+            }}
+          >Heritage</span>
+          {/* "Meets" - warm off-white connecting word */}
+          <span className="text-[#F5EBD7]"> Meets </span>
+          {/* "Future" - cyan tech accent */}
+          <span 
+            className="inline-block"
+            style={{
+              background: 'linear-gradient(135deg, #00D4D4 0%, #7FFFD4 50%, #00D4D4 100%)',
+              backgroundClip: 'text',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              filter: 'drop-shadow(0 0 8px rgba(0,212,212,0.4))',
+            }}
+          >Future</span>
         </motion.p>
       )}
     </div>

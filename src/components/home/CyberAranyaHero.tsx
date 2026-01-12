@@ -282,12 +282,22 @@ export default function CyberAranyaHero() {
       className="relative min-h-[100svh] lg:min-h-screen flex items-center justify-center overflow-hidden z-40 pb-32"
       aria-label="Hero section"
     >
-      {/* Hero-specific overlay - darken for readability while showing parallax */}
+      {/* Hero-specific overlay - lightened for premium mystical feel */}
       <div 
         className="absolute inset-0 -z-10 pointer-events-none"
         style={{
           background: `
-            radial-gradient(ellipse 80% 60% at 50% 40%, transparent 0%, rgba(5, 13, 10, 0.4) 60%, rgba(5, 13, 10, 0.7) 100%)
+            radial-gradient(ellipse 80% 60% at 50% 40%, transparent 0%, rgba(5, 13, 10, 0.25) 60%, rgba(5, 13, 10, 0.5) 100%)
+          `
+        }}
+      />
+      
+      {/* Text readability backdrop - subtle light behind text area */}
+      <div 
+        className="absolute inset-0 -z-10 pointer-events-none hidden md:block"
+        style={{
+          background: `
+            radial-gradient(ellipse 60% 50% at 50% 45%, rgba(5, 13, 10, 0.3) 0%, transparent 70%)
           `
         }}
       />

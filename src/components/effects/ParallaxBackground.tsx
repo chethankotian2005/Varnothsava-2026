@@ -59,6 +59,7 @@ export default function ParallaxBackground({ className = '' }: ParallaxBackgroun
       {/* ═══════════════════════════════════════════════════════════════
           LAYER 1: FAR ATMOSPHERIC FOREST (far.jpg)
           Base layer - always visible on all devices
+          Reduced opacity for lighter feel
           ═══════════════════════════════════════════════════════════════ */}
       <motion.div 
         className="absolute inset-0"
@@ -74,12 +75,13 @@ export default function ParallaxBackground({ className = '' }: ParallaxBackgroun
           sizes="100vw"
           onLoad={() => setIsLoaded(true)}
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-forest-950/20 via-transparent to-forest-950/40" />
+        {/* Lighter gradient overlay for brighter feel */}
+        <div className="absolute inset-0 bg-gradient-to-b from-forest-950/10 via-transparent to-forest-950/30" />
       </motion.div>
 
       {/* ═══════════════════════════════════════════════════════════════
           LAYER 2: STONE RUINS TEXTURE (stone.jpg)
-          Mid-ground - always visible, primary texture for mid-sections
+          Mid-ground - reduced opacity for less visual weight
           ═══════════════════════════════════════════════════════════════ */}
       <motion.div 
         className="absolute inset-0"
@@ -93,43 +95,45 @@ export default function ParallaxBackground({ className = '' }: ParallaxBackgroun
           className="object-cover"
           sizes="100vw"
           style={{
-            opacity: 0.65,
+            opacity: isMobile ? 0.35 : 0.45, // Reduced from 0.65 - lighter stone
             mixBlendMode: 'multiply',
           }}
         />
+        {/* Lighter radial vignette */}
         <div 
           className="absolute inset-0"
           style={{
-            background: 'radial-gradient(ellipse 80% 70% at 50% 50%, transparent 20%, rgba(5, 13, 10, 0.5) 100%)',
+            background: 'radial-gradient(ellipse 80% 70% at 50% 50%, transparent 30%, rgba(5, 13, 10, 0.35) 100%)',
           }}
         />
       </motion.div>
 
       {/* ═══════════════════════════════════════════════════════════════
           CINEMATIC OVERLAYS FOR READABILITY
+          Lightened for premium feel - mystical not murky
           ═══════════════════════════════════════════════════════════════ */}
       
-      {/* Top vignette - navbar readability */}
+      {/* Top vignette - navbar readability - lighter */}
       <div 
         className="absolute top-0 left-0 right-0 h-48 pointer-events-none"
         style={{
-          background: 'linear-gradient(to bottom, rgba(5, 13, 10, 0.6) 0%, rgba(5, 13, 10, 0.3) 50%, transparent 100%)',
+          background: 'linear-gradient(to bottom, rgba(5, 13, 10, 0.4) 0%, rgba(5, 13, 10, 0.15) 50%, transparent 100%)',
         }}
       />
 
-      {/* Bottom gradient - footer readability */}
+      {/* Bottom gradient - footer readability - slightly lighter */}
       <div 
         className="absolute bottom-0 left-0 right-0 h-72 pointer-events-none"
         style={{
-          background: 'linear-gradient(to top, rgba(5, 13, 10, 0.95) 0%, rgba(5, 13, 10, 0.7) 40%, transparent 100%)',
+          background: 'linear-gradient(to top, rgba(5, 13, 10, 0.85) 0%, rgba(5, 13, 10, 0.5) 40%, transparent 100%)',
         }}
       />
 
-      {/* Full-screen vignette for cinematic depth */}
+      {/* Full-screen vignette - reduced for brighter center */}
       <div 
         className="absolute inset-0 pointer-events-none"
         style={{
-          background: 'radial-gradient(ellipse 100% 100% at 50% 50%, transparent 30%, rgba(5, 13, 10, 0.45) 100%)',
+          background: 'radial-gradient(ellipse 100% 100% at 50% 50%, transparent 40%, rgba(5, 13, 10, 0.3) 100%)',
         }}
       />
 

@@ -122,18 +122,33 @@ export default function Testimonials() {
   
   return (
     <section className="py-20 lg:py-28 relative overflow-hidden">
-      {/* Background overlay */}
-      <div className="absolute inset-0 bg-forest-950/80 backdrop-blur-[1px]" />
+      {/* Clean, calm background - stone only, lighter overlay, no tech/vines */}
+      <div 
+        className="absolute inset-0"
+        style={{
+          background: `
+            linear-gradient(180deg, 
+              rgba(10, 22, 18, 0.75) 0%, 
+              rgba(13, 31, 24, 0.7) 50%, 
+              rgba(10, 22, 18, 0.75) 100%
+            )
+          `,
+        }}
+      />
       
-      {/* Decorative elements */}
+      {/* Subtle warm glow - clean and trustworthy */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/4 left-0 w-64 h-64 bg-gold-900/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/4 right-0 w-64 h-64 bg-gold-800/10 rounded-full blur-3xl" />
+        <div 
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[600px]"
+          style={{
+            background: 'radial-gradient(ellipse at center, rgba(212, 175, 55, 0.03) 0%, transparent 60%)',
+          }}
+        />
       </div>
       
-      {/* Border accents */}
-      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gold-900/30 to-transparent" />
-      <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gold-900/20 to-transparent" />
+      {/* Border accents - subtle */}
+      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gold-900/20 to-transparent" />
+      <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gold-900/15 to-transparent" />
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
