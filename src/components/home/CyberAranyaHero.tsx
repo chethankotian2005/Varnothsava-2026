@@ -314,26 +314,39 @@ export default function CyberAranyaHero() {
           x: contentMouseX,
         }}
       >
-        {/* Breathing logo as ceremonial seal - sized as royal crest */}
-        <motion.div
-          className="flex justify-center mb-5"
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1, ease: 'easeOut' }}
-        >
-          <BreathingLogo
-            src="/images/logo.png"
-            alt="SMVITM Logo"
-            size={100}
-          />
-        </motion.div>
+        {/* ═══════════════════════════════════════════════════════════════
+            OPTICALLY CENTERED HERO IDENTITY
+            Crest + Title on same visual axis with optical compensation
+            ═══════════════════════════════════════════════════════════════ */}
+        <div className="flex flex-col items-center">
+          {/* Breathing logo as ceremonial seal - sized as royal crest */}
+          <motion.div
+            className="mb-5"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1, ease: 'easeOut' }}
+          >
+            <BreathingLogo
+              src="/images/logo.png"
+              alt="SMVITM Logo"
+              size={100}
+            />
+          </motion.div>
 
-        {/* Digital etching title */}
-        <DigitalEtching
-          text="VARNOTHSAVA"
-          subtitle="Where Heritage Meets the Future"
-          className="mb-5"
-        />
+          {/* Digital etching title - optical centering compensation
+              Wide letter-spacing + gold gradient shifts visual weight right,
+              so we translate left by -1.5% for human-eye balance */}
+          <motion.div
+            className="w-full"
+            style={{ transform: 'translateX(-1.5%)' }}
+          >
+            <DigitalEtching
+              text="VARNOTHSAVA"
+              subtitle="Where Heritage Meets the Future"
+              className="mb-5"
+            />
+          </motion.div>
+        </div>
 
         {/* Year badge */}
         <motion.div
