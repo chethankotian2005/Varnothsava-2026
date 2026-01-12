@@ -65,7 +65,7 @@ function TestimonialCard({ testimonial, index }: { testimonial: typeof testimoni
   const prefersReducedMotion = useReducedMotion()
   
   return (
-    <motion.div
+    <motion.figure
       initial={prefersReducedMotion ? {} : { opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
@@ -73,18 +73,20 @@ function TestimonialCard({ testimonial, index }: { testimonial: typeof testimoni
       whileHover={{ y: -5, scale: 1.02 }}
       className="relative group card-container"
       style={{ willChange: 'transform, opacity' }}
+      role="article"
+      aria-label={`Testimonial from ${testimonial.name} about ${testimonial.event}`}
     >
       {/* Glow effect - GPU optimized */}
       <div className="absolute -inset-0.5 bg-gradient-to-r from-gold-800/20 to-gold-950/20 rounded-2xl blur-optimized opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
       
       <div className="relative bg-forest-900/60 backdrop-blur-optimized rounded-2xl p-6 border border-gold-800/20 hover:border-gold-700 transition-all duration-300 h-full flex flex-col shadow-lg hover:shadow-xl">
         {/* Quote icon */}
-        <Quote className="w-8 h-8 text-gold-800/30 mb-4" />
+        <Quote className="w-8 h-8 text-gold-800/30 mb-4" aria-hidden="true" />
         
-        {/* Testimonial text */}
-        <p className="text-forest-200 leading-relaxed mb-6 flex-grow italic text-base">
-          "{testimonial.quote}"
-        </p>
+        {/* Testimonial text as blockquote */}
+        <blockquote className="text-forest-200 leading-relaxed mb-6 flex-grow italic text-base">
+          <p>"{testimonial.quote}"</p>
+        </blockquote>
         
         {/* Rating */}
         <div className="flex gap-1 mb-4">
@@ -93,13 +95,12 @@ function TestimonialCard({ testimonial, index }: { testimonial: typeof testimoni
           ))}
         </div>
         
-        {/* Author - Enhanced separation */}
-        <div className="flex items-center gap-4 pt-4 border-t border-gold-800/20">
+        {/* Author information as figcaption */}
+        <figcaption className="flex items-center gap-4 pt-4 border-t border-gold-800/20">
           <div className="relative w-12 h-12 rounded-full overflow-hidden ring-2 ring-gold-800/50 bg-forest-800 flex-shrink-0">
-            {/* Avatar with external service fallback */}
             <Image
               src={testimonial.avatar}
-              alt={`${testimonial.name}'s avatar`}
+              alt={`Profile picture of ${testimonial.name}, participant from ${testimonial.college}`}
               fill
               className="object-cover"
               sizes="48px"
@@ -107,15 +108,17 @@ function TestimonialCard({ testimonial, index }: { testimonial: typeof testimoni
             />
           </div>
           <div className="flex-grow min-w-0">
-            <h4 className="text-gold-600 font-bold text-base truncate">{testimonial.name}</h4>
-            <p className="text-white/70 text-sm italic font-medium truncate">{testimonial.college}</p>
+            <cite className="not-italic">
+              <div className="text-gold-600 font-bold text-base truncate">{testimonial.name}</div>
+              <div className="text-white/70 text-sm italic font-medium truncate">{testimonial.college}</div>
+            </cite>
             <span className="inline-block mt-1 px-2 py-0.5 rounded-full bg-gold-950/30 border border-gold-800/30 text-gold-700 text-xs font-semibold tracking-wide">
               {testimonial.event}
             </span>
           </div>
-        </div>
+        </figcaption>
       </div>
-    </motion.div>
+    </motion.figure>
   )
 }
 

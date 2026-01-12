@@ -19,37 +19,37 @@ export default function Home() {
       {/* Ambient environment effects */}
       <MistEffect />
       
-      {/* Main content sections with IDs for scroll-based navigation */}
-      <section id="hero">
+      {/* Main content sections with IDs and consistent spacing for scroll-based navigation */}
+      <section id="hero" className="relative">
         <CyberAranyaHero />
       </section>
       
-      <section id="about">
+      <section id="about" className="relative">
         <FestIdentity />
       </section>
       
       {/* Choose Your Arena - Event categories selection */}
-      <section id="events">
+      <section id="events" className="relative">
         <ChooseYourArena />
       </section>
       
-      <section id="registration">
+      <section id="registration" className="relative">
         <RegistrationSteps />
       </section>
       
-      <section id="leaderboard">
+      <section id="leaderboard" className="relative">
         <LeaderboardTeaser />
       </section>
       
-      <section id="testimonials">
+      <section id="testimonials" className="relative">
         <Testimonials />
       </section>
       
-      <section id="sponsors">
+      <section id="sponsors" className="relative">
         <SponsorsPreview />
       </section>
       
-      <section id="cta">
+      <section id="cta" className="relative">
         <FinalCTA />
       </section>
     </>

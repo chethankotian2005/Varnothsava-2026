@@ -333,21 +333,9 @@ export default function CyberAranyaHero() {
             />
           </motion.div>
 
-          {/* Digital etching title - optical centering compensation
-              Wide letter-spacing + gold gradient shifts visual weight right,
-              Responsive optical correction:
-              - Mobile/default: -1.8%
-              - Tablets (md): -2.2%
-              - Large screens (lg+): -1.5% */}
-          <div 
-            className="w-full"
-            style={{ 
-              '--optical-shift-mobile': '-1.8%',
-              '--optical-shift-tablet': '-2.2%',
-              '--optical-shift-desktop': '-1.5%',
-            } as React.CSSProperties}
-          >
-            <div className="transform translate-x-[var(--optical-shift-mobile)] md:translate-x-[var(--optical-shift-tablet)] lg:translate-x-[var(--optical-shift-desktop)]">
+          {/* Digital etching title - perfectly centered with flexbox */}
+          <div className="w-full flex items-center justify-center">
+            <div className="text-center">
               <DigitalEtching
                 text="VARNOTHSAVA"
                 subtitle="Where Heritage Meets the Future"

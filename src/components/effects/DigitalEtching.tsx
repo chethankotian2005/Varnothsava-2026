@@ -44,9 +44,9 @@ export default function DigitalEtching({ text, subtitle, className = '' }: Digit
   const letters = text.split('')
 
   return (
-    <div ref={containerRef} className={`relative ${className}`}>
-      {/* Main title container - NO grey box or brackets */}
-      <div className="relative">
+    <div ref={containerRef} className={`relative text-center ${className}`}>
+      {/* Main title container - perfectly centered */}
+      <div className="relative inline-block">
         {/* Laser etching line effect */}
         <motion.div
           className="absolute top-1/2 left-0 h-0.5 bg-gradient-to-r from-transparent via-cyan-glow to-transparent"
@@ -68,7 +68,7 @@ export default function DigitalEtching({ text, subtitle, className = '' }: Digit
         />
 
         {/* Individual letters with brushed gold foil texture */}
-        <h1 className="font-display font-black text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl tracking-wider">
+        <h1 className="font-display font-black text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl tracking-wider text-center">
           <span className="sr-only">{text}</span>
           <span aria-hidden="true" className="relative inline-flex">
             {letters.map((letter, index) => (
