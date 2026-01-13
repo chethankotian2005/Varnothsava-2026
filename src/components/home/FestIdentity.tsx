@@ -35,7 +35,18 @@ const features = [
   },
 ]
 
-const stats = [
+// Define the type for stat objects
+type StatConfig = {
+  value: number
+  displayValue: string
+  label: string
+  icon: any
+  suffix?: string
+  prefix?: string
+}
+
+// FIXED CONSTANT STATS - These values NEVER change
+const STATS_CONFIG: StatConfig[] = [
   { value: 30, displayValue: '30+', label: 'Events', icon: Zap, suffix: '+' },
   { value: 2000, displayValue: '2,000+', label: 'Participants', icon: Users, suffix: '+' },
   { value: 2, displayValue: '₹2L+', label: 'Prize Pool', icon: Trophy, prefix: '₹', suffix: 'L+' },
@@ -43,9 +54,9 @@ const stats = [
 ]
 
 // Helper function to format the counter display
-function formatStatValue(stat: typeof stats[0], count: number, hasReachedTarget: boolean): string {
-  // If animation complete, show the final display value
-  if (hasReachedTarget) {
+function formatStatValue(stat: StatConfig, count: number, hasReachedTarget: boolean): string {
+  // ALWAYS show final display value when animation is complete or target reached
+  if (hasReachedTarget || count >= stat.value) {
     return stat.displayValue
   }
   
@@ -67,42 +78,34 @@ function formatStatValue(stat: typeof stats[0], count: number, hasReachedTarget:
   return `${prefix}${count}${suffix}`
 }
 
-// Animated counter component with counting animation
-function AnimatedStat({ stat, index }: { stat: typeof stats[0], index: number }) {
+// Animated counter component with GUARANTEED final value
+function AnimatedStat({ stat, index }: { stat: StatConfig, index: number }) {
   const prefersReducedMotion = useReducedMotion()
   const ref = useRef<HTMLDivElement>(null)
   const isInView = useInView(ref, { once: true, amount: 0.3 })
-  // Start at 0 for animation
-  const [count, setCount] = useState(0)
-  const [hasAnimated, setHasAnimated] = useState(false)
-
-  // Debug logging
-  useEffect(() => {
-    console.log(`[${stat.label}] isInView:`, isInView, 'hasAnimated:', hasAnimated, 'count:', count, 'targetValue:', stat.value)
-  }, [isInView, hasAnimated, count, stat.label, stat.value])
+  const [count, setCount] = useState<number>(stat.value) // START with final value to ensure it's never wrong
+  const [shouldAnimate, setShouldAnimate] = useState(false)
 
   useEffect(() => {
-    // If user prefers reduced motion, show final value immediately
+    // If reduced motion is preferred, keep final value
     if (prefersReducedMotion) {
-      console.log(`[${stat.label}] Reduced motion - showing final value`)
       setCount(stat.value)
-      setHasAnimated(true)
       return
     }
 
-    // Only animate when in view and hasn't animated yet
-    if (isInView && !hasAnimated) {
-      console.log(`[${stat.label}] Starting animation from 0 to ${stat.value}`)
-      setHasAnimated(true)
+    // When component comes into view, start animation from 0
+    if (isInView && !shouldAnimate) {
+      setShouldAnimate(true)
+      setCount(0) // Reset to 0 to start animation
       
-      // Use requestAnimationFrame for smoother animation
       let startTime: number | null = null
       const duration = 2000 // 2 seconds
       let animationFrame: number
       
       const animate = (timestamp: number) => {
         if (!startTime) startTime = timestamp
-        const progress = Math.min((timestamp - startTime) / duration, 1)
+        const elapsed = timestamp - startTime
+        const progress = Math.min(elapsed / duration, 1)
         
         // Easing function for smooth deceleration
         const easeOutQuart = 1 - Math.pow(1 - progress, 4)
@@ -113,8 +116,8 @@ function AnimatedStat({ stat, index }: { stat: typeof stats[0], index: number })
         if (progress < 1) {
           animationFrame = requestAnimationFrame(animate)
         } else {
-          setCount(stat.value) // Ensure we hit the exact target
-          console.log(`[${stat.label}] Animation complete, final value:`, stat.value)
+          // CRITICAL: Ensure final value is EXACTLY the target value
+          setCount(stat.value)
         }
       }
       
@@ -126,20 +129,7 @@ function AnimatedStat({ stat, index }: { stat: typeof stats[0], index: number })
         }
       }
     }
-  }, [isInView, stat.value, hasAnimated, prefersReducedMotion, stat.label])
-
-  // Fallback: if we've been in view for more than 3 seconds and still at 0, force final value
-  useEffect(() => {
-    if (isInView && count === 0 && !hasAnimated) {
-      const fallbackTimer = setTimeout(() => {
-        console.log(`[${stat.label}] Fallback triggered - forcing final value`)
-        setCount(stat.value)
-        setHasAnimated(true)
-      }, 3000)
-      
-      return () => clearTimeout(fallbackTimer)
-    }
-  }, [isInView, count, hasAnimated, stat.value, stat.label])
+  }, [isInView, stat.value, shouldAnimate, prefersReducedMotion])
   
   return (
     <motion.div
@@ -183,7 +173,7 @@ function AnimatedStat({ stat, index }: { stat: typeof stats[0], index: number })
           viewport={{ once: true }}
           transition={{ type: "spring", stiffness: 200, delay: 0.2 + index * 0.1 }}
         >
-          {formatStatValue(stat, count, hasAnimated && count >= stat.value)}
+          {formatStatValue(stat, count, count >= stat.value)}
         </motion.div>
         
         <div className="text-forest-200 text-sm md:text-base uppercase tracking-widest font-mono">
@@ -388,7 +378,7 @@ export default function FestIdentity() {
             <div className="absolute -inset-8 border border-gold-800/10 rounded-3xl" />
             
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
-              {stats.map((stat, index) => (
+              {STATS_CONFIG.map((stat, index) => (
                 <AnimatedStat key={stat.label} stat={stat} index={index} />
               ))}
             </div>
