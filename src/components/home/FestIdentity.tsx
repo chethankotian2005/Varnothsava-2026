@@ -37,10 +37,35 @@ const features = [
 
 const stats = [
   { value: 30, displayValue: '30+', label: 'Events', icon: Zap, suffix: '+' },
-  { value: 2000, displayValue: '2000+', label: 'Participants', icon: Users, suffix: '+' },
+  { value: 2000, displayValue: '2,000+', label: 'Participants', icon: Users, suffix: '+' },
   { value: 2, displayValue: '₹2L+', label: 'Prize Pool', icon: Trophy, prefix: '₹', suffix: 'L+' },
   { value: 4, displayValue: '4', label: 'Days', icon: Calendar, suffix: '' },
 ]
+
+// Helper function to format the counter display
+function formatStatValue(stat: typeof stats[0], count: number, hasReachedTarget: boolean): string {
+  // If animation complete, show the final display value
+  if (hasReachedTarget) {
+    return stat.displayValue
+  }
+  
+  // During animation, format based on the stat type
+  const prefix = stat.prefix || ''
+  const suffix = stat.suffix || ''
+  
+  // For participants (large numbers), add comma formatting
+  if (stat.label === 'Participants') {
+    return `${count.toLocaleString()}${suffix}`
+  }
+  
+  // For prize pool, show ₹ and L+ suffix
+  if (stat.label === 'Prize Pool') {
+    return `${prefix}${count}${suffix}`
+  }
+  
+  // For others, simple format
+  return `${prefix}${count}${suffix}`
+}
 
 // Animated counter component with counting animation
 function AnimatedStat({ stat, index }: { stat: typeof stats[0], index: number }) {
@@ -123,7 +148,7 @@ function AnimatedStat({ stat, index }: { stat: typeof stats[0], index: number })
           viewport={{ once: true }}
           transition={{ type: "spring", stiffness: 200, delay: 0.2 + index * 0.1 }}
         >
-          {hasAnimated && count >= stat.value ? stat.displayValue : `${stat.prefix || ''}${count.toLocaleString()}${stat.suffix}`}
+          {formatStatValue(stat, count, hasAnimated && count >= stat.value)}
         </motion.div>
         
         <div className="text-forest-200 text-sm md:text-base uppercase tracking-widest font-mono">
