@@ -83,23 +83,28 @@ function AnimatedStat({ stat, index }: { stat: StatConfig, index: number }) {
   const prefersReducedMotion = useReducedMotion()
   const ref = useRef<HTMLDivElement>(null)
   const isInView = useInView(ref, { once: true, amount: 0.3 })
-  const [count, setCount] = useState<number>(stat.value) // START with final value to ensure it's never wrong
-  const [shouldAnimate, setShouldAnimate] = useState(false)
+  const [count, setCount] = useState<number>(stat.value) // Always start with final value
+  const hasStartedAnimation = useRef(false)
 
   useEffect(() => {
-    // If reduced motion is preferred, keep final value
+    // Always ensure we have the correct value
+    if (!hasStartedAnimation.current) {
+      setCount(stat.value)
+    }
+  }, [stat.value])
+
+  useEffect(() => {
+    // Skip animation if reduced motion is preferred
     if (prefersReducedMotion) {
       setCount(stat.value)
       return
     }
 
-    // When component comes into view, start animation from 0
-    if (isInView && !shouldAnimate) {
-      setShouldAnimate(true)
-      setCount(0) // Reset to 0 to start animation
-      
+    // Only animate once when in view
+    if (isInView && !hasStartedAnimation.current) {
+      hasStartedAnimation.current = true
       let startTime: number | null = null
-      const duration = 2000 // 2 seconds
+      const duration = 2000
       let animationFrame: number
       
       const animate = (timestamp: number) => {
@@ -107,7 +112,6 @@ function AnimatedStat({ stat, index }: { stat: StatConfig, index: number }) {
         const elapsed = timestamp - startTime
         const progress = Math.min(elapsed / duration, 1)
         
-        // Easing function for smooth deceleration
         const easeOutQuart = 1 - Math.pow(1 - progress, 4)
         const currentValue = Math.floor(easeOutQuart * stat.value)
         
@@ -116,20 +120,23 @@ function AnimatedStat({ stat, index }: { stat: StatConfig, index: number }) {
         if (progress < 1) {
           animationFrame = requestAnimationFrame(animate)
         } else {
-          // CRITICAL: Ensure final value is EXACTLY the target value
           setCount(stat.value)
         }
       }
       
+      // Start animation from 0
+      setCount(0)
       animationFrame = requestAnimationFrame(animate)
       
       return () => {
         if (animationFrame) {
           cancelAnimationFrame(animationFrame)
         }
+        // Ensure final value on cleanup
+        setCount(stat.value)
       }
     }
-  }, [isInView, stat.value, shouldAnimate, prefersReducedMotion])
+  }, [isInView, stat.value, prefersReducedMotion])
   
   return (
     <motion.div
