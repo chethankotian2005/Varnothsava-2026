@@ -8,7 +8,7 @@ import Link from 'next/link'
 import { ArrowRight, Sparkles, Calendar, MapPin, Users, Zap, Trophy } from 'lucide-react'
 
 const highlights = [
-  { icon: Calendar, label: 'March 15-17, 2026' },
+  { icon: Calendar, label: 'March 11-14, 2026' },
   { icon: MapPin, label: 'SMVITM Campus, Udupi' },
   { icon: Users, label: '5000+ Participants' },
 ]
@@ -194,10 +194,10 @@ export default function FinalCTA() {
           >
             <p className="text-forest-300 text-sm flex items-center justify-center gap-2">
               <span className="inline-block w-2 h-2 rounded-full bg-gold-800 animate-pulse" aria-hidden="true" />
-              Registration closes March 10, 2026
+              Registration closes March 9, 2026
             </p>
             <p className="text-cyan-glow text-sm font-mono">
-              🎉 Early bird pricing • 20% off on all events until Feb 28
+              🎉 Join thousands of students from across India
             </p>
           </motion.div>
         </div>

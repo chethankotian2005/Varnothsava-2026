@@ -26,7 +26,7 @@ const steps = [
     step: 3,
     icon: CreditCard,
     title: 'Make Payment',
-    description: 'Complete secure payment via UPI, cards, or net banking. Early bird discounts available!',
+    description: 'Complete secure payment via UPI, cards, or net banking. Multiple payment options available.',
     gradient: 'from-gold-700 to-gold-500',
     glowColor: 'rgba(212, 175, 55, 0.3)',
   },
@@ -213,24 +213,11 @@ export default function RegistrationSteps() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ delay: 0.7 }}
-              className="bg-gradient-to-r from-gold-950/20 via-gold-900/30 to-gold-950/20 border border-gold-800/40 rounded-xl px-6 py-3 backdrop-blur-sm"
-            >
-              <p className="text-gold-600 font-bold text-base flex items-center justify-center gap-2">
-                <span className="inline-block w-2 h-2 rounded-full bg-gold-700 animate-pulse" />
-                Early bird offer ends February 28, 2026
-              </p>
-            </motion.div>
-            
-            <motion.div 
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.8 }}
               className="bg-gradient-to-r from-heritage-maroon/10 via-heritage-maroon/20 to-heritage-maroon/10 border border-heritage-maroon/30 rounded-xl px-6 py-3 backdrop-blur-sm"
             >
               <p className="text-heritage-maroon font-bold text-base flex items-center justify-center gap-2">
                 <span className="inline-block w-2 h-2 rounded-full bg-heritage-maroon animate-pulse" />
-                Registration closes March 10, 2026
+                Registration closes March 9, 2026
               </p>
             </motion.div>
           </div>

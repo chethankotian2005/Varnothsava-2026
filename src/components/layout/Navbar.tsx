@@ -283,7 +283,7 @@ export default function Navbar() {
                   className="pt-8 border-t border-gold-800/20"
                 >
                   <p className="text-white/75 text-sm text-center">
-                    March 15-17, 2026 • SMVITM
+                    March 11-14, 2026 • SMVITM
                   </p>
                 </motion.div>
               </div>

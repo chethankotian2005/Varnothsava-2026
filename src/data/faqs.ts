@@ -26,7 +26,7 @@ export const faqs: FAQ[] = [
   {
     id: 'when-where',
     question: 'When and where is Varnothsava 2026?',
-    answer: 'Varnothsava 2026 will be held from March 15-17, 2026 at the SMVITM campus in Bantakal, Udupi, Karnataka. The fest spans 3 action-packed days with events running from 9 AM to 10 PM each day.',
+    answer: 'Varnothsava 2026 will be held from March 11-14, 2026 at the SMVITM campus in Bantakal, Udupi, Karnataka. The fest spans 4 action-packed days with events running from 9 AM to 10 PM each day.',
     category: 'general',
   },
   {
@@ -58,13 +58,7 @@ export const faqs: FAQ[] = [
   {
     id: 'registration-fee',
     question: 'What is the registration fee?',
-    answer: 'Registration fees vary by event. Individual events range from ₹100-500, while team events range from ₹400-1500. We offer an Early Bird discount of 20% off on all registrations made before February 28, 2026.',
-    category: 'registration',
-  },
-  {
-    id: 'early-bird',
-    question: 'What is the Early Bird offer?',
-    answer: 'Register before February 28, 2026 and get 20% off on all event registration fees! This is our way of rewarding early planners. The discount is automatically applied at checkout.',
+    answer: 'Registration fees vary by event. Individual events range from ₹100-500, while team events range from ₹400-1500. Multiple payment options are available including UPI, cards, and net banking.',
     category: 'registration',
   },
   {
@@ -154,7 +148,7 @@ export const faqs: FAQ[] = [
   {
     id: 'refund-policy',
     question: 'What is the refund policy?',
-    answer: 'Full refund if cancelled before March 1, 2026. 50% refund for cancellations between March 1-10. No refunds after March 10. Refunds are processed within 7-10 business days to the original payment method.',
+    answer: 'Full refund if cancelled before March 1, 2026. 50% refund for cancellations between March 1-9. No refunds after March 9. Refunds are processed within 7-10 business days to the original payment method.',
     category: 'payment',
   },
   {

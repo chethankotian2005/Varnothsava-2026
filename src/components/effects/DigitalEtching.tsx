@@ -68,7 +68,7 @@ export default function DigitalEtching({ text, subtitle, className = '' }: Digit
         />
 
         {/* Individual letters with brushed gold foil texture */}
-        <h1 className="font-display font-black text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl tracking-wider text-center leading-tight">
+        <h1 className="font-display font-black text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl text-center leading-tight" style={{ letterSpacing: '0.15em' }}>
           <span className="sr-only">{text}</span>
           <span aria-hidden="true" className="relative inline-flex">
             {letters.map((letter, index) => (
@@ -93,31 +93,30 @@ export default function DigitalEtching({ text, subtitle, className = '' }: Digit
                   ease: [0.22, 1, 0.36, 1],
                 }}
                 style={{
-                  // Brushed gold foil texture with embossed effect
+                  // Enhanced gold gradient with more impact
                   background: `linear-gradient(
                     135deg,
-                    #8B7355 0%,
-                    #D4AF37 15%,
-                    #FFE5A0 30%,
-                    #D4AF37 45%,
-                    #8B6914 55%,
-                    #D4AF37 70%,
-                    #FFE5A0 85%,
-                    #B8860B 100%
+                    #D4AF37 0%,
+                    #FFD700 25%,
+                    #FFF4CC 50%,
+                    #FFD700 75%,
+                    #D4AF37 100%
                   )`,
                   backgroundSize: '200% 200%',
                   backgroundClip: 'text',
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',
-                  textShadow: 'none',
-                  // Multi-layer drop shadows for embossed metallic look
+                  letterSpacing: '0.15em',
+                  textShadow: '0 0 30px rgba(212, 175, 55, 0.3)',
+                  // Enhanced drop shadows for majestic glow
                   filter: `
-                    drop-shadow(0 -1px 0 rgba(255,229,160,0.3))
-                    drop-shadow(0 1px 0 rgba(0,0,0,0.6))
-                    drop-shadow(0 2px 2px rgba(0,0,0,0.5))
-                    drop-shadow(0 4px 8px rgba(0,0,0,0.4))
-                    drop-shadow(0 0 15px rgba(212,175,55,0.3))
-                    drop-shadow(0 0 30px rgba(212,175,55,0.15))
+                    drop-shadow(0 -1px 0 rgba(255,229,160,0.4))
+                    drop-shadow(0 1px 0 rgba(0,0,0,0.7))
+                    drop-shadow(0 2px 3px rgba(0,0,0,0.6))
+                    drop-shadow(0 5px 10px rgba(0,0,0,0.5))
+                    drop-shadow(0 0 20px rgba(212,175,55,0.5))
+                    drop-shadow(0 0 40px rgba(212,175,55,0.3))
+                    drop-shadow(0 0 60px rgba(212,175,55,0.15))
                   `,
                 }}
               >
@@ -164,15 +163,15 @@ export default function DigitalEtching({ text, subtitle, className = '' }: Digit
           </span>
         </h1>
 
-        {/* Underline accent with circuit pattern */}
+        {/* Underline accent with circuit pattern - Enhanced */}
         <motion.div
-          className="relative h-0.5 mt-6 mx-auto overflow-hidden"
-          style={{ width: '60%' }}
+          className="relative mt-6 mx-auto overflow-hidden"
+          style={{ width: '60%', height: '2px' }}
           initial={{ scaleX: 0, opacity: 0 }}
           animate={isVisible ? { scaleX: 1, opacity: 1 } : {}}
           transition={{ duration: 1, delay: text.length * 0.05 + 0.3, ease: 'easeOut' }}
         >
-          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-gold-950 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-gold-700 to-transparent" style={{ boxShadow: '0 0 8px rgba(212, 175, 55, 0.5)' }} />
           
           {/* Traveling light effect */}
           <motion.div

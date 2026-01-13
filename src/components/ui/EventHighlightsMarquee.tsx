@@ -4,11 +4,11 @@ import { motion } from 'framer-motion'
 import { Sparkles, Trophy, Zap, Calendar, Users } from 'lucide-react'
 
 const highlights = [
-  { icon: Sparkles, text: 'Early Bird: 20% OFF till Feb 28', color: 'text-gold-600' },
   { icon: Trophy, text: 'Prize Pool: ₹2,00,000+', color: 'text-gold-700' },
   { icon: Zap, text: '30+ Exciting Events', color: 'text-cyan-500' },
   { icon: Users, text: '2000+ Participants Expected', color: 'text-forest-300' },
-  { icon: Calendar, text: 'March 15-18, 2026', color: 'text-gold-600' },
+  { icon: Calendar, text: 'March 11-14, 2026', color: 'text-gold-600' },
+  { icon: Sparkles, text: 'Registration Open Now!', color: 'text-gold-600' },
 ]
 
 export default function EventHighlightsMarquee() {

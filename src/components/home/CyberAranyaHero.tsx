@@ -18,7 +18,7 @@ const TechnoBackground = dynamic(() => import('@/components/effects/TechnoBackgr
 const FlipCountdown = () => {
   // Calculate initial time immediately to prevent showing 0
   const getInitialTime = () => {
-    const targetDate = new Date('2026-03-15T00:00:00+05:30')
+    const targetDate = new Date('2026-03-11T00:00:00+05:30')
     const now = new Date()
     const difference = targetDate.getTime() - now.getTime()
     
@@ -53,8 +53,8 @@ const FlipCountdown = () => {
   useEffect(() => {
     if (!mounted) return
 
-    // March 15, 2026 at midnight IST (Indian Standard Time UTC+5:30)
-    const targetDate = new Date('2026-03-15T00:00:00+05:30')
+    // March 11, 2026 at midnight IST (Indian Standard Time UTC+5:30)
+    const targetDate = new Date('2026-03-11T00:00:00+05:30')
 
     const calculateTimeLeft = () => {
       const now = new Date()
@@ -241,7 +241,7 @@ const FlipCountdown = () => {
         >
           🎉 EVENT IS LIVE! 🎉
         </motion.div>
-        <p className="text-white/85 mt-4 text-lg">March 15-17, 2026 • SMVITM Campus</p>
+        <p className="text-white/85 mt-4 text-lg">March 11-14, 2026 • SMVITM Campus</p>
       </motion.div>
     )
   }
@@ -471,8 +471,8 @@ export default function CyberAranyaHero() {
           <AddToCalendar
             title="Varnothsava 2026 - SMVITM"
             description="Karnataka's grandest inter-collegiate cultural and technical fest. 50+ events, ₹10L+ prizes, 5000+ participants. Don't miss it!"
-            startDate="2026-03-15T09:00:00"
-            endDate="2026-03-17T18:00:00"
+            startDate="2026-03-11T09:00:00"
+            endDate="2026-03-14T18:00:00"
             location="SMVITM, Bantakal, Udupi, Karnataka 574115"
           />
         </motion.div>

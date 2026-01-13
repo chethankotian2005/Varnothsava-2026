@@ -90,8 +90,8 @@ const jsonLd = {
   '@type': 'Event',
   name: 'Varnothsava 2026',
   description: 'Karnataka\'s grandest inter-collegiate cultural and technical fest featuring 50+ events, hackathons, cultural performances, and more.',
-  startDate: '2026-03-15T09:00:00+05:30',
-  endDate: '2026-03-17T18:00:00+05:30',
+  startDate: '2026-03-11T09:00:00+05:30',
+  endDate: '2026-03-14T18:00:00+05:30',
   eventStatus: 'https://schema.org/EventScheduled',
   eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
   location: {

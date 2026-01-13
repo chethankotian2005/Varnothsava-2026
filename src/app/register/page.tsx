@@ -43,32 +43,6 @@ function StepIndicator({ currentStep, steps }: { currentStep: number; steps: str
   )
 }
 
-// Early bird banner
-function EarlyBirdBanner() {
-  const earlyBirdEnd = new Date('2026-02-28T23:59:59')
-  const now = new Date()
-  const isEarlyBird = now < earlyBirdEnd
-
-  if (!isEarlyBird) return null
-
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: -20 }}
-      animate={{ opacity: 1, y: 0 }}
-      className="bg-gradient-to-r from-gold-900/30 via-gold-800/40 to-gold-900/30 border border-gold-700/50 rounded-xl p-4 mb-8 flex items-center justify-between"
-    >
-      <div className="flex items-center gap-3">
-        <Sparkles className="w-6 h-6 text-gold-500" />
-        <div>
-          <p className="text-gold-500 font-semibold">Early Bird Offer!</p>
-          <p className="text-gold-600/80 text-sm">Get 20% off on all registrations until Feb 28, 2026</p>
-        </div>
-      </div>
-      <div className="text-gold-500 font-mono text-lg">-20%</div>
-    </motion.div>
-  )
-}
-
 // College list for dropdown
 const collegesList = [
   'SMVITM, Bantakal',
@@ -119,12 +93,8 @@ export default function RegisterPage() {
     setMounted(true)
   }, [])
 
-  // Calculate total fee with early bird discount
+  // Calculate total fee
   const calculateTotal = () => {
-    const earlyBirdEnd = new Date('2026-02-28T23:59:59')
-    const isEarlyBird = new Date() < earlyBirdEnd
-    const discount = isEarlyBird ? 0.2 : 0
-
     const total = selectedEvents.reduce((sum, eventId) => {
       const event = events.find(e => e.id === eventId)
       return sum + (event?.registrationFee || 0)
@@ -132,9 +102,9 @@ export default function RegisterPage() {
 
     return {
       subtotal: total,
-      discount: Math.round(total * discount),
-      total: Math.round(total * (1 - discount)),
-      isEarlyBird,
+      discount: 0,
+      total: total,
+      isEarlyBird: false,
     }
   }
 
@@ -185,8 +155,6 @@ export default function RegisterPage() {
             Join 5000+ participants from 50+ colleges
           </p>
         </motion.div>
-
-        <EarlyBirdBanner />
 
         {/* Step Indicator */}
         <StepIndicator currentStep={step} steps={steps} />
@@ -407,12 +375,6 @@ export default function RegisterPage() {
                       <span>Subtotal</span>
                       <span>₹{calculateTotal().subtotal}</span>
                     </div>
-                    {calculateTotal().isEarlyBird && (
-                      <div className="flex justify-between text-green-500">
-                        <span>Early Bird Discount (20%)</span>
-                        <span>-₹{calculateTotal().discount}</span>
-                      </div>
-                    )}
                     <div className="flex justify-between text-xl font-bold text-gold-500">
                       <span>Total</span>
                       <span>₹{calculateTotal().total}</span>
