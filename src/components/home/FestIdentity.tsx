@@ -76,9 +76,15 @@ function AnimatedStat({ stat, index }: { stat: typeof stats[0], index: number })
   const [count, setCount] = useState(0)
   const [hasAnimated, setHasAnimated] = useState(false)
 
+  // Debug logging
+  useEffect(() => {
+    console.log(`[${stat.label}] isInView:`, isInView, 'hasAnimated:', hasAnimated, 'count:', count, 'targetValue:', stat.value)
+  }, [isInView, hasAnimated, count, stat.label, stat.value])
+
   useEffect(() => {
     // If user prefers reduced motion, show final value immediately
     if (prefersReducedMotion) {
+      console.log(`[${stat.label}] Reduced motion - showing final value`)
       setCount(stat.value)
       setHasAnimated(true)
       return
@@ -86,25 +92,54 @@ function AnimatedStat({ stat, index }: { stat: typeof stats[0], index: number })
 
     // Only animate when in view and hasn't animated yet
     if (isInView && !hasAnimated) {
+      console.log(`[${stat.label}] Starting animation from 0 to ${stat.value}`)
       setHasAnimated(true)
+      
+      // Use requestAnimationFrame for smoother animation
+      let startTime: number | null = null
       const duration = 2000 // 2 seconds
-      const steps = 60
-      const increment = stat.value / steps
-      let current = 0
+      let animationFrame: number
       
-      const timer = setInterval(() => {
-        current += increment
-        if (current >= stat.value) {
-          setCount(stat.value)
-          clearInterval(timer)
+      const animate = (timestamp: number) => {
+        if (!startTime) startTime = timestamp
+        const progress = Math.min((timestamp - startTime) / duration, 1)
+        
+        // Easing function for smooth deceleration
+        const easeOutQuart = 1 - Math.pow(1 - progress, 4)
+        const currentValue = Math.floor(easeOutQuart * stat.value)
+        
+        setCount(currentValue)
+        
+        if (progress < 1) {
+          animationFrame = requestAnimationFrame(animate)
         } else {
-          setCount(Math.floor(current))
+          setCount(stat.value) // Ensure we hit the exact target
+          console.log(`[${stat.label}] Animation complete, final value:`, stat.value)
         }
-      }, duration / steps)
+      }
       
-      return () => clearInterval(timer)
+      animationFrame = requestAnimationFrame(animate)
+      
+      return () => {
+        if (animationFrame) {
+          cancelAnimationFrame(animationFrame)
+        }
+      }
     }
-  }, [isInView, stat.value, hasAnimated, prefersReducedMotion])
+  }, [isInView, stat.value, hasAnimated, prefersReducedMotion, stat.label])
+
+  // Fallback: if we've been in view for more than 3 seconds and still at 0, force final value
+  useEffect(() => {
+    if (isInView && count === 0 && !hasAnimated) {
+      const fallbackTimer = setTimeout(() => {
+        console.log(`[${stat.label}] Fallback triggered - forcing final value`)
+        setCount(stat.value)
+        setHasAnimated(true)
+      }, 3000)
+      
+      return () => clearTimeout(fallbackTimer)
+    }
+  }, [isInView, count, hasAnimated, stat.value, stat.label])
   
   return (
     <motion.div
