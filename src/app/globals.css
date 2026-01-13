@@ -1,4 +1,4 @@
-@tailwind base;
+﻿@tailwind base;
 @tailwind components;
 @tailwind utilities;
 
@@ -823,6 +823,29 @@
   @keyframes gold-shimmer {
     0%, 100% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
+  }
+
+  /* Bold metallic gold shimmer for hero title */
+  @keyframes shimmerGold {
+    0% {
+      background-position: 0% 50%;
+    }
+    100% {
+      background-position: 200% 50%;
+    }
+  }
+
+  /* Reduce motion for accessibility */
+  @media (prefers-reduced-motion: reduce) {
+    .shimmerGold {
+      animation: none !important;
+    }
+    
+    /* Keep static gold gradient */
+    [style*="shimmerGold"] {
+      animation: none !important;
+      background-position: 50% 50% !important;
+    }
   }
 
   /* Glint effect that travels across text */
@@ -2409,5 +2432,24 @@ html {
 .floating-element:nth-child(3) {
   animation-delay: 4s;
   animation-duration: 7s;
+}
+
+ 
+/* ========================================
+   MOBILE OPTIMIZATION FOR HERO TITLE
+   Reduce effects on small screens for better performance
+   ======================================== */
+@media (max-width: 768px) {
+  /* Reduce text shadows for better performance */
+  [style*="textShadow"] {
+    text-shadow: 
+      0 0 10px rgba(255, 215, 0, 0.6),
+      0 5px 10px rgba(0, 0, 0, 0.8) !important;
+  }
+  
+  /* Simplify background animations */
+  [style*="shimmerGold"] {
+    animation-duration: 8s !important; /* Slower = less CPU */
+  }
 }
 

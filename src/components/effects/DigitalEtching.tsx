@@ -13,6 +13,18 @@ export default function DigitalEtching({ text, subtitle, className = '' }: Digit
   const containerRef = useRef<HTMLDivElement>(null)
   const [isVisible, setIsVisible] = useState(false)
   const [glintActive, setGlintActive] = useState(false)
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false)
+
+  // Detect prefers-reduced-motion
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
+    setPrefersReducedMotion(mediaQuery.matches)
+    
+    const handleChange = (e: MediaQueryListEvent) => setPrefersReducedMotion(e.matches)
+    mediaQuery.addEventListener('change', handleChange)
+    
+    return () => mediaQuery.removeEventListener('change', handleChange)
+  }, [])
 
   useEffect(() => {
     // Trigger animation after component mounts
@@ -67,10 +79,48 @@ export default function DigitalEtching({ text, subtitle, className = '' }: Digit
           }}
         />
 
-        {/* Individual letters with brushed gold foil texture */}
-        <h1 className="font-display font-black text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl text-center leading-tight" style={{ letterSpacing: '0.15em' }}>
+        {/* Radial glow backdrop for title spotlight effect */}
+        <motion.div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background: 'radial-gradient(ellipse at center, rgba(212, 175, 55, 0.12) 0%, transparent 60%)',
+            filter: 'blur(60px)',
+          }}
+          initial={{ opacity: 0 }}
+          animate={isVisible ? { opacity: 1 } : {}}
+          transition={{ duration: 1.5, delay: 0.5 }}
+        />
+
+        {/* Individual letters with bold metallic gold effect */}
+        <motion.h1 
+          className="font-display font-black text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl text-center leading-tight uppercase group cursor-default"
+          style={{ 
+            letterSpacing: '0.2em',
+            fontWeight: 900,
+          }}
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={isVisible ? { opacity: 1, scale: 1 } : {}}
+          transition={{
+            duration: prefersReducedMotion ? 0.3 : 1.2,
+            ease: prefersReducedMotion ? 'easeOut' : [0.34, 1.56, 0.64, 1], // Bounce effect
+          }}
+        >
           <span className="sr-only">{text}</span>
-          <span aria-hidden="true" className="relative inline-flex">
+          <span 
+            aria-hidden="true" 
+            className="relative inline-flex transition-all duration-300 ease-out"
+            style={{
+              willChange: 'transform',
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.transform = 'scale(1.02)';
+              e.currentTarget.style.letterSpacing = '0.22em';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.transform = 'scale(1)';
+              e.currentTarget.style.letterSpacing = '0.2em';
+            }}
+          >
             {letters.map((letter, index) => (
               <motion.span
                 key={index}
@@ -93,38 +143,38 @@ export default function DigitalEtching({ text, subtitle, className = '' }: Digit
                   ease: [0.22, 1, 0.36, 1],
                 }}
                 style={{
-                  // Enhanced gold gradient with more impact
+                  // Bold metallic gold gradient
                   background: `linear-gradient(
                     135deg,
-                    #D4AF37 0%,
-                    #FFD700 25%,
-                    #FFF4CC 50%,
-                    #FFD700 75%,
-                    #D4AF37 100%
+                    #FFD700 0%,
+                    #FFA500 25%,
+                    #FFD700 50%,
+                    #FFED4E 75%,
+                    #FFD700 100%
                   )`,
                   backgroundSize: '200% 200%',
                   backgroundClip: 'text',
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',
-                  letterSpacing: '0.15em',
-                  textShadow: '0 0 30px rgba(212, 175, 55, 0.3)',
-                  // Enhanced drop shadows for majestic glow
-                  filter: `
-                    drop-shadow(0 -1px 0 rgba(255,229,160,0.4))
-                    drop-shadow(0 1px 0 rgba(0,0,0,0.7))
-                    drop-shadow(0 2px 3px rgba(0,0,0,0.6))
-                    drop-shadow(0 5px 10px rgba(0,0,0,0.5))
-                    drop-shadow(0 0 20px rgba(212,175,55,0.5))
-                    drop-shadow(0 0 40px rgba(212,175,55,0.3))
-                    drop-shadow(0 0 60px rgba(212,175,55,0.15))
+                  letterSpacing: 'inherit',
+                  fontWeight: 'inherit',
+                  // Powerful multi-layer shadow for depth and glow
+                  textShadow: `
+                    0 0 20px rgba(255, 215, 0, 0.8),
+                    0 0 40px rgba(255, 165, 0, 0.6),
+                    0 0 60px rgba(255, 215, 0, 0.4),
+                    0 5px 15px rgba(0, 0, 0, 0.8),
+                    0 10px 30px rgba(0, 0, 0, 0.6)
                   `,
+                  animation: prefersReducedMotion ? 'none' : 'shimmerGold 5s ease-in-out infinite alternate',
+                  backgroundPosition: prefersReducedMotion ? '50% 50%' : undefined,
                 }}
               >
                 {letter === ' ' ? '\u00A0' : letter}
               </motion.span>
             ))}
 
-            {/* Diagonal continuous light-sweep glint - softer, slower */}
+            {/* Diagonal continuous light-sweep glint - enhanced */}
             <motion.div
               className="absolute inset-0 pointer-events-none overflow-hidden"
               style={{ clipPath: 'inset(0)' }}
@@ -132,57 +182,73 @@ export default function DigitalEtching({ text, subtitle, className = '' }: Digit
               <motion.div
                 className="absolute"
                 style={{
-                  width: '100px', // Wider for softer effect
+                  width: '120px',
                   height: '200%',
                   top: '-50%',
-                  // Softer edges with more gradual opacity falloff
                   background: `linear-gradient(
                     90deg,
                     transparent 0%,
-                    rgba(255,255,255,0.03) 15%,
-                    rgba(255,255,255,0.08) 30%,
-                    rgba(255,255,255,0.2) 42%,
-                    rgba(255,255,255,0.35) 50%,
-                    rgba(255,255,255,0.2) 58%,
-                    rgba(255,255,255,0.08) 70%,
-                    rgba(255,255,255,0.03) 85%,
+                    rgba(255,255,255,0.05) 15%,
+                    rgba(255,255,255,0.15) 30%,
+                    rgba(255,255,255,0.3) 42%,
+                    rgba(255,255,255,0.5) 50%,
+                    rgba(255,255,255,0.3) 58%,
+                    rgba(255,255,255,0.15) 70%,
+                    rgba(255,255,255,0.05) 85%,
                     transparent 100%
                   )`,
-                  transform: 'rotate(15deg)', // Slightly less angle
-                  filter: 'blur(2px)', // Softer edge
+                  transform: 'rotate(15deg)',
+                  filter: 'blur(2px)',
                 }}
                 animate={{
                   left: glintActive ? ['-25%', '125%'] : '-25%',
                 }}
                 transition={{
-                  duration: 2, // Slower sweep
-                  ease: [0.4, 0, 0.2, 1], // Smooth ease
+                  duration: 2,
+                  ease: [0.4, 0, 0.2, 1],
                 }}
               />
             </motion.div>
           </span>
-        </h1>
+        </motion.h1>
 
-        {/* Underline accent with circuit pattern - Enhanced */}
+        {/* Enhanced underline accent with animated gradient */}
         <motion.div
           className="relative mt-6 mx-auto overflow-hidden"
-          style={{ width: '60%', height: '2px' }}
+          style={{ width: '60%', height: '5px' }}
           initial={{ scaleX: 0, opacity: 0 }}
           animate={isVisible ? { scaleX: 1, opacity: 1 } : {}}
           transition={{ duration: 1, delay: text.length * 0.05 + 0.3, ease: 'easeOut' }}
         >
-          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-gold-700 to-transparent" style={{ boxShadow: '0 0 8px rgba(212, 175, 55, 0.5)' }} />
-          
-          {/* Traveling light effect */}
-          <motion.div
-            className="absolute inset-y-0 w-16"
+          {/* Animated gold gradient background */}
+          <motion.div 
+            className="absolute inset-0"
             style={{
-              background: 'linear-gradient(90deg, transparent, rgba(0,242,255,0.8), transparent)',
-              boxShadow: '0 0 10px rgba(0,242,255,0.5)',
+              background: 'linear-gradient(90deg, transparent 0%, #FFD700 20%, #FFA500 40%, #FFD700 60%, #FFED4E 80%, transparent 100%)',
+              backgroundSize: '200% 100%',
+              boxShadow: '0 0 15px rgba(255, 215, 0, 0.8), 0 0 30px rgba(255, 165, 0, 0.5)',
             }}
-            initial={{ left: '0%' }}
             animate={{
-              left: ['0%', '100%'],
+              backgroundPosition: ['0% 50%', '200% 50%'],
+            }}
+            transition={{
+              duration: 3,
+              ease: 'linear',
+              repeat: Infinity,
+            }}
+          />
+          
+          {/* Traveling light effect - enhanced */}
+          <motion.div
+            className="absolute inset-y-0 w-20"
+            style={{
+              background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent)',
+              boxShadow: '0 0 15px rgba(255,255,255,0.6)',
+              filter: 'blur(4px)',
+            }}
+            initial={{ left: '-20%' }}
+            animate={{
+              left: ['-20%', '120%'],
             }}
             transition={{
               duration: 2.5,
