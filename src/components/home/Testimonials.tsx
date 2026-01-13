@@ -84,7 +84,7 @@ function TestimonialCard({ testimonial, index }: { testimonial: typeof testimoni
         <Quote className="w-8 h-8 text-gold-800/30 mb-4" aria-hidden="true" />
         
         {/* Testimonial text as blockquote */}
-        <blockquote className="text-forest-200 leading-relaxed mb-6 flex-grow italic text-base">
+        <blockquote className="text-forest-100 leading-relaxed mb-6 flex-grow italic" style={{ fontSize: '16px', lineHeight: '1.7' }}>
           <p>"{testimonial.quote}"</p>
         </blockquote>
         
@@ -110,9 +110,9 @@ function TestimonialCard({ testimonial, index }: { testimonial: typeof testimoni
           <div className="flex-grow min-w-0">
             <cite className="not-italic">
               <div className="text-gold-600 font-bold text-base truncate">{testimonial.name}</div>
-              <div className="text-white/70 text-sm italic font-medium truncate">{testimonial.college}</div>
+              <div className="text-white/85 text-sm italic font-medium truncate">{testimonial.college}</div>
             </cite>
-            <span className="inline-block mt-1 px-2 py-0.5 rounded-full bg-gold-950/30 border border-gold-800/30 text-gold-700 text-xs font-semibold tracking-wide">
+            <span className="inline-block mt-1 px-2 py-0.5 rounded-full bg-gold-950/30 border border-gold-800/30 text-gold-700 font-semibold tracking-wide" style={{ fontSize: '13px' }}>
               {testimonial.event}
             </span>
           </div>
@@ -183,7 +183,7 @@ export default function Testimonials() {
             Say
           </h2>
           
-          <p className="text-white/80 max-w-2xl mx-auto">
+          <p className="text-white/85 max-w-2xl mx-auto text-base md:text-lg">
             Hear from students who experienced the magic of Varnothsava
           </p>
         </motion.div>

@@ -197,7 +197,7 @@ const FlipCountdown = () => {
           <div className="absolute top-1/2 -right-2 w-1 h-1 -translate-y-1/2 rounded-full bg-cyan-glow/50 shadow-[0_0_4px_rgba(0,242,255,0.5)]" />
         </motion.div>
         
-        <span className={`text-xs font-mono tracking-[0.25em] uppercase ${isUrgentMode ? 'text-red-400' : 'text-white/85'}`}>
+        <span className={`text-[13px] sm:text-sm font-mono tracking-[0.25em] uppercase ${isUrgentMode ? 'text-red-400' : 'text-white/85'}`}>
           {label}
         </span>
       </div>
@@ -320,7 +320,7 @@ export default function CyberAranyaHero() {
 
       {/* Main content with parallax - balanced padding to fit all content */}
       <motion.div
-        className="relative z-30 text-center px-6 md:px-12 lg:px-24 max-w-6xl mx-auto pt-20 md:pt-24 pb-8"
+        className="relative z-30 text-center px-4 sm:px-6 md:px-12 lg:px-24 max-w-6xl mx-auto pt-20 md:pt-24 pb-8"
         style={{
           y: contentY,
           x: contentMouseX,
@@ -376,7 +376,7 @@ export default function CyberAranyaHero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1.4 }}
         >
-          <p className="text-white/85 text-xs tracking-[0.4em] uppercase mb-5 font-semibold text-engraved [text-shadow:_0_2px_8px_rgb(0_0_0_/_60%)]">
+          <p className="text-white/85 text-[13px] sm:text-sm tracking-[0.4em] uppercase mb-5 font-semibold text-engraved [text-shadow:_0_2px_8px_rgb(0_0_0_/_60%)]">
             The Awakening Begins In
           </p>
           <FlipCountdown />
@@ -410,7 +410,7 @@ export default function CyberAranyaHero() {
             />
             <Link 
               href="/register" 
-              className="relative flex items-center justify-center gap-2 min-w-[200px] text-center text-base font-bold px-8 py-4 
+              className="relative flex items-center justify-center gap-2 min-w-[200px] min-h-[44px] text-center text-base font-bold px-8 py-4 
                          bg-gradient-to-r from-gold-800 via-gold-700 to-gold-950 
                          text-forest-950 rounded-xl
                          shadow-[0_0_30px_rgba(212,175,55,0.4)] 
@@ -446,7 +446,7 @@ export default function CyberAranyaHero() {
           >
             <Link 
               href="/events" 
-              className="relative flex items-center justify-center gap-2 min-w-[180px] text-center px-6 py-4
+              className="relative flex items-center justify-center gap-2 min-w-[180px] min-h-[44px] text-center px-6 py-4
                          bg-forest-900/60 backdrop-blur-sm
                          text-gold-700 font-semibold rounded-xl
                          border border-gold-800/40 hover:border-gold-700

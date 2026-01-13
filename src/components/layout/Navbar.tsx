@@ -177,7 +177,8 @@ export default function Navbar() {
           <div className="hidden lg:flex items-center space-x-4">
             <Link 
               href="/register" 
-              className="btn-liquid-gold text-xs tracking-wider focus-ring"
+              className="btn-liquid-gold tracking-wider focus-ring" 
+              style={{ fontSize: '14px' }}
             >
               Register Now
             </Link>
@@ -186,12 +187,12 @@ export default function Navbar() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="lg:hidden p-3 text-forest-200 hover:text-gold-950 transition-colors rounded-lg focus-ring"
+            className="lg:hidden p-2.5 min-w-[44px] min-h-[44px] flex items-center justify-center text-forest-200 hover:text-gold-950 transition-colors rounded-lg focus-ring"
             aria-label={isOpen ? 'Close menu' : 'Open menu'}
             aria-expanded={isOpen}
             aria-controls="mobile-menu"
           >
-            {isOpen ? <X size={24} /> : <Menu size={24} />}
+            {isOpen ? <X size={28} /> : <Menu size={28} />}
           </button>
         </div>
       </nav>

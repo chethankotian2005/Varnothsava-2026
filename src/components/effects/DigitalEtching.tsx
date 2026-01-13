@@ -68,7 +68,7 @@ export default function DigitalEtching({ text, subtitle, className = '' }: Digit
         />
 
         {/* Individual letters with brushed gold foil texture */}
-        <h1 className="font-display font-black text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl tracking-wider text-center">
+        <h1 className="font-display font-black text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl tracking-wider text-center leading-tight">
           <span className="sr-only">{text}</span>
           <span aria-hidden="true" className="relative inline-flex">
             {letters.map((letter, index) => (
@@ -199,7 +199,7 @@ export default function DigitalEtching({ text, subtitle, className = '' }: Digit
       {/* Subtitle with reveal animation - Each word styled for visual harmony */}
       {subtitle && (
         <motion.p
-          className="mt-8 text-lg sm:text-xl md:text-2xl font-display tracking-[0.15em] uppercase"
+          className="mt-6 text-base sm:text-lg md:text-xl lg:text-2xl font-display tracking-[0.15em] uppercase px-4"
           initial={{ opacity: 0, y: 20 }}
           animate={isVisible ? { 
             opacity: 1, 

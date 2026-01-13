@@ -67,7 +67,7 @@ export default function Footer() {
                 <span className="text-cyan-glow text-sm font-mono">2026</span>
               </div>
             </Link>
-            <p className="text-white/80 text-sm mb-6 max-w-xs leading-relaxed">
+            <p className="text-white/85 mb-6 max-w-xs leading-relaxed" style={{ fontSize: '14px', lineHeight: '1.6' }}>
               The grandest inter-collegiate fest of coastal Karnataka. Where heritage meets innovation, and dreams take flight.
             </p>
             
@@ -80,8 +80,8 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   whileHover={{ scale: 1.1, y: -2 }}
-                  className={`w-12 h-12 rounded-xl bg-forest-900/50 border border-gold-800/20 flex items-center justify-center text-forest-300 ${social.color} hover:text-white hover:border-transparent transition-all duration-300 focus-ring`}
-                  aria-label={`Follow us on ${social.name}`}
+                  className={`w-12 h-12 min-w-[44px] min-h-[44px] rounded-xl bg-forest-900/50 border border-gold-800/20 flex items-center justify-center text-forest-300 ${social.color} hover:text-white hover:border-transparent transition-all duration-300 focus-ring`}
+                  aria-label={`Follow us on ${social.name} (opens in new tab)`}
                 >
                   <social.icon size={20} aria-hidden="true" />
                 </motion.a>

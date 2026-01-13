@@ -47,8 +47,8 @@ function AnimatedStat({ stat, index }: { stat: typeof stats[0], index: number })
   const prefersReducedMotion = useReducedMotion()
   const ref = useRef<HTMLDivElement>(null)
   const isInView = useInView(ref, { once: true, amount: 0.3 })
-  // Initialize with actual value to prevent showing 0
-  const [count, setCount] = useState(stat.value)
+  // Start at 0 for animation
+  const [count, setCount] = useState(0)
   const [hasAnimated, setHasAnimated] = useState(false)
 
   useEffect(() => {
@@ -62,7 +62,6 @@ function AnimatedStat({ stat, index }: { stat: typeof stats[0], index: number })
     // Only animate when in view and hasn't animated yet
     if (isInView && !hasAnimated) {
       setHasAnimated(true)
-      setCount(0) // Reset to 0 for animation
       const duration = 2000 // 2 seconds
       const steps = 60
       const increment = stat.value / steps
@@ -117,16 +116,17 @@ function AnimatedStat({ stat, index }: { stat: typeof stats[0], index: number })
         </motion.div>
         
         <motion.div 
-          className="text-4xl md:text-5xl lg:text-6xl font-display font-bold bg-gradient-to-r from-gold-800 via-gold-700 to-gold-950 bg-clip-text text-transparent mb-2"
+          className="text-4xl md:text-5xl lg:text-6xl font-display bg-gradient-to-r from-gold-800 via-gold-700 to-gold-950 bg-clip-text text-transparent mb-2"
+          style={{ fontWeight: 700 }}
           initial={prefersReducedMotion ? {} : { scale: 0.5 }}
           whileInView={{ scale: 1 }}
           viewport={{ once: true }}
           transition={{ type: "spring", stiffness: 200, delay: 0.2 + index * 0.1 }}
         >
-          {stat.prefix || ''}{count.toLocaleString()}{stat.suffix}
+          {hasAnimated && count >= stat.value ? stat.displayValue : `${stat.prefix || ''}${count.toLocaleString()}${stat.suffix}`}
         </motion.div>
         
-        <div className="text-forest-300 text-sm uppercase tracking-widest font-mono">
+        <div className="text-forest-200 text-sm md:text-base uppercase tracking-widest font-mono">
           {stat.label}
         </div>
         
@@ -259,7 +259,7 @@ export default function FestIdentity() {
             </span>
           </h2>
           
-          <p className="text-lg lg:text-xl text-forest-300 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-base md:text-lg lg:text-xl text-forest-200 max-w-3xl mx-auto leading-relaxed">
             Varnothsava embodies the perfect fusion of Karnataka&apos;s cultural richness 
             with cutting-edge technological innovation — a celebration where 
             <span className="text-gold-950"> tradition inspires innovation</span>.
@@ -298,7 +298,7 @@ export default function FestIdentity() {
                   {feature.title}
                 </h3>
                 
-                <p className="text-forest-300 text-sm leading-relaxed">
+                <p className="text-forest-200 text-sm md:text-base leading-relaxed">
                   {feature.description}
                 </p>
 

@@ -25,7 +25,7 @@ export default function EventHighlightsMarquee() {
           return (
             <div key={index} className="flex items-center gap-2 px-8">
               <Icon className={`w-4 h-4 ${highlight.color}`} />
-              <span className="text-sm font-medium text-forest-200">
+              <span className="text-sm md:text-base font-medium text-forest-200">
                 {highlight.text}
               </span>
             </div>

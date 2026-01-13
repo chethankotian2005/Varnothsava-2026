@@ -34,7 +34,7 @@ export default function LiveCounter() {
       {/* Icon and text */}
       <Users className="w-4 h-4 text-gold-600" />
       <motion.span 
-        className="text-sm font-medium text-forest-200"
+        className="text-sm md:text-base font-medium text-forest-200"
         key={registrations}
         initial={{ scale: 1.2, color: '#E8D5A3' }}
         animate={{ scale: 1, color: '#A8A090' }}

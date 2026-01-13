@@ -50,8 +50,8 @@
   
   /* Neutral Scale (for text) */
   --text-primary: #E8E4DC;         /* Weathered parchment white */
-  --text-secondary: #A8A090;       /* Stone gray */
-  --text-muted: #6B6458;           /* Moss shadow */
+  --text-secondary: #B8B0A0;       /* Lighter stone gray for better readability */
+  --text-muted: #64748B;           /* Darker gray for better contrast (was #6B6458) */
   
   /* Spacing Tokens */
   --section-padding-y: clamp(4rem, 8vw, 8rem);
@@ -185,7 +185,10 @@
         var(--bg-deep) 100%
       );
     background-attachment: fixed;
-    font-size: clamp(16px, 1rem, 18px);
+    font-size: clamp(16px, 1.125rem, 18px);
+    line-height: 1.6;
+    overflow-x: hidden;
+    position: relative;
   }
   
   /* Ancient stone texture overlay (CSS-only) */
@@ -217,11 +220,16 @@
   /* Ensure minimum touch targets */
   button,
   a,
+  [role="button"],
+  [role="link"] {
+    min-height: 44px;
+  }
+  
   input,
   select,
-  textarea,
-  [role="button"] {
-    min-height: var(--touch-target-min);
+  textarea {
+    min-height: 44px;
+    font-size: 16px; /* Prevent zoom on iOS */
   }
   
   /* Links base styling */
@@ -232,6 +240,50 @@
   a:focus-visible {
     box-shadow: var(--focus-ring);
     border-radius: 4px;
+  }
+
+  /* ========================================
+     FORM INPUT STYLES - Enhanced Visibility
+     ======================================== */
+  input,
+  textarea,
+  select {
+    font-size: 16px; /* Prevent iOS zoom */
+    transition: all 300ms ease;
+  }
+
+  input:focus,
+  textarea:focus,
+  select:focus {
+    outline: none;
+    border-color: var(--color-gold);
+    box-shadow: 0 0 0 3px rgba(201, 162, 39, 0.2);
+  }
+
+  input::placeholder,
+  textarea::placeholder {
+    color: #64748B;
+    opacity: 1;
+  }
+
+  /* Input visual feedback */
+  input:invalid:not(:placeholder-shown),
+  textarea:invalid:not(:placeholder-shown) {
+    border-color: #ef4444;
+  }
+
+  input:valid:not(:placeholder-shown),
+  textarea:valid:not(:placeholder-shown) {
+    border-color: #10b981;
+  }
+
+  /* Disabled state */
+  input:disabled,
+  textarea:disabled,
+  select:disabled,
+  button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
   }
 
   /* Ancient ruins content sections */
@@ -547,9 +599,13 @@
      CEREMONIAL GOLD BUTTON - Ancient Metal Effect
      ======================================== */
   .btn-liquid-gold {
-    @apply relative inline-flex items-center justify-center px-10 py-5
-           font-display font-bold text-lg
+    @apply relative inline-flex items-center justify-center
+           font-display font-bold
            overflow-hidden cursor-pointer;
+    min-width: 160px;
+    min-height: 44px;
+    padding: 0.875rem 2.5rem;
+    font-size: clamp(14px, 1rem, 18px);
     letter-spacing: 0.12em;
     border-radius: var(--card-radius);
     background: linear-gradient(145deg, 
@@ -648,9 +704,13 @@
      CIRCUIT BORDER BUTTON - Ancient Tech Ghost
      ======================================== */
   .btn-circuit {
-    @apply relative inline-flex items-center justify-center px-10 py-5
-           font-display font-bold text-lg
+    @apply relative inline-flex items-center justify-center
+           font-display font-bold
            overflow-hidden cursor-pointer;
+    min-width: 160px;
+    min-height: 44px;
+    padding: 0.875rem 2.5rem;
+    font-size: clamp(14px, 1rem, 18px);
     letter-spacing: 0.1em;
     border-radius: var(--card-radius);
     background: transparent;
@@ -1781,6 +1841,34 @@ h1, h2, h3, h4, h5, h6 {
 /* ========================================
    PREMIUM MICRO-INTERACTIONS & EFFECTS
    ======================================== */
+
+/* Mobile-specific touch feedback */
+@media (hover: none) {
+  button:active,
+  a:active,
+  .btn-liquid-gold:active,
+  .btn-circuit:active {
+    transform: scale(0.96);
+    opacity: 0.9;
+  }
+}
+
+/* Loading state for dynamic content */
+.loading-skeleton {
+  background: linear-gradient(
+    90deg,
+    rgba(10, 22, 18, 0.5) 0%,
+    rgba(13, 31, 24, 0.8) 50%,
+    rgba(10, 22, 18, 0.5) 100%
+  );
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.5s ease-in-out infinite;
+}
+
+@keyframes skeleton-loading {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
 
 /* Button press effect */
 button,
