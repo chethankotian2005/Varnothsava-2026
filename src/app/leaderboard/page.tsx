@@ -38,8 +38,8 @@ function RankBadge({ rank }: { rank: number }) {
     )
   }
   return (
-    <div className="w-10 h-10 bg-forest-700/50 rounded-full flex items-center justify-center">
-      <span className="text-forest-300 font-mono font-bold">{rank}</span>
+    <div className="w-10 h-10 bg-forest-700/50 rounded-full flex items-center justify-center border border-gold-700/30">
+      <span className="text-gold-400 font-mono font-bold">{rank}</span>
     </div>
   )
 }
@@ -86,12 +86,12 @@ function CollegeRow({ college, index, category }: { college: College & { rank: n
               <h3 className="font-semibold text-forest-100 truncate">{college.shortName}</h3>
               <TrendIndicator trend={trend} />
             </div>
-            <p className="text-sm text-forest-500 truncate">{college.location}</p>
+            <p className="text-sm text-forest-200 truncate">{college.location}</p>
           </div>
 
           <div className="text-right">
             <p className="text-2xl font-mono font-bold text-gold-500">{points}</p>
-            <p className="text-xs text-forest-500">points</p>
+            <p className="text-xs text-forest-200">points</p>
           </div>
 
           <ChevronDown className={`w-5 h-5 text-forest-500 transition-transform ${expanded ? 'rotate-180' : ''}`} />
@@ -106,7 +106,7 @@ function CollegeRow({ college, index, category }: { college: College & { rank: n
               className="overflow-hidden"
             >
               <div className="pt-4 mt-4 border-t border-forest-700/50">
-                <p className="text-sm text-forest-400 mb-3">{college.name}</p>
+                <p className="text-sm text-forest-200 mb-3">{college.name}</p>
                 <div className="grid grid-cols-3 md:grid-cols-6 gap-3 text-center">
                   {Object.entries(college.points).filter(([key]) => key !== 'overall').map(([key, value]) => (
                     <div key={key} className="bg-forest-700/30 rounded-lg p-2">
@@ -115,7 +115,7 @@ function CollegeRow({ college, index, category }: { college: College & { rank: n
                     </div>
                   ))}
                 </div>
-                <p className="text-sm text-forest-500 mt-3">
+                <p className="text-sm text-forest-200 mt-3">
                   Events Participated: <span className="text-gold-600">{college.eventsParticipated}</span>
                 </p>
               </div>
@@ -163,10 +163,10 @@ export default function LeaderboardPage() {
           <h1 className="text-4xl md:text-5xl font-display font-bold text-gold-500 mb-4">
             Live Leaderboard
           </h1>
-          <p className="text-forest-400 text-lg mb-2">
+          <p className="text-forest-200 text-lg mb-2">
             Real-time college rankings based on event performance
           </p>
-          <p className="text-sm text-forest-500">
+          <p className="text-sm text-forest-200">
             Last updated: {lastUpdated} IST • Auto-refreshes every 30 seconds
           </p>
         </motion.div>
