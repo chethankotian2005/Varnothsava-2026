@@ -111,16 +111,16 @@ export default function LeaderboardTeaser() {
               <span className="text-cyan-400 text-sm font-mono tracking-wider uppercase text-engraved">Live Rankings</span>
             </motion.div>
             
-            <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-forest-100 mb-6 my-10 text-monumental">
+            <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 my-10 text-monumental">
               Race to the{' '}
               <span className="relative inline-block">
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-gold-800 via-gold-700 to-gold-950">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-gold-400 via-gold-500 to-gold-600">
                   Championship
                 </span>
               </span>
             </h2>
             
-            <p className="text-base text-forest-400 mb-8 leading-relaxed max-w-md">
+            <p className="text-base text-gray-300 mb-8 leading-relaxed max-w-md">
               Track your college’s position live. Every win adds points. 
               Top 3 colleges receive the Overall Championship Trophy.
             </p>
@@ -140,8 +140,8 @@ export default function LeaderboardTeaser() {
                   </div>
                 </div>
                 <div>
-                  <p className="text-forest-100 font-display font-semibold text-lg">Overall Championship</p>
-                  <p className="text-forest-400 text-sm">₹2,00,000 + Trophy + Bragging Rights</p>
+                  <p className="text-white font-display font-semibold text-lg">Overall Championship</p>
+                  <p className="text-gray-300 text-sm">₹2,00,000 + Trophy + Bragging Rights</p>
                 </div>
               </motion.div>
               
@@ -158,8 +158,8 @@ export default function LeaderboardTeaser() {
                   </div>
                 </div>
                 <div>
-                  <p className="text-forest-100 font-display font-semibold text-lg">Category Champions</p>
-                  <p className="text-forest-400 text-sm">₹50,000 each for 6 categories</p>
+                  <p className="text-white font-display font-semibold text-lg">Category Champions</p>
+                  <p className="text-gray-300 text-sm">₹50,000 each for 6 categories</p>
                 </div>
               </motion.div>
             </div>
@@ -187,10 +187,10 @@ export default function LeaderboardTeaser() {
             <div className="relative bg-forest-900/50 backdrop-blur-sm rounded-2xl p-6 lg:p-8 border border-gold-800/20">
               <div className="flex items-center justify-between mb-6">
                 <div className="flex items-center gap-2">
-                  <Sparkles className="w-5 h-5 text-gold-950" />
-                  <h3 className="text-lg font-display font-semibold text-forest-100">Top Colleges</h3>
+                  <Sparkles className="w-5 h-5 text-gold-400" />
+                  <h3 className="text-lg font-display font-semibold text-white">Top Colleges</h3>
                 </div>
-                <span className="text-xs text-forest-500 font-mono uppercase tracking-wider">Live</span>
+                <span className="text-xs text-gray-400 font-mono uppercase tracking-wider">Live</span>
               </div>
 
               {/* Podium */}
@@ -229,17 +229,17 @@ export default function LeaderboardTeaser() {
                         {college.icon ? (
                           <college.icon className={`w-5 h-5 ${college.color}`} />
                         ) : (
-                          <span className="text-forest-400 text-sm font-mono font-bold">{college.rank}</span>
+                          <span className="text-gray-300 text-sm font-mono font-bold">{college.rank}</span>
                         )}
                       </div>
-                      <span className={`font-medium ${college.rank <= 3 ? 'text-forest-100' : 'text-forest-300'}`}>
+                      <span className={`font-medium ${college.rank <= 3 ? 'text-white' : 'text-gray-200'}`}>
                         {college.name}
                       </span>
                     </div>
                     <div className="flex items-center gap-3">
                       <span className="text-xs text-cyan-400 font-mono">{college.trend}</span>
                       <span className={`font-display font-bold ${
-                        college.rank === 1 ? 'text-gold-950 text-xl' : 'text-forest-400'
+                        college.rank === 1 ? 'text-gold-400 text-xl' : 'text-gray-300'
                       }`}>
                         {college.points.toLocaleString()}
                       </span>
@@ -248,7 +248,7 @@ export default function LeaderboardTeaser() {
                 ))}
               </div>
 
-              <p className="text-center text-forest-500 text-sm mt-6 font-mono">
+              <p className="text-center text-gray-400 text-sm mt-6 font-mono">
                 ⚡ Rankings update after each event
               </p>
             </div>
