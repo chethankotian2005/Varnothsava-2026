@@ -1,6 +1,5 @@
 import { Metadata } from 'next'
 import ParallaxBackground from '@/components/effects/ParallaxBackground'
-import DigitalEtching from '@/components/effects/DigitalEtching'
 import { Calendar, Clock, MapPin, Music, Sparkles, Users } from 'lucide-react'
 
 export const metadata: Metadata = {
@@ -14,11 +13,10 @@ export const metadata: Metadata = {
 
 export default function ProShowPage() {
   return (
-    <main className="relative min-h-screen bg-gradient-to-b from-forest-950 via-forest-900 to-forest-950">
+    <main className="relative min-h-screen bg-gradient-to-b from-forest-950 via-forest-900 to-forest-950 overflow-x-hidden">
       {/* Background Effects */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <ParallaxBackground />
-        <DigitalEtching text="PRO SHOW 2026" />
       </div>
 
       {/* Hero Section */}
