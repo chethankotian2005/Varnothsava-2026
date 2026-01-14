@@ -42,7 +42,7 @@ export default function AboutPage() {
           <h1 className="text-4xl md:text-5xl font-display font-bold text-gold-500 mb-6">
             About Varnothsava
           </h1>
-          <p className="text-xl text-forest-300 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-xl text-gray-200 max-w-3xl mx-auto leading-relaxed">
             Where Karnataka&apos;s rich cultural heritage meets cutting-edge technology. 
             Varnothsava is more than a fest – it&apos;s a celebration of talent, creativity, and innovation.
           </p>
@@ -61,11 +61,11 @@ export default function AboutPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 + index * 0.1 }}
-              className="bg-forest-900/50 backdrop-blur-sm border border-forest-700/50 rounded-xl p-6 text-center"
+              className="bg-forest-900/70 backdrop-blur-sm border border-forest-700/50 rounded-xl p-6 text-center"
             >
               <item.icon className="w-10 h-10 text-gold-500 mx-auto mb-3" />
-              <p className="text-2xl font-display font-bold text-forest-100">{item.label}</p>
-              <p className="text-sm text-forest-500">{item.description}</p>
+              <p className="text-2xl font-display font-bold text-white">{item.label}</p>
+              <p className="text-sm text-gray-300">{item.description}</p>
             </motion.div>
           ))}
         </motion.div>
@@ -77,11 +77,11 @@ export default function AboutPage() {
           viewport={{ once: true }}
           className="mb-16"
         >
-          <div className="bg-gradient-to-r from-gold-900/30 via-gold-800/20 to-gold-900/30 border border-gold-700/30 rounded-2xl p-8 md:p-12">
-            <h2 className="text-3xl font-display font-bold text-gold-500 mb-6 text-center">
+          <div className="bg-gradient-to-r from-gold-900/40 via-gold-800/30 to-gold-900/40 border border-gold-700/40 rounded-2xl p-8 md:p-12">
+            <h2 className="text-3xl font-display font-bold text-gold-400 mb-6 text-center">
               Cyber-Aranya Awakens
             </h2>
-            <p className="text-forest-300 text-lg leading-relaxed max-w-4xl mx-auto text-center">
+            <p className="text-gray-200 text-lg leading-relaxed max-w-4xl mx-auto text-center">
               The theme for Varnothsava 2026 – &quot;Cyber-Aranya Awakens&quot; – represents the harmonious 
               fusion of ancient wisdom and futuristic innovation. Like the mythical forest that 
               comes alive with digital energy, our fest transforms the campus into a realm where 
@@ -103,47 +103,47 @@ export default function AboutPage() {
           
           <div className="grid md:grid-cols-2 gap-8 items-center">
             <div>
-              <p className="text-forest-300 leading-relaxed mb-4">
-                <strong className="text-gold-600">Shri Madhwa Vadiraja Institute of Technology & Management (SMVITM)</strong> 
+              <p className="text-gray-200 leading-relaxed mb-4">
+                <strong className="text-gold-400">Shri Madhwa Vadiraja Institute of Technology & Management (SMVITM)</strong> 
                 {' '}is a premier engineering institution located in the serene town of Bantakal, Udupi, Karnataka.
               </p>
-              <p className="text-forest-400 leading-relaxed mb-4">
+              <p className="text-gray-300 leading-relaxed mb-4">
                 Established under the Sri Soda Vadiraja Mutt, SMVITM has been nurturing young minds 
                 since 2008, offering quality education in engineering and management disciplines. 
                 The institution is known for its excellent infrastructure, dedicated faculty, and 
                 a holistic approach to education that balances academics with co-curricular activities.
               </p>
-              <p className="text-forest-400 leading-relaxed">
+              <p className="text-gray-300 leading-relaxed">
                 Varnothsava, the annual cultural and technical fest, is a testament to the 
                 institution&apos;s commitment to providing students with platforms to showcase their 
                 talents and connect with peers from across the country.
               </p>
             </div>
             
-            <div className="bg-forest-800/50 rounded-2xl p-6 border border-forest-700/50">
+            <div className="bg-forest-800/70 rounded-2xl p-6 border border-forest-700/50">
               <div className="flex items-start gap-3 mb-4">
                 <MapPin className="w-5 h-5 text-gold-500 mt-1" />
                 <div>
-                  <p className="text-forest-200 font-medium">Location</p>
-                  <p className="text-forest-400 text-sm">Bantakal, Udupi, Karnataka 574115</p>
+                  <p className="text-white font-medium">Location</p>
+                  <p className="text-gray-300 text-sm">Bantakal, Udupi, Karnataka 574115</p>
                 </div>
               </div>
               <div className="space-y-3 text-sm">
                 <div className="flex justify-between">
-                  <span className="text-forest-500">Established</span>
-                  <span className="text-forest-300">2008</span>
+                  <span className="text-gray-400">Established</span>
+                  <span className="text-gray-200">2008</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-forest-500">Affiliated to</span>
-                  <span className="text-forest-300">VTU, Belagavi</span>
+                  <span className="text-gray-400">Affiliated to</span>
+                  <span className="text-gray-200">VTU, Belagavi</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-forest-500">Accreditation</span>
-                  <span className="text-forest-300">NAAC &apos;A&apos; Grade</span>
+                  <span className="text-gray-400">Accreditation</span>
+                  <span className="text-gray-200">NAAC &apos;A&apos; Grade</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-forest-500">Programs</span>
-                  <span className="text-forest-300">B.E., M.Tech, MBA</span>
+                  <span className="text-gray-400">Programs</span>
+                  <span className="text-gray-200">B.E., M.Tech, MBA</span>
                 </div>
               </div>
             </div>
@@ -169,11 +169,11 @@ export default function AboutPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="bg-forest-900/50 backdrop-blur-sm border border-forest-700/50 rounded-xl p-6 hover:border-gold-700/50 transition-all duration-300"
+                className="bg-forest-900/70 backdrop-blur-sm border border-forest-700/50 rounded-xl p-6 hover:border-gold-700/50 transition-all duration-300"
               >
                 <feature.icon className="w-12 h-12 text-gold-500 mb-4" />
-                <h3 className="text-xl font-display font-bold text-forest-100 mb-3">{feature.title}</h3>
-                <p className="text-forest-400">{feature.description}</p>
+                <h3 className="text-xl font-display font-bold text-white mb-3">{feature.title}</h3>
+                <p className="text-gray-300">{feature.description}</p>
               </motion.div>
             ))}
           </div>
@@ -202,14 +202,14 @@ export default function AboutPage() {
                 initial={{ opacity: 0, x: index % 2 === 0 ? -20 : 20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                className="flex items-center gap-6 bg-forest-900/30 rounded-xl p-4 border border-forest-700/30"
+                className="flex items-center gap-6 bg-forest-900/60 rounded-xl p-4 border border-forest-700/40"
               >
-                <div className="text-3xl font-display font-bold text-gold-600 min-w-[80px]">
+                <div className="text-3xl font-display font-bold text-gold-500 min-w-[80px]">
                   {edition.year}
                 </div>
                 <div className="flex-1">
-                  <h4 className="text-forest-100 font-semibold">{edition.title}</h4>
-                  <p className="text-forest-500 text-sm">{edition.highlights}</p>
+                  <h4 className="text-white font-semibold">{edition.title}</h4>
+                  <p className="text-gray-300 text-sm">{edition.highlights}</p>
                 </div>
               </motion.div>
             ))}
@@ -226,7 +226,7 @@ export default function AboutPage() {
           <h2 className="text-2xl font-display font-bold text-gold-500 mb-4">
             Ready to be part of the legacy?
           </h2>
-          <p className="text-forest-400 mb-6">
+          <p className="text-gray-300 mb-6">
             Join us for the biggest edition of Varnothsava yet.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
