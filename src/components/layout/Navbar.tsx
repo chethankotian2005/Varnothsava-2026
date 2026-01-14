@@ -184,15 +184,32 @@ export default function Navbar() {
             </Link>
           </div>
 
-          {/* Mobile Menu Button */}
+          {/* Mobile Menu Button - HIGHLY VISIBLE */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="lg:hidden p-2.5 min-w-[44px] min-h-[44px] flex items-center justify-center text-forest-200 hover:text-gold-950 transition-colors rounded-lg focus-ring"
+            className="
+              lg:hidden 
+              relative z-50
+              p-2.5
+              min-w-[44px] min-h-[44px] 
+              flex items-center justify-center
+              rounded-lg
+              bg-gold-900/20
+              border-2 border-gold-500
+              hover:bg-gold-900/30
+              active:bg-gold-900/40
+              transition-all duration-200
+              focus:outline-none focus:ring-2 focus:ring-gold-500 focus:ring-offset-2 focus:ring-offset-forest-950
+            "
             aria-label={isOpen ? 'Close menu' : 'Open menu'}
             aria-expanded={isOpen}
             aria-controls="mobile-menu"
           >
-            {isOpen ? <X size={28} /> : <Menu size={28} />}
+            {isOpen ? (
+              <X className="h-7 w-7 text-gold-400" strokeWidth={3} />
+            ) : (
+              <Menu className="h-7 w-7 text-gold-400" strokeWidth={3} />
+            )}
           </button>
         </div>
       </nav>

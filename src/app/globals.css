@@ -2819,3 +2819,93 @@ html {
   }
 }
 
+/* ========================================
+   MOBILE HAMBURGER MENU VISIBILITY
+   Ensures menu icon is always visible and accessible
+   ======================================== */
+
+/* Ensure hamburger menu button is always visible and on top */
+button[aria-label*="menu"],
+button[aria-controls="mobile-menu"] {
+  /* Always on top */
+  z-index: 9999;
+  
+  /* Prevent tap highlight and text selection */
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  
+  /* Ensure visibility */
+  opacity: 1 !important;
+  visibility: visible !important;
+  
+  /* Minimum touch target size for accessibility */
+  min-width: 44px;
+  min-height: 44px;
+}
+
+/* Subtle pulse animation on focus for accessibility */
+@-webkit-keyframes pulse-subtle {
+  0%, 100% { 
+    -webkit-transform: scale(1);
+    transform: scale(1); 
+  }
+  50% { 
+    -webkit-transform: scale(1.05);
+    transform: scale(1.05); 
+  }
+}
+
+@-moz-keyframes pulse-subtle {
+  0%, 100% { 
+    -moz-transform: scale(1);
+    transform: scale(1); 
+  }
+  50% { 
+    -moz-transform: scale(1.05);
+    transform: scale(1.05); 
+  }
+}
+
+@keyframes pulse-subtle {
+  0%, 100% { 
+    transform: scale(1); 
+  }
+  50% { 
+    transform: scale(1.05); 
+  }
+}
+
+button[aria-label*="menu"]:focus,
+button[aria-controls="mobile-menu"]:focus {
+  -webkit-animation: pulse-subtle 0.5s ease-in-out;
+  -moz-animation: pulse-subtle 0.5s ease-in-out;
+  animation: pulse-subtle 0.5s ease-in-out;
+}
+
+/* Ensure icons inside are properly sized and visible */
+button[aria-label*="menu"] svg,
+button[aria-controls="mobile-menu"] svg {
+  width: 28px;
+  height: 28px;
+  stroke-width: 3;
+  color: #E8C468; /* Bright gold */
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  button[aria-label*="menu"],
+  button[aria-controls="mobile-menu"] {
+    border-width: 3px !important;
+    border-color: #D4AF37 !important;
+  }
+  
+  button[aria-label*="menu"] svg,
+  button[aria-controls="mobile-menu"] svg {
+    stroke-width: 4;
+  }
+}
+
