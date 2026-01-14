@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useMemo, useEffect } from 'react'
+import { useState, useMemo, useEffect, Suspense } from 'react'
 import { useSearchParams } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Search, SlidersHorizontal, LayoutGrid, List, Calendar, MapPin, Users, IndianRupee } from 'lucide-react'
@@ -12,7 +12,7 @@ import EventModal from '@/components/events/EventModal'
 type ViewMode = 'grid' | 'list'
 type SortOption = 'name' | 'date' | 'fee-asc' | 'fee-desc'
 
-export default function EventsPage() {
+function EventsContent() {
   const searchParams = useSearchParams()
   const categoryParam = searchParams.get('category')
   
@@ -288,5 +288,20 @@ export default function EventsPage() {
         onClose={handleCloseModal}
       />
     </div>
+  )
+}
+
+export default function EventsPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen pt-20 lg:pt-24 flex items-center justify-center">
+        <div className="text-center">
+          <div className="w-16 h-16 border-4 border-gold-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+          <p className="text-gray-400">Loading events...</p>
+        </div>
+      </div>
+    }>
+      <EventsContent />
+    </Suspense>
   )
 }
