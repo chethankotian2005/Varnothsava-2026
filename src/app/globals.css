@@ -2,6 +2,139 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ========================================
+   CROSS-BROWSER NORMALIZATION & COMPATIBILITY
+   Ensures consistent rendering across Chrome, Firefox, Safari, Edge
+   ======================================== */
+
+/* CSS Reset for consistency across browsers */
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  box-sizing: border-box;
+}
+
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Fix for Safari/iOS specific issues */
+html {
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Fix flexbox inconsistencies */
+.flex {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+/* Fix transform issues - Force GPU acceleration */
+.transform {
+  -webkit-transform: translate3d(0, 0, 0);
+  -moz-transform: translate3d(0, 0, 0);
+  -ms-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+}
+
+/* Ensure consistent button styling */
+button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: none;
+  outline: none;
+  background: none;
+  cursor: pointer;
+  /* Prevent tap highlight on touch devices */
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  tap-highlight-color: transparent;
+}
+
+/* Fix input styling across browsers */
+input,
+textarea,
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+/* Firefox specific fixes */
+@-moz-document url-prefix() {
+  /* Firefox scrollbar styling */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #D4AF37 #1a1a1a;
+  }
+}
+
+/* Safari specific fixes */
+@supports (-webkit-backdrop-filter: blur(10px)) {
+  .backdrop-blur {
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+  }
+}
+
+/* Edge/IE specific fixes */
+@supports (-ms-ime-align: auto) {
+  /* Ensure Edge handles gradients properly */
+  .gradient {
+    background: linear-gradient(to bottom, #000, #111);
+  }
+}
+
+/* Disable tap highlight on all interactive elements */
+a,
+button,
+[role="button"],
+[role="link"],
+.clickable {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+/* Ensure smooth animations on all devices */
+.smooth-transition {
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+/* Force GPU acceleration for better performance */
+.gpu-accelerated {
+  -webkit-transform: translateZ(0);
+  -moz-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-perspective: 1000;
+  -moz-perspective: 1000;
+  perspective: 1000;
+}
+
 :root {
   /* ========================================
      FONT STACKS WITH ROBUST FALLBACKS
@@ -2434,7 +2567,8 @@ html {
   animation-duration: 7s;
 }
 
- 
+
+ 
 /* ========================================
    MOBILE OPTIMIZATION FOR HERO TITLE
    Reduce effects on small screens for better performance
@@ -2450,6 +2584,238 @@ html {
   /* Simplify background animations */
   [style*="shimmerGold"] {
     animation-duration: 8s !important; /* Slower = less CPU */
+  }
+}
+
+/* ========================================
+   CROSS-BROWSER VENDOR PREFIXES FOR CRITICAL ANIMATIONS
+   Ensures animations work in Chrome, Firefox, Safari, Edge
+   ======================================== */
+
+/* Fade In Animation */
+@-webkit-keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@-moz-keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.fade-in {
+  -webkit-animation: fadeIn 1s ease-in-out;
+  -moz-animation: fadeIn 1s ease-in-out;
+  animation: fadeIn 1s ease-in-out;
+}
+
+/* Scale Up Animation */
+@-webkit-keyframes scaleUp {
+  from { 
+    -webkit-transform: scale(0.9);
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to { 
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@-moz-keyframes scaleUp {
+  from { 
+    -moz-transform: scale(0.9);
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to { 
+    -moz-transform: scale(1);
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes scaleUp {
+  from { 
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to { 
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* ========================================
+   TOUCH vs HOVER DEVICE DETECTION
+   Separates touch and mouse interactions
+   ======================================== */
+
+/* Desktop: Hover effects */
+@media (hover: hover) and (pointer: fine) {
+  .arena-card:hover {
+    -webkit-transform: scale(1.02) translateY(-12px);
+    -moz-transform: scale(1.02) translateY(-12px);
+    -ms-transform: scale(1.02) translateY(-12px);
+    transform: scale(1.02) translateY(-12px);
+  }
+  
+  .arena-card:hover img {
+    -webkit-transform: scale(1.1);
+    -moz-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    transform: scale(1.1);
+  }
+}
+
+/* Mobile/Tablet: Touch effects (NO HOVER) */
+@media (hover: none) and (pointer: coarse) {
+  /* Prevent hover states from triggering on touch */
+  .arena-card:hover {
+    -webkit-transform: none !important;
+    -moz-transform: none !important;
+    -ms-transform: none !important;
+    transform: none !important;
+  }
+  
+  /* Touch feedback instead */
+  .arena-card:active {
+    -webkit-transform: scale(0.98);
+    -moz-transform: scale(0.98);
+    -ms-transform: scale(0.98);
+    transform: scale(0.98);
+  }
+  
+  .arena-card:active img {
+    -webkit-transform: scale(1.05);
+    -moz-transform: scale(1.05);
+    -ms-transform: scale(1.05);
+    transform: scale(1.05);
+  }
+  
+  /* Disable hover-only animations on touch devices */
+  .hover-only {
+    display: none !important;
+  }
+}
+
+/* ========================================
+   ARENA CARDS - TOUCH OPTIMIZATION
+   Prevents color flickering on mobile touch
+   ======================================== */
+
+.arena-card {
+  /* Disable tap highlight */
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  tap-highlight-color: transparent;
+  touch-action: manipulation;
+  
+  /* Force GPU acceleration for smooth animations */
+  -webkit-transform: translateZ(0);
+  -moz-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  transform: translateZ(0);
+  will-change: transform;
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-perspective: 1000;
+  -moz-perspective: 1000;
+  perspective: 1000;
+}
+
+/* Ensure smooth animations on all devices */
+.arena-card * {
+  will-change: transform, opacity;
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-perspective: 1000;
+  -moz-perspective: 1000;
+  perspective: 1000;
+}
+
+/* Prevent color flashing on touch */
+.arena-card:active {
+  background-color: transparent !important;
+}
+
+/* Remove default link styles that might cause flicker */
+.arena-card:focus {
+  outline: none;
+}
+
+.arena-card:focus-visible {
+  outline: 2px solid rgba(212, 175, 55, 0.5);
+  outline-offset: 4px;
+}
+
+/* Smooth transitions everywhere with vendor prefixes */
+.arena-card,
+.arena-card img,
+.arena-card > * {
+  -webkit-transition-property: transform, opacity, border-color;
+  -moz-transition-property: transform, opacity, border-color;
+  -o-transition-property: transform, opacity, border-color;
+  transition-property: transform, opacity, border-color;
+  -webkit-transition-duration: 0.5s;
+  -moz-transition-duration: 0.5s;
+  -o-transition-duration: 0.5s;
+  transition-duration: 0.5s;
+  -webkit-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  -moz-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  -o-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ========================================
+   PERFORMANCE OPTIMIZATIONS FOR 60FPS
+   ======================================== */
+
+/* Force GPU acceleration for smooth animations */
+.arena-card {
+  -webkit-transform: translate3d(0, 0, 0);
+  -moz-transform: translate3d(0, 0, 0);
+  -ms-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+}
+
+/* Optimize for 60fps */
+.arena-card img {
+  -webkit-transform: translate3d(0, 0, 0);
+  -moz-transform: translate3d(0, 0, 0);
+  -ms-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .arena-card,
+  .arena-card *,
+  .fade-in,
+  .smooth-transition,
+  .floating-element {
+    -webkit-animation-duration: 0.01ms !important;
+    -moz-animation-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    -webkit-animation-iteration-count: 1 !important;
+    -moz-animation-iteration-count: 1 !important;
+    animation-iteration-count: 1 !important;
+    -webkit-transition-duration: 0.01ms !important;
+    -moz-transition-duration: 0.01ms !important;
+    -o-transition-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
   }
 }
 

@@ -144,6 +144,24 @@ function ArenaCard({
 }) {
   const prefersReducedMotion = useReducedMotion()
   const Icon = arena.icon
+  const [isTouched, setIsTouched] = useState(false)
+  
+  // Handle touch events separately from mouse events
+  const handleTouchStart = () => {
+    setIsTouched(true)
+    onHover(arena.id)
+  }
+  
+  const handleTouchEnd = () => {
+    // Delay reset to allow navigation to complete
+    setTimeout(() => {
+      setIsTouched(false)
+      onHover(null)
+    }, 300)
+  }
+  
+  // Determine if card is active (either hovered or touched)
+  const isActive = isHovered || isTouched
   
   return (
     <motion.div
@@ -152,20 +170,27 @@ function ArenaCard({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
       transition={{ duration: 0.8, delay: index * 0.2, ease: [0.22, 1, 0.36, 1] }}
-      onMouseEnter={() => onHover(arena.id)}
-      onMouseLeave={() => onHover(null)}
+      onMouseEnter={() => !isTouched && onHover(arena.id)}
+      onMouseLeave={() => !isTouched && onHover(null)}
       onFocus={() => onHover(arena.id)}
       onBlur={() => onHover(null)}
     >
       {/* Mandala backdrop - visible on hover */}
       <div className="absolute inset-0 flex items-center justify-center -z-10">
-        <GoldenMandala isActive={isHovered} />
+        <GoldenMandala isActive={isActive} />
       </div>
       
       <Link 
         href={arena.href}
-        className="block focus:outline-none focus-visible:ring-2 focus-visible:ring-gold-500 focus-visible:ring-offset-4 focus-visible:ring-offset-forest-950 rounded-2xl"
+        className="block focus:outline-none focus-visible:ring-2 focus-visible:ring-gold-500 focus-visible:ring-offset-4 focus-visible:ring-offset-forest-950 rounded-2xl arena-card"
         aria-label={`Enter ${arena.title}`}
+        onTouchStart={handleTouchStart}
+        onTouchEnd={handleTouchEnd}
+        onTouchCancel={handleTouchEnd}
+        style={{ 
+          WebkitTapHighlightColor: 'transparent',
+          touchAction: 'manipulation'
+        }}
       >
         <motion.div
           className="relative w-full aspect-[3/4] sm:aspect-[2/3] lg:aspect-[3/5] rounded-2xl overflow-hidden cursor-pointer"
@@ -176,7 +201,7 @@ function ArenaCard({
           }}
           whileTap={{ scale: 0.98 }}
           style={{
-            boxShadow: isHovered 
+            boxShadow: isActive 
               ? `0 25px 60px -15px ${arena.glowColor}, 0 0 40px ${arena.glowColor}, inset 0 1px 0 rgba(255,255,255,0.1)`
               : '0 15px 40px -10px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.05)',
           }}
@@ -227,10 +252,10 @@ function ArenaCard({
           <div 
             className="absolute inset-0 rounded-2xl pointer-events-none transition-all duration-500 z-20"
             style={{
-              border: isHovered 
+              border: isActive 
                 ? '2px solid rgba(212, 175, 55, 0.8)' 
                 : '1px solid rgba(212, 175, 55, 0.3)',
-              boxShadow: isHovered 
+              boxShadow: isActive 
                 ? 'inset 0 0 30px rgba(212, 175, 55, 0.15)' 
                 : 'inset 0 0 20px rgba(0,0,0,0.3)',
             }}
@@ -257,7 +282,7 @@ function ArenaCard({
           {/* Glowing icon - top corner with circular glow */}
           <motion.div 
             className="absolute top-6 right-6 z-20"
-            animate={isHovered && !prefersReducedMotion ? { 
+            animate={isActive && !prefersReducedMotion ? { 
               scale: [1, 1.15, 1],
               rotate: [0, 5, -5, 0],
             } : {}}
@@ -266,7 +291,7 @@ function ArenaCard({
             <div 
               className={`relative w-16 h-16 rounded-full bg-gradient-to-br ${arena.iconBg} flex items-center justify-center`}
               style={{
-                boxShadow: isHovered 
+                boxShadow: isActive 
                   ? `0 0 40px ${arena.glowColor}, 0 0 80px ${arena.glowColor}`
                   : `0 0 20px ${arena.glowColor}`,
               }}
@@ -291,7 +316,7 @@ function ArenaCard({
             <motion.p
               className="text-white/60 text-xs sm:text-sm font-mono tracking-[0.2em] uppercase mb-2"
               initial={{ opacity: 0.6 }}
-              animate={{ opacity: isHovered ? 1 : 0.6 }}
+              animate={{ opacity: isActive ? 1 : 0.6 }}
               transition={{ duration: 0.3 }}
             >
               {arena.subtitle}
@@ -335,12 +360,12 @@ function ArenaCard({
             <motion.div
               className="mt-6 flex items-center gap-2 text-gold-400 font-semibold"
               initial={{ opacity: 0, x: -10 }}
-              animate={{ opacity: isHovered ? 1 : 0, x: isHovered ? 0 : -10 }}
+              animate={{ opacity: isActive ? 1 : 0, x: isActive ? 0 : -10 }}
               transition={{ duration: 0.3 }}
             >
               <span className="text-sm tracking-wider uppercase">Enter Arena</span>
               <motion.span
-                animate={isHovered ? { x: [0, 5, 0] } : {}}
+                animate={isActive ? { x: [0, 5, 0] } : {}}
                 transition={{ duration: 1, repeat: Infinity }}
               >
                 →
