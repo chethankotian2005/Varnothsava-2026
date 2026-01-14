@@ -1,7 +1,7 @@
 'use client'
 
 import { motion, AnimatePresence } from 'framer-motion'
-import { X, Calendar, Clock, MapPin, Users, IndianRupee, Trophy, Phone, User } from 'lucide-react'
+import { X, Calendar, Clock, MapPin, Users, IndianRupee, Phone, User } from 'lucide-react'
 import { Event } from '@/data/events'
 import Link from 'next/link'
 import ShareButtons from '@/components/ui/ShareButtons'
@@ -95,22 +95,13 @@ export default function EventModal({ event, isOpen, onClose }: EventModalProps) 
                 </div>
               </div>
 
-              {/* Prize & Fee */}
-              <div className="flex gap-4">
-                <div className="flex-1 p-4 rounded-lg bg-gradient-to-br from-gold-800/20 to-gold-950/10 border border-gold-800/30">
-                  <div className="flex items-center gap-2 mb-1">
-                    <Trophy className="w-4 h-4 text-gold-950" />
-                    <span className="text-xs text-white/70 font-medium uppercase">Prize Pool</span>
-                  </div>
-                  <p className="text-xl font-display font-bold text-gold-950">{event.prizePool}</p>
+              {/* Registration Fee */}
+              <div className="p-4 rounded-lg bg-forest-800/50 border border-gold-800/10">
+                <div className="flex items-center gap-2 mb-1">
+                  <IndianRupee className="w-4 h-4 text-forest-400" />
+                  <span className="text-xs text-white/70 font-medium uppercase">Registration Fee</span>
                 </div>
-                <div className="flex-1 p-4 rounded-lg bg-forest-800/50 border border-gold-800/10">
-                  <div className="flex items-center gap-2 mb-1">
-                    <IndianRupee className="w-4 h-4 text-forest-400" />
-                    <span className="text-xs text-white/70 font-medium uppercase">Registration</span>
-                  </div>
-                  <p className="text-xl font-display font-bold text-forest-100">₹{event.registrationFee}</p>
-                </div>
+                <p className="text-xl font-display font-bold text-forest-100">₹{event.registrationFee}</p>
               </div>
 
               {/* Rules */}

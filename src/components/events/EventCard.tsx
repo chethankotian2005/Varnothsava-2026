@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Calendar, Users, Trophy, ArrowRight } from 'lucide-react'
+import { Calendar, Users, ArrowRight } from 'lucide-react'
 import { Event, flagshipEventIds } from '@/data/events'
 
 interface EventCardProps {
@@ -78,12 +78,8 @@ export default function EventCard({ event, index, onClick }: EventCardProps) {
           </div>
         </div>
 
-        {/* Prize & CTA */}
-        <div className="flex items-center justify-between pt-4 border-t border-gold-800/10">
-          <div className="flex items-center gap-1.5">
-            <Trophy size={14} className="text-gold-950" />
-            <span className="text-gold-950 font-semibold text-sm">{event.prizePool}</span>
-          </div>
+        {/* CTA */}
+        <div className="flex items-center justify-end pt-4 border-t border-gold-800/10">
           <span className="flex items-center gap-1 text-gold-800 text-sm font-medium group-hover:text-gold-950 transition-colors">
             View Details
             <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
