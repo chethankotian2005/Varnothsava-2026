@@ -1,6 +1,7 @@
 'use client'
 
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect } from 'react'
+import { useSearchParams } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Search, SlidersHorizontal, LayoutGrid, List, Calendar, MapPin, Users, IndianRupee } from 'lucide-react'
 import { events, categories, Event } from '@/data/events'
@@ -12,12 +13,22 @@ type ViewMode = 'grid' | 'list'
 type SortOption = 'name' | 'date' | 'fee-asc' | 'fee-desc'
 
 export default function EventsPage() {
+  const searchParams = useSearchParams()
+  const categoryParam = searchParams.get('category')
+  
   const [activeCategory, setActiveCategory] = useState('all')
   const [searchQuery, setSearchQuery] = useState('')
   const [selectedEvent, setSelectedEvent] = useState<Event | null>(null)
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [viewMode, setViewMode] = useState<ViewMode>('grid')
   const [sortBy, setSortBy] = useState<SortOption>('name')
+
+  // Set initial category from URL parameter
+  useEffect(() => {
+    if (categoryParam && categories.some(cat => cat.id === categoryParam)) {
+      setActiveCategory(categoryParam)
+    }
+  }, [categoryParam])
 
   const filteredEvents = useMemo(() => {
     let filtered = events
