@@ -141,7 +141,7 @@ export default function LeaderboardTeaser() {
                 </div>
                 <div>
                   <p className="text-white font-display font-semibold text-lg">Overall Championship</p>
-                  <p className="text-gray-300 text-sm">₹2,00,000 + Trophy + Bragging Rights</p>
+                  <p className="text-gray-300 text-sm">₹10,00,000 + Trophy + Bragging Rights</p>
                 </div>
               </motion.div>
               
