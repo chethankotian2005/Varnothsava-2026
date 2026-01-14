@@ -125,8 +125,8 @@ const arenas = [
     iconBg: 'from-purple-500 to-fuchsia-600',
     image: '/images/proshows-arena.jpg',
     fallbackGradient: 'from-purple-900 via-fuchsia-800 to-pink-900',
-    href: '/events?category=proshows',
-    events: ['DJ Night', 'Celebrity', 'Concert', 'Comedy'],
+    href: '/proshow',
+    events: ['Live Concert', 'Celebrity', 'Music Night', 'Entertainment'],
   },
 ]
 
