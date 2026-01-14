@@ -9,6 +9,9 @@ import CategoryFilter from '@/components/events/CategoryFilter'
 import EventCard from '@/components/events/EventCard'
 import EventModal from '@/components/events/EventModal'
 
+// Force dynamic rendering to support useSearchParams
+export const dynamic = 'force-dynamic'
+
 type ViewMode = 'grid' | 'list'
 type SortOption = 'name' | 'date' | 'fee-asc' | 'fee-desc'
 
