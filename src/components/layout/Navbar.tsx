@@ -184,22 +184,23 @@ export default function Navbar() {
             </Link>
           </div>
 
-          {/* Mobile Menu Button - HIGHLY VISIBLE */}
+          {/* Mobile Menu Button - HIGHLY VISIBLE WITH CORRECT Z-INDEX */}
           <button
             onClick={() => setIsOpen(!isOpen)}
             className="
               lg:hidden 
-              relative z-50
+              relative z-[110]
               p-2.5
               min-w-[44px] min-h-[44px] 
               flex items-center justify-center
               rounded-lg
-              bg-gold-900/20
+              bg-gold-500/20
               border-2 border-gold-500
-              hover:bg-gold-900/30
-              active:bg-gold-900/40
+              hover:bg-gold-500/30
+              active:bg-gold-500/40
               transition-all duration-200
               focus:outline-none focus:ring-2 focus:ring-gold-500 focus:ring-offset-2 focus:ring-offset-forest-950
+              shadow-lg shadow-gold-900/30
             "
             aria-label={isOpen ? 'Close menu' : 'Open menu'}
             aria-expanded={isOpen}
@@ -218,24 +219,28 @@ export default function Navbar() {
       <AnimatePresence>
         {isOpen && (
           <>
-            {/* Backdrop overlay */}
+            {/* Backdrop overlay - z-index LOWER than menu panel */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.3 }}
-              className="lg:hidden fixed inset-0 bg-forest-950/60 backdrop-blur-sm z-40"
+              className="lg:hidden fixed inset-0 bg-black/90 backdrop-blur-sm z-[98]"
               onClick={() => setIsOpen(false)}
+              aria-hidden="true"
             />
             
-            {/* Slide-in menu */}
+            {/* Slide-in menu panel - z-index HIGHER than backdrop */}
             <motion.div
               id="mobile-menu"
               initial={{ opacity: 0, x: '100%' }}
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: '100%' }}
               transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-              className="lg:hidden fixed top-0 right-0 bottom-0 w-[80%] max-w-sm bg-forest-950/98 backdrop-blur-xl border-l border-gold-800/30 z-50 overflow-y-auto"
+              className="lg:hidden fixed top-0 right-0 bottom-0 w-[80%] max-w-sm bg-gradient-to-b from-gray-900 to-black backdrop-blur-xl border-l border-gold-800/30 z-[99] overflow-y-auto"
+              style={{
+                WebkitOverflowScrolling: 'touch'
+              }}
             >
               {/* Close button */}
               <div className="flex justify-end p-4">
@@ -263,10 +268,10 @@ export default function Navbar() {
                       <Link
                         href={link.href}
                         onClick={() => setIsOpen(false)}
-                        className={`block py-4 text-2xl font-bold transition-all duration-300 ${
+                        className={`block py-4 px-4 text-lg font-semibold rounded-lg transition-all duration-300 border-b border-gray-800 ${
                           active 
-                            ? 'text-gold-500 translate-x-2' 
-                            : 'text-forest-200 hover:text-gold-400 hover:translate-x-4'
+                            ? 'text-gold-400 bg-gold-500/10 translate-x-2' 
+                            : 'text-gray-200 hover:text-gold-400 hover:bg-gold-500/10 hover:translate-x-2'
                         }`}
                         aria-current={active ? 'page' : undefined}
                       >
@@ -297,10 +302,13 @@ export default function Navbar() {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: navLinks.length * 0.08 + 0.3, duration: 0.3 }}
-                  className="pt-8 border-t border-gold-800/20"
+                  className="pt-8 border-t border-gold-800/30"
                 >
-                  <p className="text-white/75 text-sm text-center">
-                    March 11-14, 2026 • SMVITM
+                  <p className="text-gray-300 text-sm text-center font-medium">
+                    March 11-14, 2026
+                  </p>
+                  <p className="text-gold-400 text-sm text-center font-semibold mt-1">
+                    SMVITM, Udupi
                   </p>
                 </motion.div>
               </div>

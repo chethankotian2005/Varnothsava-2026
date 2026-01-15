@@ -180,7 +180,7 @@ export default function RegisterPage() {
                   <div>
                     <label className="block text-forest-100 text-sm font-medium mb-2">Full Name *</label>
                     <div className="relative">
-                      <User className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-forest-500" />
+                      <User className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-forest-400" />
                       <input
                         type="text"
                         value={formData.name}
@@ -195,7 +195,7 @@ export default function RegisterPage() {
                   <div>
                     <label className="block text-forest-100 text-sm font-medium mb-2">Email Address *</label>
                     <div className="relative">
-                      <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-forest-500" />
+                      <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-forest-400" />
                       <input
                         type="email"
                         value={formData.email}
@@ -210,7 +210,7 @@ export default function RegisterPage() {
                   <div>
                     <label className="block text-forest-100 text-sm font-medium mb-2">Phone Number *</label>
                     <div className="relative">
-                      <Phone className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-forest-500" />
+                      <Phone className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-forest-400" />
                       <input
                         type="tel"
                         value={formData.phone}
@@ -225,15 +225,16 @@ export default function RegisterPage() {
                   <div>
                     <label className="block text-forest-100 text-sm font-medium mb-2">College *</label>
                     <div className="relative">
-                      <Building className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-forest-500" />
+                      <Building className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-forest-400" />
                       <select
                         value={formData.college}
                         onChange={(e) => setFormData({...formData, college: e.target.value})}
-                        className="w-full pl-10 pr-4 py-3 bg-forest-800/80 border border-forest-600 rounded-lg text-white focus:border-gold-500 focus:ring-2 focus:ring-gold-500/20 focus:outline-none transition-colors appearance-none"
+                        className="w-full pl-10 pr-4 py-3 bg-forest-800/80 border border-forest-600 rounded-lg focus:border-gold-500 focus:ring-2 focus:ring-gold-500/20 focus:outline-none transition-colors appearance-none"
+                        style={{ color: formData.college ? 'white' : 'rgb(107, 114, 128)' }}
                       >
-                        <option value="">Select your college</option>
+                        <option value="" disabled>Select your college</option>
                         {collegesList.map(college => (
-                          <option key={college} value={college}>{college}</option>
+                          <option key={college} value={college} className="bg-forest-900 text-white">{college}</option>
                         ))}
                       </select>
                     </div>
@@ -243,18 +244,19 @@ export default function RegisterPage() {
                   <div>
                     <label className="block text-forest-100 text-sm font-medium mb-2">Year of Study *</label>
                     <div className="relative">
-                      <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-forest-500" />
+                      <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-forest-400" />
                       <select
                         value={formData.year}
                         onChange={(e) => setFormData({...formData, year: e.target.value})}
-                        className="w-full pl-10 pr-4 py-3 bg-forest-800/80 border border-forest-600 rounded-lg text-white focus:border-gold-500 focus:ring-2 focus:ring-gold-500/20 focus:outline-none transition-colors appearance-none"
+                        className="w-full pl-10 pr-4 py-3 bg-forest-800/80 border border-forest-600 rounded-lg focus:border-gold-500 focus:ring-2 focus:ring-gold-500/20 focus:outline-none transition-colors appearance-none"
+                        style={{ color: formData.year ? 'white' : 'rgb(107, 114, 128)' }}
                       >
-                        <option value="">Select year</option>
-                        <option value="1">1st Year</option>
-                        <option value="2">2nd Year</option>
-                        <option value="3">3rd Year</option>
-                        <option value="4">4th Year</option>
-                        <option value="pg">Post Graduate</option>
+                        <option value="" disabled>Select year</option>
+                        <option value="1" className="bg-forest-900 text-white">1st Year</option>
+                        <option value="2" className="bg-forest-900 text-white">2nd Year</option>
+                        <option value="3" className="bg-forest-900 text-white">3rd Year</option>
+                        <option value="4" className="bg-forest-900 text-white">4th Year</option>
+                        <option value="pg" className="bg-forest-900 text-white">Post Graduate</option>
                       </select>
                     </div>
                   </div>
@@ -263,7 +265,7 @@ export default function RegisterPage() {
                   <div>
                     <label className="block text-forest-100 text-sm font-medium mb-2">Branch *</label>
                     <div className="relative">
-                      <GraduationCap className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-forest-500" />
+                      <GraduationCap className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-forest-400" />
                       <input
                         type="text"
                         value={formData.branch}

@@ -79,12 +79,16 @@ function TestimonialCard({ testimonial, index }: { testimonial: typeof testimoni
       {/* Glow effect - GPU optimized */}
       <div className="absolute -inset-0.5 bg-gradient-to-r from-gold-800/20 to-gold-950/20 rounded-2xl blur-optimized opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
       
-      <div className="relative bg-forest-900/60 backdrop-blur-optimized rounded-2xl p-6 border border-gold-800/20 hover:border-gold-700 transition-all duration-300 h-full flex flex-col shadow-lg hover:shadow-xl">
+      <div className="relative bg-gray-900/95 md:bg-forest-900/80 backdrop-blur-optimized rounded-2xl p-6 border border-gold-800/30 hover:border-gold-600 transition-all duration-300 h-full flex flex-col shadow-xl hover:shadow-2xl hover:shadow-gold-900/30">
         {/* Quote icon */}
         <Quote className="w-8 h-8 text-gold-800/30 mb-4" aria-hidden="true" />
         
         {/* Testimonial text as blockquote */}
-        <blockquote className="text-forest-100 leading-relaxed mb-6 flex-grow italic" style={{ fontSize: '16px', lineHeight: '1.7' }}>
+        <blockquote className="text-gray-200 leading-relaxed mb-6 flex-grow italic" style={{ 
+          fontSize: '16px', 
+          lineHeight: '1.7',
+          textShadow: '0 1px 4px rgba(0, 0, 0, 0.8)'
+        }}>
           <p>"{testimonial.quote}"</p>
         </blockquote>
         
@@ -109,10 +113,17 @@ function TestimonialCard({ testimonial, index }: { testimonial: typeof testimoni
           </div>
           <div className="flex-grow min-w-0">
             <cite className="not-italic">
-              <div className="text-gold-600 font-bold text-base truncate">{testimonial.name}</div>
-              <div className="text-white/85 text-sm italic font-medium truncate">{testimonial.college}</div>
+              <div className="text-white font-bold text-base truncate" style={{
+                textShadow: '0 1px 4px rgba(0, 0, 0, 0.8)'
+              }}>{testimonial.name}</div>
+              <div className="text-gray-400 text-sm font-medium truncate" style={{
+                textShadow: '0 1px 4px rgba(0, 0, 0, 0.8)'
+              }}>{testimonial.college}</div>
             </cite>
-            <span className="inline-block mt-1 px-2 py-0.5 rounded-full bg-gold-950/30 border border-gold-800/30 text-gold-700 font-semibold tracking-wide" style={{ fontSize: '13px' }}>
+            <span className="inline-block mt-1 px-3 py-1 rounded-full bg-gold-500/20 border border-gold-500/40 text-gold-400 font-semibold tracking-wide" style={{ 
+              fontSize: '13px',
+              textShadow: '0 1px 3px rgba(0, 0, 0, 0.8)'
+            }}>
               {testimonial.event}
             </span>
           </div>
@@ -127,18 +138,9 @@ export default function Testimonials() {
   
   return (
     <section className="py-20 lg:py-28 relative overflow-hidden">
-      {/* Clean, calm background - stone only, lighter overlay, no tech/vines */}
+      {/* Dark overlay for better text visibility on mobile */}
       <div 
-        className="absolute inset-0"
-        style={{
-          background: `
-            linear-gradient(180deg, 
-              rgba(10, 22, 18, 0.75) 0%, 
-              rgba(13, 31, 24, 0.7) 50%, 
-              rgba(10, 22, 18, 0.75) 100%
-            )
-          `,
-        }}
+        className="absolute inset-0 bg-gradient-to-b from-black/85 via-black/80 to-black/85 md:bg-gradient-to-b md:from-forest-950/75 md:via-forest-900/70 md:to-forest-950/75"
       />
       
       {/* Subtle warm glow - clean and trustworthy */}
@@ -175,15 +177,21 @@ export default function Testimonials() {
             <span>Participant Stories</span>
           </motion.span>
           
-          <h2 className="font-display text-4xl md:text-5xl font-bold text-forest-100 mb-6 my-10">
+          <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 my-10" style={{
+            textShadow: '0 2px 8px rgba(0, 0, 0, 0.9), 0 4px 16px rgba(0, 0, 0, 0.7)'
+          }}>
             What{' '}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-gold-800 via-gold-700 to-gold-950">
+            <span className="text-gold-400" style={{
+              textShadow: '0 2px 8px rgba(0, 0, 0, 0.9), 0 0 20px rgba(255, 215, 0, 0.4)'
+            }}>
               Participants
             </span>{' '}
             Say
           </h2>
           
-          <p className="text-white/85 max-w-2xl mx-auto text-base md:text-lg">
+          <p className="text-gray-200 max-w-2xl mx-auto text-base md:text-lg font-medium" style={{
+            textShadow: '0 1px 6px rgba(0, 0, 0, 0.9)'
+          }}>
             Hear from students who experienced the magic of Varnothsava
           </p>
         </motion.div>

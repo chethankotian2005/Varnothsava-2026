@@ -2909,3 +2909,224 @@ button[aria-controls="mobile-menu"] svg {
   }
 }
 
+/* ========================================
+   CRITICAL MOBILE UI IMPROVEMENTS
+   Fixes for text visibility and contrast on mobile devices
+   ======================================== */
+
+/* Mobile slide-down animation for menu */
+@keyframes slide-down {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-down {
+  animation: slide-down 0.3s ease-out;
+}
+
+/* Mobile-specific improvements (phones and small tablets) */
+@media (max-width: 768px) {
+  
+  /* Base text improvements for better readability */
+  body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+  
+  /* Headings - High contrast with strong shadows */
+  h1, h2, h3, h4, h5, h6 {
+    color: #FFFFFF !important;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9),
+                 0 4px 16px rgba(0, 0, 0, 0.7) !important;
+    font-weight: 700 !important;
+  }
+  
+  /* Main heading sizing */
+  h1 {
+    font-size: clamp(1.75rem, 7vw, 2.5rem) !important;
+    letter-spacing: 0.02em;
+  }
+  
+  h2 {
+    font-size: clamp(1.5rem, 6vw, 2rem) !important;
+  }
+  
+  h3 {
+    font-size: clamp(1.25rem, 5vw, 1.75rem) !important;
+  }
+  
+  /* Better touch targets (44x44px minimum for accessibility) */
+  button, a, input, select, textarea {
+    min-height: 44px !important;
+    min-width: 44px !important;
+  }
+  
+  /* Prevent zoom on input focus (iOS Safari fix) */
+  input, select, textarea {
+    font-size: 16px !important;
+  }
+  
+  /* Better spacing for readability */
+  section {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+  
+  /* Cards stack with proper spacing */
+  .grid {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+  
+  /* Increase line height for readability */
+  p, li, span {
+    line-height: 1.7 !important;
+  }
+  
+  /* Improved text shadows for all body text */
+  p, span, div:not(.bg-*) {
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.7);
+  }
+  
+  /* Gold/Yellow text - Ensure visibility */
+  .text-gold,
+  [class*="text-yellow"],
+  [class*="text-gold"] {
+    color: #FFD700 !important;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.9),
+                 0 0 20px rgba(255, 215, 0, 0.4) !important;
+    font-weight: 600 !important;
+  }
+  
+  /* Gray text (subtitles) - Better contrast */
+  .text-gray-400,
+  .text-gray-300,
+  [class*="text-gray"] {
+    color: #E5E5E5 !important;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.9);
+  }
+  
+  /* Links - Highly visible */
+  a {
+    color: #FFD700 !important;
+    text-decoration: none;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.9);
+    font-weight: 500;
+  }
+  
+  a:hover, a:active {
+    color: #FFA500 !important;
+  }
+  
+  /* Better contrast for backgrounds */
+  [class*="bg-gradient"] {
+    position: relative;
+  }
+  
+  [class*="bg-gradient"]::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.3);
+    pointer-events: none;
+    z-index: 0;
+  }
+  
+  /* Countdown timer - stack properly on mobile */
+  .countdown-container {
+    flex-direction: row !important;
+    gap: 8px !important;
+    justify-content: center !important;
+  }
+  
+  .countdown-item {
+    min-width: 60px !important;
+  }
+  
+  /* Stats cards - better sizing */
+  .stat-card {
+    padding: 20px !important;
+    min-height: 140px !important;
+  }
+  
+  /* Hero section optimization */
+  .hero-section {
+    min-height: 100vh !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+  }
+  
+  /* Mobile menu specific improvements */
+  #mobile-menu {
+    -webkit-overflow-scrolling: touch !important;
+  }
+  
+  /* Ensure menu items are readable */
+  #mobile-menu a {
+    font-size: 18px !important;
+    color: #E5E5E5 !important;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.9) !important;
+  }
+  
+  #mobile-menu a:hover,
+  #mobile-menu a:active {
+    color: #FFD700 !important;
+  }
+  
+  /* Button visibility improvements */
+  button[class*="btn"] {
+    font-size: 16px !important;
+    padding: 14px 24px !important;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+  }
+  
+  /* Card improvements for mobile */
+  [class*="card"] {
+    background: rgba(17, 24, 39, 0.95) !important;
+    border-width: 2px !important;
+  }
+  
+  /* Ensure testimonial text is visible */
+  blockquote {
+    color: #E5E5E5 !important;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.9) !important;
+    font-size: 16px !important;
+    line-height: 1.7 !important;
+  }
+}
+
+/* Tablet-specific adjustments (769px - 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  
+  /* Slightly smaller touch targets for tablets */
+  button, a {
+    min-height: 40px !important;
+    min-width: 40px !important;
+  }
+}
+
+/* Desktop - preserve everything as is (1025px+) */
+@media (min-width: 1025px) {
+  /* No mobile overrides - desktop layout preserved */
+}
+
+/* Prevent scroll issues on iOS */
+.overflow-y-auto {
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Ensure proper stacking context */
+body {
+  position: relative;
+}
