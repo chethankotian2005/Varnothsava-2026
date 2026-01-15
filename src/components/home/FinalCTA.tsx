@@ -39,8 +39,8 @@ export default function FinalCTA() {
 
   return (
     <section ref={sectionRef} className="py-28 lg:py-36 relative overflow-hidden">
-      {/* Darker overlay for better text contrast */}
-      <div className="absolute inset-0 bg-black/75 backdrop-blur-[1px]" />
+      {/* Lighter overlay for better balance */}
+      <div className="absolute inset-0 bg-black/40 backdrop-blur-[1px]" />
       
       {/* Ritual altar - sacred gold radiance from center */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_50%,rgba(201,162,39,0.06)_0%,transparent_60%)]" />
@@ -104,8 +104,8 @@ export default function FinalCTA() {
           }}>
             <span className="text-white">Ready to Make</span>
             <br />
-            <span className="bg-gradient-to-r from-gold-400 via-gold-500 to-gold-400 bg-clip-text text-transparent" style={{
-              textShadow: '0 4px 12px rgba(0, 0, 0, 0.95), 0 0 30px rgba(255, 215, 0, 0.5)'
+            <span className="bg-gradient-to-r from-yellow-400 via-yellow-300 to-yellow-400 bg-clip-text text-transparent" style={{
+              textShadow: 'none'
             }}>
               Your Mark?
             </span>
