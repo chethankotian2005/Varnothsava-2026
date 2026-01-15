@@ -148,10 +148,10 @@ export default function RegisterPage() {
           animate={{ opacity: 1, y: 0 }}
           className="text-center mb-8"
         >
-          <h1 className="text-4xl md:text-5xl font-display font-bold text-gold-500 mb-4">
+          <h1 className="text-4xl md:text-5xl font-display font-bold text-gold-400 mb-4">
             Register for Varnothsava 2026
           </h1>
-          <p className="text-forest-400 text-lg">
+          <p className="text-forest-200 text-lg">
             Join 5000+ participants from 50+ colleges
           </p>
         </motion.div>
@@ -171,14 +171,14 @@ export default function RegisterPage() {
                 exit={{ opacity: 0, x: -20 }}
                 className="space-y-6"
               >
-                <h2 className="text-2xl font-display font-bold text-gold-500 mb-6">
+                <h2 className="text-2xl font-display font-bold text-gold-400 mb-6">
                   Personal Details
                 </h2>
 
                 <div className="grid md:grid-cols-2 gap-6">
                   {/* Name */}
                   <div>
-                    <label className="block text-forest-300 text-sm mb-2">Full Name *</label>
+                    <label className="block text-forest-100 text-sm font-medium mb-2">Full Name *</label>
                     <div className="relative">
                       <User className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-forest-500" />
                       <input
@@ -186,14 +186,14 @@ export default function RegisterPage() {
                         value={formData.name}
                         onChange={(e) => setFormData({...formData, name: e.target.value})}
                         placeholder="Enter your full name"
-                        className="w-full pl-10 pr-4 py-3 bg-forest-800/50 border border-forest-600/50 rounded-lg text-forest-100 placeholder-forest-500 focus:border-gold-600 focus:outline-none transition-colors"
+                        className="w-full pl-10 pr-4 py-3 bg-forest-800/80 border border-forest-600 rounded-lg text-white placeholder-forest-400 focus:border-gold-500 focus:ring-2 focus:ring-gold-500/20 focus:outline-none transition-colors"
                       />
                     </div>
                   </div>
 
                   {/* Email */}
                   <div>
-                    <label className="block text-forest-300 text-sm mb-2">Email Address *</label>
+                    <label className="block text-forest-100 text-sm font-medium mb-2">Email Address *</label>
                     <div className="relative">
                       <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-forest-500" />
                       <input
@@ -201,14 +201,14 @@ export default function RegisterPage() {
                         value={formData.email}
                         onChange={(e) => setFormData({...formData, email: e.target.value})}
                         placeholder="your.email@college.edu"
-                        className="w-full pl-10 pr-4 py-3 bg-forest-800/50 border border-forest-600/50 rounded-lg text-forest-100 placeholder-forest-500 focus:border-gold-600 focus:outline-none transition-colors"
+                        className="w-full pl-10 pr-4 py-3 bg-forest-800/80 border border-forest-600 rounded-lg text-white placeholder-forest-400 focus:border-gold-500 focus:ring-2 focus:ring-gold-500/20 focus:outline-none transition-colors"
                       />
                     </div>
                   </div>
 
                   {/* Phone */}
                   <div>
-                    <label className="block text-forest-300 text-sm mb-2">Phone Number *</label>
+                    <label className="block text-forest-100 text-sm font-medium mb-2">Phone Number *</label>
                     <div className="relative">
                       <Phone className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-forest-500" />
                       <input
@@ -216,20 +216,20 @@ export default function RegisterPage() {
                         value={formData.phone}
                         onChange={(e) => setFormData({...formData, phone: e.target.value})}
                         placeholder="+91 98765 43210"
-                        className="w-full pl-10 pr-4 py-3 bg-forest-800/50 border border-forest-600/50 rounded-lg text-forest-100 placeholder-forest-500 focus:border-gold-600 focus:outline-none transition-colors"
+                        className="w-full pl-10 pr-4 py-3 bg-forest-800/80 border border-forest-600 rounded-lg text-white placeholder-forest-400 focus:border-gold-500 focus:ring-2 focus:ring-gold-500/20 focus:outline-none transition-colors"
                       />
                     </div>
                   </div>
 
                   {/* College */}
                   <div>
-                    <label className="block text-forest-300 text-sm mb-2">College *</label>
+                    <label className="block text-forest-100 text-sm font-medium mb-2">College *</label>
                     <div className="relative">
                       <Building className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-forest-500" />
                       <select
                         value={formData.college}
                         onChange={(e) => setFormData({...formData, college: e.target.value})}
-                        className="w-full pl-10 pr-4 py-3 bg-forest-800/50 border border-forest-600/50 rounded-lg text-forest-100 focus:border-gold-600 focus:outline-none transition-colors appearance-none"
+                        className="w-full pl-10 pr-4 py-3 bg-forest-800/80 border border-forest-600 rounded-lg text-white focus:border-gold-500 focus:ring-2 focus:ring-gold-500/20 focus:outline-none transition-colors appearance-none"
                       >
                         <option value="">Select your college</option>
                         {collegesList.map(college => (
@@ -241,13 +241,13 @@ export default function RegisterPage() {
 
                   {/* Year */}
                   <div>
-                    <label className="block text-forest-300 text-sm mb-2">Year of Study *</label>
+                    <label className="block text-forest-100 text-sm font-medium mb-2">Year of Study *</label>
                     <div className="relative">
                       <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-forest-500" />
                       <select
                         value={formData.year}
                         onChange={(e) => setFormData({...formData, year: e.target.value})}
-                        className="w-full pl-10 pr-4 py-3 bg-forest-800/50 border border-forest-600/50 rounded-lg text-forest-100 focus:border-gold-600 focus:outline-none transition-colors appearance-none"
+                        className="w-full pl-10 pr-4 py-3 bg-forest-800/80 border border-forest-600 rounded-lg text-white focus:border-gold-500 focus:ring-2 focus:ring-gold-500/20 focus:outline-none transition-colors appearance-none"
                       >
                         <option value="">Select year</option>
                         <option value="1">1st Year</option>
@@ -261,7 +261,7 @@ export default function RegisterPage() {
 
                   {/* Branch */}
                   <div>
-                    <label className="block text-forest-300 text-sm mb-2">Branch *</label>
+                    <label className="block text-forest-100 text-sm font-medium mb-2">Branch *</label>
                     <div className="relative">
                       <GraduationCap className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-forest-500" />
                       <input
@@ -269,7 +269,7 @@ export default function RegisterPage() {
                         value={formData.branch}
                         onChange={(e) => setFormData({...formData, branch: e.target.value})}
                         placeholder="e.g., Computer Science"
-                        className="w-full pl-10 pr-4 py-3 bg-forest-800/50 border border-forest-600/50 rounded-lg text-forest-100 placeholder-forest-500 focus:border-gold-600 focus:outline-none transition-colors"
+                        className="w-full pl-10 pr-4 py-3 bg-forest-800/80 border border-forest-600 rounded-lg text-white placeholder-forest-400 focus:border-gold-500 focus:ring-2 focus:ring-gold-500/20 focus:outline-none transition-colors"
                       />
                     </div>
                   </div>
@@ -287,10 +287,10 @@ export default function RegisterPage() {
                 className="space-y-6"
               >
                 <div className="flex justify-between items-center mb-6">
-                  <h2 className="text-2xl font-display font-bold text-gold-500">
+                  <h2 className="text-2xl font-display font-bold text-gold-400">
                     Select Events
                   </h2>
-                  <span className="text-forest-400">
+                  <span className="text-forest-100 font-medium">
                     {selectedEvents.length} selected
                   </span>
                 </div>
@@ -299,7 +299,7 @@ export default function RegisterPage() {
                 <div className="space-y-6 max-h-[60vh] overflow-y-auto pr-2">
                   {categories.filter(c => c.id !== 'all').map(category => (
                     <div key={category.id}>
-                      <h3 className="text-lg font-semibold text-gold-600 mb-3">{category.name}</h3>
+                      <h3 className="text-lg font-semibold text-gold-400 mb-3">{category.name}</h3>
                       <div className="grid gap-3">
                         {events.filter(e => e.categoryId === category.id).map(event => (
                           <div
@@ -315,12 +315,12 @@ export default function RegisterPage() {
                           >
                             <div className="flex justify-between items-start">
                               <div>
-                                <h4 className="font-semibold text-forest-100">{event.name}</h4>
-                                <p className="text-sm text-forest-400 mt-1">{event.date} • {event.time}</p>
-                                <p className="text-sm text-forest-500">{event.teamSize}</p>
+                                <h4 className="font-semibold text-white">{event.name}</h4>
+                                <p className="text-sm text-forest-200 mt-1">{event.date} • {event.time}</p>
+                                <p className="text-sm text-forest-300">{event.teamSize}</p>
                               </div>
                               <div className="text-right">
-                                <p className="text-gold-500 font-mono">₹{event.registrationFee}</p>
+                                <p className="text-gold-400 font-mono font-semibold">₹{event.registrationFee}</p>
                                 <div className={`
                                   w-6 h-6 rounded-full border-2 flex items-center justify-center mt-2
                                   ${selectedEvents.includes(event.id)
@@ -352,30 +352,30 @@ export default function RegisterPage() {
                 exit={{ opacity: 0, x: -20 }}
                 className="space-y-6"
               >
-                <h2 className="text-2xl font-display font-bold text-gold-500 mb-6">
+                <h2 className="text-2xl font-display font-bold text-gold-400 mb-6">
                   Payment
                 </h2>
 
                 {/* Order Summary */}
-                <div className="bg-forest-800/30 rounded-xl p-5 mb-6">
-                  <h3 className="text-lg font-semibold text-forest-100 mb-4">Order Summary</h3>
+                <div className="bg-forest-800/50 rounded-xl p-5 mb-6 border border-forest-700">
+                  <h3 className="text-lg font-semibold text-white mb-4">Order Summary</h3>
                   <div className="space-y-2 mb-4">
                     {selectedEvents.map(eventId => {
                       const event = events.find(e => e.id === eventId)
                       return event && (
-                        <div key={eventId} className="flex justify-between text-forest-300">
+                        <div key={eventId} className="flex justify-between text-forest-100">
                           <span>{event.name}</span>
-                          <span>₹{event.registrationFee}</span>
+                          <span className="font-mono">₹{event.registrationFee}</span>
                         </div>
                       )
                     })}
                   </div>
                   <div className="border-t border-forest-600/50 pt-4 space-y-2">
-                    <div className="flex justify-between text-forest-400">
+                    <div className="flex justify-between text-forest-200">
                       <span>Subtotal</span>
-                      <span>₹{calculateTotal().subtotal}</span>
+                      <span className="font-mono">₹{calculateTotal().subtotal}</span>
                     </div>
-                    <div className="flex justify-between text-xl font-bold text-gold-500">
+                    <div className="flex justify-between text-xl font-bold text-gold-400">
                       <span>Total</span>
                       <span>₹{calculateTotal().total}</span>
                     </div>
@@ -384,7 +384,7 @@ export default function RegisterPage() {
 
                 {/* Payment Methods */}
                 <div>
-                  <h3 className="text-lg font-semibold text-forest-100 mb-4">Select Payment Method</h3>
+                  <h3 className="text-lg font-semibold text-white mb-4">Select Payment Method</h3>
                   <div className="grid md:grid-cols-2 gap-4">
                     {['UPI', 'Credit/Debit Card', 'Net Banking', 'Wallet'].map(method => (
                       <div
@@ -399,8 +399,8 @@ export default function RegisterPage() {
                         `}
                       >
                         <div className="flex items-center gap-3">
-                          <CreditCard className="w-5 h-5 text-gold-500" />
-                          <span className="text-forest-100">{method}</span>
+                          <CreditCard className="w-5 h-5 text-gold-400" />
+                          <span className="text-white font-medium">{method}</span>
                         </div>
                       </div>
                     ))}
@@ -416,8 +416,8 @@ export default function RegisterPage() {
                     onChange={(e) => setAgreedToTerms(e.target.checked)}
                     className="mt-1 w-5 h-5 rounded border-forest-600 bg-forest-800 text-gold-600 focus:ring-gold-600"
                   />
-                  <label htmlFor="terms" className="text-forest-400 text-sm">
-                    I agree to the <Link href="/terms" className="text-gold-500 hover:underline">Terms & Conditions</Link> and <Link href="/refund" className="text-gold-500 hover:underline">Refund Policy</Link>
+                  <label htmlFor="terms" className="text-forest-100 text-sm">
+                    I agree to the <Link href="/terms" className="text-gold-400 hover:text-gold-300 hover:underline">Terms & Conditions</Link> and <Link href="/refund" className="text-gold-400 hover:text-gold-300 hover:underline">Refund Policy</Link>
                   </label>
                 </div>
               </motion.div>
@@ -440,11 +440,11 @@ export default function RegisterPage() {
                   <Check className="w-10 h-10 text-white" />
                 </motion.div>
 
-                <h2 className="text-3xl font-display font-bold text-gold-500 mb-4">
+                <h2 className="text-3xl font-display font-bold text-gold-400 mb-4">
                   Registration Successful!
                 </h2>
-                <p className="text-forest-400 mb-2">Your registration ID:</p>
-                <p className="text-2xl font-mono text-gold-600 mb-8">{registrationId}</p>
+                <p className="text-forest-100 mb-2 font-medium">Your registration ID:</p>
+                <p className="text-2xl font-mono text-gold-400 font-bold mb-8">{registrationId}</p>
 
                 {/* QR Code Placeholder */}
                 <div className="inline-block bg-white p-4 rounded-xl mb-6">
@@ -453,8 +453,8 @@ export default function RegisterPage() {
                   </div>
                 </div>
 
-                <p className="text-forest-400 mb-8">
-                  A confirmation email has been sent to {formData.email}
+                <p className="text-forest-100 mb-8">
+                  A confirmation email has been sent to <span className="text-gold-400 font-medium">{formData.email}</span>
                 </p>
 
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -477,10 +477,10 @@ export default function RegisterPage() {
               <button
                 onClick={handleBack}
                 disabled={step === 0}
-                className={`flex items-center gap-2 px-6 py-3 rounded-lg transition-all duration-300 ${
+                className={`flex items-center gap-2 px-6 py-3 rounded-lg font-medium transition-all duration-300 ${
                   step === 0 
-                    ? 'text-forest-600 cursor-not-allowed' 
-                    : 'text-forest-300 hover:text-gold-500'
+                    ? 'text-forest-500 cursor-not-allowed' 
+                    : 'text-forest-100 hover:text-gold-400 hover:bg-forest-800/50'
                 }`}
               >
                 <ChevronLeft className="w-5 h-5" />

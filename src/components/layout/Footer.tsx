@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
-import { Instagram, Twitter, Youtube, Mail, MapPin, Phone, Heart, ArrowUpRight, Sparkles } from 'lucide-react'
+import { Instagram, Twitter, Youtube, Mail, MapPin, Phone, ArrowUpRight, Sparkles } from 'lucide-react'
 
 const footerLinks = {
   explore: [
@@ -175,10 +175,8 @@ export default function Footer() {
         
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-white/75">
-            <p className="flex items-center gap-1">
-              © 2026 Varnothsava, SMVITM. Made with{' '}
-              <Heart className="w-4 h-4 text-red-500 fill-red-500 animate-pulse" aria-label="love" />{' '}
-              in Udupi
+            <p>
+              © 2026 Varnothsava, SMVITM.
             </p>
             <nav className="flex flex-wrap items-center justify-center gap-4 sm:gap-6" aria-label="Legal links">
               {footerLinks.legal.map((link) => (
