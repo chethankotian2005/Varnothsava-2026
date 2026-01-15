@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Lenis Smooth Scroll */
+@import 'lenis/dist/lenis.css';
+
 /* ========================================
    CROSS-BROWSER NORMALIZATION & COMPATIBILITY
    Ensures consistent rendering across Chrome, Firefox, Safari, Edge
