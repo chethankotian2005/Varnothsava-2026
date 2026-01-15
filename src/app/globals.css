@@ -3629,3 +3629,135 @@ body {
   transform: translateZ(0);
   -webkit-transform: translateZ(0);
 }
+
+/* ========================================
+   LOADING SKELETON SCREENS
+   Elegant loading states with shimmer effect
+   ======================================== */
+
+/* Shimmer animation for skeleton screens */
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+.skeleton-shimmer {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(
+    90deg,
+    rgba(31, 41, 55, 1) 0%,
+    rgba(55, 65, 81, 1) 50%,
+    rgba(31, 41, 55, 1) 100%
+  );
+  background-size: 1000px 100%;
+  animation: shimmer 2s infinite linear;
+}
+
+/* Dark theme skeleton */
+.skeleton-shimmer-dark {
+  background: linear-gradient(
+    90deg,
+    rgba(17, 24, 39, 1) 0%,
+    rgba(31, 41, 55, 1) 50%,
+    rgba(17, 24, 39, 1) 100%
+  );
+  background-size: 1000px 100%;
+  animation: shimmer 2s infinite linear;
+}
+
+/* Gold accent shimmer for premium skeletons */
+.skeleton-shimmer-gold {
+  background: linear-gradient(
+    90deg,
+    rgba(31, 41, 55, 1) 0%,
+    rgba(212, 175, 55, 0.2) 50%,
+    rgba(31, 41, 55, 1) 100%
+  );
+  background-size: 1000px 100%;
+  animation: shimmer 2s infinite linear;
+}
+
+/* Pulse animation as alternative */
+@keyframes skeleton-pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.skeleton-pulse {
+  animation: skeleton-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Slower shimmer for subtle effect */
+.skeleton-shimmer-slow {
+  animation: shimmer 3s infinite linear;
+}
+
+/* Faster shimmer for urgent loading */
+.skeleton-shimmer-fast {
+  animation: shimmer 1s infinite linear;
+}
+
+/* Wave effect for staggered loading */
+@keyframes skeleton-wave {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.skeleton-wave {
+  position: relative;
+  overflow: hidden;
+}
+
+.skeleton-wave::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
+  animation: skeleton-wave 2s infinite;
+}
+
+/* Reduce motion support */
+@media (prefers-reduced-motion: reduce) {
+  .skeleton-shimmer,
+  .skeleton-shimmer-dark,
+  .skeleton-shimmer-gold,
+  .skeleton-shimmer-slow,
+  .skeleton-shimmer-fast,
+  .skeleton-wave::after {
+    animation: none;
+  }
+  
+  .skeleton-pulse {
+    animation: skeleton-pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+}
+
+/* Mobile optimization - slower animations */
+@media (max-width: 768px) {
+  .skeleton-shimmer,
+  .skeleton-shimmer-dark,
+  .skeleton-shimmer-gold {
+    animation-duration: 3s;
+  }
+}
