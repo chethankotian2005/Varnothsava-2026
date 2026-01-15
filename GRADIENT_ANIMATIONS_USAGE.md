@@ -1,3 +1,4 @@
+
 # Gradient Animations Usage Guide
 
 ## Overview
