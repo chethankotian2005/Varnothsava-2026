@@ -11,6 +11,7 @@ import ScrollProgress from '@/components/ui/ScrollProgress'
 import BackToTop from '@/components/ui/BackToTop'
 import ParallaxBackground from '@/components/effects/ParallaxBackground'
 import SmoothScroll from '@/components/effects/SmoothScroll'
+import ScrollAnimations from '@/components/effects/ScrollAnimations'
 import { Toaster } from 'sonner'
 import { Analytics } from '@vercel/analytics/react'
 import { SpeedInsights } from '@vercel/speed-insights/next'
@@ -178,6 +179,9 @@ export default function RootLayout({
         
         {/* Smooth Scroll with Parallax */}
         <SmoothScroll />
+        
+        {/* Scroll-triggered Animations */}
+        <ScrollAnimations />
         
         {/* 4-Layer Parallax Background */}
         <ParallaxBackground />
