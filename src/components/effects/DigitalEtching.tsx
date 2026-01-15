@@ -1,6 +1,6 @@
 'use client'
 
-import { motion, useMotionValue, useTransform, useSpring } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { useEffect, useRef, useState } from 'react'
 
 interface DigitalEtchingProps {
@@ -15,17 +15,36 @@ export default function DigitalEtching({ text, subtitle, className = '' }: Digit
 
   useEffect(() => {
     // Trigger animation after component mounts
-    const timer = setTimeout(() => setIsVisible(true), 300)
+    const timer = setTimeout(() => setIsVisible(true), 100)
     return () => clearTimeout(timer)
   }, [])
 
   return (
     <div ref={containerRef} className={`relative text-center ${className}`}>
-      {/* Main title container - perfectly centered */}
-      <div className="relative inline-block">
+      {/* Main title container - cinematic entry animation, no hover */}
+      <motion.div 
+        className="relative inline-block"
+        initial={{
+          y: 30,
+          scale: 0.96,
+          opacity: 0,
+        }}
+        animate={{
+          y: 0,
+          scale: 1,
+          opacity: 1,
+        }}
+        transition={{
+          duration: 0.8,
+          ease: [0.16, 1, 0.3, 1],
+        }}
+        style={{
+          willChange: 'transform, opacity',
+        }}
+      >
         {/* Clean, elegant title with subtle gold accent */}
         <motion.h1 
-          className="font-display text-center leading-tight uppercase"
+          className="font-display text-center leading-tight uppercase relative z-10 hero-title-3d-gold"
           style={{ 
             fontSize: 'clamp(2rem, 8vw, 6rem)',
             fontWeight: 700,
@@ -34,8 +53,14 @@ export default function DigitalEtching({ text, subtitle, className = '' }: Digit
             textShadow: '0 4px 20px rgba(212, 175, 55, 0.5)',
             WebkitTextStroke: '1px rgba(212, 175, 55, 0.3)',
           }}
-          initial={{ opacity: 0, y: 20 }}
-          animate={isVisible ? { opacity: 1, y: 0 } : {}}
+          initial={{ 
+            opacity: 0, 
+            y: 20 
+          }}
+          animate={{ 
+            opacity: 1, 
+            y: 0 
+          }}
           transition={{
             duration: 1,
             ease: 'easeOut',
@@ -60,7 +85,7 @@ export default function DigitalEtching({ text, subtitle, className = '' }: Digit
           animate={isVisible ? { scaleX: 1, opacity: 1 } : {}}
           transition={{ duration: 1, delay: 0.5, ease: 'easeOut' }}
         />
-      </div>
+      </motion.div>
 
       {/* Subtitle with reveal animation - Each word styled for visual harmony */}
       {subtitle && (

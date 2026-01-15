@@ -263,7 +263,6 @@ button,
 
 @layer base {
   html {
-    scroll-behavior: smooth;
     scroll-padding-top: 80px; /* Account for fixed navbar */
     /* Ensure text is visible even before fonts load */
     -webkit-font-smoothing: antialiased;
@@ -1663,6 +1662,51 @@ button,
     animation: shine-sweep 3s ease-in-out infinite;
   }
 
+  /* Hero title natural white shine - sharp metallic sweep */
+  @keyframes hero-gold-shine {
+    0%, 80% { 
+      transform: translateX(-200%) skewX(-20deg); 
+      opacity: 0;
+    }
+    82% {
+      opacity: 1;
+    }
+    98% { 
+      transform: translateX(600%) skewX(-20deg); 
+      opacity: 1;
+    }
+    100% { 
+      transform: translateX(600%) skewX(-20deg); 
+      opacity: 0;
+    }
+  }
+  
+  .hero-title-3d-gold {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .hero-title-3d-gold::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: 0;
+    width: 15%;
+    height: 200%;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.1) 25%,
+      rgba(255, 255, 255, 0.5) 50%,
+      rgba(255, 255, 255, 0.1) 75%,
+      transparent 100%
+    );
+    pointer-events: none;
+    animation: hero-gold-shine 5s ease-in-out 1.5s infinite;
+    will-change: transform, opacity;
+    mix-blend-mode: screen;
+  }
+
   /* ========================================
      GPU ACCELERATION & PERFORMANCE OPTIMIZATIONS
      ======================================== */
@@ -2571,7 +2615,7 @@ html {
 }
 
 
- 
+
 /* ========================================
    MOBILE OPTIMIZATION FOR HERO TITLE
    Reduce effects on small screens for better performance

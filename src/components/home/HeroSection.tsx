@@ -6,6 +6,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { ArrowRight, Calendar, MapPin } from 'lucide-react'
+import PremiumHeroTitle from '@/components/effects/PremiumHeroTitle'
 
 // Flip Countdown Component
 function FlipCard({ value, label, prevValue }: { value: number; label: string; prevValue: number }) {
@@ -263,12 +264,10 @@ export default function HeroSection() {
           </span>
           {/* Dedicated hero title wrapper for perfect centering */}
           <div className="hero-title-wrapper" style={{ marginLeft: 'auto', marginRight: 'auto', width: 'fit-content' }}>
-            <h1 className="font-display text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-tight text-center">
-              <GlitchText 
-                text="VARNOTHSAVA" 
-                className="bg-gradient-to-r from-gold-800 via-gold-600 to-gold-800 bg-clip-text text-transparent"
-              />
-            </h1>
+            <PremiumHeroTitle 
+              text="VARNOTHSAVA" 
+              className="font-display text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-tight text-center bg-gradient-to-r from-gold-800 via-gold-600 to-gold-800 bg-clip-text text-transparent"
+            />
           </div>
           <span className="block text-2xl md:text-3xl lg:text-4xl font-mono text-emerald-glow mt-4 tracking-widest text-center">
             2026
