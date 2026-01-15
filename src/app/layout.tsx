@@ -12,6 +12,7 @@ import BackToTop from '@/components/ui/BackToTop'
 import ParallaxBackground from '@/components/effects/ParallaxBackground'
 import SmoothScroll from '@/components/effects/SmoothScroll'
 import ScrollAnimations from '@/components/effects/ScrollAnimations'
+import FloatingParticles from '@/components/effects/FloatingParticles'
 import { Toaster } from 'sonner'
 import { Analytics } from '@vercel/analytics/react'
 import { SpeedInsights } from '@vercel/speed-insights/next'
@@ -176,6 +177,9 @@ export default function RootLayout({
       <body className="font-body min-h-screen flex flex-col bg-forest-950 text-forest-100 antialiased">
         {/* Skip to content link for accessibility */}
         <SkipLink />
+        
+        {/* Floating Particles Background */}
+        <FloatingParticles />
         
         {/* Smooth Scroll with Parallax */}
         <SmoothScroll />
