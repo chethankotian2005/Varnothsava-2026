@@ -39,8 +39,8 @@ export default function FinalCTA() {
 
   return (
     <section ref={sectionRef} className="py-28 lg:py-36 relative overflow-hidden">
-      {/* Light overlay - shows all 4 background layers for dramatic CTA */}
-      <div className="absolute inset-0 bg-forest-950/55 backdrop-blur-[1px]" />
+      {/* Darker overlay for better text contrast */}
+      <div className="absolute inset-0 bg-black/75 backdrop-blur-[1px]" />
       
       {/* Ritual altar - sacred gold radiance from center */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_50%,rgba(201,162,39,0.06)_0%,transparent_60%)]" />
@@ -87,27 +87,35 @@ export default function FinalCTA() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gold-950/15 border border-gold-800/40 mb-8"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gold-500/20 border border-gold-500/50 mb-8 shadow-lg shadow-gold-900/30"
           >
             <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-gold-600 opacity-60"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-gold-700"></span>
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-gold-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-gold-500"></span>
             </span>
-            <span className="text-gold-600 text-sm font-medium tracking-wide">Limited Seats Available</span>
+            <span className="text-gold-300 text-sm font-semibold tracking-wide" style={{
+              textShadow: '0 1px 4px rgba(0, 0, 0, 0.9)'
+            }}>Limited Seats Available</span>
           </motion.div>
 
           {/* Main headline - clean and decisive */}
-          <h2 className="font-display text-5xl md:text-7xl lg:text-8xl font-bold mb-8 leading-[0.95] text-monumental">
-            <span className="text-forest-50">Ready to Make</span>
+          <h2 className="font-display text-5xl md:text-7xl lg:text-8xl font-bold mb-8 leading-[0.95] text-monumental" style={{
+            textShadow: '0 4px 12px rgba(0, 0, 0, 0.95), 0 8px 24px rgba(0, 0, 0, 0.8)'
+          }}>
+            <span className="text-white">Ready to Make</span>
             <br />
-            <span className="bg-gradient-to-r from-gold-700 via-gold-600 to-gold-800 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-gold-400 via-gold-500 to-gold-400 bg-clip-text text-transparent" style={{
+              textShadow: '0 4px 12px rgba(0, 0, 0, 0.95), 0 0 30px rgba(255, 215, 0, 0.5)'
+            }}>
               Your Mark?
             </span>
           </h2>
 
           {/* Description */}
-          <p className="text-xl md:text-2xl text-forest-300 mb-6 max-w-3xl mx-auto leading-relaxed">
-            Join <span className="text-forest-100 font-semibold">5000+ participants</span> from across India. 
+          <p className="text-xl md:text-2xl text-gray-200 mb-6 max-w-3xl mx-auto leading-relaxed font-medium" style={{
+            textShadow: '0 2px 8px rgba(0, 0, 0, 0.95), 0 4px 16px rgba(0, 0, 0, 0.8)'
+          }}>
+            Join <span className="text-white font-bold">5000+ participants</span> from across India. 
             Compete, Connect, and Create memories that last a lifetime.
           </p>
           
@@ -117,14 +125,16 @@ export default function FinalCTA() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ delay: 0.3 }}
-            className="inline-flex items-center gap-3 px-6 py-4 rounded-2xl bg-gradient-to-r from-gold-950/30 via-gold-900/40 to-gold-950/30 border-2 border-gold-800/60 mb-8 backdrop-blur-sm shadow-lg"
+            className="inline-flex items-center gap-3 px-6 py-4 rounded-2xl bg-gradient-to-r from-gold-500/20 via-gold-400/30 to-gold-500/20 border-2 border-gold-500/60 mb-8 backdrop-blur-sm shadow-lg shadow-gold-900/40"
           >
-            <Trophy className="w-8 h-8 text-gold-600 fill-gold-900/40" />
+            <Trophy className="w-8 h-8 text-gold-400 fill-gold-600/40" />
             <div className="text-left">
-              <div className="text-sm text-gold-700 font-mono uppercase tracking-wider">Total Prize Pool</div>
-              <div className="text-3xl font-display font-bold text-gold-600">₹10 Lakhs + Trophies</div>
+              <div className="text-sm text-gold-300 font-mono uppercase tracking-wider font-semibold">Total Prize Pool</div>
+              <div className="text-3xl font-display font-bold text-gold-400" style={{
+                textShadow: '0 2px 8px rgba(0, 0, 0, 0.9), 0 0 25px rgba(255, 215, 0, 0.5)'
+              }}>₹10 Lakhs + Trophies</div>
             </div>
-            <Trophy className="w-8 h-8 text-gold-600 fill-gold-900/40" />
+            <Trophy className="w-8 h-8 text-gold-400 fill-gold-600/40" />
           </motion.div>
 
           {/* Event highlights */}
@@ -137,13 +147,15 @@ export default function FinalCTA() {
                 viewport={{ once: true }}
                 transition={{ delay: 0.1 * index }}
                 whileHover={{ scale: 1.05, y: -2 }}
-                className="flex items-center gap-3 px-5 py-3 rounded-full bg-forest-900/60 border border-gold-800/30 hover:border-gold-700 transition-all duration-300 hover:shadow-lg hover:shadow-gold-950/20"
+                className="flex items-center gap-3 px-5 py-3 rounded-full bg-gray-900/80 border border-gold-600/40 hover:border-gold-500 transition-all duration-300 hover:shadow-lg hover:shadow-gold-600/30"
               >
                 <item.icon 
-                  className="w-5 h-5 text-gold-600" 
-                  style={{ filter: 'drop-shadow(0 0 8px rgba(212, 175, 55, 0.4))' }}
+                  className="w-5 h-5 text-gold-400" 
+                  style={{ filter: 'drop-shadow(0 0 10px rgba(255, 215, 0, 0.6))' }}
                 />
-                <span className="text-forest-200 text-sm font-medium">{item.label}</span>
+                <span className="text-gray-200 text-sm font-semibold" style={{
+                  textShadow: '0 1px 4px rgba(0, 0, 0, 0.9)'
+                }}>{item.label}</span>
               </motion.div>
             ))}
           </div>
@@ -178,10 +190,12 @@ export default function FinalCTA() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.4 }}
-            className="bg-forest-900/40 border border-gold-800/20 rounded-lg px-6 py-3 inline-flex items-center gap-2 mb-8 backdrop-blur-sm"
+            className="bg-gray-900/60 border border-gold-600/40 rounded-lg px-6 py-3 inline-flex items-center gap-2 mb-8 backdrop-blur-sm shadow-lg"
           >
-            <Sparkles className="w-4 h-4 text-gold-700" />
-            <p className="text-forest-200 text-base font-medium">Takes less than 2 minutes</p>
+            <Sparkles className="w-4 h-4 text-gold-400" />
+            <p className="text-gray-200 text-base font-semibold" style={{
+              textShadow: '0 1px 4px rgba(0, 0, 0, 0.9)'
+            }}>Takes less than 2 minutes</p>
           </motion.div>
 
           {/* Urgency text */}
@@ -192,11 +206,15 @@ export default function FinalCTA() {
             transition={{ delay: 0.5 }}
             className="space-y-2"
           >
-            <p className="text-forest-300 text-sm flex items-center justify-center gap-2">
-              <span className="inline-block w-2 h-2 rounded-full bg-gold-800 animate-pulse" aria-hidden="true" />
+            <p className="text-gray-300 text-sm flex items-center justify-center gap-2 font-medium" style={{
+              textShadow: '0 1px 4px rgba(0, 0, 0, 0.9)'
+            }}>
+              <span className="inline-block w-2 h-2 rounded-full bg-gold-500 animate-pulse" aria-hidden="true" />
               Registration closes March 9, 2026
             </p>
-            <p className="text-cyan-glow text-sm font-mono">
+            <p className="text-cyan-400 text-sm font-mono font-semibold" style={{
+              textShadow: '0 1px 4px rgba(0, 0, 0, 0.9)'
+            }}>
               🎉 Join thousands of students from across India
             </p>
           </motion.div>
