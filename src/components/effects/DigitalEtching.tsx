@@ -17,18 +17,17 @@ export default function DigitalEtching({ text, subtitle, className = '' }: Digit
   useEffect(() => {
     // Trigger animation after component mounts
     const timer = setTimeout(() => setIsVisible(true), 100)
-    
-    // Check if mobile (below 768px)
+    return () => clearTimeout(timer)
+  }, [])
+
+  // Detect mobile viewport for simplified rendering
+  useEffect(() => {
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 768)
     }
     checkMobile()
     window.addEventListener('resize', checkMobile)
-    
-    return () => {
-      clearTimeout(timer)
-      window.removeEventListener('resize', checkMobile)
-    }
+    return () => window.removeEventListener('resize', checkMobile)
   }, [])
 
   return (
@@ -127,18 +126,19 @@ export default function DigitalEtching({ text, subtitle, className = '' }: Digit
             ease: 'easeOut',
           }}
           style={{
-            textShadow: isMobile ? 'none' : '0 2px 8px rgba(0,0,0,0.6), 0 0 20px rgba(212,175,55,0.15)',
+            textShadow: '0 2px 8px rgba(0,0,0,0.6), 0 0 20px rgba(212,175,55,0.15)',
           }}
         >
           {/* "Where" - warm off-white for readability, not disabled */}
           <span className="text-[#F5EBD7]">Where </span>
-          {/* "Heritage" - ceremonial gold accent (plain on mobile) */}
+          {/* "Heritage" - ceremonial gold accent */}
           <span 
-            className="inline-block heritage-highlight"
+            className="inline heritage-highlight"
             style={isMobile ? {
-              // Mobile: Plain gold color, no gradient/clip
+              // Mobile: Plain color, no GPU-intensive effects
               color: '#D4AF37',
-              background: 'transparent',
+              background: 'none',
+              WebkitTextFillColor: '#D4AF37',
             } : {
               // Desktop: Full gradient effect
               background: 'linear-gradient(135deg, #D4AF37 0%, #FFE5A0 50%, #D4AF37 100%)',
@@ -150,13 +150,14 @@ export default function DigitalEtching({ text, subtitle, className = '' }: Digit
           >Heritage</span>
           {/* "Meets" - warm off-white connecting word */}
           <span className="text-[#F5EBD7]"> Meets </span>
-          {/* "Future" - cyan tech accent (plain on mobile) */}
+          {/* "Future" - cyan tech accent */}
           <span 
-            className="inline-block future-highlight"
+            className="inline future-highlight"
             style={isMobile ? {
-              // Mobile: Plain cyan color, no gradient/clip
+              // Mobile: Plain color, no GPU-intensive effects
               color: '#00D4D4',
-              background: 'transparent',
+              background: 'none',
+              WebkitTextFillColor: '#00D4D4',
             } : {
               // Desktop: Full gradient effect
               background: 'linear-gradient(135deg, #00D4D4 0%, #7FFFD4 50%, #00D4D4 100%)',

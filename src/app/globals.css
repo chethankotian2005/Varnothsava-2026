@@ -376,46 +376,59 @@ input, textarea, select {
   }
 
   /* ─────────────────────────────────────
-     HERITAGE/FUTURE HIGHLIGHT FIX
-     Removes gradient/clip from highlighted words
+     INLINE GRADIENT TEXT SPANS FIX
+     Heritage/Future and similar styled spans
      ───────────────────────────────────── */
-  .heritage-highlight,
-  .future-highlight,
-  [class*="highlight"] {
-    background: transparent !important;
+  .heritage-highlight {
+    background: none !important;
+    background-image: none !important;
+    background-clip: border-box !important;
+    -webkit-background-clip: border-box !important;
+    -webkit-text-fill-color: #D4AF37 !important;
+    color: #D4AF37 !important;
+    filter: none !important;
+    -webkit-filter: none !important;
+  }
+
+  .future-highlight {
+    background: none !important;
+    background-image: none !important;
+    background-clip: border-box !important;
+    -webkit-background-clip: border-box !important;
+    -webkit-text-fill-color: #00D4D4 !important;
+    color: #00D4D4 !important;
+    filter: none !important;
+    -webkit-filter: none !important;
+  }
+
+  /* Nuclear fallback: Any span with inline gradient styles */
+  span[style*="background-clip"],
+  span[style*="WebkitBackgroundClip"],
+  span[style*="-webkit-background-clip"] {
+    background: none !important;
     background-image: none !important;
     background-clip: border-box !important;
     -webkit-background-clip: border-box !important;
     -webkit-text-fill-color: currentColor !important;
     filter: none !important;
     -webkit-filter: none !important;
-    box-shadow: none !important;
-    text-shadow: none !important;
   }
 
-  /* Force gold color on heritage */
-  .heritage-highlight {
-    color: #D4AF37 !important;
+  /* Ensure subtitle paragraph has proper stacking */
+  p[class*="subtitle"],
+  p[class*="text-base"],
+  p[class*="tracking"] {
+    position: relative;
+    z-index: 10;
+    isolation: isolate;
   }
 
-  /* Force cyan color on future */
-  .future-highlight {
-    color: #00D4D4 !important;
-  }
-
-  /* ─────────────────────────────────────
-     INLINE SPAN GRADIENT TEXT FIX
-     Reset any inline span with gradient bg
-     ───────────────────────────────────── */
-  p span[style*="background"],
-  p span[style*="gradient"],
-  p span[style*="clip"] {
-    background: transparent !important;
-    background-image: none !important;
-    background-clip: border-box !important;
-    -webkit-background-clip: border-box !important;
-    -webkit-text-fill-color: currentColor !important;
-    filter: none !important;
+  /* Reset any backdrop-filter on parent containers of text */
+  [class*="hero"] > div,
+  [class*="hero"] > motion,
+  section > div {
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
   }
 }
 
