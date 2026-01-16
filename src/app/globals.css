@@ -422,6 +422,26 @@ input, textarea, select {
     -webkit-filter: none !important;
   }
 
+  /* ─────────────────────────────────────
+     MARK & HIGHLIGHT ELEMENTS RESET
+     Remove backgrounds that cause dark artifacts
+     ───────────────────────────────────── */
+  mark,
+  .mark,
+  .highlighted {
+    background-color: transparent !important;
+    background: transparent !important;
+    color: #D4AF37 !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+  }
+
+  .text-highlight {
+    background: none !important;
+    background-color: transparent !important;
+    position: static !important;
+  }
+
   /* Nuclear fallback: Any span with inline gradient styles */
   span[style*="background-clip"],
   span[style*="WebkitBackgroundClip"],
