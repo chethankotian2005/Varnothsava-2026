@@ -40,14 +40,12 @@ export default function SponsorsPage() {
                 {tier.name}
               </h2>
               
-              <div className={`grid gap-6 ${
+              <div className={`grid gap-4 md:gap-6 ${
                 tier.id === 'title' 
                   ? 'grid-cols-1' 
                   : tier.id === 'platinum'
-                    ? 'grid-cols-1 md:grid-cols-2'
-                    : tier.id === 'gold' || tier.id === 'silver'
-                      ? 'grid-cols-2 md:grid-cols-3 lg:grid-cols-4'
-                      : 'grid-cols-2 md:grid-cols-4 lg:grid-cols-5'
+                    ? 'grid-cols-1 sm:grid-cols-2'
+                    : 'grid-cols-2 md:grid-cols-3 lg:grid-cols-4'
               }`}>
                 {tierSponsors.map((sponsor, index) => (
                   <motion.div
@@ -57,20 +55,24 @@ export default function SponsorsPage() {
                     viewport={{ once: true }}
                     transition={{ delay: index * 0.05 }}
                     whileHover={{ scale: 1.02, y: -4 }}
+                    whileTap={{ scale: 0.98 }}
                     className={`
                       bg-gradient-to-br ${tier.bgGradient}
                       border ${tier.borderColor}
-                      rounded-2xl p-6 
+                      rounded-xl md:rounded-2xl p-4 md:p-6 
                       flex flex-col items-center justify-center
                       transition-all duration-300
-                      ${tier.id === 'title' ? 'py-12' : ''}
+                      ${tier.id === 'title' ? 'py-8 md:py-12' : ''}
+                      grayscale hover:grayscale-0
+                      shadow-md hover:shadow-lg
+                      touch-manipulation
                     `}
                   >
-                    {/* Placeholder for logo */}
+                    {/* Placeholder for logo - max 120px on mobile */}
                     <div className={`
-                      bg-forest-800/50 rounded-xl flex items-center justify-center
-                      ${tier.id === 'title' ? 'w-64 h-32' : tier.id === 'platinum' ? 'w-48 h-24' : 'w-32 h-16'}
-                      mb-4
+                      bg-forest-800/50 rounded-lg md:rounded-xl flex items-center justify-center
+                      ${tier.id === 'title' ? 'w-48 h-24 md:w-64 md:h-32' : tier.id === 'platinum' ? 'w-36 h-20 md:w-48 md:h-24' : 'w-24 h-12 md:w-32 md:h-16'}
+                      mb-3 md:mb-4
                     `}>
                       <span className={`${tier.color} font-display font-bold ${tier.id === 'title' ? 'text-2xl' : 'text-lg'}`}>
                         {sponsor.name.split(' ')[0]}

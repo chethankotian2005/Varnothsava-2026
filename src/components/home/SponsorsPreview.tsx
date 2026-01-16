@@ -21,10 +21,11 @@ const sponsors = {
 
 // Animated sponsor card component
 function SponsorCard({ name, size, variant }: { name: string, size: 'lg' | 'md' | 'sm', variant: 'title' | 'platinum' | 'gold' }) {
+  // Responsive size classes - max 120px width on mobile for sm cards
   const sizeClasses = {
-    lg: 'w-72 h-32',
-    md: 'w-56 h-24',
-    sm: 'w-44 h-20',
+    lg: 'w-full max-w-[288px] h-28 md:h-32',
+    md: 'w-full max-w-[224px] h-20 md:h-24',
+    sm: 'w-full max-w-[120px] h-16 md:max-w-[176px] md:h-20',
   }
   
   const variantClasses = {
@@ -34,24 +35,27 @@ function SponsorCard({ name, size, variant }: { name: string, size: 'lg' | 'md' 
   }
   
   const textClasses = {
-    title: 'text-gold-600 text-2xl font-display font-bold',
-    platinum: 'text-gray-100 text-lg font-semibold',
-    gold: 'text-gold-600 text-base font-medium',
+    title: 'text-gold-600 text-xl md:text-2xl font-display font-bold',
+    platinum: 'text-gray-100 text-base md:text-lg font-semibold',
+    gold: 'text-gold-600 text-sm md:text-base font-medium',
   }
 
   return (
     <motion.div
       whileHover={{ scale: 1.05, y: -5 }}
+      whileTap={{ scale: 0.98 }}
       transition={{ type: "spring", stiffness: 300 }}
       className={`
         ${sizeClasses[size]} 
-        rounded-2xl border-2 backdrop-blur-md
+        rounded-xl md:rounded-2xl border-2 backdrop-blur-md
         ${variantClasses[variant]}
         flex items-center justify-center
         relative overflow-hidden group cursor-pointer
         transition-all duration-300
         focus-within:ring-2 focus-within:ring-gold-800
-        shadow-lg hover:shadow-2xl hover:shadow-gold-950/30
+        shadow-md hover:shadow-xl hover:shadow-gold-950/30
+        grayscale hover:grayscale-0
+        touch-manipulation
       `}
       tabIndex={0}
       role="article"
@@ -198,7 +202,7 @@ export default function SponsorsPreview() {
             <span className="text-amber-500 text-sm font-mono tracking-widest uppercase">Gold Partners</span>
             <div className="h-px w-8 bg-gradient-to-l from-transparent to-amber-600/50" />
           </div>
-          <div className="flex flex-wrap justify-center gap-4">
+          <div className="grid grid-cols-2 md:flex md:flex-wrap justify-center gap-4">
             {sponsors.gold.map((sponsor, index) => (
               <motion.div
                 key={sponsor.name}
@@ -206,6 +210,7 @@ export default function SponsorsPreview() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 + 0.3 }}
+                className="flex justify-center"
               >
                 <SponsorCard name={sponsor.name} size="sm" variant="gold" />
               </motion.div>
