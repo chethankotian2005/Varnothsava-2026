@@ -388,6 +388,8 @@ input, textarea, select {
     color: #D4AF37 !important;
     filter: none !important;
     -webkit-filter: none !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
   }
 
   .future-highlight {
@@ -397,6 +399,25 @@ input, textarea, select {
     -webkit-background-clip: border-box !important;
     -webkit-text-fill-color: #00D4D4 !important;
     color: #00D4D4 !important;
+    filter: none !important;
+    -webkit-filter: none !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  /* ─────────────────────────────────────
+     SHADOW & FILTER REMOVAL
+     Inset box-shadows and text-shadows cause dark artifacts
+     ───────────────────────────────────── */
+  span[style*="Heritage"],
+  span[style*="Future"],
+  span[style*="gradient"],
+  span[style*="drop-shadow"],
+  .highlight,
+  .emphasized-text,
+  .text-highlight {
+    box-shadow: none !important;
+    text-shadow: none !important;
     filter: none !important;
     -webkit-filter: none !important;
   }
