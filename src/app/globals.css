@@ -208,12 +208,69 @@ input, textarea, select {
 }
 
 /* ========================================
-   MOBILE GPU RENDERING FIXES
+   MOBILE GPU RENDERING FIXES (AGGRESSIVE)
    Prevents dark rectangular strips behind text
    ======================================== */
 
 @media (max-width: 768px) {
-  /* 1️⃣ Disable backdrop-filter on mobile to prevent GPU banding */
+  /* 1️⃣ REMOVE TRANSFORMS FROM TEXT PARENTS - Critical for clean text rendering */
+  section,
+  .card,
+  .glass,
+  .animated,
+  .motion,
+  .hero-content,
+  [class*="hero"],
+  [class*="motion"],
+  [class*="animate"],
+  [class*="glass-"],
+  [class*="card"] {
+    transform: none !important;
+    -webkit-transform: none !important;
+    filter: none !important;
+    -webkit-filter: none !important;
+    animation: none !important;
+    -webkit-animation: none !important;
+  }
+
+  /* 2️⃣ ISOLATE TEXT INTO ITS OWN LAYER - Force independent compositing */
+  h1, h2, h3, h4, h5, h6, p, span, small, a, li, label {
+    position: relative;
+    z-index: 1;
+    isolation: isolate;
+    will-change: opacity;
+    /* Remove translateZ - makes it worse on some GPUs */
+    transform: none !important;
+    -webkit-transform: none !important;
+  }
+
+  /* 3️⃣ DISABLE ALL ::BEFORE / ::AFTER ON TEXT CONTAINERS */
+  h1::before,
+  h1::after,
+  h2::before,
+  h2::after,
+  h3::before,
+  h3::after,
+  .title::before,
+  .title::after,
+  .underline::before,
+  .underline::after,
+  .hero-title-3d-gold::before,
+  .hero-title-3d-gold::after,
+  .hero-underline-neon::before,
+  .hero-underline-neon::after {
+    display: none !important;
+    content: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+  }
+
+  /* 4️⃣ REMOVE MIX-BLEND & OPACITY STACKING */
+  * {
+    mix-blend-mode: normal !important;
+  }
+
+  /* 5️⃣ Disable backdrop-filter on mobile to prevent GPU banding */
   .glass,
   .blur,
   .backdrop,
@@ -224,15 +281,7 @@ input, textarea, select {
     background: rgba(10, 22, 18, 0.85) !important;
   }
 
-  /* 2️⃣ Prevent GPU layer bleed on text elements */
-  h1, h2, h3, h4, h5, h6, p, span, a, li, label {
-    -webkit-transform: translateZ(0);
-    transform: translateZ(0);
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
-  }
-
-  /* 3️⃣ Fix overflow + absolute stacking issues */
+  /* 6️⃣ Fix overflow + absolute stacking issues */
   section,
   .card,
   .hero,
@@ -241,15 +290,17 @@ input, textarea, select {
     overflow: visible !important;
   }
 
-  /* 4️⃣ Disable gradient masks on mobile text */
+  /* 7️⃣ Disable gradient masks on mobile text */
   .text-gradient,
   [class*="bg-clip-text"],
   [class*="text-transparent"] {
     -webkit-mask-image: none !important;
     mask-image: none !important;
+    background-clip: unset !important;
+    -webkit-background-clip: unset !important;
   }
 
-  /* 5️⃣ Simplify glassmorphism cards on mobile */
+  /* 8️⃣ Simplify glassmorphism cards on mobile */
   .glass-card,
   .glass-card-dark,
   .glass-card-gold,
@@ -260,21 +311,31 @@ input, textarea, select {
     border: 1px solid rgba(212, 175, 55, 0.2) !important;
   }
 
-  /* 6️⃣ Remove complex filters from text on mobile */
+  /* 9️⃣ Remove complex filters from text on mobile */
   .hero-title-3d-gold,
   .text-monumental,
   .text-engraved {
     filter: none !important;
     -webkit-filter: none !important;
+    text-shadow: none !important;
   }
 
-  /* 7️⃣ Disable blur effects on decorative elements */
+  /* 🔟 Disable blur effects on decorative elements */
   [class*="blur-"],
   .blur-xl,
   .blur-2xl,
   .blur-3xl {
     filter: none !important;
     -webkit-filter: none !important;
+    opacity: 0 !important;
+  }
+
+  /* 1️⃣1️⃣ Remove box-shadows that cause GPU layers */
+  .card,
+  .glass,
+  [class*="shadow"] {
+    box-shadow: none !important;
+    -webkit-box-shadow: none !important;
   }
 }
 
