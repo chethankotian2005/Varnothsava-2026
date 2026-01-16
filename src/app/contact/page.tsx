@@ -33,7 +33,7 @@ export default function ContactPage() {
       icon: MapPin,
       title: 'Address',
       content: 'SMVITM, Bantakal, Udupi - 574115, Karnataka, India',
-      link: 'https://maps.google.com/?q=SMVITM+Bantakal+Udupi',
+      link: 'https://maps.google.com/?q=Shri+Madhwa+Vadiraja+Institute+of+Technology+and+Management+Bantakal+Udupi',
     },
     {
       icon: Phone,
@@ -283,7 +283,7 @@ export default function ContactPage() {
           </h2>
           <div className="bg-forest-800/50 rounded-2xl overflow-hidden border border-forest-700/50">
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3881.234!2d74.7852!3d13.3486!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bbcbb7e4a7c2a83%3A0x2a0a6d7ef6d5b32c!2sSMVITM!5e0!3m2!1sen!2sin!4v1704067200000!5m2!1sen!2sin"
+              src="https://maps.google.com/maps?q=Shri+Madhwa+Vadiraja+Institute+of+Technology+and+Management+Bantakal+Udupi&t=&z=15&ie=UTF8&iwloc=&output=embed"
               width="100%"
               height="400"
               style={{ border: 0 }}
@@ -291,6 +291,7 @@ export default function ContactPage() {
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
               className="grayscale hover:grayscale-0 transition-all duration-500"
+              title="SMVITM Bantakal Location"
             />
           </div>
         </motion.div>

@@ -8,7 +8,7 @@ import Link from 'next/link'
 // Schedule data for 3 days
 const scheduleData = {
   'day-1': {
-    date: 'March 15, 2026',
+    date: 'March 11, 2026',
     day: 'Day 1',
     title: 'The Awakening',
     events: [
@@ -26,7 +26,7 @@ const scheduleData = {
     ],
   },
   'day-2': {
-    date: 'March 16, 2026',
+    date: 'March 12, 2026',
     day: 'Day 2',
     title: 'The Surge',
     events: [
@@ -43,9 +43,9 @@ const scheduleData = {
     ],
   },
   'day-3': {
-    date: 'March 17, 2026',
+    date: 'March 13, 2026',
     day: 'Day 3',
-    title: 'The Culmination',
+    title: 'The Crescendo',
     events: [
       { time: '09:00 AM', name: 'Group Singing', venue: 'Main Auditorium', type: 'cultural', duration: '3 hrs' },
       { time: '10:00 AM', name: 'Treasure Hunt', venue: 'Campus-wide', type: 'general', duration: '3 hrs' },
@@ -57,6 +57,21 @@ const scheduleData = {
       { time: '07:00 PM', name: 'Runway Regal (Fashion Show)', venue: 'Main Auditorium', type: 'cultural', duration: '2 hrs' },
       { time: '09:00 PM', name: 'Prize Distribution & Valedictory', venue: 'Main Auditorium', type: 'ceremony', duration: '1.5 hrs' },
       { time: '10:30 PM', name: 'Star Night: Celebrity Performance', venue: 'Main Ground', type: 'proshows', duration: '2 hrs' },
+    ],
+  },
+  'day-4': {
+    date: 'March 14, 2026',
+    day: 'Day 4',
+    title: 'The Culmination',
+    events: [
+      { time: '09:00 AM', name: 'Group Singing Finals', venue: 'Main Auditorium', type: 'cultural', duration: '2 hrs' },
+      { time: '10:00 AM', name: 'Flash Mob', venue: 'College Ground', type: 'cultural', duration: '1 hr' },
+      { time: '11:00 AM', name: 'Short Film Screening', venue: 'Screening Hall', type: 'media', duration: '3 hrs' },
+      { time: '02:00 PM', name: 'All Event Finals', venue: 'Various Venues', type: 'general', duration: '3 hrs' },
+      { time: '04:00 PM', name: 'Street Play Competition', venue: 'Open Air Theatre', type: 'cultural', duration: '2 hrs' },
+      { time: '06:00 PM', name: 'Runway Regal (Fashion Show)', venue: 'Main Auditorium', type: 'cultural', duration: '2 hrs' },
+      { time: '08:00 PM', name: 'Prize Distribution & Valedictory', venue: 'Main Auditorium', type: 'ceremony', duration: '1.5 hrs' },
+      { time: '09:30 PM', name: 'Grand Finale: Star Night', venue: 'Main Ground', type: 'proshows', duration: '3 hrs' },
     ],
   },
 }
@@ -73,7 +88,7 @@ const eventTypeColors: Record<string, string> = {
   general: 'bg-forest-600/20 text-forest-300 border-forest-600/50',
 }
 
-type DayKey = 'day-1' | 'day-2' | 'day-3'
+type DayKey = 'day-1' | 'day-2' | 'day-3' | 'day-4'
 
 export default function SchedulePage() {
   const [selectedDay, setSelectedDay] = useState<DayKey>('day-1')
@@ -97,7 +112,7 @@ export default function SchedulePage() {
             Event Schedule
           </h1>
           <p className="text-forest-400 text-lg">
-            March 15-17, 2026 • 3 Days of Non-Stop Action
+            March 11-14, 2026 • 4 Days of Non-Stop Action
           </p>
         </motion.div>
 

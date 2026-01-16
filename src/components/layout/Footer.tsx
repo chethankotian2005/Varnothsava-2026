@@ -220,7 +220,7 @@ export default function Footer() {
           <CollapsibleSection title="Contact">
             <div className="space-y-4 text-[15px] md:text-sm text-white/80">
               <motion.a 
-                href="https://maps.google.com/?q=SMVITM+Bantakal+Udupi" 
+                href="https://maps.google.com/?q=Shri+Madhwa+Vadiraja+Institute+of+Technology+and+Management+Bantakal+Udupi" 
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-start space-x-3 group hover:text-gold-700 transition-colors py-2 md:py-0 min-h-[44px] md:min-h-0"

@@ -41,7 +41,7 @@ const jetbrains = JetBrains_Mono({
 
 export const metadata: Metadata = {
   title: 'Varnothsava 2026 | SMVITM - Where Heritage Meets Future',
-  description: 'Join 5000+ students at Karnataka\'s grandest inter-collegiate cultural and technical fest. March 15-17, 2026 at SMVITM Udupi. 50+ events, ₹10L+ prizes!',
+  description: 'Join 5000+ students at Karnataka\'s grandest inter-collegiate cultural and technical fest. March 11-14, 2026 at SMVITM Udupi. 50+ events, ₹10L+ prizes!',
   keywords: ['Varnothsava', 'SMVITM', 'college fest', 'cultural fest', 'technical fest', '2026', 'hackathon', 'Karnataka', 'Udupi', 'inter-collegiate'],
   authors: [{ name: 'SMVITM', url: 'https://www.smvitm.ac.in' }],
   creator: 'SMVITM',
@@ -59,7 +59,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: 'Varnothsava 2026 | SMVITM - Where Heritage Meets Future',
-    description: 'Karnataka\'s grandest inter-collegiate fest. 50+ events, 5000+ participants, ₹10L+ prizes. March 15-17, 2026 at SMVITM Udupi.',
+    description: 'Karnataka\'s grandest inter-collegiate fest. 50+ events, 5000+ participants, ₹10L+ prizes. March 11-14, 2026 at SMVITM Udupi.',
     url: 'https://varnothsava-2026.vercel.app',
     siteName: 'Varnothsava 2026',
     type: 'website',
@@ -76,7 +76,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Varnothsava 2026 | SMVITM',
-    description: 'Join Karnataka\'s grandest college fest. 50+ events, ₹10L+ prizes! March 15-17, 2026.',
+    description: 'Join Karnataka\'s grandest college fest. 50+ events, ₹10L+ prizes! March 11-14, 2026.',
     images: ['/images/logo-og.png'],
     creator: '@varnothsava',
   },

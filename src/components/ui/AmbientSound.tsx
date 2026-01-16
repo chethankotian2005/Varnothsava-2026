@@ -4,8 +4,8 @@ import { useState, useRef, useEffect, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Volume2, VolumeX, Leaf } from 'lucide-react'
 
-// Free ambient forest sound from a CDN
-const AMBIENT_SOUND_URL = 'https://cdn.pixabay.com/audio/2022/02/22/audio_d1718ab41b.mp3'
+// Forest ambiance with birds chirping, gentle breeze, and nature sounds
+const AMBIENT_SOUND_URL = 'https://cdn.pixabay.com/audio/2022/03/10/audio_4dedf5bf94.mp3'
 
 export default function AmbientSound() {
   const [isPlaying, setIsPlaying] = useState(false)
