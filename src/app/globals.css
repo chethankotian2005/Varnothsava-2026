@@ -374,6 +374,49 @@ input, textarea, select {
     display: none !important;
     content: none !important;
   }
+
+  /* ─────────────────────────────────────
+     HERITAGE/FUTURE HIGHLIGHT FIX
+     Removes gradient/clip from highlighted words
+     ───────────────────────────────────── */
+  .heritage-highlight,
+  .future-highlight,
+  [class*="highlight"] {
+    background: transparent !important;
+    background-image: none !important;
+    background-clip: border-box !important;
+    -webkit-background-clip: border-box !important;
+    -webkit-text-fill-color: currentColor !important;
+    filter: none !important;
+    -webkit-filter: none !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  /* Force gold color on heritage */
+  .heritage-highlight {
+    color: #D4AF37 !important;
+  }
+
+  /* Force cyan color on future */
+  .future-highlight {
+    color: #00D4D4 !important;
+  }
+
+  /* ─────────────────────────────────────
+     INLINE SPAN GRADIENT TEXT FIX
+     Reset any inline span with gradient bg
+     ───────────────────────────────────── */
+  p span[style*="background"],
+  p span[style*="gradient"],
+  p span[style*="clip"] {
+    background: transparent !important;
+    background-image: none !important;
+    background-clip: border-box !important;
+    -webkit-background-clip: border-box !important;
+    -webkit-text-fill-color: currentColor !important;
+    filter: none !important;
+  }
 }
 
 /* ========================================
