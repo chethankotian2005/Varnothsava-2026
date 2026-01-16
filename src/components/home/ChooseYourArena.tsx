@@ -193,7 +193,7 @@ function ArenaCard({
         }}
       >
         <motion.div
-          className="relative w-full aspect-video sm:aspect-[2/3] lg:aspect-[3/5] min-h-[280px] rounded-2xl overflow-hidden cursor-pointer"
+          className="relative w-full aspect-[3/4] sm:aspect-[2/3] lg:aspect-[3/5] rounded-2xl overflow-hidden cursor-pointer"
           whileHover={prefersReducedMotion ? {} : { 
             y: -12, 
             scale: 1.02,
@@ -206,15 +206,15 @@ function ArenaCard({
               : '0 15px 40px -10px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.05)',
           }}
         >
-          {/* Full-bleed background image with responsive srcset */}
+          {/* Full-bleed background image */}
           <div className="absolute inset-0">
             <Image
               src={arena.image}
               alt={`${arena.title} - Varnothsava 2026`}
               fill
-              sizes="(max-width: 640px) 100vw, (max-width: 768px) 100vw, (max-width: 1200px) 33vw, 400px"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               className="object-cover object-center"
-              quality={75}
+              quality={85}
               loading="lazy"
               priority={false}
             />
@@ -356,11 +356,11 @@ function ArenaCard({
               </span>
             </div>
             
-            {/* Enter CTA - visible on mobile, appears on hover on desktop */}
+            {/* Enter CTA - appears on hover */}
             <motion.div
-              className="mt-6 flex items-center justify-center sm:justify-start gap-2 text-gold-400 font-semibold bg-gold-900/30 sm:bg-transparent py-3 sm:py-0 rounded-lg min-h-[44px]"
-              initial={{ opacity: 0.7, x: 0 }}
-              animate={{ opacity: isActive ? 1 : 0.7, x: isActive ? 0 : 0 }}
+              className="mt-6 flex items-center gap-2 text-gold-400 font-semibold"
+              initial={{ opacity: 0, x: -10 }}
+              animate={{ opacity: isActive ? 1 : 0, x: isActive ? 0 : -10 }}
               transition={{ duration: 0.3 }}
             >
               <span className="text-sm tracking-wider uppercase">Enter Arena</span>
@@ -507,8 +507,8 @@ export default function ChooseYourArena() {
           </p>
         </motion.div>
 
-        {/* Arena Cards - Single column on mobile, three columns on desktop */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6 lg:gap-8 max-w-6xl mx-auto">
+        {/* Arena Cards - Three columns on desktop, stack on mobile */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 max-w-6xl mx-auto">
           {arenas.map((arena, index) => (
             <ArenaCard
               key={arena.id}

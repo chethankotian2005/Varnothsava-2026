@@ -51,6 +51,12 @@ export const metadata: Metadata = {
     icon: '/images/logo.png',
     apple: '/images/logo.png',
   },
+  viewport: {
+    width: 'device-width',
+    initialScale: 1,
+    maximumScale: 5,
+    userScalable: true,
+  },
   openGraph: {
     title: 'Varnothsava 2026 | SMVITM - Where Heritage Meets Future',
     description: 'Karnataka\'s grandest inter-collegiate fest. 50+ events, 5000+ participants, ₹10L+ prizes. March 15-17, 2026 at SMVITM Udupi.',
