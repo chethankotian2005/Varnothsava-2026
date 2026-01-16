@@ -1664,16 +1664,21 @@ button,
 
   /* Hero title natural white shine - sharp metallic sweep */
   @keyframes hero-gold-shine {
-    0%, 80% { 
+    0% { 
+      transform: translateX(-200%) skewX(-20deg); 
+      opacity: 0;
+    }
+    78% { 
       transform: translateX(-200%) skewX(-20deg); 
       opacity: 0;
     }
     82% {
-      opacity: 1;
+      transform: translateX(-150%) skewX(-20deg);
+      opacity: 0.2;
     }
-    98% { 
+    96% { 
       transform: translateX(600%) skewX(-20deg); 
-      opacity: 1;
+      opacity: 0.2;
     }
     100% { 
       transform: translateX(600%) skewX(-20deg); 
@@ -1691,20 +1696,77 @@ button,
     position: absolute;
     top: -50%;
     left: 0;
-    width: 15%;
+    width: 32%;
     height: 200%;
     background: linear-gradient(
       90deg,
       transparent 0%,
-      rgba(255, 255, 255, 0.1) 25%,
-      rgba(255, 255, 255, 0.5) 50%,
-      rgba(255, 255, 255, 0.1) 75%,
+      rgba(255, 245, 220, 0.12) 35%,
+      rgba(255, 220, 160, 0.18) 50%,
+      rgba(255, 245, 220, 0.12) 65%,
       transparent 100%
     );
+    /* Explicit initial state - must be off-screen and invisible */
+    transform: translateX(-200%) skewX(-20deg);
+    opacity: 0;
     pointer-events: none;
-    animation: hero-gold-shine 5s ease-in-out 1.5s infinite;
+    animation: hero-gold-shine 6.5s ease-in-out 2s infinite;
     will-change: transform, opacity;
     mix-blend-mode: screen;
+  }
+
+  /* Underline neon sweep - synchronized with title shine */
+  @keyframes hero-underline-sweep {
+    0% { 
+      transform: translateX(0); 
+      opacity: 0;
+    }
+    78% { 
+      transform: translateX(0); 
+      opacity: 0;
+    }
+    82% {
+      transform: translateX(50%);
+      opacity: 0.5;
+    }
+    89% {
+      transform: translateX(150%);
+      opacity: 1;
+    }
+    96% { 
+      transform: translateX(300%); 
+      opacity: 0;
+    }
+    100% { 
+      transform: translateX(300%); 
+      opacity: 0;
+    }
+  }
+  
+  .hero-underline-neon {
+    overflow: hidden;
+  }
+  
+  .hero-underline-neon::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -40%;
+    width: 35%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(120, 255, 220, 0.35) 25%,
+      rgba(80, 200, 255, 0.45) 50%,
+      rgba(120, 255, 220, 0.35) 75%,
+      transparent 100%
+    );
+    transform: translateX(0);
+    opacity: 0;
+    pointer-events: none;
+    animation: hero-underline-sweep 6.5s ease-in-out 2s infinite;
+    will-change: transform, opacity;
   }
 
   /* ========================================

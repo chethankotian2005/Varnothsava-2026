@@ -9,6 +9,7 @@ import SkipLink from '@/components/layout/SkipLink'
 import FloatingActionButton from '@/components/ui/FloatingActionButton'
 import ScrollProgress from '@/components/ui/ScrollProgress'
 import BackToTop from '@/components/ui/BackToTop'
+import AmbientSound from '@/components/ui/AmbientSound'
 import ParallaxBackground from '@/components/effects/ParallaxBackground'
 import SmoothScroll from '@/components/effects/SmoothScroll'
 import ScrollAnimations from '@/components/effects/ScrollAnimations'
@@ -212,6 +213,7 @@ export default function RootLayout({
         <ChatWidget />
         <FloatingActionButton />
         <BackToTop />
+        <AmbientSound />
         
         {/* Vercel Analytics & Speed Insights */}
         <Analytics />

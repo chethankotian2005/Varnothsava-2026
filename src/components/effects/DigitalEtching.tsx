@@ -42,16 +42,29 @@ export default function DigitalEtching({ text, subtitle, className = '' }: Digit
           willChange: 'transform, opacity',
         }}
       >
-        {/* Clean, elegant title with subtle gold accent */}
+        {/* Premium 3D gold-metal title with forest light integration */}
         <motion.h1 
-          className="font-display text-center leading-tight uppercase relative z-10 hero-title-3d-gold"
+          className="font-display text-center leading-tight uppercase relative z-10 hero-title-3d-gold px-4"
           style={{ 
-            fontSize: 'clamp(2rem, 8vw, 6rem)',
+            fontSize: 'clamp(2.25rem, 8vw, 6rem)',
             fontWeight: 700,
-            letterSpacing: 'clamp(0.05em, 2vw, 0.1em)',
-            color: 'rgba(255, 255, 255, 0.95)',
-            textShadow: '0 4px 20px rgba(212, 175, 55, 0.5)',
-            WebkitTextStroke: '1px rgba(212, 175, 55, 0.3)',
+            letterSpacing: 'clamp(0.08em, 2vw, 0.1em)',
+            background: 'linear-gradient(180deg, #FFFDF5 0%, #FFF1B8 25%, #FFD36A 50%, #F2B93B 75%, #C9971A 100%)',
+            WebkitBackgroundClip: 'text',
+            backgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+            textShadow: `
+              0 1px 0 rgba(255, 253, 245, 0.9),
+              0 2px 0 rgba(255, 241, 184, 0.7),
+              0 3px 0 rgba(255, 211, 106, 0.5),
+              0 4px 0 rgba(242, 185, 59, 0.3),
+              0 5px 8px rgba(0, 0, 0, 0.2),
+              0 8px 15px rgba(0, 0, 0, 0.15),
+              inset 0 -1px 2px rgba(0, 0, 0, 0.15),
+              0 -1px 1px rgba(80, 200, 180, 0.2),
+              0 6px 2px rgba(80, 200, 180, 0.08)
+            `,
+            filter: 'drop-shadow(0 3px 6px rgba(0, 0, 0, 0.2)) brightness(1.2)',
           }}
           initial={{ 
             opacity: 0, 
@@ -74,7 +87,7 @@ export default function DigitalEtching({ text, subtitle, className = '' }: Digit
 
         {/* Clean minimal underline */}
         <motion.div
-          className="relative mt-6 mx-auto"
+          className="relative mt-6 mx-auto hero-underline-neon"
           style={{ 
             width: '60%', 
             height: '2px',

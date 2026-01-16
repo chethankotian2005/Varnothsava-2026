@@ -291,7 +291,7 @@ export default function CyberAranyaHero() {
   return (
     <section
       ref={containerRef}
-      className="relative min-h-[100svh] lg:min-h-screen flex items-center justify-center overflow-hidden z-40 pb-32"
+      className="relative min-h-[100svh] flex items-center justify-center overflow-hidden z-40 py-4 md:py-6"
       aria-label="Hero section"
     >
       {/* Hero-specific overlay - lightened for premium mystical feel */}
@@ -320,7 +320,7 @@ export default function CyberAranyaHero() {
 
       {/* Main content with parallax - balanced padding to fit all content */}
       <motion.div
-        className="relative z-30 text-center px-4 sm:px-6 md:px-12 lg:px-24 max-w-6xl mx-auto pt-20 md:pt-24 pb-8"
+        className="relative z-30 text-center px-4 sm:px-6 md:px-12 lg:px-24 max-w-6xl mx-auto pt-8 md:pt-12 pb-8"
         style={{
           y: contentY,
           x: contentMouseX,

@@ -33,6 +33,7 @@ export const events: Event[] = [
     category: 'Cultural',
     categoryId: 'cultural',
     description: 'Solo Classical Dance competition showcasing traditional Indian dance forms.',
+    image: 'https://images.unsplash.com/photo-1555862124-94036092ab14?w=800&h=600&fit=crop&q=80',
     rules: [
       'Solo performance only',
       'Classical dance forms: Bharatanatyam, Kathak, Odissi, Kuchipudi, Mohiniyattam, etc.',
@@ -56,6 +57,7 @@ export const events: Event[] = [
     category: 'Cultural',
     categoryId: 'cultural',
     description: 'Solo Singing competition across various genres and languages.',
+    image: 'https://images.unsplash.com/photo-1516280440614-37939bbacd81?w=800&h=600&fit=crop&q=80',
     rules: [
       'Solo performance only',
       'Time limit: 5-6 minutes',
@@ -79,6 +81,7 @@ export const events: Event[] = [
     category: 'Cultural',
     categoryId: 'cultural',
     description: 'Group Western Dance competition featuring contemporary, hip-hop, and freestyle performances.',
+    image: 'https://images.unsplash.com/photo-1508700929628-666bc8bd84ea?w=800&h=600&fit=crop&q=80',
     rules: [
       'Team of 6-12 members',
       'Time limit: 6-8 minutes',
@@ -102,6 +105,7 @@ export const events: Event[] = [
     category: 'Cultural',
     categoryId: 'cultural',
     description: 'Face Painting competition showcasing artistic skills and imagination.',
+    image: 'https://images.unsplash.com/photo-1513151233558-d860c5398176?w=800&h=600&fit=crop&q=80',
     rules: [
       'Individual or team of 2',
       'Duration: 90 minutes',
@@ -125,6 +129,7 @@ export const events: Event[] = [
     category: 'Cultural',
     categoryId: 'cultural',
     description: 'Mehandi competition with intricate traditional and contemporary designs.',
+    image: 'https://images.unsplash.com/photo-1519741497674-611481863552?w=800&h=600&fit=crop&q=80',
     rules: [
       'Individual participation',
       'Duration: 2 hours',
@@ -148,6 +153,7 @@ export const events: Event[] = [
     category: 'Cultural',
     categoryId: 'cultural',
     description: 'Videography competition capturing the essence of Varnothsava 2026.',
+    image: 'https://images.unsplash.com/photo-1492619375914-88005aa9e8fb?w=800&h=600&fit=crop&q=80',
     rules: [
       'Individual or team of up to 3',
       'Capture fest moments throughout the day',
@@ -171,6 +177,7 @@ export const events: Event[] = [
     category: 'Cultural',
     categoryId: 'cultural',
     description: 'Photography competition capturing memorable moments of the fest.',
+    image: 'https://images.unsplash.com/photo-1452587925148-ce544e77e70d?w=800&h=600&fit=crop&q=80',
     rules: [
       'Individual participation',
       'DSLR/Mirrorless/Smartphone allowed',
@@ -194,6 +201,7 @@ export const events: Event[] = [
     category: 'Cultural',
     categoryId: 'cultural',
     description: 'Stand-up comedy competition for aspiring comedians.',
+    image: 'https://images.unsplash.com/photo-1585699324551-f6c309eedeca?w=800&h=600&fit=crop&q=80',
     rules: [
       'Solo performance',
       'Time limit: 5-7 minutes',
@@ -217,6 +225,7 @@ export const events: Event[] = [
     category: 'Cultural',
     categoryId: 'cultural',
     description: 'Group Singing competition celebrating folk and traditional music.',
+    image: 'https://images.unsplash.com/photo-1511379938547-c1f69419868d?w=800&h=600&fit=crop&q=80',
     rules: [
       'Team of 4-10 members',
       'Time limit: 8-10 minutes',
@@ -240,6 +249,7 @@ export const events: Event[] = [
     category: 'Cultural',
     categoryId: 'cultural',
     description: 'Anime Quiz competition. Prelims in CAED LAB (morning), Finals in Open Air Auditorium.',
+    image: 'https://images.unsplash.com/photo-1578632767115-351597cf2477?w=800&h=600&fit=crop&q=80',
     rules: [
       'Team of 2-3 members',
       'Prelims: Written round (Morning - CAED LAB)',
@@ -268,6 +278,7 @@ export const events: Event[] = [
     category: 'Cultural',
     categoryId: 'cultural',
     description: 'Antakshari competition testing musical knowledge and quick thinking.',
+    image: 'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=800&h=600&fit=crop&q=80',
     rules: [
       'Team of 4-6 members',
       'Prelims in Library Seminar Hall',
@@ -291,6 +302,7 @@ export const events: Event[] = [
     category: 'Cultural',
     categoryId: 'cultural',
     description: 'Flower Arrangement & Vegetable Carving competition.',
+    image: 'https://images.unsplash.com/photo-1490750967868-88aa4486c946?w=800&h=600&fit=crop&q=80',
     rules: [
       'Team of 2 members',
       'Duration: 2 hours',
@@ -314,6 +326,7 @@ export const events: Event[] = [
     category: 'Cultural',
     categoryId: 'cultural',
     description: 'Variety Act competition - magic, mimicry, beatboxing, and more!',
+    image: 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=800&h=600&fit=crop&q=80',
     rules: [
       'Solo or group (max 5 members)',
       'Time limit: 5-7 minutes',
@@ -337,6 +350,7 @@ export const events: Event[] = [
     category: 'Cultural',
     categoryId: 'cultural',
     description: 'Rangoli competition showcasing colorful floor art.',
+    image: 'https://images.unsplash.com/photo-1604999333679-b86d54738315?w=800&h=600&fit=crop&q=80',
     rules: [
       'Team of 2 members',
       'Duration: 2.5 hours',
@@ -360,6 +374,7 @@ export const events: Event[] = [
     category: 'Cultural',
     categoryId: 'cultural',
     description: 'Just A Minute (Pick and Speech) - impromptu speaking competition.',
+    image: 'https://images.unsplash.com/photo-1475721027785-f74eccf877e2?w=800&h=600&fit=crop&q=80',
     rules: [
       'Individual participation',
       'Topic given on spot',
@@ -383,6 +398,7 @@ export const events: Event[] = [
     category: 'Cultural',
     categoryId: 'cultural',
     description: 'Drawing competition to showcase artistic creativity.',
+    image: 'https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=800&h=600&fit=crop&q=80',
     rules: [
       'Individual participation',
       'Duration: 2 hours',
@@ -406,6 +422,7 @@ export const events: Event[] = [
     category: 'Cultural',
     categoryId: 'cultural',
     description: 'Pencil Sketch competition demonstrating shading and detailing skills.',
+    image: 'https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?w=800&h=600&fit=crop&q=80',
     rules: [
       'Individual participation',
       'Duration: 2 hours',
@@ -429,6 +446,7 @@ export const events: Event[] = [
     category: 'Cultural',
     categoryId: 'cultural',
     description: 'MIME performance - tell a story without words.',
+    image: 'https://images.unsplash.com/photo-1503095396549-807759245b35?w=800&h=600&fit=crop&q=80',
     rules: [
       'Solo or group (max 6 members)',
       'Time limit: 5-7 minutes',
@@ -457,6 +475,7 @@ export const events: Event[] = [
     category: 'Technical',
     categoryId: 'technical',
     description: 'Competitive programming challenge with algorithmic problem solving.',
+    image: 'https://images.unsplash.com/photo-1542831371-29b0f74f9713?w=800&h=600&fit=crop&q=80',
     rules: [
       'Individual participation',
       'Duration: 2-3 hours',
@@ -481,6 +500,7 @@ export const events: Event[] = [
     category: 'Technical',
     categoryId: 'technical',
     description: '24-hour hackathon for innovative solutions to real-world problems.',
+    image: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=800&h=600&fit=crop&q=80',
     rules: [
       'Team of 2-4 members',
       'Bring your own laptops',
@@ -505,6 +525,7 @@ export const events: Event[] = [
     category: 'Technical',
     categoryId: 'technical',
     description: 'AI-powered product development using prompt engineering.',
+    image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=600&fit=crop&q=80',
     rules: [
       'Team of 2-3 members',
       'Use AI tools to build products',
@@ -528,6 +549,7 @@ export const events: Event[] = [
     category: 'Technical',
     categoryId: 'technical',
     description: 'Valorant esports tournament - 5v5 tactical shooter competition.',
+    image: 'https://images.unsplash.com/photo-1542751371-adc38448a05e?w=800&h=600&fit=crop&q=80',
     rules: [
       'Team of 5+2 (substitutes)',
       'Bring your own peripherals',
@@ -551,6 +573,7 @@ export const events: Event[] = [
     category: 'Technical',
     categoryId: 'technical',
     description: 'Line follower robot race - speed and accuracy competition.',
+    image: 'https://images.unsplash.com/photo-1563207153-f403bf289096?w=800&h=600&fit=crop&q=80',
     rules: [
       'Team of 2-4 members',
       'Autonomous robot only',
@@ -574,6 +597,7 @@ export const events: Event[] = [
     category: 'Technical',
     categoryId: 'technical',
     description: 'Robot football tournament - build and compete with soccer bots.',
+    image: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800&h=600&fit=crop&q=80',
     rules: [
       'Team of 3-5 members',
       'Wireless/autonomous control',
@@ -598,6 +622,7 @@ export const events: Event[] = [
     category: 'Technical',
     categoryId: 'technical',
     description: 'RC Aircraft design and flying competition.',
+    image: 'https://images.unsplash.com/photo-1473968512647-3e447244af8f?w=800&h=600&fit=crop&q=80',
     rules: [
       'Team of 2-4 members',
       'Manual remote control only',
@@ -621,6 +646,7 @@ export const events: Event[] = [
     category: 'Technical',
     categoryId: 'technical',
     description: 'Circuit debugging and electronics troubleshooting challenge.',
+    image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&h=600&fit=crop&q=80',
     rules: [
       'Team of 2 members',
       'Duration: 2 hours',
@@ -644,6 +670,7 @@ export const events: Event[] = [
     category: 'Technical',
     categoryId: 'technical',
     description: 'Maze-solving robot competition with obstacle navigation.',
+    image: 'https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=800&h=600&fit=crop&q=80',
     rules: [
       'Team of 2-3 members',
       'Autonomous navigation',
@@ -667,6 +694,7 @@ export const events: Event[] = [
     category: 'Technical',
     categoryId: 'technical',
     description: 'Startup pitch competition for innovative business ideas.',
+    image: 'https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=800&h=600&fit=crop&q=80',
     rules: [
       'Team of 3-5 members',
       'Duration: 5-7 minutes pitch',
@@ -696,6 +724,7 @@ export const events: Event[] = [
     category: 'Management',
     categoryId: 'management',
     description: 'Financial analysis and investment strategy competition.',
+    image: 'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&h=600&fit=crop&q=80',
     rules: [
       'Team of 2-3 members',
       'Case study analysis',
@@ -719,6 +748,7 @@ export const events: Event[] = [
     category: 'Management',
     categoryId: 'management',
     description: 'Entrepreneurship and business plan competition.',
+    image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&h=600&fit=crop&q=80',
     rules: [
       'Team of 3-4 members',
       'Innovative business idea required',
@@ -742,6 +772,7 @@ export const events: Event[] = [
     category: 'Management',
     categoryId: 'management',
     description: 'Team-based business simulation and strategy challenge.',
+    image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&h=600&fit=crop&q=80',
     rules: [
       'Team of 4-5 members',
       'Multi-round competition',

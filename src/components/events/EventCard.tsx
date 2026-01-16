@@ -1,6 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import Image from 'next/image'
 import { Calendar, Users, ArrowRight } from 'lucide-react'
 import { Event, flagshipEventIds } from '@/data/events'
 
@@ -17,6 +18,7 @@ const categoryColors: Record<string, { bg: string; text: string; border: string;
   literary: { bg: 'from-gold-900/15 to-gold-950/10', text: 'text-gold-700', border: 'group-hover:border-gold-800/40', glow: 'group-hover:shadow-gold-900/10' },
   media: { bg: 'from-teal-900/15 to-emerald-950/10', text: 'text-teal-400', border: 'group-hover:border-teal-800/40', glow: 'group-hover:shadow-teal-900/10' },
   gaming: { bg: 'from-red-900/15 to-violet-950/10', text: 'text-red-400', border: 'group-hover:border-red-800/40', glow: 'group-hover:shadow-red-900/10' },
+  management: { bg: 'from-amber-900/15 to-yellow-950/10', text: 'text-amber-400', border: 'group-hover:border-amber-800/40', glow: 'group-hover:shadow-amber-900/10' },
 }
 
 export default function EventCard({ event, index, onClick }: EventCardProps) {
@@ -31,7 +33,7 @@ export default function EventCard({ event, index, onClick }: EventCardProps) {
       onClick={onClick}
       className={`
         bg-forest-900/70 backdrop-blur-md rounded-xl group cursor-pointer overflow-hidden 
-        transition-all duration-500 hover:shadow-xl hover:-translate-y-1
+        transition-all duration-300 hover:shadow-2xl hover:-translate-y-2
         ${colors.border} ${colors.glow}
         ${isFlagship 
           ? 'border-2 border-gold-900/40 ring-1 ring-gold-900/15' 
@@ -42,19 +44,51 @@ export default function EventCard({ event, index, onClick }: EventCardProps) {
         boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.04), inset 0 -1px 0 rgba(0,0,0,0.25), inset 0 4px 12px rgba(0,0,0,0.15), 0 4px 20px rgba(0,0,0,0.25)'
       }}
     >
-      {/* Gradient Header - stone tablet style */}
-      <div className={`${isFlagship ? 'h-28' : 'h-24'} bg-gradient-to-br ${colors.bg} relative`}>
-        <div className="absolute inset-0 bg-forest-950/50" />
-        {/* Carved line accent for flagship */}
-        {isFlagship && (
-          <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold-800/50 to-transparent" />
-        )}
-        <div className="absolute bottom-3 left-4 flex items-center gap-2">
-          <span className={`inline-block px-2.5 py-1 rounded-full bg-forest-950/70 backdrop-blur-sm text-xs font-medium ${colors.text} border border-current/15`}>
-            {event.category}
-          </span>
+      {/* Event Image */}
+      {event.image && (
+        <div className="relative h-48 w-full overflow-hidden bg-gradient-to-br from-forest-950/90 to-forest-900/80">
+          <Image
+            src={event.image}
+            alt={event.name}
+            fill
+            className="object-cover transition-transform duration-300 group-hover:scale-110"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          />
+          {/* Gradient overlay for text readability */}
+          <div className="absolute inset-0 bg-gradient-to-t from-forest-950/90 via-forest-950/40 to-transparent" />
+          
+          {/* Category badge on image */}
+          <div className="absolute top-3 left-3">
+            <span className={`inline-block px-3 py-1.5 rounded-full bg-forest-950/80 backdrop-blur-sm text-xs font-semibold ${colors.text} border border-current/20`}>
+              {event.category}
+            </span>
+          </div>
+
+          {/* Flagship badge */}
+          {isFlagship && (
+            <div className="absolute top-3 right-3">
+              <span className="inline-block px-3 py-1.5 rounded-full bg-gold-900/80 backdrop-blur-sm text-xs font-bold text-gold-100 border border-gold-700/30">
+                ⭐ Featured
+              </span>
+            </div>
+          )}
         </div>
-      </div>
+      )}
+
+      {/* Fallback gradient header if no image */}
+      {!event.image && (
+        <div className={`${isFlagship ? 'h-28' : 'h-24'} bg-gradient-to-br ${colors.bg} relative`}>
+          <div className="absolute inset-0 bg-forest-950/50" />
+          {isFlagship && (
+            <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold-800/50 to-transparent" />
+          )}
+          <div className="absolute bottom-3 left-4 flex items-center gap-2">
+            <span className={`inline-block px-2.5 py-1 rounded-full bg-forest-950/70 backdrop-blur-sm text-xs font-medium ${colors.text} border border-current/15`}>
+              {event.category}
+            </span>
+          </div>
+        </div>
+      )}
 
       {/* Content */}
       <div className="p-5">

@@ -7,7 +7,6 @@ import LeaderboardTeaser from '@/components/home/LeaderboardTeaser'
 import SponsorsPreview from '@/components/home/SponsorsPreview'
 import Testimonials from '@/components/home/Testimonials'
 import FinalCTA from '@/components/home/FinalCTA'
-import LiveCounter from '@/components/ui/LiveCounter'
 import EventHighlightsMarquee from '@/components/ui/EventHighlightsMarquee'
 
 // Dynamically import effects that use browser APIs
@@ -27,10 +26,6 @@ export default function Home() {
       {/* Main content sections with IDs and consistent spacing for scroll-based navigation */}
       <section id="hero" className="relative">
         <CyberAranyaHero />
-        {/* Live registration counter below hero */}
-        <div className="container mx-auto px-6 -mt-8 relative z-20">
-          <LiveCounter />
-        </div>
       </section>
       
       <section id="about" className="relative">
