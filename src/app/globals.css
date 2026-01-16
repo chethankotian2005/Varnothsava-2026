@@ -423,6 +423,30 @@ input, textarea, select {
     isolation: isolate;
   }
 
+  /* ─────────────────────────────────────
+     HERO HEADING COMPREHENSIVE RESET
+     Force all spans in hero headings to pure text
+     ───────────────────────────────────── */
+  h1, .hero-heading, .hero-title-3d-gold {
+    background: none !important;
+    background-image: none !important;
+  }
+
+  h1 span,
+  .hero-heading span,
+  .hero-title-3d-gold span,
+  p[class*="subtitle"] span,
+  p[class*="tracking"] span {
+    background: transparent !important;
+    background-image: none !important;
+    background-clip: border-box !important;
+    -webkit-background-clip: border-box !important;
+    -webkit-text-fill-color: inherit !important;
+    padding: 0 !important;
+    box-decoration-break: slice !important;
+    -webkit-box-decoration-break: slice !important;
+  }
+
   /* Reset any backdrop-filter on parent containers of text */
   [class*="hero"] > div,
   [class*="hero"] > motion,
