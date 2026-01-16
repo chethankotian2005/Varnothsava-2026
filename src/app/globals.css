@@ -275,38 +275,54 @@ input, textarea, select {
   }
 
   /* ─────────────────────────────────────
-     INLINE TEXT SPANS (Heritage, Future, etc.)
-     Full reset for gradient/clip text styles
+     STEP 1: DISABLE OVERLAY PSEUDO-ELEMENTS
+     These parent overlays cause dark strips
      ───────────────────────────────────── */
-  h1 span,
-  h2 span,
-  h3 span,
-  p span {
-    /* Reset text rendering */
-    color: inherit !important;
-    -webkit-text-fill-color: currentColor !important;
-    background: none !important;
-    background-image: none !important;
-    background-clip: initial !important;
-    -webkit-background-clip: initial !important;
-    mask-image: none !important;
-    -webkit-mask-image: none !important;
-    clip-path: none !important;
-
-    /* Reset effects */
-    box-shadow: none !important;
-    filter: none !important;
-    opacity: 1 !important;
-
-    /* Layout safety */
-    display: inline !important;
+  .hero::before,
+  .hero::after,
+  section::before,
+  section::after,
+  .section::before,
+  .section::after,
+  .content::before,
+  .content::after,
+  .glass::before,
+  .glass::after,
+  .overlay::before,
+  .overlay::after,
+  [class*="hero"]::before,
+  [class*="hero"]::after,
+  [class*="section"]::before,
+  [class*="section"]::after {
+    display: none !important;
+    content: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
   }
 
-  /* Re-apply safe colors */
-  .gold { color: #EBCB78 !important; }
-  .teal { color: #42E6C8 !important; }
-  .highlight { color: #EBCB78 !important; }
-  .text-accent { color: #42E6C8 !important; }
+  /* ─────────────────────────────────────
+     STEP 2: MOVE BACKGROUND TO REAL ELEMENT
+     Solid bg on container, not pseudo-element
+     ───────────────────────────────────── */
+  .hero,
+  .section,
+  .content,
+  .glass,
+  .overlay,
+  [class*="hero-section"],
+  [class*="content-section"] {
+    background: rgba(10, 20, 15, 0.65) !important;
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+  }
+
+  /* ─────────────────────────────────────
+     STEP 3: ENSURE TEXT IS ABOVE EVERYTHING
+     ───────────────────────────────────── */
+  h1, h2, h3, h4, h5, h6, p, span, a, li {
+    position: relative;
+    z-index: 2;
+  }
 }
 
 /* ========================================
