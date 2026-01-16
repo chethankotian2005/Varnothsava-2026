@@ -515,6 +515,87 @@ input, textarea, select {
     background: transparent !important;
     background-image: none !important;
   }
+
+  /* ─────────────────────────────────────
+     TAILWIND GRADIENT UTILITY OVERRIDES
+     Remove all Tailwind gradient classes
+     ───────────────────────────────────── */
+  .bg-gradient-to-r,
+  .bg-gradient-to-l,
+  .bg-gradient-to-t,
+  .bg-gradient-to-b,
+  .bg-gradient-to-tr,
+  .bg-gradient-to-tl,
+  .bg-gradient-to-br,
+  .bg-gradient-to-bl,
+  [class*="bg-gradient"] {
+    background-image: none !important;
+    background: transparent !important;
+  }
+
+  .bg-clip-text {
+    background-clip: border-box !important;
+    -webkit-background-clip: border-box !important;
+    -webkit-text-fill-color: currentColor !important;
+  }
+
+  .text-transparent {
+    color: #D4AF37 !important;
+    -webkit-text-fill-color: #D4AF37 !important;
+  }
+
+  /* ─────────────────────────────────────
+     GLOW, BLUR & TRANSFORM RESETS
+     Remove all special effects
+     ───────────────────────────────────── */
+  .glow,
+  .text-glow,
+  [class*="glow"] {
+    filter: none !important;
+    -webkit-filter: none !important;
+    text-shadow: none !important;
+    box-shadow: none !important;
+  }
+
+  .blur,
+  [class*="blur"]:not(.backdrop-blur-none) {
+    filter: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+
+  .scale,
+  .transform,
+  [class*="transform-"] {
+    transform: none !important;
+    -webkit-transform: none !important;
+  }
+
+  /* ─────────────────────────────────────
+     TEXT DECORATION & UNDERLINE EFFECTS
+     Remove animated underlines and decorations
+     ───────────────────────────────────── */
+  .text-decoration,
+  .underline-effect,
+  .glow-effect,
+  .decoration-animate {
+    display: none !important;
+  }
+
+  /* ─────────────────────────────────────
+     HERO SECTION PARENT CONTAINER FIX
+     Ensure hero section text is always visible
+     ───────────────────────────────────── */
+  .hero-section h1,
+  .hero-section h2,
+  .section-title {
+    background: none !important;
+    color: #ffffff !important;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5) !important;
+    position: relative !important;
+    z-index: 10 !important;
+    isolation: isolate !important;
+  }
 }
 
 /* ========================================

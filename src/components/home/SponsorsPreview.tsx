@@ -1,7 +1,7 @@
 'use client'
 
 import { motion, useScroll, useTransform, useReducedMotion } from 'framer-motion'
-import { useRef } from 'react'
+import { useRef, useState, useEffect } from 'react'
 import { Users, Star, Sparkles, Mail, ArrowRight } from 'lucide-react'
 
 const sponsors = {
@@ -82,12 +82,22 @@ function SponsorCard({ name, size, variant }: { name: string, size: 'lg' | 'md' 
 
 export default function SponsorsPreview() {
   const sectionRef = useRef<HTMLElement>(null)
+  const [isMobile, setIsMobile] = useState(false)
+  
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start end", "end start"]
   })
   
   const marqueeX = useTransform(scrollYProgress, [0, 1], ['0%', '-20%'])
+
+  // Detect mobile viewport
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768)
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
 
   return (
     <section ref={sectionRef} className="py-16 lg:py-20 relative overflow-hidden">
@@ -129,9 +139,15 @@ export default function SponsorsPreview() {
           
           <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-forest-100 mb-6 my-10 text-monumental">
             Powered By{' '}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-gold-800 via-gold-700 to-gold-950">
-              Industry Leaders
-            </span>
+            {isMobile ? (
+              <span style={{ color: '#D4AF37' }}>
+                Industry Leaders
+              </span>
+            ) : (
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-gold-800 via-gold-700 to-gold-950">
+                Industry Leaders
+              </span>
+            )}
           </h2>
           
           <p className="text-lg text-forest-300 max-w-2xl mx-auto">
