@@ -276,23 +276,33 @@ input, textarea, select {
 
   /* ─────────────────────────────────────
      INLINE TEXT SPANS (Heritage, Future, etc.)
-     Fixes dark strips behind individual words
+     Full reset for gradient/clip text styles
      ───────────────────────────────────── */
   h1 span,
   h2 span,
   h3 span,
   p span {
+    /* Reset text rendering */
+    color: inherit !important;
+    -webkit-text-fill-color: currentColor !important;
     background: none !important;
     background-image: none !important;
-    box-shadow: none !important;
-    filter: none !important;
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
+    background-clip: initial !important;
+    -webkit-background-clip: initial !important;
     mask-image: none !important;
     -webkit-mask-image: none !important;
+    clip-path: none !important;
+
+    /* Reset effects */
+    box-shadow: none !important;
+    filter: none !important;
+    opacity: 1 !important;
+
+    /* Layout safety */
+    display: inline !important;
   }
 
-  /* Keep colors only - no effects */
+  /* Re-apply safe colors */
   .gold { color: #EBCB78 !important; }
   .teal { color: #42E6C8 !important; }
   .highlight { color: #EBCB78 !important; }
