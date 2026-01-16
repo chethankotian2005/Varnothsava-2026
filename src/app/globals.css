@@ -430,6 +430,26 @@ input, textarea, select {
     -webkit-backdrop-filter: none !important;
     backdrop-filter: none !important;
   }
+
+  /* ─────────────────────────────────────
+     HERO OVERLAY GRADIENTS: HIDE ON MOBILE
+     These radial gradient overlays cause dark artifacts
+     ───────────────────────────────────── */
+  .hero-overlay-gradient,
+  .hero-overlay-dark,
+  .dark-overlay,
+  .backdrop-overlay,
+  [class*="overlay"] {
+    display: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+  }
+
+  /* Alternative: Force transparent background on any overlay divs */
+  section > div[class*="absolute"][class*="inset"] {
+    background: transparent !important;
+    background-image: none !important;
+  }
 }
 
 /* ========================================

@@ -295,8 +295,9 @@ export default function CyberAranyaHero() {
       aria-label="Hero section"
     >
       {/* Hero-specific overlay - lightened for premium mystical feel */}
+      {/* Hidden on mobile to prevent dark strip artifacts */}
       <div 
-        className="absolute inset-0 -z-10 pointer-events-none"
+        className="absolute inset-0 -z-10 pointer-events-none hero-overlay-gradient hidden md:block"
         style={{
           background: `
             radial-gradient(ellipse 80% 60% at 50% 40%, transparent 0%, rgba(5, 13, 10, 0.25) 60%, rgba(5, 13, 10, 0.5) 100%)
