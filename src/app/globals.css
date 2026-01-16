@@ -208,6 +208,77 @@ input, textarea, select {
 }
 
 /* ========================================
+   MOBILE GPU RENDERING FIXES
+   Prevents dark rectangular strips behind text
+   ======================================== */
+
+@media (max-width: 768px) {
+  /* 1️⃣ Disable backdrop-filter on mobile to prevent GPU banding */
+  .glass,
+  .blur,
+  .backdrop,
+  [class*="backdrop-blur"],
+  [class*="glass-"] {
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+    background: rgba(10, 22, 18, 0.85) !important;
+  }
+
+  /* 2️⃣ Prevent GPU layer bleed on text elements */
+  h1, h2, h3, h4, h5, h6, p, span, a, li, label {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+
+  /* 3️⃣ Fix overflow + absolute stacking issues */
+  section,
+  .card,
+  .hero,
+  [class*="hero"],
+  [class*="section"] {
+    overflow: visible !important;
+  }
+
+  /* 4️⃣ Disable gradient masks on mobile text */
+  .text-gradient,
+  [class*="bg-clip-text"],
+  [class*="text-transparent"] {
+    -webkit-mask-image: none !important;
+    mask-image: none !important;
+  }
+
+  /* 5️⃣ Simplify glassmorphism cards on mobile */
+  .glass-card,
+  .glass-card-dark,
+  .glass-card-gold,
+  .glass-subtle {
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+    background: rgba(10, 22, 18, 0.9) !important;
+    border: 1px solid rgba(212, 175, 55, 0.2) !important;
+  }
+
+  /* 6️⃣ Remove complex filters from text on mobile */
+  .hero-title-3d-gold,
+  .text-monumental,
+  .text-engraved {
+    filter: none !important;
+    -webkit-filter: none !important;
+  }
+
+  /* 7️⃣ Disable blur effects on decorative elements */
+  [class*="blur-"],
+  .blur-xl,
+  .blur-2xl,
+  .blur-3xl {
+    filter: none !important;
+    -webkit-filter: none !important;
+  }
+}
+
+/* ========================================
    PERFORMANCE OPTIMIZATIONS
    ======================================== */
 
