@@ -6,7 +6,6 @@ import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
 import ChatWidget from '@/components/layout/ChatWidget'
 import SkipLink from '@/components/layout/SkipLink'
-import FloatingActionButton from '@/components/ui/FloatingActionButton'
 import ScrollProgress from '@/components/ui/ScrollProgress'
 import BackToTop from '@/components/ui/BackToTop'
 import AmbientSound from '@/components/ui/AmbientSound'
@@ -211,7 +210,6 @@ export default function RootLayout({
         </main>
         <Footer />
         <ChatWidget />
-        <FloatingActionButton />
         <BackToTop />
         <AmbientSound />
         
