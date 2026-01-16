@@ -120,28 +120,20 @@ export default function DigitalEtching({ text, subtitle, className = '' }: Digit
         >
           {/* "Where" - warm off-white for readability, not disabled */}
           <span className="text-[#F5EBD7]">Where </span>
-          {/* "Heritage" - ceremonial gold accent */}
+          {/* "Heritage" - ceremonial gold accent - using solid color for mobile compatibility */}
           <span 
-            className="inline-block"
+            className="text-[#FFD700] font-bold"
             style={{
-              background: 'linear-gradient(135deg, #D4AF37 0%, #FFE5A0 50%, #D4AF37 100%)',
-              backgroundClip: 'text',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              filter: 'drop-shadow(0 0 8px rgba(212,175,55,0.4))',
+              textShadow: '0 0 10px rgba(255,215,0,0.5), 0 0 20px rgba(212,175,55,0.3)',
             }}
           >Heritage</span>
           {/* "Meets" - warm off-white connecting word */}
           <span className="text-[#F5EBD7]"> Meets </span>
-          {/* "Future" - cyan tech accent */}
+          {/* "Future" - cyan tech accent - using solid color for mobile compatibility */}
           <span 
-            className="inline-block"
+            className="text-[#00E5E5] font-bold"
             style={{
-              background: 'linear-gradient(135deg, #00D4D4 0%, #7FFFD4 50%, #00D4D4 100%)',
-              backgroundClip: 'text',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              filter: 'drop-shadow(0 0 8px rgba(0,212,212,0.4))',
+              textShadow: '0 0 10px rgba(0,229,229,0.5), 0 0 20px rgba(0,212,212,0.3)',
             }}
           >Future</span>
         </motion.p>
