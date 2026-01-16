@@ -14,7 +14,7 @@ export default function AmbientSound() {
   const audioRef = useRef<HTMLAudioElement | null>(null)
   const fadeIntervalRef = useRef<NodeJS.Timeout | null>(null)
 
-  const TARGET_VOLUME = 0.12
+  const TARGET_VOLUME = 0.28
   const FADE_DURATION = 2000 // 2 seconds
   const FADE_STEPS = 40
 
