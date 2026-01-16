@@ -12,22 +12,11 @@ interface DigitalEtchingProps {
 export default function DigitalEtching({ text, subtitle, className = '' }: DigitalEtchingProps) {
   const containerRef = useRef<HTMLDivElement>(null)
   const [isVisible, setIsVisible] = useState(false)
-  const [isMobile, setIsMobile] = useState(false)
 
   useEffect(() => {
     // Trigger animation after component mounts
     const timer = setTimeout(() => setIsVisible(true), 100)
     return () => clearTimeout(timer)
-  }, [])
-
-  // Detect mobile viewport for simplified rendering
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768)
-    }
-    checkMobile()
-    window.addEventListener('resize', checkMobile)
-    return () => window.removeEventListener('resize', checkMobile)
   }, [])
 
   return (
@@ -133,14 +122,8 @@ export default function DigitalEtching({ text, subtitle, className = '' }: Digit
           <span className="text-[#F5EBD7]">Where </span>
           {/* "Heritage" - ceremonial gold accent */}
           <span 
-            className="inline heritage-highlight"
-            style={isMobile ? {
-              // Mobile: Plain color, no GPU-intensive effects
-              color: '#D4AF37',
-              background: 'none',
-              WebkitTextFillColor: '#D4AF37',
-            } : {
-              // Desktop: Full gradient effect
+            className="inline-block"
+            style={{
               background: 'linear-gradient(135deg, #D4AF37 0%, #FFE5A0 50%, #D4AF37 100%)',
               backgroundClip: 'text',
               WebkitBackgroundClip: 'text',
@@ -152,14 +135,8 @@ export default function DigitalEtching({ text, subtitle, className = '' }: Digit
           <span className="text-[#F5EBD7]"> Meets </span>
           {/* "Future" - cyan tech accent */}
           <span 
-            className="inline future-highlight"
-            style={isMobile ? {
-              // Mobile: Plain color, no GPU-intensive effects
-              color: '#00D4D4',
-              background: 'none',
-              WebkitTextFillColor: '#00D4D4',
-            } : {
-              // Desktop: Full gradient effect
+            className="inline-block"
+            style={{
               background: 'linear-gradient(135deg, #00D4D4 0%, #7FFFD4 50%, #00D4D4 100%)',
               backgroundClip: 'text',
               WebkitBackgroundClip: 'text',

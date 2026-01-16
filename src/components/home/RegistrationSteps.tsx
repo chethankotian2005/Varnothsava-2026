@@ -1,7 +1,7 @@
 'use client'
 
 import { motion, useScroll, useTransform, useReducedMotion } from 'framer-motion'
-import { useRef, useState, useEffect } from 'react'
+import { useRef } from 'react'
 import Link from 'next/link'
 import { UserPlus, CalendarCheck, CreditCard, CheckCircle, ArrowRight, Sparkles, Zap } from 'lucide-react'
 
@@ -42,22 +42,12 @@ const steps = [
 
 export default function RegistrationSteps() {
   const sectionRef = useRef<HTMLElement>(null)
-  const [isMobile, setIsMobile] = useState(false)
-  
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start end", "end start"]
   })
   
   const lineProgress = useTransform(scrollYProgress, [0.2, 0.8], ['0%', '100%'])
-
-  // Detect mobile viewport
-  useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth < 768)
-    checkMobile()
-    window.addEventListener('resize', checkMobile)
-    return () => window.removeEventListener('resize', checkMobile)
-  }, [])
 
   return (
     <section ref={sectionRef} className="py-16 lg:py-20 relative overflow-hidden">
@@ -116,17 +106,11 @@ export default function RegistrationSteps() {
           
           <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-forest-100 mb-6 my-10 text-monumental">
             Register in{' '}
-            {isMobile ? (
-              <span style={{ color: '#D4AF37' }}>
+            <span className="relative inline-block">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-gold-800 via-gold-700 to-gold-950">
                 4 Simple Steps
               </span>
-            ) : (
-              <span className="relative inline-block">
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-gold-800 via-gold-700 to-gold-950">
-                  4 Simple Steps
-                </span>
-              </span>
-            )}
+            </span>
           </h2>
           
           <p className="text-base text-white/80 max-w-lg mx-auto">

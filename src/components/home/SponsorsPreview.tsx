@@ -1,8 +1,8 @@
 'use client'
 
 import { motion, useScroll, useTransform, useReducedMotion } from 'framer-motion'
-import { useRef, useState, useEffect } from 'react'
-import { Users, Star, Sparkles, Mail, ArrowRight } from 'lucide-react'
+import { useRef } from 'react'
+import { Users, Sparkles, Mail, ArrowRight } from 'lucide-react'
 
 const sponsors = {
   title: [
@@ -23,26 +23,34 @@ const sponsors = {
 function SponsorCard({ name, size, variant }: { name: string, size: 'lg' | 'md' | 'sm', variant: 'title' | 'platinum' | 'gold' }) {
   // Responsive size classes - max 120px width on mobile for sm cards
   const sizeClasses = {
-    lg: 'w-full max-w-[288px] h-28 md:h-32',
+    lg: 'w-full max-w-[288px] h-28 md:h-32 md:scale-105',
     md: 'w-full max-w-[224px] h-20 md:h-24',
     sm: 'w-full max-w-[120px] h-16 md:max-w-[176px] md:h-20',
   }
   
+  // Premium gradient styles for each tier - ACTIVE, not greyed out
   const variantClasses = {
-    title: 'bg-gradient-to-br from-gold-800/30 via-gold-700/20 to-gold-600/30 border-gold-800/60 hover:border-gold-700/80',
-    platinum: 'bg-gradient-to-br from-slate-400/20 via-gray-500/15 to-slate-400/20 border-gray-400/50 hover:border-gray-300/70',
-    gold: 'bg-gradient-to-br from-gold-700/20 via-gold-600/15 to-gold-700/20 border-gold-700/40 hover:border-gold-600/60',
+    title: 'bg-gradient-to-br from-[rgba(255,215,120,0.22)] via-[rgba(255,200,90,0.18)] to-[rgba(255,180,60,0.14)] border-[rgba(255,215,120,0.7)] hover:border-[rgba(255,215,120,0.9)] shadow-[0_18px_45px_rgba(255,200,80,0.25)] hover:shadow-[0_22px_55px_rgba(255,200,80,0.35)]',
+    platinum: 'bg-gradient-to-br from-[rgba(220,220,230,0.18)] via-[rgba(200,200,210,0.14)] to-[rgba(180,180,195,0.12)] border-[rgba(220,220,220,0.6)] hover:border-[rgba(240,240,240,0.8)] shadow-[0_14px_36px_rgba(200,200,200,0.15)] hover:shadow-[0_18px_42px_rgba(220,220,220,0.22)]',
+    gold: 'bg-gradient-to-br from-[rgba(255,200,90,0.18)] via-[rgba(255,180,60,0.14)] to-[rgba(255,160,40,0.10)] border-[rgba(255,200,90,0.45)] hover:border-[rgba(255,200,90,0.7)] shadow-[0_10px_28px_rgba(255,180,60,0.12)] hover:shadow-[0_14px_36px_rgba(255,180,60,0.20)]',
   }
   
   const textClasses = {
-    title: 'text-gold-600 text-xl md:text-2xl font-display font-bold',
-    platinum: 'text-gray-100 text-base md:text-lg font-semibold',
-    gold: 'text-gold-600 text-sm md:text-base font-medium',
+    title: 'text-[#FFD36A] text-xl md:text-2xl font-display font-bold drop-shadow-[0_2px_4px_rgba(255,200,80,0.3)]',
+    platinum: 'text-[#E8E8EC] text-base md:text-lg font-semibold drop-shadow-[0_1px_2px_rgba(200,200,200,0.3)]',
+    gold: 'text-[#FFD36A] text-sm md:text-base font-medium drop-shadow-[0_1px_2px_rgba(255,180,60,0.3)]',
+  }
+
+  // Ring colors for focus states
+  const ringClasses = {
+    title: 'focus-within:ring-[rgba(255,215,120,0.6)]',
+    platinum: 'focus-within:ring-[rgba(220,220,220,0.5)]',
+    gold: 'focus-within:ring-[rgba(255,200,90,0.5)]',
   }
 
   return (
     <motion.div
-      whileHover={{ scale: 1.05, y: -5 }}
+      whileHover={{ scale: variant === 'title' ? 1.06 : 1.04, y: -4 }}
       whileTap={{ scale: 0.98 }}
       transition={{ type: "spring", stiffness: 300 }}
       className={`
@@ -52,52 +60,31 @@ function SponsorCard({ name, size, variant }: { name: string, size: 'lg' | 'md' 
         flex items-center justify-center
         relative overflow-hidden group cursor-pointer
         transition-all duration-300
-        focus-within:ring-2 focus-within:ring-gold-800
-        shadow-md hover:shadow-xl hover:shadow-gold-950/30
-        grayscale hover:grayscale-0
+        focus-within:ring-2 ${ringClasses[variant]}
+        opacity-100
         touch-manipulation
       `}
       tabIndex={0}
       role="article"
       aria-label={`${name} - ${variant} sponsor`}
     >
-      {/* Shimmer effect */}
-      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
+      {/* Subtle shimmer effect on hover */}
+      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/8 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 pointer-events-none" />
       
-      {/* Brand circle indicator */}
-      <div className="absolute top-3 left-3 w-8 h-8 rounded-full bg-gradient-to-br from-gold-700/40 to-gold-900/40 border border-gold-800/50 flex items-center justify-center">
-        <div className="w-4 h-4 rounded-full bg-gold-700/60" />
-      </div>
-      
-      {/* Content */}
+      {/* Logo / Name - centered */}
       <span className={textClasses[variant]}>{name}</span>
-      
-      {/* Title sponsor crown */}
-      {variant === 'title' && (
-        <Star className="absolute top-3 right-3 w-6 h-6 text-gold-700 fill-gold-700/40" />
-      )}
     </motion.div>
   )
 }
 
 export default function SponsorsPreview() {
   const sectionRef = useRef<HTMLElement>(null)
-  const [isMobile, setIsMobile] = useState(false)
-  
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start end", "end start"]
   })
   
   const marqueeX = useTransform(scrollYProgress, [0, 1], ['0%', '-20%'])
-
-  // Detect mobile viewport
-  useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth < 768)
-    checkMobile()
-    window.addEventListener('resize', checkMobile)
-    return () => window.removeEventListener('resize', checkMobile)
-  }, [])
 
   return (
     <section ref={sectionRef} className="py-16 lg:py-20 relative overflow-hidden">
@@ -139,15 +126,9 @@ export default function SponsorsPreview() {
           
           <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-forest-100 mb-6 my-10 text-monumental">
             Powered By{' '}
-            {isMobile ? (
-              <span style={{ color: '#D4AF37' }}>
-                Industry Leaders
-              </span>
-            ) : (
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-gold-800 via-gold-700 to-gold-950">
-                Industry Leaders
-              </span>
-            )}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-gold-800 via-gold-700 to-gold-950">
+              Industry Leaders
+            </span>
           </h2>
           
           <p className="text-lg text-forest-300 max-w-2xl mx-auto">
@@ -164,14 +145,15 @@ export default function SponsorsPreview() {
           className="mb-16 text-center"
         >
           <div className="inline-flex items-center gap-2 mb-6">
-            <div className="h-px w-12 bg-gradient-to-r from-transparent to-gold-800/50" />
-            <span className="text-gold-800 text-sm font-mono tracking-widest uppercase">Title Sponsor</span>
-            <div className="h-px w-12 bg-gradient-to-l from-transparent to-gold-800/50" />
+            <div className="h-px w-16 bg-gradient-to-r from-transparent to-[rgba(255,215,120,0.6)]" />
+            <span className="text-[#FFD36A] text-sm font-mono tracking-[0.22em] uppercase font-semibold">Title Sponsor</span>
+            <div className="h-px w-16 bg-gradient-to-l from-transparent to-[rgba(255,215,120,0.6)]" />
           </div>
           <div className="flex justify-center">
             <div className="relative">
-              {/* Glow effect */}
-              <div className="absolute -inset-4 bg-gold-950/20 rounded-3xl blur-2xl" />
+              {/* Premium glow effect for title sponsor */}
+              <div className="absolute -inset-6 bg-[rgba(255,200,80,0.15)] rounded-3xl blur-2xl" />
+              <div className="absolute -inset-3 bg-[rgba(255,215,120,0.08)] rounded-2xl blur-xl" />
               <SponsorCard name="TechCorp" size="lg" variant="title" />
             </div>
           </div>
@@ -186,9 +168,9 @@ export default function SponsorsPreview() {
           className="mb-12 text-center"
         >
           <div className="inline-flex items-center gap-2 mb-6">
-            <div className="h-px w-8 bg-gradient-to-r from-transparent to-white/30" />
-            <span className="text-white/80 text-sm font-mono tracking-widest uppercase">Platinum Partners</span>
-            <div className="h-px w-8 bg-gradient-to-l from-transparent to-white/30" />
+            <div className="h-px w-12 bg-gradient-to-r from-transparent to-[rgba(220,220,230,0.6)]" />
+            <span className="text-[#E8E8EC] text-sm font-mono tracking-[0.22em] uppercase font-semibold">Platinum Partners</span>
+            <div className="h-px w-12 bg-gradient-to-l from-transparent to-[rgba(220,220,230,0.6)]" />
           </div>
           <div className="flex flex-wrap justify-center gap-6">
             {sponsors.platinum.map((sponsor, index) => (
@@ -214,9 +196,9 @@ export default function SponsorsPreview() {
           className="mb-16 text-center"
         >
           <div className="inline-flex items-center gap-2 mb-6">
-            <div className="h-px w-8 bg-gradient-to-r from-transparent to-amber-600/50" />
-            <span className="text-amber-500 text-sm font-mono tracking-widest uppercase">Gold Partners</span>
-            <div className="h-px w-8 bg-gradient-to-l from-transparent to-amber-600/50" />
+            <div className="h-px w-12 bg-gradient-to-r from-transparent to-[rgba(255,200,90,0.5)]" />
+            <span className="text-[#FFD36A] text-sm font-mono tracking-[0.22em] uppercase font-semibold">Gold Partners</span>
+            <div className="h-px w-12 bg-gradient-to-l from-transparent to-[rgba(255,200,90,0.5)]" />
           </div>
           <div className="grid grid-cols-2 md:flex md:flex-wrap justify-center gap-4">
             {sponsors.gold.map((sponsor, index) => (

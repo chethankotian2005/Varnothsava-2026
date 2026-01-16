@@ -20,9 +20,9 @@ export const sponsorTiers: SponsorTier[] = [
   {
     id: 'title',
     name: 'Title Sponsor',
-    color: 'text-amber-400',
-    bgGradient: 'from-amber-900/40 to-amber-800/20',
-    borderColor: 'border-amber-600/50',
+    color: 'text-[#FFD36A]',
+    bgGradient: 'from-[rgba(255,215,120,0.22)] via-[rgba(255,200,90,0.16)] to-[rgba(255,180,60,0.12)]',
+    borderColor: 'border-[rgba(255,215,120,0.7)]',
     benefits: [
       'Exclusive branding on all materials',
       'Main stage naming rights',
@@ -34,9 +34,9 @@ export const sponsorTiers: SponsorTier[] = [
   {
     id: 'platinum',
     name: 'Platinum Sponsors',
-    color: 'text-slate-200',
-    bgGradient: 'from-slate-700/40 to-slate-600/20',
-    borderColor: 'border-slate-400/50',
+    color: 'text-[#E8E8EC]',
+    bgGradient: 'from-[rgba(220,220,230,0.18)] via-[rgba(200,200,210,0.14)] to-[rgba(180,180,195,0.10)]',
+    borderColor: 'border-[rgba(220,220,220,0.6)]',
     benefits: [
       'Large logo on event materials',
       'Premium booth space',
@@ -47,9 +47,9 @@ export const sponsorTiers: SponsorTier[] = [
   {
     id: 'gold',
     name: 'Gold Sponsors',
-    color: 'text-gold-500',
-    bgGradient: 'from-gold-900/40 to-gold-800/20',
-    borderColor: 'border-gold-600/50',
+    color: 'text-[#FFD36A]',
+    bgGradient: 'from-[rgba(255,200,90,0.18)] via-[rgba(255,180,60,0.14)] to-[rgba(255,160,40,0.10)]',
+    borderColor: 'border-[rgba(255,200,90,0.45)]',
     benefits: [
       'Logo on event materials',
       'Standard booth space',
@@ -60,9 +60,9 @@ export const sponsorTiers: SponsorTier[] = [
   {
     id: 'silver',
     name: 'Silver Sponsors',
-    color: 'text-gray-400',
-    bgGradient: 'from-gray-700/40 to-gray-600/20',
-    borderColor: 'border-gray-500/50',
+    color: 'text-[#C0C0C8]',
+    bgGradient: 'from-[rgba(192,192,200,0.16)] via-[rgba(170,170,180,0.12)] to-[rgba(150,150,160,0.08)]',
+    borderColor: 'border-[rgba(192,192,200,0.45)]',
     benefits: [
       'Logo on website',
       'Social media mentions',
@@ -72,9 +72,9 @@ export const sponsorTiers: SponsorTier[] = [
   {
     id: 'bronze',
     name: 'Bronze Sponsors',
-    color: 'text-amber-700',
-    bgGradient: 'from-amber-950/40 to-amber-900/20',
-    borderColor: 'border-amber-800/50',
+    color: 'text-[#CD7F32]',
+    bgGradient: 'from-[rgba(205,127,50,0.18)] via-[rgba(185,110,45,0.14)] to-[rgba(165,95,40,0.10)]',
+    borderColor: 'border-[rgba(205,127,50,0.5)]',
     benefits: [
       'Logo on website',
       'Event passes',
@@ -83,9 +83,9 @@ export const sponsorTiers: SponsorTier[] = [
   {
     id: 'media',
     name: 'Media Partners',
-    color: 'text-blue-400',
-    bgGradient: 'from-blue-900/40 to-blue-800/20',
-    borderColor: 'border-blue-600/50',
+    color: 'text-[#60A5FA]',
+    bgGradient: 'from-[rgba(96,165,250,0.16)] via-[rgba(80,140,220,0.12)] to-[rgba(60,120,200,0.08)]',
+    borderColor: 'border-[rgba(96,165,250,0.45)]',
     benefits: [
       'Coverage partnership',
       'Brand visibility',
@@ -94,9 +94,9 @@ export const sponsorTiers: SponsorTier[] = [
   {
     id: 'education',
     name: 'Education Partners',
-    color: 'text-green-400',
-    bgGradient: 'from-green-900/40 to-green-800/20',
-    borderColor: 'border-green-600/50',
+    color: 'text-[#4ADE80]',
+    bgGradient: 'from-[rgba(74,222,128,0.16)] via-[rgba(60,200,110,0.12)] to-[rgba(50,180,95,0.08)]',
+    borderColor: 'border-[rgba(74,222,128,0.45)]',
     benefits: [
       'Student engagement',
       'Recruitment opportunity',
